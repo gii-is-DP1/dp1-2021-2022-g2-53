@@ -32,6 +32,20 @@
 
     </properties>
 
+
+
+
+		<developers>
+ 			<developer>
+ 				<id>Jm</id>
+ 				<name>Jose Mª</name>
+ 				<email>josemarigquijada@gmail.com</email>
+ 				<roles>
+ 					<role>leader</role>
+ 				</roles>
+ 			</developer>
+		</developers>
+
     <dependencies>
         <!-- Spring and Spring Boot dependencies -->
         <dependency>
