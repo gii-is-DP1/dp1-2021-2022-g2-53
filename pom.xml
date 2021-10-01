@@ -31,6 +31,7 @@
         <spring-format.version>0.0.19</spring-format.version>
 
     </properties>
+
 	<developers>
 	<developer>
 			<id>Luicharom</id>
@@ -44,8 +45,21 @@
 				</picUrl>
 			</properties>
 		</developer>
-		
-		</developers>
+  
+  <developers>
+    <developer>
+    <id>josmarsan24</id>
+    <name>jose martin sanchez</name>
+    <email>josmarsan24@alum.us.es</email>
+    <url>https://github.com/josmarsan24</url>
+    <roles>
+    <role>leader</role>
+    </roles>
+    <properties>
+    <picUrl>https://pbs.twimg.com/media/Eh4n9GhUMAAdO8x?format=jpg&name=large</picUrl>
+    </properties>
+    </developer>
+
     <dependencies>
         <!-- Spring and Spring Boot dependencies -->
         <dependency>
