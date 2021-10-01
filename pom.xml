@@ -32,7 +32,21 @@
 
     </properties>
 
-    <developers>
+	<developers>
+	<developer>
+			<id>Luicharom</id>
+			<name>Luis</name>
+			<email>luicharom@alum.us.es</email>
+			<roles>
+				<role>leader</role>
+			</roles>
+			<properties>
+				<picUrl>
+				</picUrl>
+			</properties>
+		</developer>
+  
+  <developers>
     <developer>
     <id>josmarsan24</id>
     <name>jose martin sanchez</name>
@@ -45,8 +59,6 @@
     <picUrl>https://pbs.twimg.com/media/Eh4n9GhUMAAdO8x?format=jpg&name=large</picUrl>
     </properties>
     </developer>
-
-    </developers>
 
     <dependencies>
         <!-- Spring and Spring Boot dependencies -->
