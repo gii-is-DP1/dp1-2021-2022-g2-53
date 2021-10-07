@@ -60,6 +60,20 @@
 				</picUrl>
 			</properties>
 		</developer>
+		
+		<developer>
+			<id>alvrodgar2</id>
+			<name>Álvaro</name>
+			<email>alvrodgar2@alum.us.es</email>
+			<url>https://github.com/ARGProject-bit</url>
+			<roles>
+				<role>leader</role>
+			</roles>
+			<properties>
+				<picUrl>
+				</picUrl>
+			</properties>
+		</developer>
 	</developers>
 
 	<dependencies>
