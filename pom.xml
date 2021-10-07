@@ -37,16 +37,41 @@
  			<id>alvrodgar2</id>
  			<name>Álvaro</name>
  			<email>alvarorodriguezalvarorodriguez@gmail.com</email>
- 			<url>https://github.com/ARGProject-bit</url>
  			<roles>
- 				<role>yoksé xdxddd</role>
+ 				<role>leader</role>
  			</roles>
  			<properties>
  				<picUrl>
-					https://pbs.twimg.com/profile_images/1422547186991108103/ZEoX_38W_400x400.jpg
 				</picUrl>
  			</properties>
  		</developer>
+ 		
+ 		<developer>
+			<id>Luicharom</id>
+			<name>Luis</name>
+			<email>luicharom@alum.us.es</email>
+			<roles>
+				<role>leader</role>
+			</roles>
+			<properties>
+				<picUrl>
+				</picUrl>
+			</properties>
+		</developer>
+
+		<developer>
+			<id>josmarsan24</id>
+			<name>jose martin sanchez</name>
+			<email>josmarsan24@alum.us.es</email>
+			<url>https://github.com/josmarsan24</url>
+			<roles>
+				<role>leader</role>
+			</roles>
+			<properties>
+				<picUrl>
+				</picUrl>
+			</properties>
+		</developer>
 	</developers>
 
     <dependencies>
