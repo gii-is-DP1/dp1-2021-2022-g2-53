@@ -24,10 +24,4 @@
             <img class="img-responsive" src="${petsImage}"/>
         </div>
     </div>
-    <br></br>
-    <div class="col-md-12">
-            <spring:url value="/resources/images/logoUniversidad_3.png" htmlEscape="true" var="logoUniImage"/>
-            <img class="img-responsive" src="${logoUniImage}"/>
-        </div>
-    
 </petclinic:layout>

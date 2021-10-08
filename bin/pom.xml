@@ -31,6 +31,7 @@
 		<spring-format.version>0.0.19</spring-format.version>
 
 	</properties>
+
 	<developers>
 		<developer>
 			<id>Luicharom</id>
@@ -44,21 +45,6 @@
 				</picUrl>
 			</properties>
 		</developer>
-    
-    <developers>
-	<developer>
-			<id>elomordom</id>
-			<name>eloy</name>
-			<email>elomordom@us.es</email>
-<roles>
-				<role>leader</role>
-			</roles>
-			<properties>
-				<picUrl>
-				</picUrl>
-			</properties>
-		</developer>
-
 
 
 		<developer>
@@ -66,34 +52,6 @@
 			<name>jose martin sanchez</name>
 			<email>josmarsan24@alum.us.es</email>
 			<url>https://github.com/josmarsan24</url>
-			<roles>
-				<role>leader</role>
-			</roles>
-			<properties>
-				<picUrl>
-				</picUrl>
-			</properties>
-		</developer>
-
-    <developer>
-    			<id>juamenvar</id>
-			<name>Juan Antonio</name>
-			<email>juamenvar@alum.us.es</email>
-    <url>https://github.com/josmarsan24</url>
-			<roles>
-				<role>leader</role>
-			</roles>
-			<properties>
-				<picUrl>
-				</picUrl>
-			</properties>
-		</developer>
-    
-		<developer>
-			<id>alvrodgar2</id>
-			<name>Álvaro</name>
-			<email>alvrodgar2@alum.us.es</email>
-			<url>https://github.com/ARGProject-bit</url>
 			<roles>
 				<role>leader</role>
 			</roles>
@@ -212,7 +170,8 @@
 			<optional>true</optional>
 		</dependency>
 	</dependencies>
-<build>
+
+	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -311,6 +270,7 @@
 			</plugin>
 		</plugins>
 	</build>
+
 	<!-- Apache 2 license -->
 	<licenses>
 		<license>
