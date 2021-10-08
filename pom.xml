@@ -31,7 +31,6 @@
 		<spring-format.version>0.0.19</spring-format.version>
 
 	</properties>
-
 	<developers>
 		<developer>
 			<id>Luicharom</id>
@@ -45,6 +44,21 @@
 				</picUrl>
 			</properties>
 		</developer>
+    
+    <developers>
+	<developer>
+			<id>elomordom</id>
+			<name>eloy</name>
+			<email>elomordom@us.es</email>
+<roles>
+				<role>leader</role>
+			</roles>
+			<properties>
+				<picUrl>
+				</picUrl>
+			</properties>
+		</developer>
+
 
 
 		<developer>
