@@ -60,19 +60,6 @@
 				</picUrl>
 			</properties>
 		</developer>
-		
-		<developer>
-			<id>juamenvar</id>
-			<name>Juan Antonio</name>
-			<email>juamenvar@alum.us.es</email>
-			<roles>
-				<role>leader</role>
-			</roles>
-			<properties>
-				<picUrl>
-				</picUrl>
-			</properties>
-		</developer>
 	</developers>
 
 	<dependencies>
