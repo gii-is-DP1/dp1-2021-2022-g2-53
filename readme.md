@@ -1,8 +1,10 @@
-# Spring PetClinic Sample Application 
 
-## Video de presentación de Petris
+
+# Video de presentación de Petris
 
 https://www.youtube.com/watch?v=gtE0AmNyh9A&ab_channel=NewSeries
+
+# Spring PetClinic Sample Application 
 
 This is a fork of https://github.com/spring-projects/spring-petclinic to be used for the DP1 course. The main changes that have been performed were:
 - Trimming several parts of the application to keep the example low
