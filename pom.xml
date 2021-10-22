@@ -58,9 +58,7 @@
 			</properties>
 		</developer>
 
-
-
-		<developer>
+    <developer>
 			<id>josmarsan24</id>
 			<name>jose martin sanchez</name>
 			<email>josmarsan24@alum.us.es</email>
@@ -101,7 +99,19 @@
 				</picUrl>
 			</properties>
 		</developer>
+      
+      <developer>
+ 				<id>Jm</id>
+ 				<name>Jose Mª</name>
+ 				<email>josemarigquijada@gmail.com</email>
+ 				<roles>
+ 					<role>leader</role>
+ 				</roles>
+ 			</developer>
+      
 	</developers>
+  
+  
 
 	<dependencies>
 		<!-- Spring and Spring Boot dependencies -->
