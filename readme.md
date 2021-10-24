@@ -16,7 +16,7 @@ Cada jugador empieza con una **bacteria** en el disco de uno de los laterales de
 * **Fases de fisión binaria:** tras una fase de propagación de cada jugador, se añade una bacteria a los discos que contengan bacterias de un único jugador *(pueden crearse sarcinas de esta forma)* y se pasa a la siguiente fase de propagación.
 * **Fase de contaminación:** tras 3 fases de fisión binaria, los jugadores reciben un **punto de contaminación** por cada disco que contenga más bacterias suyas que del oponente *(las sarcinas cuentan como 5 bacterias).* Tras ello, empieza la siguiente ronda.
 
-Tras terminar la cuarta fase de contaminación, la partida termina y gana el jugador que menos puntos de contaminación tenga. En caso de empate, gana el jugador con menor número de bacterias y sarcinas en los discos. Si el empate persiste, gana el jugador con menos sarcinas en los discos.
+Tras la cuarta fase de contaminación, la partida termina y gana el jugador que menos puntos de contaminación tenga. En caso de empate, gana el jugador con menor número de bacterias y sarcinas en los discos. Si el empate persiste, gana el jugador con menos sarcinas en los discos.
 
 Si un jugador no puede realizar una propagación válida o llega al máximo de puntos de contaminación, perderá la partida automáticamente. Si ambos jugadores llegan al máximo de contaminación a la vez, el empate se resuelve de la forma antes descrita.
 
