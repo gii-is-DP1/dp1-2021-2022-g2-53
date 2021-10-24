@@ -4,7 +4,7 @@ Esta aplicación consiste en una implementación del juego de mesa [Petris](http
 
 # Sobre el juego
 
-El juego es para dos jugadores, y tiene una duración aproximada de 10 minutos. Consiste en controlar un cultivo de bacterias asignado en un tablero de 7 discos de Petri para que su reproducción sea lo menos dañina posible.
+El juego es para dos jugadores, y tiene una duración aproximada de 10 minutos. Consiste en controlar un cultivo de bacterias asignado en un tablero de 7 discos de Petri distribuidos de forma hexagonal para que su reproducción sea lo menos dañina posible.
 
 ## Reglas
 
