@@ -26,7 +26,10 @@
                    
                     <c:out value="${game.pointsRed}"/>
                 </td>
-                
+               <td><spring:url value="/games/edit/{gameId}"
+                            var="gameUrl">
+                            <spring:param name="gameId" value="${game.id}" />
+                        </spring:url> <a href="${fn:escapeXml(gameUrl)}">Edit</a></td>
                              
             </tr>
         </c:forEach>

@@ -23,5 +23,15 @@ public class GameService {
 		return gameRepo.findAll();
 	}
 	
+	@Transactional
+	public void save(Game game) {
+		gameRepo.save(game);
+	}
+	
+	@Transactional
+	public Game findId(int id) {
+		return gameRepo.findById(id).get();
+		
+	}
 	
 }
