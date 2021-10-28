@@ -10,11 +10,11 @@ El juego es para dos jugadores, y tiene una duración aproximada de 10 minutos. 
 
 Cada jugador empieza con una **bacteria** en el disco de uno de los laterales del tablero. La partida se juega en 4 **rondas,** y cada una consiste en:
 
-* **Fases de propagación:** por turnos, cada jugador elige un disco que contenga sus bacterias y mueve una o más de ellas a uno o más discos adyacentes, teniendo en cuenta que:
-  * un disco no puede contener igual número de bacterias de los dos jugadores 
-  * si un disco contiene 5 bacterias de un mismo jugador, se reemplazan por una **sarcina** que no puede ser retirada ni movida, y a cuyo disco no podrán moverse más bacterias de su jugador
-* **Fases de fisión binaria:** tras una fase de propagación de cada jugador, se añade una bacteria a los discos que contengan bacterias de un único jugador *(pueden crearse sarcinas de esta forma)* y se pasa a la siguiente fase de propagación.
-* **Fase de contaminación:** tras 3 fases de fisión binaria, los jugadores reciben un **punto de contaminación** por cada disco que contenga más bacterias suyas que del oponente *(las sarcinas cuentan como 5 bacterias).* Tras ello, empieza la siguiente ronda.
+* **Fases de propagación:** Por turnos, cada jugador elige un disco que contenga sus bacterias y mueve una o más de ellas a uno o más discos adyacentes, teniendo en cuenta que:
+  * Un disco no puede contener igual número de bacterias de los dos jugadores 
+  * Si un disco contiene 5 bacterias de un mismo jugador, se reemplazan por una **sarcina** que no puede ser retirada ni movida, y a cuyo disco no podrán moverse más bacterias de su jugador
+* **Fases de fisión binaria:** Tras una fase de propagación de cada jugador, se añade una bacteria a los discos que contengan bacterias de un único jugador *(pueden crearse sarcinas de esta forma)* y se pasa a la siguiente fase de propagación.
+* **Fase de contaminación:** Tras 3 fases de fisión binaria, los jugadores reciben un **punto de contaminación** por cada disco que contenga más bacterias suyas que del oponente *(las sarcinas cuentan como 5 bacterias).* Tras ello, empieza la siguiente ronda.
 
 Tras la cuarta fase de contaminación, la partida termina y gana el jugador que menos puntos de contaminación tenga. En caso de empate, gana el jugador con menor número de bacterias y sarcinas en los discos. Si el empate persiste, gana el jugador con menos sarcinas en los discos.
 
