@@ -3,6 +3,9 @@ package org.springframework.samples.petclinic.game;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
+import javax.servlet.http.HttpServletResponse;
+
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,7 +31,16 @@ public class GameController {
 		return view;
 	}
 	
-	
+	@GetMapping(value="/{gameId}")
+	public String showGame(ModelMap modelMap,@PathVariable("gameId") int gameId, HttpServletResponse response) {
+		String view="games/showGame";
+		response.addHeader("Refresh","1");
+		Game game=gameService.findId(gameId);
+		boolean edit=true;
+		modelMap.addAttribute("game",game);
+		modelMap.put("now", new Date());
+		return view;
+	}
 	
 	@GetMapping(value="/edit/{gameId}")
 	public String editGame(ModelMap modelMap,@PathVariable("gameId") int gameId) {
