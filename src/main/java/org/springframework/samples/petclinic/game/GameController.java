@@ -33,7 +33,7 @@ public class GameController {
 	@GetMapping(value="/{gameId}")
 	public String showGame(ModelMap modelMap,@PathVariable("gameId") int gameId, HttpServletResponse response) {
 		String view="games/showGame";
-		//response.addHeader("Refresh","1");
+		response.addHeader("Refresh","1");
 		Game game=gameService.findId(gameId);
 		modelMap.addAttribute("game",game);
 		modelMap.addAttribute("board",game.getBoard());
