@@ -38,6 +38,7 @@ public class GameController {
 		Game game=gameService.findId(gameId);
 		boolean edit=true;
 		modelMap.addAttribute("game",game);
+		modelMap.addAttribute("board",game.getBoard());
 		modelMap.put("now", new Date());
 		return view;
 	}

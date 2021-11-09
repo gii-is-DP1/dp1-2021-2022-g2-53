@@ -3,6 +3,7 @@ package org.springframework.samples.petclinic.game;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.OneToOne;
 
 import org.springframework.samples.petclinic.model.BaseEntity;
 
@@ -17,5 +18,7 @@ public class Game extends BaseEntity {
 
 	private Integer pointsBlack;
 	private Integer pointsRed;
+	@OneToOne
+	private Board board;
 
 }

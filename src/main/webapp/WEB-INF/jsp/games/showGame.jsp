@@ -24,6 +24,16 @@
             <th>Red points</th>
             <td><c:out value="${game.pointsRed}"/></td>
         </tr>
-    </table>   
+    </table>
+    <h2>Tablero</h2>
+    <div class="row">
+        <div class="col-md-12">
+            <petclinic:board board="${board}"/>
+            <c:forEach items="${board.pieces}" var="piece">
+            	<petclinic:piece size="50" piece="${piece}"/>
+            	
+            </c:forEach> 
+        </div>
+    </div>
 
 </petclinic:layout>
