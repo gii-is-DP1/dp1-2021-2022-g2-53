@@ -70,15 +70,15 @@ INSERT INTO visits(id,pet_id,visit_date,description) VALUES (2, 8, '2013-01-02',
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (3, 8, '2013-01-03', 'neutered');
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (4, 7, '2013-01-04', 'spayed');
 
-INSERT INTO boards(id,background,height,width) VALUES (1,'resources/images/tablero.jpg',500,300);
+INSERT INTO boards(id,background,height,width) VALUES (1,'resources/images/tablero.jpg',300,500);
 
 INSERT INTO piece(id,color,position,board_id) VALUES (1,'black',1,1);
 INSERT INTO piece(id,color,position,board_id) VALUES (2,'red',2,1);
 INSERT INTO piece(id,color,position,board_id) VALUES (3,'black',3,1);
 INSERT INTO piece(id,color,position,board_id) VALUES (4,'red',4,1);
 INSERT INTO piece(id,color,position,board_id) VALUES (5,'red',5,1);
-INSERT INTO piece(id,color,position,board_id) VALUES (6,'black',6,1);
-INSERT INTO piece(id,color,position,board_id) VALUES (7,'red',7,1);
+INSERT INTO piece(id,color,position,board_id) VALUES (6,'red',6,1);
+INSERT INTO piece(id,color,position,board_id) VALUES (7,'black',7,1);
 
 INSERT INTO games (id,points_black,points_red,board_id) VALUES (1,3,8,1);
 INSERT INTO games (id,points_black,points_red) VALUES (2,8,6);

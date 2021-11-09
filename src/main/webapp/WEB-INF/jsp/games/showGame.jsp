@@ -8,6 +8,16 @@
 
 <petclinic:layout pageName="game">
 
+	<div class="row">
+        <div class="col-md-12">
+            <petclinic:board board="${board}"/>
+            <c:forEach items="${board.pieces}" var="piece">
+            	<petclinic:piece size="10" piece="${piece}"/>
+            	
+            </c:forEach> 
+        </div>
+    </div>
+
     <h2>Game Information</h2>
     <h2><c:out value="${now}"/></h2>
 
@@ -25,15 +35,6 @@
             <td><c:out value="${game.pointsRed}"/></td>
         </tr>
     </table>
-    <h2>Tablero</h2>
-    <div class="row">
-        <div class="col-md-12">
-            <petclinic:board board="${board}"/>
-            <c:forEach items="${board.pieces}" var="piece">
-            	<petclinic:piece size="50" piece="${piece}"/>
-            	
-            </c:forEach> 
-        </div>
-    </div>
+    
 
 </petclinic:layout>

@@ -27,7 +27,7 @@ public class Board extends BaseEntity {
     Game game;
 
     public Board(){
-        this.background="resources/images/tablero.jpg";
+        this.background="/resources/images/tablero.jpg";
         this.width=500;
         this.height=300;
     }
