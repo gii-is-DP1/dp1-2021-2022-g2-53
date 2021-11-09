@@ -73,3 +73,6 @@ INSERT INTO visits(id,pet_id,visit_date,description) VALUES (4, 7, '2013-01-04',
 INSERT INTO games (id,points_black,points_red) VALUES (1,3,8);
 INSERT INTO games (id,points_black,points_red) VALUES (2,8,6);
 INSERT INTO games (id,points_black,points_red) VALUES (3,5,8);
+
+INSERT INTO personas(id,contraseña, estado, nombre, apellidos, en_linea, url_foto) VALUES (1,'prueba' , true , 'Pepe' , 'Pepe' , false , 'holaaS');
+INSERT INTO jugadores(id,color,partidas_jugadas) VALUES (1,true,1);
