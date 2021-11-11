@@ -19,32 +19,47 @@ public class Piece extends BaseEntity {
     @ManyToOne
     Board board;
     
+    public Integer getNumberOfPiecesInPosition(Integer i){
+    	return (int) this.board.getPieces().stream().filter(x->x.getPosition()==this.position).count();
+    }
     
     public Integer getPositionXInPixels(Integer size) {
+    	Integer pos = 0;
     	if (this.position==1 || this.position == 6) {
-            return 150;
+            pos = 100;
         } else if (this.position==2 || this.position == 7) {
-            return 350;
+            pos = 275;
         } else if (this.position==3) {
-            return 50;
+            pos = 30;
         } else if (this.position==4) {
-            return 250;
+            pos = 200;
         } else if (this.position==5) {
-            return 450;
+            pos = 375;
         } else {
             return null;
         }
+    	Integer modifier = board.getAllPiecesInTheSamePositionAndSameColor(this).indexOf(this);
+    	return pos + modifier * 20;
     }
     
     public Integer getPositionYInPixels(Integer size) {
+    	Integer pos = 0;
     	if (this.position==1 || this.position == 2) {
-            return 50;
+            pos = 50;
         } else if (this.position==3 || this.position == 4 || this.position == 5) {
-            return 150;
+        	pos = 150;
         } else if (this.position==6 || this.position==7){
-            return 250;
+        	pos = 230;
         } else {
             return null;
         }
+    	
+    	if (this.color.equals("red")) {
+    		return pos + 15;
+    	} else if (this.color.equals("black")) {
+    		return pos - 15;
+    	} else {
+    		return null;
+    	}
     }
 }

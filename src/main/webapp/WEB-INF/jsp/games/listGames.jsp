@@ -6,15 +6,15 @@
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
 
 <petclinic:layout pageName="games">
-    <h2>Games</h2>
+    <h2>Partidas</h2>
 
     <table id="gamesTable" class="table table-striped">
         <thead>
         <tr>
-            <th style="width: 150px;">Black points</th>
-            <th style="width: 150px;">Red points</th>
-            <th style="width: 150px;"></th>
-            <th style="width: 150px;"></th>
+            <th style="width: 160px;">Puntos del jugador negro</th>
+            <th style="width: 160px;">Puntos del jugador rojo</th>
+            <th style="width: 80px;"></th>
+            <th style="width: 80px;"></th>
         </tr>
         </thead>
         <tbody>
@@ -31,13 +31,13 @@
                 <td><spring:url value="/games/{gameId}"
                             var="gameUrl">
                             <spring:param name="gameId" value="${game.id}" />
-                        </spring:url> <a href="${fn:escapeXml(gameUrl)}">View game</a></td>
+                        </spring:url> <a href="${fn:escapeXml(gameUrl)}">Ver partida</a></td>
                              
             
                <td><spring:url value="/games/edit/{gameId}"
                             var="gameUrl2">
                             <spring:param name="gameId" value="${game.id}" />
-                        </spring:url> <a href="${fn:escapeXml(gameUrl2)}">Edit</a></td>
+                        </spring:url> <a href="${fn:escapeXml(gameUrl2)}">Editar</a></td>
                              
             </tr>
         </c:forEach>

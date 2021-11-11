@@ -18,20 +18,16 @@
         </div>
     </div>
 
-    <h2>Game Information</h2>
+    <h2>Datos de la partida</h2>
     <h2><c:out value="${now}"/></h2>
 
     <table class="table table-striped">
         <tr>
-            <th>ID</th>
-            <td><b><c:out value="${game.id}"/></b></td>
-        </tr>
-        <tr>
-            <th>Black points</th>
+            <th>Puntos del jugador negro</th>
             <td><c:out value="${game.pointsBlack}"/></td>
         </tr>
         <tr>
-            <th>Red points</th>
+            <th>Puntos del jugador rojo</th>
             <td><c:out value="${game.pointsRed}"/></td>
         </tr>
     </table>
