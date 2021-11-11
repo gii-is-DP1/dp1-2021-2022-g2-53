@@ -79,6 +79,21 @@ INSERT INTO piece(id,color,position,board_id) VALUES (4,'red',4,1);
 INSERT INTO piece(id,color,position,board_id) VALUES (5,'red',5,1);
 INSERT INTO piece(id,color,position,board_id) VALUES (6,'red',6,1);
 INSERT INTO piece(id,color,position,board_id) VALUES (7,'black',7,1);
+INSERT INTO piece(id,color,position,board_id) VALUES (8,'black',1,1);
+INSERT INTO piece(id,color,position,board_id) VALUES (9,'red',1,1);
+INSERT INTO piece(id,color,position,board_id) VALUES (10,'red',2,1);
+INSERT INTO piece(id,color,position,board_id) VALUES (11,'black',3,1);
+INSERT INTO piece(id,color,position,board_id) VALUES (12,'black',3,1);
+INSERT INTO piece(id,color,position,board_id) VALUES (14,'black',4,1);
+INSERT INTO piece(id,color,position,board_id) VALUES (15,'black',4,1);
+INSERT INTO piece(id,color,position,board_id) VALUES (16,'red',5,1);
+INSERT INTO piece(id,color,position,board_id) VALUES (17,'red',5,1);
+INSERT INTO piece(id,color,position,board_id) VALUES (18,'red',5,1);
+INSERT INTO piece(id,color,position,board_id) VALUES (19,'black',6,1);
+INSERT INTO piece(id,color,position,board_id) VALUES (20,'red',6,1);
+INSERT INTO piece(id,color,position,board_id) VALUES (21,'black',7,1);
+INSERT INTO piece(id,color,position,board_id) VALUES (22,'red',7,1);
+
 
 INSERT INTO games (id,points_black,points_red,board_id) VALUES (1,3,8,1);
 INSERT INTO games (id,points_black,points_red) VALUES (2,8,6);
