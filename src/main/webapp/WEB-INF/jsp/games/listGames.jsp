@@ -11,8 +11,8 @@
     <table id="gamesTable" class="table table-striped">
         <thead>
         <tr>
-            <th style="width: 150px;">Black points</th>
-            <th style="width: 150px;">Red points</th>
+            <th style="width: 150px;">Puntos del jugador negro</th>
+            <th style="width: 150px;">Puntos del jugador rojo</th>
             <th style="width: 150px;"></th>
             <th style="width: 150px;"></th>
         </tr>
