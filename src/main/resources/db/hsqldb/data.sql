@@ -70,7 +70,16 @@ INSERT INTO visits(id,pet_id,visit_date,description) VALUES (2, 8, '2013-01-02',
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (3, 8, '2013-01-03', 'neutered');
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (4, 7, '2013-01-04', 'spayed');
 
+INSERT INTO personas(id,contraseña, estado, nombre, apellidos, en_linea, url_foto) VALUES (1,'prueba' , true , 'Pepe' , 'Pepe' , false , 'holaaS');
+INSERT INTO personas(id,contraseña, estado, nombre, apellidos, en_linea, url_foto) VALUES (2,'prueba' , true , 'Pepe' , 'Pepe' , false , 'holaaS');
+
 INSERT INTO boards(id,background,height,width) VALUES (1,'/resources/images/tablero.jpg',300,500);
+INSERT INTO boards(id,background,height,width) VALUES (2,'/resources/images/tablero.jpg',300,500);
+
+INSERT INTO games (id,points_black,points_red,board_id) VALUES (1,3,8,1);
+INSERT INTO games (id,points_black,points_red,board_id,turno) VALUES (2,0,0,2,0);
+
+
 
 INSERT INTO piece(id,color,position,board_id) VALUES (1,'black',1,1);
 INSERT INTO piece(id,color,position,board_id) VALUES (2,'red',2,1);
@@ -94,10 +103,8 @@ INSERT INTO piece(id,color,position,board_id) VALUES (20,'red',6,1);
 INSERT INTO piece(id,color,position,board_id) VALUES (21,'black',7,1);
 INSERT INTO piece(id,color,position,board_id) VALUES (22,'red',7,1);
 
+INSERT INTO piece(id,color,position,board_id) VALUES (23,'black',3,2);
+INSERT INTO piece(id,color,position,board_id) VALUES (24,'red',5,2);
 
-INSERT INTO games (id,points_black,points_red,board_id) VALUES (1,3,8,1);
-INSERT INTO games (id,points_black,points_red) VALUES (2,8,6);
-INSERT INTO games (id,points_black,points_red) VALUES (3,5,8);
 
-INSERT INTO personas(id,contraseña, estado, nombre, apellidos, en_linea, url_foto) VALUES (1,'prueba' , true , 'Pepe' , 'Pepe' , false , 'holaaS');
-INSERT INTO jugadores(id,color,partidas_jugadas) VALUES (1,true,1);
+

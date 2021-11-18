@@ -4,9 +4,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.springframework.samples.petclinic.model.NamedEntity;
+import org.springframework.samples.petclinic.game.Game;
+import org.springframework.samples.petclinic.model.BaseEntity;
 import org.springframework.samples.petclinic.persona.Persona;
 
 import lombok.Getter;
@@ -16,14 +18,16 @@ import lombok.Setter;
 @Table(name = "jugadores")
 @Getter
 @Setter
+public class Jugador extends BaseEntity {
 
-public class Jugador extends NamedEntity {
-	
 	@Column(name = "color")
-	private boolean color;
+	private String color;
 
 	@ManyToOne
-	@JoinColumn(name = "partidas_jugadas")
 	private Persona persona;
+
+	/*
+	@ManyToOne
+	private Game game;*/
 
 }

@@ -56,4 +56,14 @@ public class Board extends BaseEntity {
     public Integer getNumberOfPiecesByPosition(Integer pos){
     	return (int) this.pieces.stream().filter(x->x.getPosition()==pos).count();
     }
+    
+    public void movePieces(Movement movement) {
+    	if (movement.getTipo().equals("red") || (movement.getTipo().equals("black"))) {
+    		List<Piece> pieces = this.pieces.stream().filter(x->x.getPosition()==movement.getInitialPosition()&& x.getColor().equals(movement.getTipo())).collect(Collectors.toList());
+        	pieces.subList(0, movement.getNumber());
+        	pieces.stream().forEach(x->x.setPosition(movement.getDestinyPosition()));
+    	} else {
+    		//faltan la fase binaria y de contamincacion
+    	}
+    }
 }
