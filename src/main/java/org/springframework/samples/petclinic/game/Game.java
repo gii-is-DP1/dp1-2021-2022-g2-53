@@ -52,12 +52,51 @@ public class Game extends BaseEntity {
 	public List<String> getTurnos() {
 		//faltan varias cosas
 		List<String> turnos = new ArrayList<>();
+		turnos.add("black");
+		turnos.add("red");
+		turnos.add("binary");
 		turnos.add("red");
 		turnos.add("black");
 		turnos.add("binary");
 		turnos.add("black");
 		turnos.add("red");
 		turnos.add("binary");
+		turnos.add("pollution");
+		
+		turnos.add("red");
+		turnos.add("black");
+		turnos.add("binary");
+		turnos.add("black");
+		turnos.add("red");
+		turnos.add("binary");
+		turnos.add("red");
+		turnos.add("black");
+		turnos.add("binary");
+		turnos.add("pollution");
+		
+		turnos.add("black");
+		turnos.add("red");
+		turnos.add("binary");
+		turnos.add("red");
+		turnos.add("black");
+		turnos.add("binary");
+		turnos.add("black");
+		turnos.add("red");
+		turnos.add("binary");
+		turnos.add("pollution");
+		
+		turnos.add("red");
+		turnos.add("black");
+		turnos.add("binary");
+		turnos.add("black");
+		turnos.add("red");
+		turnos.add("binary");
+		turnos.add("red");
+		turnos.add("black");
+		turnos.add("binary");
+		turnos.add("pollution");
+		
+		turnos.add("fin");
 		return turnos;
 	}
 	
