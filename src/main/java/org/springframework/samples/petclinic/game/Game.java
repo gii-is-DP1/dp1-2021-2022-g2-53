@@ -31,8 +31,6 @@ public class Game extends BaseEntity {
 	private List<Jugador> jugadores;*/
 	@Min(0)
 	private Integer turno;
-	@Transient
-	private List<String> turnos;
 	@OneToOne
 	private Board board;
 	
@@ -45,27 +43,22 @@ public class Game extends BaseEntity {
 		this.board = board;
 		//this.jugadores = jugadores;
 		this.turno = 0;
-		this.turnos = new ArrayList<>();
-		turnos.add("red");
-		turnos.add("black");
-		turnos.add("binary");
-		turnos.add("black");
-		turnos.add("red");
-		turnos.add("binary");
 	}
 
 	public Game() {
 		super();
 	}
 	
-	public void SetTurnos() {
-		this.turnos = new ArrayList<>();
+	public List<String> getTurnos() {
+		//faltan varias cosas
+		List<String> turnos = new ArrayList<>();
 		turnos.add("red");
 		turnos.add("black");
 		turnos.add("binary");
 		turnos.add("black");
 		turnos.add("red");
 		turnos.add("binary");
+		return turnos;
 	}
 	
 	

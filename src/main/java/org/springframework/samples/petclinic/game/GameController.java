@@ -46,7 +46,6 @@ public class GameController {
 		String view="games/playGame";
 		//response.addHeader("Refresh","1");
 		Game game=gameService.findId(gameId);
-		game.SetTurnos();
 		modelMap.addAttribute("game",game);
 		modelMap.addAttribute("board",game.getBoard());
 		modelMap.addAttribute("movement",new Movement());
