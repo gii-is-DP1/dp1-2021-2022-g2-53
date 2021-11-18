@@ -41,6 +41,53 @@ public class GameController {
 		return view;
 	}
 	
+	@GetMapping(value="/play/{gameId}")
+	public String playGame(ModelMap modelMap,@PathVariable("gameId") int gameId, HttpServletResponse response) {
+		String view="games/playGame";
+		//response.addHeader("Refresh","1");
+		Game game=gameService.findId(gameId);
+		modelMap.addAttribute("game",game);
+		modelMap.addAttribute("board",game.getBoard());
+		modelMap.addAttribute("movement",new Movement());
+		modelMap.addAttribute("turnoActual",game.getTurnos().get(game.getTurno()));
+		modelMap.put("now", new Date());
+		return view;
+	}
+	
+	@PostMapping(value="/play/{gameId}")
+	public String processMovementForm(ModelMap modelMap,@PathVariable("gameId") int gameId ,@Valid Movement movement, BindingResult result) {
+		if (result.hasErrors()) {
+			boolean edit=true;
+			modelMap.put("edit", edit);
+			return "games/playGame";
+		}else {
+			Game gameEdited = gameService.findId(gameId);
+			String turno = gameEdited.getTurnos().get(gameEdited.getTurno());
+			if (turno.equals("red") || turno.equals("black")) {
+				movement.setTipo(gameEdited.getTurnos().get(gameEdited.getTurno()));
+				gameEdited.getBoard().movePieces(movement);
+				gameEdited.setTurno(gameEdited.getTurno()+1);
+				gameService.save(gameEdited);
+			} else if (turno.equals("binary")) {
+				gameService.binary(gameId);
+				gameEdited.setTurno(gameEdited.getTurno()+1);
+				gameService.save(gameEdited);
+			} else if (turno.equals("pollution")) {
+				//POSICION 0 SON ROJOS Y 1 SON NEGROS
+				gameEdited.setPointsRed(gameEdited.getPointsRed() + gameEdited.getBoard().pollution().get(0));
+				gameEdited.setPointsBlack(gameEdited.getPointsBlack() +gameEdited.getBoard().pollution().get(1));
+				gameEdited.setTurno(gameEdited.getTurno()+1);
+				gameService.save(gameEdited);
+			}
+			
+			return "redirect:/games/play/{gameId}";
+		}
+		
+	}
+	
+	
+	/////////////////////////////////////////////
+	
 	@GetMapping(value="/edit/{gameId}")
 	public String editGame(ModelMap modelMap,@PathVariable("gameId") int gameId) {
 		String view="games/editGame";
