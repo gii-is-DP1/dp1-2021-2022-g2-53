@@ -38,6 +38,11 @@
                             var="gameUrl2">
                             <spring:param name="gameId" value="${game.id}" />
                         </spring:url> <a href="${fn:escapeXml(gameUrl2)}">Editar</a></td>
+                        
+                        
+                <td><spring:url value="/games/delete/{gameId}" var="gameUrl3">
+                            <spring:param name="gameId" value="${game.id}" />
+                        </spring:url> <a href="${fn:escapeXml(gameUrl3)}">Borrar</a></td>
                              
             </tr>
         </c:forEach>

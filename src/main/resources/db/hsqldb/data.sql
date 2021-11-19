@@ -81,6 +81,7 @@ INSERT INTO games (id,points_black,points_red,board_id,turno) VALUES (2,0,0,2,0)
 
 
 
+
 INSERT INTO piece(id,color,position,board_id) VALUES (1,'black',1,1);
 INSERT INTO piece(id,color,position,board_id) VALUES (2,'red',2,1);
 INSERT INTO piece(id,color,position,board_id) VALUES (3,'black',3,1);
