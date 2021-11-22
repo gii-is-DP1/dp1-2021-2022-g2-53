@@ -17,6 +17,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 import org.springframework.samples.petclinic.model.BaseEntity;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
+
+
 
 @Entity
 @Table(name = "boards")
@@ -74,16 +79,65 @@ public class Board extends BaseEntity {
 			return "";
 		}
 	}
+	
+	public boolean moveInvalid(List<Piece> ls, Movement movement, BindingResult result) {
+		boolean res = false;
+		List<Piece> piecesDiferentDestiny = this.pieces.stream().filter(
+				x -> x.getPosition() == movement.getDestinyPosition() && x.getColor().equals(movement.getTipo())==false)
+				.collect(Collectors.toList());
+		List<Piece> piecesSameDestiny = this.pieces.stream().filter(
+				x -> x.getPosition() == movement.getDestinyPosition() && x.getColor().equals(movement.getTipo()))
+				.collect(Collectors.toList());
+		List<Piece> piecesAux = pieces.subList(0, movement.getNumber());
+		if(piecesAux.size()+piecesSameDestiny.size() == piecesDiferentDestiny.size() && piecesDiferentDestiny.size()!=0) {
+			result.reject("moveInvalid", "No puedes mover la ficha a esa casilla");
+			res = true;
+		}
+		return res;
+	}
+	
+	
+	public boolean moveInvalidPosition(Movement movement, BindingResult result) {
+		boolean res = false;
+		Integer posini = movement.getInitialPosition();
+		Integer posfin = movement.getDestinyPosition();
+		if(posini == 1 && (posfin==6 || posfin==7 )) {
+			result.reject("moveInvalidPosition", "No puedes mover la ficha a esa casilla");
+			res = true;
+		}else if(posini == 2 && (posfin==3 || posfin==6 || posfin==7)) {
+			result.reject("moveInvalidPosition", "No puedes mover la ficha a esa casilla");
+			res = true;
+		}else if(posini == 3 && (posfin==2 || posfin==5 || posfin==7))  {
+			result.reject("moveInvalidPosition", "No puedes mover la ficha a esa casilla");
+			res = true;
+		}else if(posini == 5 && (posfin==1 || posfin==3 || posfin==6)) {
+			result.reject("moveInvalidPosition", "No puedes mover la ficha a esa casilla");
+			res = true;
+		}else if(posini == 6 && (posfin==1 || posfin==2 || posfin==5)) {
+			result.reject("moveInvalidPosition", "No puedes mover la ficha a esa casilla");
+			res = true;
+		}else if(posini == 7 && (posfin==1 || posfin==2 || posfin==3)) {
+			result.reject("moveInvalidPosition", "No puedes mover la ficha a esa casilla");
+			res = true;
+		}
+		return res;
+	}
 
-	public void movePieces(Movement movement) {
+	public void movePieces(Movement movement, BindingResult result) throws MoveInvalidException {
 		if (movement.getTipo().equals("red") || (movement.getTipo().equals("black"))) {
 			List<Piece> pieces = this.pieces.stream().filter(
 					x -> x.getPosition() == movement.getInitialPosition() && x.getColor().equals(movement.getTipo()))
 					.collect(Collectors.toList());
 			List<Piece> piecesAux = pieces.subList(0, movement.getNumber());
-			piecesAux.stream().forEach(x -> x.setPosition(movement.getDestinyPosition()));
-		}
+			if(movement.getTipo().equals("red") || movement.getTipo().equals("black")) {
+				if(moveInvalid(pieces, movement, result) == false && moveInvalidPosition(movement, result) == false) {
+					piecesAux.stream().forEach(x -> x.setPosition(movement.getDestinyPosition()));
+				}
+			}else {
+				piecesAux.stream().forEach(x -> x.setPosition(movement.getDestinyPosition()));
+			}
 	}
+}
 
 	// O -> RED Y 1 -> BLACK
 	public List<Integer> pollution() {

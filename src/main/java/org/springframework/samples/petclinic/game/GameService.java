@@ -5,6 +5,7 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.BindingResult;
 
 @Service
 public class GameService {
@@ -49,6 +50,32 @@ public class GameService {
 				pieceService.save(piece);
 			}
 			i++;
+		}
+	}
+	
+	@Transactional
+	public void phases(int gameId, Movement movement, BindingResult result) throws MoveInvalidException {
+		Game gameEdited = findId(gameId);
+		String turno = gameEdited.getTurnos().get(gameEdited.getTurno());
+		if (turno.equals("red") || turno.equals("black")) {
+			movement.setTipo(gameEdited.getTurnos().get(gameEdited.getTurno()));
+				gameEdited.getBoard().movePieces(movement, result);
+				if(!result.hasErrors()) {
+					gameEdited.setTurno(gameEdited.getTurno()+1);
+					save(gameEdited);	
+				}else {
+					save(gameEdited);
+				}
+		} else if (turno.equals("binary")) {
+			binary(gameId);
+			gameEdited.setTurno(gameEdited.getTurno()+1);
+			save(gameEdited);
+		} else if (turno.equals("pollution")) {
+			//POSICION 0 SON ROJOS Y 1 SON NEGROS
+			gameEdited.setPointsRed(gameEdited.getPointsRed() + gameEdited.getBoard().pollution().get(0));
+			gameEdited.setPointsBlack(gameEdited.getPointsBlack() +gameEdited.getBoard().pollution().get(1));
+			gameEdited.setTurno(gameEdited.getTurno()+1);
+			save(gameEdited);
 		}
 	}
 
