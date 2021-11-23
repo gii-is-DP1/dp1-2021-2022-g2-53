@@ -101,7 +101,7 @@ public class Board extends BaseEntity {
 		boolean res = false;
 		Integer posini = movement.getInitialPosition();
 		Integer posfin = movement.getDestinyPosition();
-		if(posini == 1 && (posfin==6 || posfin==7 )) {
+		if(posini == 1 && (posfin==6 || posfin==7 || posfin==5 )) {
 			result.reject("moveInvalidPosition", "No puedes mover la ficha a esa casilla");
 			res = true;
 		}else if(posini == 2 && (posfin==3 || posfin==6 || posfin==7)) {
