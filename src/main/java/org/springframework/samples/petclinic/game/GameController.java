@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import javax.servlet.http.HttpServletResponse;
 
 import java.util.Date;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -110,6 +111,46 @@ public class GameController {
 		}
 		
 	}
+	
+	
+	@GetMapping(value="/delete/{gameId}")
+	public String deleteGame(ModelMap modelMap,@PathVariable("gameId") int gameId) {
+		String view="games/listGames"; 
+		Optional<Game> game= Optional.of(gameService.findId(gameId));
+		if(game.isPresent()) {
+			gameService.delete(game.get());
+			modelMap.addAttribute("message","evento borrado");
+		}
+		else {
+			modelMap.addAttribute("message","evento no borrado");
+			
+		}
+			return view;
+		
+		
+	}
+	@GetMapping(path="/new")
+	public String creategame(ModelMap modelMap) {
+		String view="games/createGame";
+		modelMap.addAttribute("game",new Game());
+		return view;
+	
+			
+		}
+	@PostMapping(path="/save")
+	public String salvarjuego(ModelMap modelMap, @Valid Game game , BindingResult result) {
+		String view="games/listGames"; 
+		if (result.hasErrors()) {
+			modelMap.addAttribute("game", game);
+			return "games/createGame";
+		}else {
+			gameService.save(game);
+			modelMap.addAttribute("message","evento salvado");
+			return view;
+		}
+		
+	}	
+	
 	
 	
 }

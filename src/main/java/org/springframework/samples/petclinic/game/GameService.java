@@ -1,7 +1,5 @@
 package org.springframework.samples.petclinic.game;
 
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,6 +28,7 @@ public class GameService {
 	public void save(Game game) {
 		gameRepo.save(game);
 	}
+	
 
 	@Transactional
 	public Game findId(int id) {
@@ -52,6 +51,7 @@ public class GameService {
 			i++;
 		}
 	}
+
 	
 	@Transactional
 	public void phases(int gameId, Movement movement, BindingResult result) throws MoveInvalidException {
@@ -79,6 +79,12 @@ public class GameService {
 			gameEdited.setTurno(gameEdited.getTurno()+1);
 			save(gameEdited);
 		}
+
+	@Transactional
+	public void delete(Game game) {
+		gameRepo.delete(game);
+		
+
 	}
 
 }
