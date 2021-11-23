@@ -64,6 +64,8 @@ public class GameService {
 					gameEdited.setTurno(gameEdited.getTurno()+1);
 					save(gameEdited);	
 				}else {
+					result.getFieldError("destinyPosition");
+					result.getAllErrors();
 					save(gameEdited);
 				}
 		} else if (turno.equals("binary")) {

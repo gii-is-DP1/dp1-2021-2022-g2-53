@@ -45,7 +45,7 @@
 			<petclinic:inputField label="Casilla original" name="initialPosition" />
 			<petclinic:inputField label="Número de fichas" name="number" />
 			<petclinic:inputField label="Casilla destino" name="destinyPosition" />
-
+			 
 		</div>
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
@@ -54,6 +54,7 @@
 			</div>
 		</div>
 	</form:form>
+		
 
 
 </petclinic:layout>

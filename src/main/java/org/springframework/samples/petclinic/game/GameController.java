@@ -66,7 +66,18 @@ public class GameController {
 			return "games/playGame";
 		}else {
 			gameService.phases(gameId, movement, result);
+			if(result.hasErrors()) {
+				modelMap.put("board", gameService.findId(gameId).getBoard());
+				if(!result.getFieldErrors("destinyPosition").isEmpty()){
+					modelMap.put("error", result.getFieldError("destinyPosition").getDefaultMessage());
+				}else if(!result.getFieldErrors("initialPosition").isEmpty()) {
+					modelMap.put("error", result.getFieldError("initialPosition").getDefaultMessage());
+				}
+				return "games/playGame";
+			}
+			else {
 			return "redirect:/games/play/{gameId}";
+			}
 		}
 		
 	}

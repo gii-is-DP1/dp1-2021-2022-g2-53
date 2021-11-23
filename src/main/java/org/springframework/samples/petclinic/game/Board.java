@@ -90,7 +90,7 @@ public class Board extends BaseEntity {
 				.collect(Collectors.toList());
 		List<Piece> piecesAux = pieces.subList(0, movement.getNumber());
 		if(piecesAux.size()+piecesSameDestiny.size() == piecesDiferentDestiny.size() && piecesDiferentDestiny.size()!=0) {
-			result.reject("moveInvalid", "No puedes mover la ficha a esa casilla");
+			result.rejectValue("destinyPosition", "moveInvalid2", "No puede haber el mismo numero de bacterias en una misma casilla");
 			res = true;
 		}
 		return res;
@@ -102,25 +102,25 @@ public class Board extends BaseEntity {
 		Integer posini = movement.getInitialPosition();
 		Integer posfin = movement.getDestinyPosition();
 		if(posini == 1 && (posfin==6 || posfin==7 || posfin==5 || posfin==1)) {
-			result.reject("moveInvalidPosition", "No puedes mover la ficha a esa casilla");
+			result.rejectValue("destinyPosition", "moveInvalid", "No puedes mover la ficha a esa casilla");
 			res = true;
 		}else if(posini == 2 && (posfin==3 || posfin==6 || posfin==7 || posfin==2)) {
-			result.reject("moveInvalidPosition", "No puedes mover la ficha a esa casilla");
+			result.rejectValue("destinyPosition", "moveInvalid", "No puedes mover la ficha a esa casilla");
 			res = true;
 		}else if(posini == 3 && (posfin==2 || posfin==5 || posfin==7 || posfin==3))  {
-			result.reject("moveInvalidPosition", "No puedes mover la ficha a esa casilla");
+			result.rejectValue("destinyPosition", "moveInvalid", "No puedes mover la ficha a esa casilla");
 			res = true;
 		}else if(posini == 4 && posfin==4)  {
-			result.reject("moveInvalidPosition", "No puedes mover la ficha a esa casilla");
+			result.rejectValue("destinyPosition", "moveInvalid", "No puedes mover la ficha a esa casilla");
 			res = true;
 		}else if(posini == 5 && (posfin==1 || posfin==3 || posfin==6 || posfin==5)) {
-			result.reject("moveInvalidPosition", "No puedes mover la ficha a esa casilla");
+			result.rejectValue("destinyPosition", "moveInvalid", "No puedes mover la ficha a esa casilla");
 			res = true;
 		}else if(posini == 6 && (posfin==1 || posfin==2 || posfin==5 || posfin==6)) {
-			result.reject("moveInvalidPosition", "No puedes mover la ficha a esa casilla");
+			result.rejectValue("destinyPosition", "moveInvalid", "No puedes mover la ficha a esa casilla");
 			res = true;
 		}else if(posini == 7 && (posfin==1 || posfin==2 || posfin==3 || posfin==7)) {
-			result.reject("moveInvalidPosition", "No puedes mover la ficha a esa casilla");
+			result.rejectValue("destinyPosition", "moveInvalid", "No puedes mover la ficha a esa casilla");
 			res = true;
 		}
 		return res;
@@ -132,7 +132,7 @@ public class Board extends BaseEntity {
 					x -> x.getPosition() == movement.getInitialPosition() && x.getColor().equals(movement.getTipo()))
 					.collect(Collectors.toList());
 			if(pieces.isEmpty() || pieces.size()<movement.getNumber()) {
-				result.reject("moveInvalidPosition2", "No puedes escoger esa casilla inicial");
+				result.rejectValue("initialPosition", "moveInvalid", "Escoge una casilla en la que se encuentre alguna bacteria tuya");
 			}else {
 			List<Piece> piecesAux = pieces.subList(0, movement.getNumber());
 			if(movement.getTipo().equals("red") || movement.getTipo().equals("black")) {
