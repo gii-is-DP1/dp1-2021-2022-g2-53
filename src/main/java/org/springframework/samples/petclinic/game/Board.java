@@ -101,22 +101,25 @@ public class Board extends BaseEntity {
 		boolean res = false;
 		Integer posini = movement.getInitialPosition();
 		Integer posfin = movement.getDestinyPosition();
-		if(posini == 1 && (posfin==6 || posfin==7 )) {
+		if(posini == 1 && (posfin==6 || posfin==7 || posfin==1)) {
 			result.reject("moveInvalidPosition", "No puedes mover la ficha a esa casilla");
 			res = true;
-		}else if(posini == 2 && (posfin==3 || posfin==6 || posfin==7)) {
+		}else if(posini == 2 && (posfin==3 || posfin==6 || posfin==7 || posfin==2)) {
 			result.reject("moveInvalidPosition", "No puedes mover la ficha a esa casilla");
 			res = true;
-		}else if(posini == 3 && (posfin==2 || posfin==5 || posfin==7))  {
+		}else if(posini == 3 && (posfin==2 || posfin==5 || posfin==7 || posfin==3))  {
 			result.reject("moveInvalidPosition", "No puedes mover la ficha a esa casilla");
 			res = true;
-		}else if(posini == 5 && (posfin==1 || posfin==3 || posfin==6)) {
+		}else if(posini == 4 && posfin==4)  {
 			result.reject("moveInvalidPosition", "No puedes mover la ficha a esa casilla");
 			res = true;
-		}else if(posini == 6 && (posfin==1 || posfin==2 || posfin==5)) {
+		}else if(posini == 5 && (posfin==1 || posfin==3 || posfin==6 || posfin==5)) {
 			result.reject("moveInvalidPosition", "No puedes mover la ficha a esa casilla");
 			res = true;
-		}else if(posini == 7 && (posfin==1 || posfin==2 || posfin==3)) {
+		}else if(posini == 6 && (posfin==1 || posfin==2 || posfin==5 || posfin==6)) {
+			result.reject("moveInvalidPosition", "No puedes mover la ficha a esa casilla");
+			res = true;
+		}else if(posini == 7 && (posfin==1 || posfin==2 || posfin==3 || posfin==7)) {
 			result.reject("moveInvalidPosition", "No puedes mover la ficha a esa casilla");
 			res = true;
 		}
@@ -128,6 +131,9 @@ public class Board extends BaseEntity {
 			List<Piece> pieces = this.pieces.stream().filter(
 					x -> x.getPosition() == movement.getInitialPosition() && x.getColor().equals(movement.getTipo()))
 					.collect(Collectors.toList());
+			if(pieces.isEmpty() || pieces.size()<movement.getNumber()) {
+				result.reject("moveInvalidPosition2", "No puedes escoger esa casilla inicial");
+			}else {
 			List<Piece> piecesAux = pieces.subList(0, movement.getNumber());
 			if(movement.getTipo().equals("red") || movement.getTipo().equals("black")) {
 				if(moveInvalid(pieces, movement, result) == false && moveInvalidPosition(movement, result) == false) {
@@ -136,6 +142,7 @@ public class Board extends BaseEntity {
 			}else {
 				piecesAux.stream().forEach(x -> x.setPosition(movement.getDestinyPosition()));
 			}
+		}
 	}
 }
 
