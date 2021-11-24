@@ -18,6 +18,11 @@ public class Piece extends BaseEntity {
     int position;
     @ManyToOne
     Board board;
+    String type;
+    
+    public Piece() {
+		super();
+	}
     
     public Integer getNumberOfPiecesInPosition(Integer i){
     	return (int) this.board.getPieces().stream().filter(x->x.getPosition()==this.position).count();
@@ -62,4 +67,6 @@ public class Piece extends BaseEntity {
     		return null;
     	}
     }
+
+	
 }
