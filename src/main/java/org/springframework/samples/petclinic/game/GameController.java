@@ -11,10 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import ch.qos.logback.classic.Logger;
 
 @Controller
 @RequestMapping("/games")
@@ -45,7 +49,7 @@ public class GameController {
 	@GetMapping(value="/play/{gameId}")
 	public String playGame(ModelMap modelMap,@PathVariable("gameId") int gameId, HttpServletResponse response) {
 		String view="games/playGame";
-		//response.addHeader("Refresh","1");
+		// response.addHeader("Refresh","1");
 		Game game=gameService.findId(gameId);
 		modelMap.addAttribute("game",game);
 		modelMap.addAttribute("board",game.getBoard());
@@ -56,32 +60,25 @@ public class GameController {
 	}
 	
 	@PostMapping(value="/play/{gameId}")
-	public String processMovementForm(ModelMap modelMap,@PathVariable("gameId") int gameId ,@Valid Movement movement, BindingResult result) {
+	public String processMovementForm(ModelMap modelMap, @PathVariable("gameId") int gameId ,@Valid Movement movement, BindingResult result) throws MoveInvalidException {
 		if (result.hasErrors()) {
 			boolean edit=true;
 			modelMap.put("edit", edit);
 			return "games/playGame";
 		}else {
-			Game gameEdited = gameService.findId(gameId);
-			String turno = gameEdited.getTurnos().get(gameEdited.getTurno());
-			if (turno.equals("red") || turno.equals("black")) {
-				movement.setTipo(gameEdited.getTurnos().get(gameEdited.getTurno()));
-				gameEdited.getBoard().movePieces(movement);
-				gameEdited.setTurno(gameEdited.getTurno()+1);
-				gameService.save(gameEdited);
-			} else if (turno.equals("binary")) {
-				gameService.binary(gameId);
-				gameEdited.setTurno(gameEdited.getTurno()+1);
-				gameService.save(gameEdited);
-			} else if (turno.equals("pollution")) {
-				//POSICION 0 SON ROJOS Y 1 SON NEGROS
-				gameEdited.setPointsRed(gameEdited.getPointsRed() + gameEdited.getBoard().pollution().get(0));
-				gameEdited.setPointsBlack(gameEdited.getPointsBlack() +gameEdited.getBoard().pollution().get(1));
-				gameEdited.setTurno(gameEdited.getTurno()+1);
-				gameService.save(gameEdited);
+			gameService.phases(gameId, movement, result);
+			if(result.hasErrors()) {
+				modelMap.put("board", gameService.findId(gameId).getBoard());
+				if(!result.getFieldErrors("destinyPosition").isEmpty()){
+					modelMap.put("error", result.getFieldError("destinyPosition").getDefaultMessage());
+				}else if(!result.getFieldErrors("initialPosition").isEmpty()) {
+					modelMap.put("error", result.getFieldError("initialPosition").getDefaultMessage());
+				}
+				return "games/playGame";
 			}
-			
+			else {
 			return "redirect:/games/play/{gameId}";
+			}
 		}
 		
 	}
