@@ -77,7 +77,7 @@ public class GameService {
 			gameEdited.setPointsRed(gameEdited.getPointsRed() + gameEdited.getBoard().pollution().get(0));
 			gameEdited.setPointsBlack(gameEdited.getPointsBlack() +gameEdited.getBoard().pollution().get(1));
 			gameEdited.setTurno(gameEdited.getTurno()+1);
-			save(gameEdited);
+			save(gameEdited);}
 		}
 
 	@Transactional
