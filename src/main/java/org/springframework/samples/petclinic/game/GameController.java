@@ -26,7 +26,10 @@ public class GameController {
 
 	@Autowired
 	private GameService gameService;
-	
+	@Autowired
+	private BoardService boardService;
+	@Autowired
+	private PieceService pieceService;
 	@GetMapping()
 	public String listGames(ModelMap modelMap) {
 		String view = "games/listGames";
@@ -118,8 +121,11 @@ public class GameController {
 	public String deleteGame(ModelMap modelMap,@PathVariable("gameId") int gameId) {
 		String view="games/listGames"; 
 		Optional<Game> game= Optional.of(gameService.findId(gameId));
+		Board board = game.get().getBoard();
 		if(game.isPresent()) {
+			
 			gameService.delete(game.get());
+			boardService.delete(board);
 			modelMap.addAttribute("message","evento borrado");
 		}
 		else {
@@ -132,6 +138,8 @@ public class GameController {
 	}
 	@GetMapping(path="/new")
 	public String creategame(ModelMap modelMap) {
+		
+		
 		String view="games/createGame";
 		modelMap.addAttribute("game",new Game());
 		return view;
@@ -145,6 +153,23 @@ public class GameController {
 			modelMap.addAttribute("game", game);
 			return "games/createGame";
 		}else {
+			Board board = new Board();
+			Piece pieceb = new Piece();
+			Piece piecer = new Piece();
+			
+			boardService.save(board);
+			pieceb.setColor("black");
+			pieceb.setPosition(3);
+			piecer.setColor("red");
+			piecer.setPosition(5);
+			piecer.setBoard(board);
+			pieceb.setBoard(board);
+			board.addgame(game);
+			pieceService.save(pieceb);
+			pieceService.save(piecer);
+			game.setTurno(0);
+			game.setPointsRed(0);
+			game.setPointsBlack(0);
 			gameService.save(game);
 			modelMap.addAttribute("message","evento salvado");
 			return view;
