@@ -15,6 +15,13 @@
             	<petclinic:piece size="10" piece="${piece}"/>
             	
             </c:forEach> 
+            <div class="col-md-12">
+
+			<c:forEach items="${board.sarcines}" var="sarcine">
+				<petclinic:sarcine size="20" sarcine="${sarcine}" />
+
+			</c:forEach>
+		</div>
         </div>
     </div>
 
