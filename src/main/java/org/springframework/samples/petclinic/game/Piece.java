@@ -24,6 +24,14 @@ public class Piece extends BaseEntity {
 		super();
 	}
     
+    public String getURLimage(Integer size) {
+    	if(this.type.equals("bacterium")) {
+    		return color;
+    	}	else {
+    		return color + "-sarcine";
+    	}
+    }
+    
     public Integer getNumberOfPiecesInPosition(Integer i){
     	return (int) this.board.getPieces().stream().filter(x->x.getPosition()==this.position).count();
     }
