@@ -6,12 +6,22 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class PieceService {
-	
+
 	@Autowired
 	PieceRepository pieceRepo;
-	
+
 	@Transactional
 	public void save(Piece piece) {
 		pieceRepo.save(piece);
+	}
+
+	@Transactional
+	public void delete(Piece piece) {
+		pieceRepo.delete(piece);
+	}
+
+	@Transactional
+	public void deleteById(Integer id) {
+		pieceRepo.deleteById(id);
 	}
 }

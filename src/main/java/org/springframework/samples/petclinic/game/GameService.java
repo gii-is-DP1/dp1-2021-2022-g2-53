@@ -12,6 +12,8 @@ public class GameService {
 	private GameRepository gameRepo;
 	@Autowired
 	private PieceService pieceService;
+	@Autowired
+	private SarcineService sarcineService;
 	
 	@Transactional
 	public int gameCount() {
@@ -47,6 +49,20 @@ public class GameService {
 				piece.setColor(board.binary(i));
 				piece.setPosition(i);
 				pieceService.save(piece);
+			} else if (board.binary(i).equals("red_sarcine")) {
+				Sarcine sarcine = new Sarcine();
+				sarcine.setColor("red");
+				sarcine.setBoard(board);
+				sarcine.setPosition(i);
+				board.getAllPiecesByPosition(i).stream().forEach(x->x.setColor(""));
+				sarcineService.save(sarcine);
+			} else if (board.binary(i).equals("black_sarcine")) {
+				Sarcine sarcine = new Sarcine();
+				sarcine.setColor("black");
+				sarcine.setBoard(board);
+				sarcine.setPosition(i);
+				board.getAllPiecesByPosition(i).stream().forEach(x->x.setColor(""));
+				sarcineService.save(sarcine);
 			}
 			i++;
 		}

@@ -58,7 +58,7 @@ public class Sarcine extends BaseEntity {
 		if (this.position == 1 || this.position == 2) {
 			pos = 50;
 		} else if (this.position == 3 || this.position == 4 || this.position == 5) {
-			pos = 150;
+			pos = 140;
 		} else if (this.position == 6 || this.position == 7) {
 			pos = 230;
 		} else {

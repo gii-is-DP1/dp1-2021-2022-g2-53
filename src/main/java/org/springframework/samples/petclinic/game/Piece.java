@@ -29,11 +29,7 @@ public class Piece extends BaseEntity {
 	}
     
     public String getURLimage(Integer size) {
-    	if(this.type.equals("bacterium")) {
-    		return color;
-    	}	else {
-    		return null;
-    	}
+    	return color;
     }
     
     public Integer getNumberOfPiecesInPosition(Integer i){
