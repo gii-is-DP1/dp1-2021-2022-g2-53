@@ -9,6 +9,11 @@ public class PieceService {
 
 	@Autowired
 	PieceRepository pieceRepo;
+	
+	@Transactional
+	public int pieceCount() {
+		return (int) pieceRepo.count();
+	}
 
 	@Transactional
 	public void save(Piece piece) {
