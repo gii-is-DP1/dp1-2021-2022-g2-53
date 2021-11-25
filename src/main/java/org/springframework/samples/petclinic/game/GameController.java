@@ -62,6 +62,7 @@ public class GameController {
 	@PostMapping(value="/play/{gameId}")
 	public String processMovementForm(ModelMap modelMap, @PathVariable("gameId") int gameId ,@Valid Movement movement, BindingResult result) throws MoveInvalidException {
 		if (result.hasErrors()) {
+			modelMap.put("board", gameService.findId(gameId).getBoard());
 			boolean edit=true;
 			modelMap.put("edit", edit);
 			return "games/playGame";

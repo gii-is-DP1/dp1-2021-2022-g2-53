@@ -76,36 +76,39 @@ INSERT INTO personas(id,contraseña, estado, nombre, apellidos, en_linea, url_fo
 INSERT INTO boards(id,background,height,width) VALUES (1,'/resources/images/tablero.jpg',300,500);
 INSERT INTO boards(id,background,height,width) VALUES (2,'/resources/images/tablero.jpg',300,500);
 
-INSERT INTO games (id,points_black,points_red,board_id) VALUES (1,3,8,1);
+INSERT INTO games (id,points_black,points_red,board_id,turno) VALUES (1,3,8,1,15);
 INSERT INTO games (id,points_black,points_red,board_id,turno) VALUES (2,0,0,2,0);
 
 
 
 
-INSERT INTO piece(id,color,position,board_id) VALUES (1,'black',1,1);
-INSERT INTO piece(id,color,position,board_id) VALUES (2,'red',2,1);
-INSERT INTO piece(id,color,position,board_id) VALUES (3,'black',3,1);
-INSERT INTO piece(id,color,position,board_id) VALUES (4,'red',4,1);
-INSERT INTO piece(id,color,position,board_id) VALUES (5,'red',5,1);
-INSERT INTO piece(id,color,position,board_id) VALUES (6,'red',6,1);
-INSERT INTO piece(id,color,position,board_id) VALUES (7,'black',7,1);
-INSERT INTO piece(id,color,position,board_id) VALUES (8,'black',1,1);
-INSERT INTO piece(id,color,position,board_id) VALUES (9,'red',1,1);
-INSERT INTO piece(id,color,position,board_id) VALUES (10,'red',2,1);
-INSERT INTO piece(id,color,position,board_id) VALUES (11,'black',3,1);
-INSERT INTO piece(id,color,position,board_id) VALUES (12,'black',3,1);
-INSERT INTO piece(id,color,position,board_id) VALUES (14,'black',4,1);
-INSERT INTO piece(id,color,position,board_id) VALUES (15,'black',4,1);
-INSERT INTO piece(id,color,position,board_id) VALUES (16,'red',5,1);
-INSERT INTO piece(id,color,position,board_id) VALUES (17,'red',5,1);
-INSERT INTO piece(id,color,position,board_id) VALUES (18,'red',5,1);
-INSERT INTO piece(id,color,position,board_id) VALUES (19,'black',6,1);
-INSERT INTO piece(id,color,position,board_id) VALUES (20,'red',6,1);
-INSERT INTO piece(id,color,position,board_id) VALUES (21,'black',7,1);
-INSERT INTO piece(id,color,position,board_id) VALUES (22,'red',7,1);
+INSERT INTO piece(id,color,position,type,board_id) VALUES (1,'black',1,'bacterium',1);
+INSERT INTO piece(id,color,position,type,board_id) VALUES (2,'red',2,'bacterium',1);
+INSERT INTO piece(id,color,position,type,board_id) VALUES (3,'black',3,'bacterium',1);
+INSERT INTO piece(id,color,position,type,board_id) VALUES (4,'red',4,'bacterium',1);
+INSERT INTO piece(id,color,position,type,board_id) VALUES (5,'red',5,'bacterium',1);
+INSERT INTO piece(id,color,position,type,board_id) VALUES (6,'red',6,'bacterium',1);
+INSERT INTO piece(id,color,position,type,board_id) VALUES (7,'black',7,'bacterium',1);
+INSERT INTO piece(id,color,position,type,board_id) VALUES (8,'black',1,'bacterium',1);
+INSERT INTO piece(id,color,position,type,board_id) VALUES (9,'red',1,'bacterium',1);
+INSERT INTO piece(id,color,position,type,board_id) VALUES (10,'red',2,'bacterium',1);
+INSERT INTO piece(id,color,position,type,board_id) VALUES (11,'black',3,'bacterium',1);
+INSERT INTO piece(id,color,position,type,board_id) VALUES (12,'black',3,'bacterium',1);
+INSERT INTO piece(id,color,position,type,board_id) VALUES (14,'black',4,'bacterium',1);
+INSERT INTO piece(id,color,position,type,board_id) VALUES (15,'black',4,'bacterium',1);
+INSERT INTO piece(id,color,position,type,board_id) VALUES (16,'red',5,'bacterium',1);
+INSERT INTO piece(id,color,position,type,board_id) VALUES (17,'red',5,'bacterium',1);
+INSERT INTO piece(id,color,position,type,board_id) VALUES (18,'red',5,'bacterium',1);
+INSERT INTO piece(id,color,position,type,board_id) VALUES (19,'black',6,'bacterium',1);
+INSERT INTO piece(id,color,position,type,board_id) VALUES (20,'red',6,'bacterium',1);
+INSERT INTO piece(id,color,position,type,board_id) VALUES (21,'black',7,'bacterium',1);
+INSERT INTO piece(id,color,position,type,board_id) VALUES (22,'red',7,'bacterium',1);
 
-INSERT INTO piece(id,color,position,board_id) VALUES (23,'black',3,2);
-INSERT INTO piece(id,color,position,board_id) VALUES (24,'red',5,2);
+INSERT INTO sarcine(id,color,position,board_id) VALUES (1,'black',1,1);
+INSERT INTO sarcine(id,color,position,board_id) VALUES (2,'red',6,1);
+
+INSERT INTO piece(id,color,position,type,board_id) VALUES (23,'black',3,'bacterium',2);
+INSERT INTO piece(id,color,position,type,board_id) VALUES (24,'red',5,'bacterium',2);
 
 
 

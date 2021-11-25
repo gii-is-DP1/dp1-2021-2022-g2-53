@@ -13,6 +13,12 @@
 			<petclinic:board board="${board}" />
 			<c:forEach items="${board.pieces}" var="piece">
 				<petclinic:piece size="10" piece="${piece}" />
+			</c:forEach>
+		</div>
+		<div class="col-md-12">
+
+			<c:forEach items="${board.sarcines}" var="sarcine">
+				<petclinic:sarcine size="20" sarcine="${sarcine}" />
 
 			</c:forEach>
 		</div>
@@ -45,7 +51,7 @@
 			<petclinic:inputField label="Casilla original" name="initialPosition" />
 			<petclinic:inputField label="Número de fichas" name="number" />
 			<petclinic:inputField label="Casilla destino" name="destinyPosition" />
-			 
+
 		</div>
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
@@ -54,7 +60,7 @@
 			</div>
 		</div>
 	</form:form>
-		
+
 
 
 </petclinic:layout>
