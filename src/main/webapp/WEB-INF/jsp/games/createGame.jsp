@@ -11,13 +11,13 @@
     <form:form modelAttribute="game" class="form-horizontal"  action="/games/save">
          <div class="form-group has-feedback">
             
-            
+            <h2>Crear partida</h2>
 
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
             
-                <button class="btn btn-default" type="submit">create game</button>
+                <button class="btn btn-default" type="submit">Crear partida</button>
             </div>
         </div>
     </form:form>

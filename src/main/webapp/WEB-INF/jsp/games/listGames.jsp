@@ -8,12 +8,14 @@
 <petclinic:layout pageName="games">
     <h2>Partidas</h2>
 
-<button class="btn btn-default" onclick="window.location.href='games/new'">Create game</button>
+<button class="btn btn-default" onclick="window.location.href='games/new'">Crear partida</button>
+<h2></h2>
     <table id="gamesTable" class="table table-striped">
         <thead>
         <tr>
             <th style="width: 160px;">Puntos del jugador negro</th>
             <th style="width: 160px;">Puntos del jugador rojo</th>
+            <th style="width: 80px;"></th>
             <th style="width: 80px;"></th>
             <th style="width: 80px;"></th>
         </tr>
