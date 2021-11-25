@@ -123,8 +123,11 @@ public class GameController {
 	public String deleteGame(ModelMap modelMap,@PathVariable("gameId") int gameId) {
 		String view="games/listGames"; 
 		Optional<Game> game= Optional.of(gameService.findId(gameId));
+		Board board = game.get().getBoard();
 		if(game.isPresent()) {
+			
 			gameService.delete(game.get());
+			boardService.delete(board);
 			modelMap.addAttribute("message","evento borrado");
 		}
 		else {

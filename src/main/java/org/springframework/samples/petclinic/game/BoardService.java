@@ -22,5 +22,9 @@ public class BoardService {
 		boardRepo.save(board);
 		
 	}
+	public void delete(Board board) {
+		boardRepo.delete(board);
+		
+	}
 	
 }
