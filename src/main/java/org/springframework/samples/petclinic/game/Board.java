@@ -42,9 +42,7 @@ public class Board extends BaseEntity {
 		this.height = 300;
 	}
 	
-	public void addgame(Game game) {
-		game.setBoard(this);
-	}
+	
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "board")
 	List<Piece> pieces;
@@ -70,7 +68,7 @@ public class Board extends BaseEntity {
 	}
 
 	public Integer getNumberOfPiecesByPosition(Integer pos) {
-		return (int) this.pieces.stream().filter(x -> x.getPosition() == pos).count();
+		return  (int) this.pieces.stream().filter(x -> x.getPosition() == pos).count();
 	}
 
 	public String binary(Integer pos) {

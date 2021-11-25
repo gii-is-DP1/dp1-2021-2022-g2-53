@@ -13,9 +13,17 @@ public class BoardService {
 	private BoardRepository boardRepo;
 
 	
-	public Optional<Board> findById(Integer id){
-		return boardRepo.findById(id);
+	@Transactional
+	public int boardCount() {
+		return (int) boardRepo.count();
 	}
+
+	
+	public Board findById(Integer id){
+		return boardRepo.findById(id).get();
+	}
+	
+	
 	
 	@Transactional
 	public void save(Board board) {

@@ -114,7 +114,8 @@ public class GameController {
 			piecer.setPosition(5);
 			piecer.setBoard(board);
 			pieceb.setBoard(board);
-			board.addgame(game);
+			
+			game.setBoard(board);
 			pieceService.save(pieceb);
 			pieceService.save(piecer);
 			game.setTurno(0);
