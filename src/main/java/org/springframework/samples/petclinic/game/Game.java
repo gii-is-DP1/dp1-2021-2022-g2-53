@@ -50,9 +50,7 @@ public class Game extends BaseEntity {
 		super();
 	}
 	
-	public void addBoard(Board board) {
-		board.setGame(this);
-	}
+	
 	
 	
 	public List<String> getTurnos() {

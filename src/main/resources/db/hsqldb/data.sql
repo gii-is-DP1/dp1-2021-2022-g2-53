@@ -76,8 +76,10 @@ INSERT INTO personas(id,contraseña, estado, nombre, apellidos, en_linea, url_fo
 INSERT INTO boards(id,background,height,width) VALUES (1,'/resources/images/tablero.jpg',300,500);
 INSERT INTO boards(id,background,height,width) VALUES (2,'/resources/images/tablero.jpg',300,500);
 
+
 INSERT INTO games (id,points_black,points_red,board_id,turno) VALUES (1,3,8,1,15);
 INSERT INTO games (id,points_black,points_red,board_id,turno) VALUES (2,0,0,2,0);
+
 
 
 

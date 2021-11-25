@@ -12,9 +12,19 @@ public class BoardService {
 	private BoardRepository boardRepo;
 
 	
+
+	@Transactional
+	public int boardCount() {
+		return (int) boardRepo.count();
+	}
+
+	
+
 	public Board findById(Integer id){
 		return boardRepo.findById(id).get();
 	}
+	
+	
 	
 	@Transactional
 	public void save(Board board) {

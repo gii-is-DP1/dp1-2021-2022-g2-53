@@ -48,6 +48,7 @@ public class GameService {
 				piece.setBoard(board);
 				piece.setColor(board.binary(i));
 				piece.setPosition(i);
+				piece.setType("bacterium");
 				pieceService.save(piece);
 			} else if (board.binary(i).equals("red_sarcine")) {
 				Sarcine sarcine = new Sarcine();
