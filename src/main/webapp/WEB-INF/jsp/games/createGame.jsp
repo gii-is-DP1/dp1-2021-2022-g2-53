@@ -10,9 +10,8 @@
 
     <form:form modelAttribute="game" class="form-horizontal"  action="/games/save">
          <div class="form-group has-feedback">
-            <petclinic:inputField label="Black players points" name="pointsBlack"/>
-            <petclinic:inputField label="Red players points" name="pointsRed"/>
-            <petclinic:inputField label="Board" name="board"/>
+            
+            
 
         </div>
         <div class="form-group">

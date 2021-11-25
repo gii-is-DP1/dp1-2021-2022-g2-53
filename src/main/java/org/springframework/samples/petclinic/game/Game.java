@@ -15,6 +15,7 @@ import javax.persistence.OneToOne;
 
 import org.springframework.samples.petclinic.jugador.Jugador;
 import org.springframework.samples.petclinic.model.BaseEntity;
+import org.springframework.samples.petclinic.pet.Pet;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -48,6 +49,11 @@ public class Game extends BaseEntity {
 	public Game() {
 		super();
 	}
+	
+	public void addBoard(Board board) {
+		board.setGame(this);
+	}
+	
 	
 	public List<String> getTurnos() {
 		//faltan varias cosas

@@ -36,6 +36,10 @@ public class Board extends BaseEntity {
 		this.width = 500;
 		this.height = 300;
 	}
+	
+	public void addgame(Game game) {
+		game.setBoard(this);
+	}
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "board", fetch = FetchType.EAGER)
 	List<Piece> pieces;
