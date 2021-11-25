@@ -27,6 +27,15 @@ public class BoardTest {
 	    private PieceService pieceService;
 	    @Autowired
 	    private SarcineService sarcineService;
+	    
+	    @Test
+		public void TestBinary() {
+			
+	        Board board = boardService.findById(2);
+	        Assertions.assertThat(board.binary(5)).isEqualTo("red");
+	        Assertions.assertThat(board.binary(3)).isEqualTo("black");
+
+		}
 
 	  //board con id=2 parte con una bacteria roja en posicion 5 y una bacteria negra en la posicion 3
 	    @Test
