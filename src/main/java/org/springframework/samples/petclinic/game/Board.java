@@ -74,9 +74,14 @@ public class Board extends BaseEntity {
 				.collect(Collectors.toList());
 		List<Piece> blacks = this.pieces.stream().filter(x -> x.getPosition() == pos && x.getColor().equals("black"))
 				.collect(Collectors.toList());
-		if (reds.size() > 0 && blacks.size() == 0) {
+		if (reds.size() == 4 && blacks.size() == 0 && !containsSarcine(pos, "red")) {
+			return "red_sarcine";
+		} else if (reds.size() == 0 && blacks.size() == 4 && !containsSarcine(pos, "black")) {
+			return "black_sarcine";
+		}
+		else if (reds.size() > 0 && blacks.size() == 0 && !containsSarcine(pos, "black")) {
 			return "red";
-		} else if (reds.size() == 0 && blacks.size() > 0) {
+		} else if (reds.size() == 0 && blacks.size() > 0 && !containsSarcine(pos, "red")) {
 			return "black";
 		} else {
 			return "";
@@ -156,13 +161,22 @@ public class Board extends BaseEntity {
 		Integer black = 0;
 		for (Integer i = 1; i <= 7; i++) {
 			Integer p = i;
+			Integer sarcineRed = 0;
+			Integer sarcineBlack = 0;
 			List<Piece> blacks = this.pieces.stream().filter(x -> x.getPosition() == p && x.getColor().equals("black"))
-					.collect(Collectors.toList());
+					.collect(Collectors.toList()) ;
 			List<Piece> reds = this.pieces.stream().filter(x -> x.getPosition() == p && x.getColor().equals("red"))
 					.collect(Collectors.toList());
-			if (reds.size() > blacks.size()) {
+			if (this.containsSarcine(p, "black")) {
+				sarcineBlack =5;
+			}
+			if (this.containsSarcine(p, "red")) {
+				sarcineRed =5;
+			}
+			
+			if (reds.size() + sarcineRed > blacks.size() + sarcineBlack) {
 				red++;
-			} else if (reds.size() < blacks.size()) {
+			} else if (reds.size() + sarcineRed < blacks.size() + sarcineBlack) {
 				black++;
 			}
 		 
@@ -170,5 +184,16 @@ public class Board extends BaseEntity {
 		ls.add(red);
 		ls.add(black);
 		return ls;
+	}
+
+	public List<Piece> getAllPiecesByPosition(int i) {
+		return this.pieces.stream()
+		.filter(x -> x.getPosition() == i)
+		.collect(Collectors.toList());
+		
+	}
+	
+	public Boolean containsSarcine(int position, String color) {
+		return 0 != sarcines.stream().filter(x->x.getPosition()==position && x.getColor().equals(color)).count();
 	}
 }
