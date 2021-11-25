@@ -82,7 +82,7 @@ INSERT INTO games (id,points_black,points_red,board_id,turno) VALUES (2,0,0,2,0)
 
 
 
-INSERT INTO piece(id,color,position,type,board_id) VALUES (1,'black',1,'sarcine',1);
+INSERT INTO piece(id,color,position,type,board_id) VALUES (1,'black',1,'bacterium',1);
 INSERT INTO piece(id,color,position,type,board_id) VALUES (2,'red',2,'bacterium',1);
 INSERT INTO piece(id,color,position,type,board_id) VALUES (3,'black',3,'bacterium',1);
 INSERT INTO piece(id,color,position,type,board_id) VALUES (4,'red',4,'bacterium',1);
@@ -102,7 +102,10 @@ INSERT INTO piece(id,color,position,type,board_id) VALUES (18,'red',5,'bacterium
 INSERT INTO piece(id,color,position,type,board_id) VALUES (19,'black',6,'bacterium',1);
 INSERT INTO piece(id,color,position,type,board_id) VALUES (20,'red',6,'bacterium',1);
 INSERT INTO piece(id,color,position,type,board_id) VALUES (21,'black',7,'bacterium',1);
-INSERT INTO piece(id,color,position,type,board_id) VALUES (22,'red',7,'sarcine',1);
+INSERT INTO piece(id,color,position,type,board_id) VALUES (22,'red',7,'bacterium',1);
+
+INSERT INTO sarcine(id,color,position,board_id) VALUES (1,'black',1,1);
+INSERT INTO sarcine(id,color,position,board_id) VALUES (2,'red',6,1);
 
 INSERT INTO piece(id,color,position,type,board_id) VALUES (23,'black',3,'bacterium',2);
 INSERT INTO piece(id,color,position,type,board_id) VALUES (24,'red',5,'bacterium',2);

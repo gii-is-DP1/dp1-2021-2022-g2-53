@@ -42,8 +42,11 @@ public class Board extends BaseEntity {
 		this.height = 300;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "board", fetch = FetchType.EAGER)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "board")
 	List<Piece> pieces;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "board")
+	List<Sarcine> sarcines;
 
 	public List<Piece> getAllPiecesInTheSamePosition(Piece piece) {
 		List<Piece> ls = this.pieces.stream().filter(x -> x.getPosition() == piece.getPosition())

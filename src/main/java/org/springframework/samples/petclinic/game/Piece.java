@@ -1,6 +1,9 @@
 package org.springframework.samples.petclinic.game;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import org.hibernate.validator.constraints.Range;
@@ -17,6 +20,7 @@ public class Piece extends BaseEntity {
     @Range(min=1,max=7)
     int position;
     @ManyToOne
+	@JoinColumn(name = "board_id")
     Board board;
     String type;
     
@@ -28,7 +32,7 @@ public class Piece extends BaseEntity {
     	if(this.type.equals("bacterium")) {
     		return color;
     	}	else {
-    		return color + "-sarcine";
+    		return null;
     	}
     }
     
@@ -68,9 +72,9 @@ public class Piece extends BaseEntity {
         }
     	
     	if (this.color.equals("red")) {
-    		return pos + 15;
+    		return pos + 20;
     	} else if (this.color.equals("black")) {
-    		return pos - 15;
+    		return pos - 20;
     	} else {
     		return null;
     	}
