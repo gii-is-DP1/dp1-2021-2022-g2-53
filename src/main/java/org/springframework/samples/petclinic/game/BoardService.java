@@ -1,6 +1,5 @@
 package org.springframework.samples.petclinic.game;
 
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,12 +12,14 @@ public class BoardService {
 	private BoardRepository boardRepo;
 
 	
+
 	@Transactional
 	public int boardCount() {
 		return (int) boardRepo.count();
 	}
 
 	
+
 	public Board findById(Integer id){
 		return boardRepo.findById(id).get();
 	}
