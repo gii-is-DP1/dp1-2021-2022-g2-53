@@ -8,8 +8,7 @@
 <petclinic:layout pageName="games">
     <h2>Partidas</h2>
 
-<button class="btn btn-default" onclick="window.location.href='games/new'">Crear partida</button>
-<h2></h2>
+
     <table id="gamesTable" class="table table-striped">
         <thead>
         <tr>
