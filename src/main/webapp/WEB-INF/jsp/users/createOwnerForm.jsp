@@ -5,11 +5,14 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
-
+<body style= "background: url(/resources/images/backgroundPetris.jpg)">
 <petclinic:layout pageName="owners">
-    <h2>
-        <c:if test="${owner['new']}">New </c:if> Owner
+<br>
+    <h2 align="center">
+        <c:if test="${owner['new']}">Registro de un nuevo </c:if> jugador
     </h2>
+    <br>
+    <br>
     <form:form modelAttribute="owner" class="form-horizontal" id="add-owner-form">
         <div class="form-group has-feedback">
             <petclinic:inputField label="First Name" name="firstName"/>
@@ -21,16 +24,17 @@
             <petclinic:inputField label="Password" name="user.password"/>
         </div>
         <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
+            <div class="col-sm-offset-5 col-sm-10">
                 <c:choose>
                     <c:when test="${owner['new']}">
-                        <button class="btn btn-default" type="submit">Add Owner</button>
+                        <button class="btn btn-default" type="submit">Añadir nuevo jugador</button>
                     </c:when>
                     <c:otherwise>
-                        <button class="btn btn-default" type="submit">Update Owner</button>
+                        <button class="btn btn-default" type="submit" align="center">Actualizar jugador</button>
                     </c:otherwise>
                 </c:choose>
             </div>
         </div>
     </form:form>
 </petclinic:layout>
+</body>
