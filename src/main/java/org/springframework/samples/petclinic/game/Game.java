@@ -1,7 +1,10 @@
 package org.springframework.samples.petclinic.game;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -25,15 +28,20 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Game extends BaseEntity {
-
+	
+	
+	private static final SecureRandom secureRandom = new SecureRandom();
 	private Integer pointsBlack;
 	private Integer pointsRed;
+	private String token;
 	/*@OneToMany(cascade = CascadeType.ALL,mappedBy = "game",fetch = FetchType.EAGER)
 	private List<Jugador> jugadores;*/
 	@Min(0)
 	private Integer turno;
 	@OneToOne
 	private Board board;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "game")
+	private List<Jugador> jugadores;
 	
 	
 
@@ -50,6 +58,36 @@ public class Game extends BaseEntity {
 		super();
 	}
 	
+	public Map<Integer, String> getJugadoresPorColor(List<Jugador> jugadores) {
+		Map<Integer, String> res = new HashMap<Integer, String>();
+		for (int i = 0; i < jugadores.size(); i++) {
+			res.put(i, jugadores.get(i).getColor());
+		}
+		return res;
+	}
+	
+	
+	public String generarToken() {
+		String bancoLetras="abcdefghijklmnopqrstuvw";
+		String bancoNumeros = "123456789";
+		StringBuilder strB = new StringBuilder();
+		for (int i = 0; i <= 6; i++) {
+			if(i < 3) {
+			int randomInt = secureRandom.nextInt(bancoLetras.length());
+	        char randomChar = bancoLetras.charAt(randomInt);
+	        strB.append(randomChar);
+			}
+	        if(i == 3) {
+	        	strB.append("-");
+	        }
+	        if(i > 3) {
+	        	int randomNumInt = secureRandom.nextInt(bancoNumeros.length());
+		        char randomNum = bancoNumeros.charAt(randomNumInt);
+		        strB.append(randomNum);
+	        }
+		}
+		return strB.toString();
+	}
 	
 	
 	

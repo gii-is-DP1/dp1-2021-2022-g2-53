@@ -36,6 +36,6 @@ public class Persona extends NamedEntity {
 	@Column(name = "url_foto")
 	private String urlFoto;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "persona")
-	private Set<Jugador> jugadores;
+//	@OneToMany(cascade = CascadeType.ALL, mappedBy = "persona")
+//	private Set<Jugador> jugadores;
 }

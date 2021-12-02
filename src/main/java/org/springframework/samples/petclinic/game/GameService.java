@@ -7,7 +7,7 @@ import org.springframework.validation.BindingResult;
 
 @Service
 public class GameService {
-
+					
 	@Autowired
 	private GameRepository gameRepo;
 	@Autowired
@@ -37,6 +37,11 @@ public class GameService {
 		return gameRepo.findById(id).get();
 
 	}
+	
+	@Transactional
+	public Game findGameByToken(String token) {
+		return gameRepo.findByToken(token);
+	} 
 
 	@Transactional
 	public void binary(int gameId) {
@@ -74,8 +79,9 @@ public class GameService {
 	public void phases(int gameId, Movement movement, BindingResult result) throws MoveInvalidException {
 		Game gameEdited = findId(gameId);
 		String turno = gameEdited.getTurnos().get(gameEdited.getTurno());
-		if (turno.equals("red") || turno.equals("black")) {
-			movement.setTipo(gameEdited.getTurnos().get(gameEdited.getTurno()));
+//		String jugador = gameEdited.getJugadoresPorColor(gameEdited.getJugadores());
+		if (turno.equals("red") || turno.equals("black")){
+				movement.setTipo(gameEdited.getTurnos().get(gameEdited.getTurno()));
 				gameEdited.getBoard().movePieces(movement, result);
 				if(!result.hasErrors()) {
 					gameEdited.setTurno(gameEdited.getTurno()+1);

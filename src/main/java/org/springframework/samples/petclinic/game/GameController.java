@@ -3,10 +3,14 @@ package org.springframework.samples.petclinic.game;
 import javax.validation.Valid;
 import javax.servlet.http.HttpServletResponse;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.samples.petclinic.jugador.Jugador;
+import org.springframework.samples.petclinic.jugador.JugadorService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -22,13 +26,15 @@ import ch.qos.logback.classic.Logger;
 @Controller
 @RequestMapping("/games")
 public class GameController {
-
+	
 	@Autowired
 	private GameService gameService;
 	@Autowired
 	private BoardService boardService;
 	@Autowired
 	private PieceService pieceService;
+	@Autowired
+	private JugadorService jugadorService;
 
 	@GetMapping()
 	public String listGames(ModelMap modelMap) {
@@ -64,7 +70,7 @@ public class GameController {
 
 	@PostMapping(value = "/play/{gameId}")
 	public String processMovementForm(ModelMap modelMap, @PathVariable("gameId") int gameId, @Valid Movement movement,
-			BindingResult result) throws MoveInvalidException {
+			BindingResult result, HttpServletResponse response) throws MoveInvalidException {
 		if (result.hasErrors()) {
 			modelMap.put("board", gameService.findId(gameId).getBoard());
 			boolean edit = true;
@@ -89,16 +95,107 @@ public class GameController {
 
 	@GetMapping(path = "/new")
 	public String creategame(ModelMap modelMap) {
-
+		Game game = new Game();
 		String view = "games/createGame";
-		modelMap.addAttribute("game", new Game());
+		modelMap.addAttribute("game", game);
+		return view;
+
+	}
+	
+	
+	@GetMapping(path = "/newGame")
+	public String createGameFriend(ModelMap modelMap) {
+		String view = "games/createGameFriend";
+		Game game = new Game();
+		String token = game.generarToken();
+		game.setToken(token);
+		modelMap.addAttribute("game", game);
 		return view;
 
 	}
 
-	@PostMapping(path = "/save")
-	public String salvarjuego(ModelMap modelMap, @Valid Game game, BindingResult result) {
+	@GetMapping(path = "/saveFriend/{token}")
+	public String salvarjuegoamigo(ModelMap modelMap, Game game, @PathVariable ("token") String token, BindingResult result) {
 		String view = "games/listGames";
+		if (result.hasErrors()) {
+			modelMap.addAttribute("game", game);
+			return "games/createGame";
+		} else {
+			Board board = new Board();
+			Piece pieceb = new Piece();
+			Piece piecer = new Piece();
+			Jugador jugadorRed = new Jugador();
+
+			boardService.save(board);
+			pieceb.setColor("black");
+			pieceb.setPosition(3);
+			piecer.setColor("red");
+			piecer.setPosition(5);
+			piecer.setBoard(board);
+			pieceb.setBoard(board);
+			
+			game.setBoard(board);
+			pieceService.save(pieceb);
+			pieceService.save(piecer);
+			
+			game.setTurno(0);
+			game.setPointsRed(0);
+			game.setPointsBlack(0);
+			game.setToken(token);
+			
+			
+			gameService.save(game);
+			
+			jugadorRed.setColor("red");
+			jugadorRed.setGame(game);
+			jugadorService.save(jugadorRed);
+			List<Jugador> jugadores = new ArrayList<Jugador>();
+			jugadores.add(jugadorRed);
+			game.setJugadores(jugadores);
+			gameService.save(game);
+			
+			modelMap.addAttribute("message", "Partida creada");
+			return "redirect:/games/play/" + game.getId();
+			
+			
+		}
+
+	}
+	
+	@GetMapping(path = "/joinGame")
+	public String joinGame(ModelMap modelMap) {
+		String view = "games/joinGameFriend";
+		Game game = new Game();
+		modelMap.addAttribute("game", game);
+		return view;
+	}
+	
+	@PostMapping(path = "/saveToken")
+	public String saveToken(ModelMap modelMap, Game game, BindingResult result) {
+		String token = game.getToken();
+		gameService.findAll();
+		Game newGame = gameService.findGameByToken(token);
+		if (result.hasErrors()) {
+			modelMap.addAttribute("game", game);
+			return "games/createGame";
+		} else if(newGame!=null && newGame.getId()!=game.getId()){
+			Jugador jugadorBlack = new Jugador();
+			jugadorBlack.setColor("black");
+			jugadorBlack.setGame(newGame);
+			List<Jugador> aux = newGame.getJugadores();
+			aux.add(jugadorBlack);
+			newGame.setJugadores(aux);
+			gameService.save(newGame);
+			return "redirect:/games/play/" + newGame.getId();
+		} else {
+			return "games/createGame";
+		}
+	}
+	
+	@PostMapping(path = "/save")
+	public String salvarjuego(ModelMap modelMap, Game game, BindingResult result) {
+		String view = "games/listGames";
+		String token = (String) modelMap.getAttribute("token");
 		if (result.hasErrors()) {
 			modelMap.addAttribute("game", game);
 			return "games/createGame";
@@ -123,10 +220,15 @@ public class GameController {
 			game.setPointsBlack(0);
 			gameService.save(game);
 			modelMap.addAttribute("message", "Partida creada");
+			
 			return "redirect:/games/play/" + game.getId();
 		}
 
 	}
+	
+	//////////////////////////////////////////////////////
+	
+	
 
 	/////////////////////////////////////////////
 
