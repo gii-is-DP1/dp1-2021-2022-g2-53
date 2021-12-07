@@ -11,6 +11,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.jugador.Jugador;
 import org.springframework.samples.petclinic.jugador.JugadorService;
+import org.springframework.samples.petclinic.persona.Persona;
+import org.springframework.samples.petclinic.persona.PersonaService;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -35,6 +39,8 @@ public class GameController {
 	private PieceService pieceService;
 	@Autowired
 	private JugadorService jugadorService;
+	@Autowired
+	private PersonaService personaService;
 
 	@GetMapping()
 	public String listGames(ModelMap modelMap) {
@@ -58,14 +64,27 @@ public class GameController {
 	@GetMapping(value = "/play/{gameId}")
 	public String playGame(ModelMap modelMap, @PathVariable("gameId") int gameId, HttpServletResponse response) {
 		String view = "games/playGame";
-		// response.addHeader("Refresh","1");
+		String view2= "games/playGameBlack";
 		Game game = gameService.findId(gameId);
 		modelMap.addAttribute("game", game);
 		modelMap.addAttribute("board", game.getBoard());
 		modelMap.addAttribute("movement", new Movement());
 		modelMap.addAttribute("turnoActual", game.getTurnos().get(game.getTurno()));
+		UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String username = ud.getUsername();
+		Persona persona = personaService.getPersonaByUserName(username); 
+		String jugador = persona.getJugadores().get(persona.getJugadores().size()-1).getColor();
 		modelMap.put("now", new Date());
+		if(jugador.equals(game.getTurnos().get(game.getTurno()))) {
+			return view;
+		}else if(!jugador.equals(game.getTurnos().get(game.getTurno())) && !game.getTurnos().get(game.getTurno()).equals("binary")){
+			response.addHeader("Refresh","1");
+			modelMap.addAttribute("message3", "Espera a que tu oponente realice su movimiento");
+			return view;
+		}
+		modelMap.addAttribute("message4", "Pulsa en realizar movimiento para pasar a la siguiente fase");
 		return view;
+		
 	}
 
 	@PostMapping(value = "/play/{gameId}")
@@ -78,6 +97,7 @@ public class GameController {
 			return "games/playGame";
 		} else {
 			gameService.phases(gameId, movement, result);
+			
 			if (result.hasErrors()) {
 				modelMap.put("board", gameService.findId(gameId).getBoard());
 				if (!result.getFieldErrors("destinyPosition").isEmpty()) {
@@ -121,6 +141,10 @@ public class GameController {
 			modelMap.addAttribute("game", game);
 			return "games/createGame";
 		} else {
+			
+			UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			String username = ud.getUsername();
+			Persona persona = personaService.getPersonaByUserName(username); 
 			Board board = new Board();
 			Piece pieceb = new Piece();
 			Piece piecer = new Piece();
@@ -148,6 +172,7 @@ public class GameController {
 			
 			jugadorRed.setColor("red");
 			jugadorRed.setGame(game);
+			jugadorRed.setPersona(persona);
 			jugadorService.save(jugadorRed);
 			List<Jugador> jugadores = new ArrayList<Jugador>();
 			jugadores.add(jugadorRed);
@@ -179,9 +204,13 @@ public class GameController {
 			modelMap.addAttribute("game", game);
 			return "games/createGame";
 		} else if(newGame!=null && newGame.getId()!=game.getId()){
+			UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			String username = ud.getUsername();
+			Persona persona = personaService.getPersonaByUserName(username); 
 			Jugador jugadorBlack = new Jugador();
 			jugadorBlack.setColor("black");
 			jugadorBlack.setGame(newGame);
+			jugadorBlack.setPersona(persona);
 			List<Jugador> aux = newGame.getJugadores();
 			aux.add(jugadorBlack);
 			newGame.setJugadores(aux);

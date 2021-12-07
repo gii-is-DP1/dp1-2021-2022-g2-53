@@ -7,6 +7,12 @@ INSERT INTO authorities(id,username,authority) VALUES (2,'owner1','owner');
 -- One vet user, named vet1 with passwor v3t
 INSERT INTO users(username,password,enabled) VALUES ('vet1','v3t',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (3,'vet1','veterinarian');
+-- One person user, named ´person1 with passwor personi
+INSERT INTO users(username,password,enabled) VALUES ('person1','personi',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (4,'person1','persona');
+-- One person user, named ´person2 with passwor personi
+INSERT INTO users(username,password,enabled) VALUES ('person2','personi',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (5,'person2','persona');
 
 INSERT INTO vets VALUES (1, 'James', 'Carter');
 INSERT INTO vets VALUES (2, 'Helen', 'Leary');
@@ -14,6 +20,10 @@ INSERT INTO vets VALUES (3, 'Linda', 'Douglas');
 INSERT INTO vets VALUES (4, 'Rafael', 'Ortega');
 INSERT INTO vets VALUES (5, 'Henry', 'Stevens');
 INSERT INTO vets VALUES (6, 'Sharon', 'Jenkins');
+
+INSERT INTO personas VALUES (1, 'luis', 'chacon romero', 'person1');
+INSERT INTO personas VALUES (2, 'pepe', 'sanchez cortes', 'person2');
+
 
 INSERT INTO specialties VALUES (1, 'radiology');
 INSERT INTO specialties VALUES (2, 'surgery');

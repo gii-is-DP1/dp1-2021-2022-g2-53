@@ -22,8 +22,9 @@ public class Jugador extends BaseEntity {
 	
 	String color;
 
-//	@ManyToOne
-//	private Persona persona;
+	@ManyToOne
+	@JoinColumn(name = "persona_id")
+	private Persona persona;
 	
 	@ManyToOne
 	@JoinColumn(name = "game_id")

@@ -1,6 +1,10 @@
 package org.springframework.samples.petclinic.game;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.samples.petclinic.persona.Persona;
+import org.springframework.samples.petclinic.persona.PersonaService;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
@@ -14,6 +18,8 @@ public class GameService {
 	private PieceService pieceService;
 	@Autowired
 	private SarcineService sarcineService;
+	@Autowired
+	private PersonaService personaService;
 	
 	@Transactional
 	public int gameCount() {
@@ -79,8 +85,11 @@ public class GameService {
 	public void phases(int gameId, Movement movement, BindingResult result) throws MoveInvalidException {
 		Game gameEdited = findId(gameId);
 		String turno = gameEdited.getTurnos().get(gameEdited.getTurno());
-//		String jugador = gameEdited.getJugadoresPorColor(gameEdited.getJugadores());
-		if (turno.equals("red") || turno.equals("black")){
+		UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String username = ud.getUsername();
+		Persona persona = personaService.getPersonaByUserName(username); 
+		String jugador = persona.getJugadores().get(persona.getJugadores().size()-1).getColor();
+		if ((turno.equals("red") && turno.equals(jugador)) || (turno.equals("black") && turno.equals(jugador))){
 				movement.setTipo(gameEdited.getTurnos().get(gameEdited.getTurno()));
 				gameEdited.getBoard().movePieces(movement, result);
 				if(!result.hasErrors()) {

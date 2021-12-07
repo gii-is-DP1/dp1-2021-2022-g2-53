@@ -1,5 +1,6 @@
 package org.springframework.samples.petclinic.persona;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -10,8 +11,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.samples.petclinic.jugador.Jugador;
-
+import org.springframework.samples.petclinic.model.BaseEntity;
 import org.springframework.samples.petclinic.model.NamedEntity;
+import org.springframework.samples.petclinic.model.Person;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -21,21 +23,10 @@ import lombok.Setter;
 @Getter
 @Setter
 
-public class Persona extends NamedEntity {
+public class Persona extends Person {
+
+	private String userName;
 	
-	@Column(name = "contraseña")
-	private String contraseña;
-	@Column(name = "estado")
-	private Boolean estado;
-	@Column(name = "nombre")
-	private String nombre;
-	@Column(name = "apellidos")
-	private String apellidos;
-	@Column(name = "en_linea")
-	private Boolean enLinea;
-	@Column(name = "url_foto")
-	private String urlFoto;
-	
-//	@OneToMany(cascade = CascadeType.ALL, mappedBy = "persona")
-//	private Set<Jugador> jugadores;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "persona")
+	private List<Jugador> jugadores;
 }
