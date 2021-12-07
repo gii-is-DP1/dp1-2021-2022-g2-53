@@ -15,16 +15,20 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "jugadores")
 @Getter
 @Setter
 public class Jugador extends BaseEntity {
 
-	@Column(name = "color")
-	private String color;
+	
+	String color;
 
 	@ManyToOne
+	@JoinColumn(name = "persona_id")
 	private Persona persona;
+	
+	@ManyToOne
+	@JoinColumn(name = "game_id")
+	Game game;
 
 	/*
 	@ManyToOne

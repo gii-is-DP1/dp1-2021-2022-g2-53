@@ -55,11 +55,14 @@
 		</div>
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
+			<h2> ${message3}</h2>
+			<h2> ${message4}</h2>
 				<button class="btn btn-default" type="submit">Realizar
 					movimiento</button>
 			</div>
 		</div>
 	</form:form>
+	
 
 
 

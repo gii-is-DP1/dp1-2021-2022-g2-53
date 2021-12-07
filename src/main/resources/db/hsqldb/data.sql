@@ -7,6 +7,12 @@ INSERT INTO authorities(id,username,authority) VALUES (2,'owner1','owner');
 -- One vet user, named vet1 with passwor v3t
 INSERT INTO users(username,password,enabled) VALUES ('vet1','v3t',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (3,'vet1','veterinarian');
+-- One person user, named ´person1 with passwor personi
+INSERT INTO users(username,password,enabled) VALUES ('person1','personi',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (4,'person1','persona');
+-- One person user, named ´person2 with passwor personi
+INSERT INTO users(username,password,enabled) VALUES ('person2','personi',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (5,'person2','persona');
 
 INSERT INTO vets VALUES (1, 'James', 'Carter');
 INSERT INTO vets VALUES (2, 'Helen', 'Leary');
@@ -14,6 +20,10 @@ INSERT INTO vets VALUES (3, 'Linda', 'Douglas');
 INSERT INTO vets VALUES (4, 'Rafael', 'Ortega');
 INSERT INTO vets VALUES (5, 'Henry', 'Stevens');
 INSERT INTO vets VALUES (6, 'Sharon', 'Jenkins');
+
+INSERT INTO personas VALUES (1, 'luis', 'chacon romero', 'person1');
+INSERT INTO personas VALUES (2, 'pepe', 'sanchez cortes', 'person2');
+
 
 INSERT INTO specialties VALUES (1, 'radiology');
 INSERT INTO specialties VALUES (2, 'surgery');
@@ -70,19 +80,18 @@ INSERT INTO visits(id,pet_id,visit_date,description) VALUES (2, 8, '2013-01-02',
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (3, 8, '2013-01-03', 'neutered');
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (4, 7, '2013-01-04', 'spayed');
 
-INSERT INTO personas(id,contraseña, estado, nombre, apellidos, en_linea, url_foto) VALUES (1,'prueba' , true , 'Pepe' , 'Pepe' , false , 'holaaS');
-INSERT INTO personas(id,contraseña, estado, nombre, apellidos, en_linea, url_foto) VALUES (2,'prueba' , true , 'Pepe' , 'Pepe' , false , 'holaaS');
+
 
 INSERT INTO boards(id,background,height,width) VALUES (1,'/resources/images/tablero.jpg',300,500);
 INSERT INTO boards(id,background,height,width) VALUES (2,'/resources/images/tablero.jpg',300,500);
 
 
-INSERT INTO games (id,points_black,points_red,board_id,turno) VALUES (1,3,8,1,15);
-INSERT INTO games (id,points_black,points_red,board_id,turno) VALUES (2,0,0,2,0);
+INSERT INTO games (id,points_black,points_red,board_id,turno,token) VALUES (1,3,8,1,15,'abc-abc');
+INSERT INTO games (id,points_black,points_red,board_id,turno,token) VALUES (2,0,0,2,0,'abc-abc');
 
 
 
-
+INSERT INTO jugador(id,color,game_id) VALUES (1,'red',1);
 
 INSERT INTO piece(id,color,position,type,board_id) VALUES (1,'black',1,'bacterium',1);
 INSERT INTO piece(id,color,position,type,board_id) VALUES (2,'red',2,'bacterium',1);

@@ -1,5 +1,7 @@
 package org.springframework.samples.petclinic.jugador;
 
-public interface JugadorRepository {
+import org.springframework.data.repository.CrudRepository;
+
+public interface JugadorRepository extends CrudRepository<Jugador, Integer>{
 
 }
