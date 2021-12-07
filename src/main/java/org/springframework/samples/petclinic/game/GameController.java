@@ -187,7 +187,7 @@ public class GameController {
 
 	}
 	
-	@GetMapping(path = "/joinGame")
+	@GetMapping(path = "/join")
 	public String joinGame(ModelMap modelMap) {
 		String view = "games/joinGameFriend";
 		Game game = new Game();
