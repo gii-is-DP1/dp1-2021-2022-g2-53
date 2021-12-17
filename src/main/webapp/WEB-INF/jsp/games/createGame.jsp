@@ -11,19 +11,26 @@
     <form:form modelAttribute="game" class="form-horizontal"  action="/games/save">
          <div class="form-group has-feedback">
             
-            <h2>Crear partida</h2>
+      
 
         </div>
         <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-            	
-                <button class="btn btn-default" type="submit">Crear partida</button>
-            </div>
+
         </div>
     </form:form>
+    <h2>CREA LA PARTIDA</h2>
     
     <spring:url value="/games/newGame"
                             var="gameUrl2">
     </spring:url> <a href="${fn:escapeXml(gameUrl2)}">Juega con amigos</a></td>
+               
+                <h2>ÚNETE A TU AMIGO</h2>
+                
+       		<spring:url value="/games/join"
+                            var="gameUrl">
+                            <spring:param name="token" value="${game.token}" />
+                        </spring:url> <a href="${fn:escapeXml(gameUrl)}">Únete a tu amigo</a></td>
+                        
+                        
     
 </petclinic:layout>
