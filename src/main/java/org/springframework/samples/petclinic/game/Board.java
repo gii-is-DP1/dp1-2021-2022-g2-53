@@ -106,6 +106,23 @@ public class Board extends BaseEntity {
 		return res;
 	}
 	
+	public boolean moveInvalid2(List<Piece> ls, Movement movement, BindingResult result) {
+		boolean res = false;
+		List<Piece> piecesDiferentInitial = this.pieces.stream().filter(
+				x -> x.getPosition() == movement.getInitialPosition() && x.getColor().equals(movement.getTipo())==false)
+				.collect(Collectors.toList());
+		List<Piece> piecesSameInitial = this.pieces.stream().filter(
+				x -> x.getPosition() == movement.getInitialPosition() && x.getColor().equals(movement.getTipo()))
+				.collect(Collectors.toList());
+		List<Piece> piecesAux = pieces.subList(0, movement.getNumber());
+		if( piecesSameInitial.size() - piecesAux.size()  == piecesDiferentInitial.size() && piecesDiferentInitial.size()!=0) {
+			result.rejectValue("destinyPosition", "moveInvalid2", "No puede haber el mismo numero de bacterias en una misma casilla");
+			res = true;
+		}
+		return res;
+	}
+	
+	
 	
 	public boolean moveInvalidPosition(Movement movement, BindingResult result) {
 		boolean res = false;
@@ -146,7 +163,7 @@ public class Board extends BaseEntity {
 			}else {
 			List<Piece> piecesAux = pieces.subList(0, movement.getNumber());
 			if(movement.getTipo().equals("red") || movement.getTipo().equals("black")) {
-				if(moveInvalid(pieces, movement, result) == false && moveInvalidPosition(movement, result) == false) {
+				if(moveInvalid(pieces, movement, result) == false && moveInvalidPosition(movement, result) == false && moveInvalid2(pieces, movement, result) == false) {
 					piecesAux.stream().forEach(x -> x.setPosition(movement.getDestinyPosition()));
 				}
 			}else {
