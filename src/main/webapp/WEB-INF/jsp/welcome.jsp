@@ -52,7 +52,7 @@
       
 		<p>
 		
-		<button class="btn btn-default" onclick="window.location.href='games/new'">Iniciar partida</button>
+		<button class="btn btn-default" onclick="window.location.href='games/saveFriend/{token}'">Iniciar partida</button>
 		<h2></h2>
 		<br></br><br>
 		
