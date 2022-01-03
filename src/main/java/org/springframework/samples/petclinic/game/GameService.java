@@ -20,6 +20,8 @@ public class GameService {
 	private SarcineService sarcineService;
 	@Autowired
 	private PersonaService personaService;
+	@Autowired
+	private BoardService boardService;
 	
 	@Transactional
 	public int gameCount() {
@@ -49,41 +51,12 @@ public class GameService {
 		return gameRepo.findByToken(token);
 	} 
 
-	@Transactional
-	public void binary(int gameId) {
-		Board board = findId(gameId).getBoard();
-		int i = 1;
-		while (i <= 7) {
-			if (board.binary(i).equals("red") || board.binary(i).equals("black")) {
-				Piece piece = new Piece();
-				piece.setBoard(board);
-				piece.setColor(board.binary(i));
-				piece.setPosition(i);
-				piece.setType("bacterium");
-				pieceService.save(piece);
-			} else if (board.binary(i).equals("red_sarcine")) {
-				Sarcine sarcine = new Sarcine();
-				sarcine.setColor("red");
-				sarcine.setBoard(board);
-				sarcine.setPosition(i);
-				board.getAllPiecesByPosition(i).stream().forEach(x->x.setColor(""));
-				sarcineService.save(sarcine);
-			} else if (board.binary(i).equals("black_sarcine")) {
-				Sarcine sarcine = new Sarcine();
-				sarcine.setColor("black");
-				sarcine.setBoard(board);
-				sarcine.setPosition(i);
-				board.getAllPiecesByPosition(i).stream().forEach(x->x.setColor(""));
-				sarcineService.save(sarcine);
-			}
-			i++;
-		}
-	}
+	
 
 	
 	@Transactional
-	public void phases(int gameId, Movement movement, BindingResult result) throws MoveInvalidException {
-		Game gameEdited = findId(gameId);
+	public void phases(Game gameEdited, Movement movement, BindingResult result) throws MoveInvalidException {
+		
 		String turno = gameEdited.getTurnos().get(gameEdited.getTurno());
 		UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String username = ud.getUsername();
@@ -101,7 +74,7 @@ public class GameService {
 					save(gameEdited);
 				}
 		} else if (turno.equals("binary")) {
-			binary(gameId);
+			boardService.binary(gameEdited.getBoard());
 			gameEdited.setTurno(gameEdited.getTurno()+1);
 			save(gameEdited);
 		} else if (turno.equals("pollution")) {
