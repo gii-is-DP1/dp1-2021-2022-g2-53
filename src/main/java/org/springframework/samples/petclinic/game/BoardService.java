@@ -48,21 +48,21 @@ public class BoardService {
 		
 		int i = 1;
 		while (i <= 7) {
-			if (board.binary(i).equals("red") || board.binary(i).equals("black")) {
+			if (board.binaryboard(i).equals("red") || board.binaryboard(i).equals("black")) {
 				Piece piece = new Piece();
 				piece.setBoard(board);
-				piece.setColor(board.binary(i));
+				piece.setColor(board.binaryboard(i));
 				piece.setPosition(i);
 				piece.setType("bacterium");
 				pieceService.save(piece);
-			} else if (board.binary(i).equals("red_sarcine")) {
+			} else if (board.binaryboard(i).equals("red_sarcine")) {
 				Sarcine sarcine = new Sarcine();
 				sarcine.setColor("red");
 				sarcine.setBoard(board);
 				sarcine.setPosition(i);
 				board.getAllPiecesByPosition(i).stream().forEach(x->x.setColor(""));
 				sarcineService.save(sarcine);
-			} else if (board.binary(i).equals("black_sarcine")) {
+			} else if (board.binaryboard(i).equals("black_sarcine")) {
 				Sarcine sarcine = new Sarcine();
 				sarcine.setColor("black");
 				sarcine.setBoard(board);

@@ -71,7 +71,7 @@ public class Board extends BaseEntity {
 		return  (int) this.pieces.stream().filter(x -> x.getPosition() == pos).count();
 	}
 
-	public String binary(Integer pos) {
+	public String binaryboard(Integer pos) {
 		List<Piece> reds = this.pieces.stream().filter(x -> x.getPosition() == pos && x.getColor().equals("red"))
 				.collect(Collectors.toList());
 		List<Piece> blacks = this.pieces.stream().filter(x -> x.getPosition() == pos && x.getColor().equals("black"))
