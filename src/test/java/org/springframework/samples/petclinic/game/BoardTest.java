@@ -32,8 +32,8 @@ public class BoardTest {
 		public void TestBinary() {
 			
 	        Board board = boardService.findById(2);
-	        Assertions.assertThat(board.binary(5)).isEqualTo("red");
-	        Assertions.assertThat(board.binary(3)).isEqualTo("black");
+	        Assertions.assertThat(board.binaryboard(5)).isEqualTo("red");
+	        Assertions.assertThat(board.binaryboard(3)).isEqualTo("black");
 
 		}
 
