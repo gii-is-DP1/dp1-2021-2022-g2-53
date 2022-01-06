@@ -49,6 +49,11 @@ public class GameController {
 		modelMap.addAttribute("games", games);
 		return view;
 	}
+	
+	public String vistaganador() {
+		
+		return "redirect:/games/vistaganador";
+	}
 
 	@GetMapping(value = "/{gameId}")
 	public String showGame(ModelMap modelMap, @PathVariable("gameId") int gameId, HttpServletResponse response) {
