@@ -36,7 +36,7 @@ public class PersonaController {
 		UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String username = ud.getUsername();
 		Persona persona = personaService.getPersonaByUserName(username); 
-		List<Game> lista = jugadorService.historialgame(persona.getId());
+		List<Game> lista = jugadorService.historialgame(persona);
 		modelMap.addAttribute("games", lista.iterator());
 		return view;
 	}

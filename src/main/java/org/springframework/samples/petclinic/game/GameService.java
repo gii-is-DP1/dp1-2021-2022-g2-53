@@ -51,20 +51,7 @@ public class GameService {
 
 	}
 	
-	@Transactional
-	public List<Game> historialgame(Jugador jugador) {
-		List<Game> lista = new ArrayList();
-		
-		for (int i = 0 ; i < gameCount() ; i++) {
-			Game game = findId(i);
-			if(game.getJugadores().contains(jugador)) {
-				lista.add(game);
-			}
-		
-
-	}
-		return lista;
-	}
+	
 	
 	@Transactional
 	public Game findGameByToken(String token) {
