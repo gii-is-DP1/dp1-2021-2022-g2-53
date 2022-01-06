@@ -11,50 +11,53 @@ import org.springframework.stereotype.Service;
 
 @DataJpaTest(includeFilters = @ComponentScan.Filter(Service.class))
 public class BoardServiceTests {
-	
+
 	@Autowired
-    private GameService gameService;
-    @Autowired
-    private BoardService boardService;
-    @Autowired
-    private PieceService pieceService;
+	private GameService gameService;
+	@Autowired
+	private BoardService boardService;
+	@Autowired
+	private PieceService pieceService;
 
-    
-    //en la base de datos tenemos 2 board ya creadas
-    @Test
-    public void boardCountTest() {
-        int count=boardService.boardCount();
-        assertEquals(count, 2);
-    }
-    @Test
-  //en la base de datos tenemos 2 board ya creadas una con id=1 y otra con id=2
-    public void findByIdBoardTest(){
-    	int id= 2;
-    	 Board board = boardService.findById(id);
-         assertEquals(board.getId(), id);
+	// En la base de datos tenemos 2 board ya creadas
+	
+	@Test
+	public void boardCountTest() {
+		int count = boardService.boardCount();
+		assertEquals(count, 2);
 	}
-    
-    
-  //en la base de datos tenemos 2 board ya creadas
-      @Test
-        public void SaveBoardTest() {
-            Board board = new Board();
-            boardService.save(board);
-            int count=boardService.boardCount();
-            assertEquals(count, 3);
 
-        }
-      
-    //en la base de datos tenemos 2 board ya creadas
-      @Test
-        public void DeleteboardTest() {
-    	  Board board = new Board();
-            boardService.save(board);
-            boardService.delete(board);
-            int count=boardService.boardCount();
-            assertEquals(count,2);
+	
+	@Test
+	public void findByIdBoardTest() {
+		Board board = boardService.findById(1);
+		assertEquals(board.getId(), 1);
+	}
+	
+	@Test
+	public void findByIdBoardTest2() {
+		Board board = boardService.findById(2);
+		assertEquals(board.getId(), 2);
+	}
+	
 
-        }
+	@Test
+	public void SaveBoardTest() {
+		Board board = new Board();
+		boardService.save(board);
+		int count = boardService.boardCount();
+		assertEquals(count, 3);
 
-     
+	}
+
+	@Test
+	public void DeleteboardTest() {
+		Board board = new Board();
+		boardService.save(board);
+		boardService.delete(board);
+		int count = boardService.boardCount();
+		assertEquals(count, 2);
+
+	}
+
 }

@@ -30,7 +30,6 @@ public class GameService {
 
 	@Transactional
 	public Iterable<Game> findAll() {
-		// TODO Auto-generated method stub
 		return gameRepo.findAll();
 	}
 
