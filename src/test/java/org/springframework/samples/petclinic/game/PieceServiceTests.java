@@ -2,7 +2,6 @@ package org.springframework.samples.petclinic.game;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -25,13 +24,12 @@ public class PieceServiceTests {
     @Test
     public void piecesCount() {
         int count=pieceService.pieceCount();
-        assertEquals(count, 23);
+        assertEquals(count, 26);
     }
     
     @Test
     public void SavePiece() {
-		Game game = new Game();
-        game.setId(1);
+    	Game game= gameService.findId(1);
         Board board = boardService.findById(2);
         board.setGame(game);
         Piece piece=new Piece();
@@ -40,16 +38,13 @@ public class PieceServiceTests {
         piece.setPosition(1);
         pieceService.save(piece);
         int count= pieceService.pieceCount();
-        assertEquals(count, 24);
+        assertEquals(count, 27);
 }
     
     
     @Test
     public void DeletePiece() {
-		Game game = new Game();
-        game.setId(1);
         Board board = boardService.findById(2);
-        board.setGame(game);
         Piece piece=new Piece();
         piece.setBoard(board);
         piece.setColor("red");
@@ -63,18 +58,12 @@ public class PieceServiceTests {
     
     @Test
     public void TestDeleteById() {
-		Game game = new Game();
-        game.setId(1);
+    	Game game = gameService.findId(1);
         Board board = boardService.findById(1);
         board.setGame(game);
-        Piece piece=new Piece();
-        piece.setBoard(board);
-        piece.setColor("red");
-        piece.setPosition(5);
-        pieceService.save(piece);
         pieceService.deleteById(5);
         int count=pieceService.pieceCount();
-        assertEquals(count, 23);
+        assertEquals(count, 25);
 
     }
     
