@@ -2,6 +2,7 @@ package org.springframework.samples.petclinic.game;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import static org.junit.Assert.assertEquals;
@@ -59,5 +60,27 @@ public class BoardServiceTests {
 		assertEquals(count, 2);
 
 	}
+	
+//    @Test
+//    public void TestBinaryWhiteTwoPiece() {
+//    Board board = gameService.findId(2).getBoard();
+//    
+//    Piece pieceNewRed = new Piece();
+//      pieceNewRed.setBoard(board);
+//      pieceNewRed.setPosition(5);
+//      pieceNewRed.setColor("red");
+//    Piece pieceNewBlack = new Piece();
+//      pieceNewBlack.setBoard(board);
+//      pieceNewBlack.setPosition(3);
+//      pieceNewBlack.setColor("black");
+//      pieceService.save(pieceNewBlack);
+//      pieceService.save(pieceNewRed);
+//      boardService.binary(board);
+//      boardService.save(board);
+// 
+//    
+//    Assertions.assertThat(board.getNumberOfPiecesByPosition(5)).isEqualTo(3);
+//
+//    }
 
 }

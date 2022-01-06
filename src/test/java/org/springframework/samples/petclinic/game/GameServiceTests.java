@@ -52,33 +52,11 @@ public class GameServiceTests {
 		assertEquals(n.getBoard().getId(), 2);
 
 	}
-	
+
 	@Test
 	public void FindGameByToken() {
-		Game game= gameService.findId(2);
+		Game game = gameService.findId(2);
 		Assertions.assertThat(game.getToken()).isEqualTo("abc-abc");
 	}
-
-//      @Test
-//      public void TestBinaryWhiteTwoPiece() {
-//      Board board = gameService.findId(2).getBoard();
-//      
-//      
-//      Piece pieceNewRed = new Piece();
-//        pieceNewRed.setBoard(board);
-//        pieceNewRed.setPosition(5);
-//        pieceNewRed.setColor("red");
-//      Piece pieceNewBlack = new Piece();
-//        pieceNewBlack.setBoard(board);
-//        pieceNewBlack.setPosition(3);
-//        pieceNewBlack.setColor("black");
-//        pieceService.save(pieceNewBlack);
-//        pieceService.save(pieceNewRed);
-//        gameService.binary(2);
-//   
-//      
-//      Assertions.assertThat(board.getNumberOfPiecesByPosition(3)).isEqualTo(3);
-//
-//      }
 
 }
