@@ -14,6 +14,11 @@ public class PieceService {
 	public int pieceCount() {
 		return (int) pieceRepo.count();
 	}
+	
+	public Piece findById(Integer id){
+		return pieceRepo.findById(id).get();
+	}
+	
 
 	@Transactional
 	public void save(Piece piece) {
