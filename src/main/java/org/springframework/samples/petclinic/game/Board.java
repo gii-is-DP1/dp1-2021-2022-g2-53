@@ -35,7 +35,12 @@ public class Board extends BaseEntity {
 	int height;
 	@OneToOne
 	Game game;
-
+	
+	private static final String RED = "red";
+	private static final String BLACK = "black";
+	
+	
+	
 	public Board() {
 		this.background = "/resources/images/tablero.jpg";
 		this.width = 500;

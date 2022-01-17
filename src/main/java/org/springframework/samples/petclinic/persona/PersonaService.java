@@ -22,5 +22,10 @@ public class PersonaService {
 		return personaRepo.findById(id).get();
 
 	}
+	
+	@Transactional
+	public void save(Persona persona) {
+		personaRepo.save(persona);
+	}
 
 }

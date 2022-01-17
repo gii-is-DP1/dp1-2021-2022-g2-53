@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.game.Game;
@@ -16,8 +17,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -49,6 +52,19 @@ public class PersonaController {
 		Persona persona = new Persona();
 		model.put("persona", persona);
 		return VIEWS_PERSONA_CREATE_OR_UPDATE_FORM;
+	}
+	
+	@PostMapping(value = "/personas/new")
+	public String processCreationForm(@Valid Persona persona, BindingResult result) {
+		if (result.hasErrors()) {
+			return VIEWS_PERSONA_CREATE_OR_UPDATE_FORM;
+		}
+		else {
+			//creating owner, user and authorities
+			this.personaService.save(persona);
+			
+			return "redirect:/" ;
+		}
 	}
 	
 	
