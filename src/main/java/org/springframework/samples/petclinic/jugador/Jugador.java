@@ -6,6 +6,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.samples.petclinic.game.Game;
 import org.springframework.samples.petclinic.model.BaseEntity;
@@ -23,6 +24,7 @@ public class Jugador extends BaseEntity {
 	String color;
 
 	@ManyToOne
+	@NotNull
 	@JoinColumn(name = "persona_id")
 	private Persona persona;
 	

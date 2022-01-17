@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.samples.petclinic.game.Board;
 import org.springframework.samples.petclinic.game.Game;
 import org.springframework.samples.petclinic.game.GameService;
@@ -34,9 +35,10 @@ public class JugadorService {
 		return jugadorRepo.findById(id).get();
 
 	}
+	 
 
 	@Transactional
-	public List<Game> historialgame(Persona persona) {
+	public List<Game> historialgame2(Persona persona) {
 		List<Game> lista = new ArrayList<Game>();
 		for (int i = 0; i < jugadorCount(); i++) {
 			Jugador jugador = findId(i);
@@ -46,6 +48,19 @@ public class JugadorService {
 			}
 
 		}
+		return lista;
+	}
+	@Transactional
+	public List<Game> historialgame(Persona persona) {
+		List<Game> lista = new ArrayList<Game>();
+		List<Jugador> lsjug = jugadorRepo.getJugadorbypersonid(persona.getId());
+		for (int i = 0; i < lsjug.size(); i++) {
+			Jugador j = lsjug.get(i);
+			Game game = j.getGame();
+				lista.add(game);
+			}
+
+		
 		return lista;
 	}
 }
