@@ -1,6 +1,10 @@
 package org.springframework.samples.petclinic.game;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.samples.petclinic.jugador.Jugador;
 import org.springframework.samples.petclinic.persona.Persona;
 import org.springframework.samples.petclinic.persona.PersonaService;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,6 +26,8 @@ public class GameService {
 	private PersonaService personaService;
 	@Autowired
 	private BoardService boardService;
+	@Autowired
+	private GameController gamecontroller;
 	
 	@Transactional
 	public int gameCount() {
@@ -44,6 +50,8 @@ public class GameService {
 		return gameRepo.findById(id).get();
 
 	}
+	
+	
 	
 	@Transactional
 	public Game findGameByToken(String token) {
@@ -81,8 +89,14 @@ public class GameService {
 			gameEdited.setPointsRed(gameEdited.getPointsRed() + gameEdited.getBoard().pollution().get(0));
 			gameEdited.setPointsBlack(gameEdited.getPointsBlack() +gameEdited.getBoard().pollution().get(1));
 			gameEdited.setTurno(gameEdited.getTurno()+1);
-			save(gameEdited);}
+			save(gameEdited);
+		}else if (turno.equals("fin")) {
+			
+		gamecontroller.vistaganador();
 		}
+	
+		}
+	
 
 	@Transactional
 	public void delete(Game game) {

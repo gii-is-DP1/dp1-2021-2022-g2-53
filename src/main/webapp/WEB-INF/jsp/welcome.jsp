@@ -76,7 +76,7 @@
       
 		<p>
 		
-		<button class="btn btn-default" onclick="window.location.href='games/new'">Historial de partidas</button>
+		<button class="btn btn-default" onclick="window.location.href='personas'">Historial de partidas</button>
 		<h2></h2>
 		<br></br><br>
 		
