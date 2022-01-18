@@ -11,8 +11,8 @@ import org.springframework.data.repository.query.Param;
 
 
 public interface PersonaRepository extends CrudRepository<Persona, Integer>{
-		
-	@Query("SELECT p from Persona p WHERE p.userName = :userName")
+
+	@Query("SELECT p from Persona p WHERE p.username.name = :userName")
 	Persona findPersonaByUserName(@Param("userName") String userName);
 	
 }
