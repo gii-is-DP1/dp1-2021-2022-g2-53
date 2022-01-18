@@ -48,6 +48,12 @@ public class GameController {
 		return view;
 	}
 	
+	@GetMapping(value = "/herramientasAdmin")
+	public String herramientasAdmin() {
+		return "herramientasAdmin";
+
+	}
+	
 
 	@GetMapping(value = "/{gameId}")
 	public String showGame(ModelMap modelMap, @PathVariable("gameId") int gameId, HttpServletResponse response) {
@@ -193,6 +199,8 @@ public class GameController {
 		modelMap.addAttribute("game", game);
 		return view;
 	}
+	
+	
 	
 	@PostMapping(path = "/saveToken")
 	public String saveToken(ModelMap modelMap, Game game, BindingResult result) {
