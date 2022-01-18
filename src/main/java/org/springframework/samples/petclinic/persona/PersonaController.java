@@ -35,8 +35,9 @@ public class PersonaController {
         if(result.hasErrors()){
             return FORM;
         } else {
+            System.out.println("");
             this.personaService.savePersona(persona);
-            return "redirect:/welcome";
+            return "redirect:/";
         }
     }
 
