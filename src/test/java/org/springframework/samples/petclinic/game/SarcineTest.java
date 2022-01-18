@@ -9,14 +9,11 @@ import org.springframework.stereotype.Service;
 @DataJpaTest(includeFilters = @ComponentScan.Filter(Service.class))
 
 public class SarcineTest {
-	@Autowired
-	private GameService gameService;
+
 	@Autowired
 	private BoardService boardService;
 	@Autowired
-	private PieceService pieceService;
-	@Autowired
-	private SarcineService sarcineService;
+
 	
 	
 	@Test
