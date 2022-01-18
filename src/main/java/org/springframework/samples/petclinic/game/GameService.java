@@ -26,8 +26,7 @@ public class GameService {
 	private PersonaService personaService;
 	@Autowired
 	private BoardService boardService;
-	@Autowired
-	private GameController gamecontroller;
+	
 	
 	@Transactional
 	public int gameCount() {
@@ -89,11 +88,7 @@ public class GameService {
 			gameEdited.setPointsRed(gameEdited.getPointsRed() + gameEdited.getBoard().pollution().get(0));
 			gameEdited.setPointsBlack(gameEdited.getPointsBlack() +gameEdited.getBoard().pollution().get(1));
 			gameEdited.setTurno(gameEdited.getTurno()+1);
-			save(gameEdited);
-		}else if (turno.equals("fin")) {
-			
-		gamecontroller.vistaganador();
-		}
+			save(gameEdited);}
 	
 		}
 	

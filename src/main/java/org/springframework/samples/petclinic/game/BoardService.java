@@ -2,7 +2,7 @@ package org.springframework.samples.petclinic.game;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.samples.petclinic.persona.PersonaService;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,14 +11,11 @@ public class BoardService {
 
 	@Autowired 
 	private BoardRepository boardRepo;
-	@Autowired
-	private GameRepository gameRepo;
+	
 	@Autowired
 	private PieceService pieceService;
 	@Autowired
 	private SarcineService sarcineService;
-	@Autowired
-	private PersonaService personaService;
 	
 
 	@Transactional

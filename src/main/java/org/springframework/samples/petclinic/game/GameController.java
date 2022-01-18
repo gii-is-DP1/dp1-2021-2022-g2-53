@@ -18,14 +18,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
-import ch.qos.logback.classic.Logger;
 
 @Controller
 @RequestMapping("/games")
@@ -50,10 +48,6 @@ public class GameController {
 		return view;
 	}
 	
-	public String vistaganador() {
-		
-		return "redirect:/games/vistaganador";
-	}
 
 	@GetMapping(value = "/{gameId}")
 	public String showGame(ModelMap modelMap, @PathVariable("gameId") int gameId, HttpServletResponse response) {
@@ -69,7 +63,6 @@ public class GameController {
 	@GetMapping(value = "/play/{gameId}")
 	public String playGame(ModelMap modelMap, @PathVariable("gameId") int gameId, HttpServletResponse response) {
 		String view = "games/playGame";
-		String view2= "games/playGameBlack";
 		Game game = gameService.findId(gameId);
 		modelMap.addAttribute("game", game);
 		modelMap.addAttribute("board", game.getBoard());
@@ -143,7 +136,6 @@ public class GameController {
 
 	@GetMapping(path = "/saveFriend/{token}")
 	public String salvarjuegoamigo(ModelMap modelMap, Game game, @PathVariable ("token") String token, BindingResult result) {
-		String view = "games/listGames";
 		if (result.hasErrors()) {
 			modelMap.addAttribute("game", game);
 			return "games/createGame";
@@ -230,7 +222,6 @@ public class GameController {
 	
 	@PostMapping(path = "/save")
 	public String salvarjuego(ModelMap modelMap, Game game, BindingResult result) {
-		String view = "games/listGames";
 		String token = (String) modelMap.getAttribute("token");
 		if (result.hasErrors()) {
 			modelMap.addAttribute("game", game);

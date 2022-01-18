@@ -15,10 +15,7 @@ public class GameServiceTests {
 
 	@Autowired
 	private GameService gameService;
-	@Autowired
-	private BoardService boardService;
-	@Autowired
-	private PieceService pieceService;
+
 
 	@Test
 	public void GameCountTest() {

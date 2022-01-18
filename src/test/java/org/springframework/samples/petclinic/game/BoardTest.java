@@ -1,10 +1,6 @@
 package org.springframework.samples.petclinic.game;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 
 import java.util.List;
 
@@ -14,13 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.BindingResult;
+
 
 @DataJpaTest(includeFilters = @ComponentScan.Filter(Service.class))
 public class BoardTest {
 
-	@Autowired
-	private GameService gameService;
+
 	@Autowired
 	private BoardService boardService;
 	@Autowired
