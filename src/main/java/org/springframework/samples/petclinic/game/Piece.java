@@ -31,12 +31,11 @@ public class Piece extends BaseEntity {
     public String getURLimage(Integer size) {
     	return color;
     }
-    /*
+    
     public Integer getNumberOfPiecesInPosition(Integer i){
     	return (int) this.board.getPieces().stream().filter(x->x.getPosition()==this.position).count();
     }
-    */
-   
+    
     public Integer getPositionXInPixels(Integer size) {
     	Integer pos = 0;
     	if (this.position==1 || this.position == 6) {

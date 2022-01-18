@@ -11,11 +11,6 @@ public class SarcineService {
 	SarcineRepository sarcineRepo;
 	
 	@Transactional
-	public int sarcineCount() {
-		return (int) sarcineRepo.count();
-	}
-
-	@Transactional
 	public void save(Sarcine sarcine) {
 		sarcineRepo.save(sarcine);
 	}
