@@ -1,8 +1,7 @@
 package org.springframework.samples.petclinic.persona;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.samples.petclinic.game.Game;
-import org.springframework.samples.petclinic.game.GameRepository;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +20,11 @@ public class PersonaService {
 	public Persona findId(int id) {
 		return personaRepo.findById(id).get();
 
+	}
+	
+	@Transactional
+	public Iterable<Persona> findAll() {
+		return personaRepo.findAll();
 	}
 
 }

@@ -20,9 +20,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  * and open the template in the editor.
  */
 
-/**
- * @author japarejo
- */
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -37,9 +35,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers(HttpMethod.GET, "/","/oups").permitAll()
 				.antMatchers("/users/new").permitAll()
 				.antMatchers("/games/herramientasAdmin").hasAnyAuthority("admin")
+				.antMatchers("/games/listGames").hasAuthority("admin")
+				.antMatchers("/games/mostrarpartidas").hasAuthority("admin")
 				.antMatchers("/games/**").hasAuthority("persona")
-				.antMatchers("/games/**").hasAuthority("admin")
-				.antMatchers("/personas/**").hasAuthority("persona")
+				.antMatchers("/jugadores/**").hasAuthority("admin")
+				.antMatchers("/personas").hasAuthority("persona")
+				.antMatchers("/personas/partidaspersona").hasAuthority("persona")
+				.antMatchers("/personas/register").hasAuthority("admin")
+				.antMatchers("/personas/listPersonas").hasAuthority("admin")
 				.antMatchers("/admin/**").hasAnyAuthority("admin")
 				.antMatchers("/owners/**").hasAnyAuthority("owner","admin")				
 				.antMatchers("/vets/**").authenticated()

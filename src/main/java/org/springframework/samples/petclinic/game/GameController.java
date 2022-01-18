@@ -40,7 +40,7 @@ public class GameController {
 	@Autowired
 	private PersonaService personaService;
 
-	@GetMapping()
+	@GetMapping(value = "/mostrarpartidas")
 	public String listGames(ModelMap modelMap) {
 		String view = "games/listGames";
 		Iterable<Game> games = gameService.findAll();

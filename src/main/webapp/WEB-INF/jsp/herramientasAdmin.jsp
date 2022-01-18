@@ -33,7 +33,7 @@
            
 		<p>
 		<br>
-		<button class="btn btn-default" onclick="window.location.href='games/new'">Listado de jugadores</button>
+		<button class="btn btn-default" onclick="window.location.href='/jugadores'">Listado de personas jugando</button>
 		
 		<br><br><br><br>
 		
@@ -45,7 +45,7 @@
       
 		<p>
 		
-		<button class="btn btn-default" onclick="window.location.href='/games'">Listado de partidas jugadas y sus participantes</button>
+		<button class="btn btn-default" onclick="window.location.href='/games/mostrarpartidas'">Listado de partidas jugadas y sus participantes</button>
 		
 		<br></br><br><br>
 		
@@ -58,11 +58,11 @@
       
 		<p>
 		
-		<button class="btn btn-default" onclick="window.location.href='personas'">CRUD de usuarios</button>
+		<button class="btn btn-default" onclick="window.location.href='/personas/register'">Usuarios registrados</button>
 		<h2></h2>
 		<br></br><br>
 		
-		</p>
+		
 		<p>
         </div>
         
