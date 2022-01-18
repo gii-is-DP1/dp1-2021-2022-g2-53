@@ -17,8 +17,7 @@ public class JugadorService {
 
 	@Autowired
 	JugadorRepository jugadorRepo;
-	@Autowired
-	private GameService gameService;
+	
 
 	@Transactional
 	public void save(Jugador jugador) {
@@ -37,19 +36,7 @@ public class JugadorService {
 	}
 	 
 
-	@Transactional
-	public List<Game> historialgame2(Persona persona) {
-		List<Game> lista = new ArrayList<Game>();
-		for (int i = 0; i < jugadorCount(); i++) {
-			Jugador jugador = findId(i);
-			if (jugador.getPersona().equals(persona) ) {
-				Game game = jugador.getGame();
-				lista.add(game);
-			}
-
-		}
-		return lista;
-	}
+	
 	@Transactional
 	public List<Game> historialgame(Persona persona) {
 		List<Game> lista = new ArrayList<Game>();
