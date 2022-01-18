@@ -61,9 +61,9 @@ public class OwnerService {
 		//creating owner
 		ownerRepository.save(owner);		
 		//creating user
-		userService.saveUser(owner.getUser());
+		//userService.saveUser(owner.getUser());
 		//creating authorities
-		authoritiesService.saveAuthorities(owner.getUser().getUsername(), "owner");
+		//authoritiesService.saveAuthorities(owner.getUser().getUsername(), "owner");
 	}		
 
 }
