@@ -91,7 +91,8 @@ INSERT INTO games (id,points_black,points_red,board_id,turno,token) VALUES (2,0,
 
 
 
-INSERT INTO jugador(id,color,game_id) VALUES (1,'red',1);
+INSERT INTO jugador(id,color,game_id,persona_id) VALUES (1,'red',1,1);
+INSERT INTO jugador(id,color,game_id,persona_id) VALUES (2,'black',1,2);
 
 INSERT INTO piece(id,color,position,type,board_id) VALUES (1,'black',1,'bacterium',1);
 INSERT INTO piece(id,color,position,type,board_id) VALUES (2,'red',2,'bacterium',1);
