@@ -7,6 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 
 
 
+
 public interface JugadorRepository extends CrudRepository<Jugador, Integer>{
 	
 	@Query("SELECT j FROM Jugador j WHERE j.persona.id= :id")
