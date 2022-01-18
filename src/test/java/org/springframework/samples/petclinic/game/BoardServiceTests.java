@@ -20,7 +20,7 @@ public class BoardServiceTests {
 	@Autowired
 	private PieceService pieceService;
 
-	// En la base de datos tenemos 2 board ya creadas
+	// En la   base de datos tenemos 2 board ya creadas
 	
 	@Test
 	public void boardCountTest() {
