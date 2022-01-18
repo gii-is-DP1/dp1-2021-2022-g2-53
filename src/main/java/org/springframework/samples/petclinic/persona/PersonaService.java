@@ -5,6 +5,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+
 import org.springframework.samples.petclinic.game.Game;
 import org.springframework.samples.petclinic.game.GameRepository;
 
@@ -12,6 +13,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.user.AuthoritiesService;
 import org.springframework.samples.petclinic.user.User;
 import org.springframework.samples.petclinic.user.UserService;
+
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -47,6 +49,11 @@ public class PersonaService {
 	public Persona findId(int id) {
 		return personaRepo.findById(id).get();
 
+	}
+	
+	@Transactional
+	public Iterable<Persona> findAll() {
+		return personaRepo.findAll();
 	}
 
 	@Transactional

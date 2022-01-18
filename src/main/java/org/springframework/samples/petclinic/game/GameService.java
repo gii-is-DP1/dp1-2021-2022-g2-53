@@ -1,10 +1,9 @@
 package org.springframework.samples.petclinic.game;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.samples.petclinic.jugador.Jugador;
+
 import org.springframework.samples.petclinic.persona.Persona;
 import org.springframework.samples.petclinic.persona.PersonaService;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,10 +17,7 @@ public class GameService {
 					
 	@Autowired
 	private GameRepository gameRepo;
-	@Autowired
-	private PieceService pieceService;
-	@Autowired
-	private SarcineService sarcineService;
+	
 	@Autowired
 	private PersonaService personaService;
 	@Autowired

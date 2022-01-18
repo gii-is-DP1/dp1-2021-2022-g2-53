@@ -3,7 +3,6 @@ package org.springframework.samples.petclinic.persona;
 
 
 
-import java.util.Date;
 
 import java.util.List;
 
@@ -13,19 +12,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.game.Game;
 
 
-import org.springframework.samples.petclinic.game.GameService;
-
 import org.springframework.samples.petclinic.jugador.JugadorService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.samples.petclinic.user.AuthoritiesService;
 import org.springframework.samples.petclinic.user.UserService;
 import org.springframework.validation.BindingResult;
+
 
 
 @Controller
@@ -50,7 +49,16 @@ public class PersonaController {
         modelMap.addAttribute("games", lista.iterator());
         return view;
     }
-
+    
+    @GetMapping(value = "/personas/register")
+    public String showGamePerson(ModelMap modelMap) {
+        String view = "personas/listPersonas";
+        Iterable<Persona> personas = personaService.findAll();
+        modelMap.addAttribute("personas", personas);
+        return view;
+    }
+    
+  
 
 
 

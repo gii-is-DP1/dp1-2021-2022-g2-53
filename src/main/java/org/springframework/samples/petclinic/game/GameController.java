@@ -40,12 +40,18 @@ public class GameController {
 	@Autowired
 	private PersonaService personaService;
 
-	@GetMapping()
+	@GetMapping(value = "/mostrarpartidas")
 	public String listGames(ModelMap modelMap) {
 		String view = "games/listGames";
 		Iterable<Game> games = gameService.findAll();
 		modelMap.addAttribute("games", games);
 		return view;
+	}
+	
+	@GetMapping(value = "/herramientasAdmin")
+	public String herramientasAdmin() {
+		return "herramientasAdmin";
+
 	}
 	
 
@@ -193,6 +199,8 @@ public class GameController {
 		modelMap.addAttribute("game", game);
 		return view;
 	}
+	
+	
 	
 	@PostMapping(path = "/saveToken")
 	public String saveToken(ModelMap modelMap, Game game, BindingResult result) {
