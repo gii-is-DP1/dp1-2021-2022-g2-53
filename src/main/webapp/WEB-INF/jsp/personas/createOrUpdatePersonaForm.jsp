@@ -10,7 +10,7 @@
     <h2>
         <c:if test="${persona['new']}">New </c:if> Persona
     </h2>
-    <form:form modelAttribute="persona" class="form-horizontal" id="add-owner-form">
+    <form:form modelAttribute="persona" class="form-horizontal" id="add-persona-form">
         <div class="form-group has-feedback">
             <petclinic:inputField label="First Name" name="firstName"/>
             <petclinic:inputField label="Last Name" name="lastName"/>
