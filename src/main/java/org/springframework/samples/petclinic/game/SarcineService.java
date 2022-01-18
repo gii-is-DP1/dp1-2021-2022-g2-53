@@ -8,10 +8,15 @@ import org.springframework.transaction.annotation.Transactional;
 public class SarcineService {
 
 	@Autowired
-	SarcineRepository sarcineRepo;
-	
-	@Transactional
-	public void save(Sarcine sarcine) {
-		sarcineRepo.save(sarcine);
-	}
+    SarcineRepository sarcineRepo;
+
+    @Transactional
+    public int sarcineCount() {
+        return (int) sarcineRepo.count();
+    }
+
+    @Transactional
+    public void save(Sarcine sarcine) {
+        sarcineRepo.save(sarcine);
+    }
 }
