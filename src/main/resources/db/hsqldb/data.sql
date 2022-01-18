@@ -120,7 +120,7 @@ INSERT INTO piece(id,color,position,type,board_id) VALUES (23,'black',7,'bacteri
 INSERT INTO piece(id,color,position,type,board_id) VALUES (24,'red',7,'bacterium',1);
 
 INSERT INTO piece(id,color,position,type,board_id) VALUES (25,'black',3,'bacterium',2);
-INSERT INTO piece(id,color,position,type,board_id) VALUES (26,'red',7,'bacterium',2);
+INSERT INTO piece(id,color,position,type,board_id) VALUES (26,'red',5,'bacterium',2);
 
 INSERT INTO sarcine(id,color,position,board_id) VALUES (1,'black',1,1);
 INSERT INTO sarcine(id,color,position,board_id) VALUES (2,'red',6,1);
