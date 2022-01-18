@@ -36,7 +36,7 @@ public class PersonaController {
 
     
     @GetMapping(value = "/personas")
-    public String showGame(ModelMap modelMap, HttpServletResponse response) {
+    public String showGamePerson(ModelMap modelMap, HttpServletResponse response) {
         String view = "personas/partidaspersona";
 
         UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
