@@ -24,7 +24,7 @@ import lombok.Setter;
 public class Persona extends Person {
 
 	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "username", referencedColumnName = "username")
+    @JoinColumn(name = "user", referencedColumnName = "username")
 	private User user;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "persona")
 	private List<Jugador> jugadores;
