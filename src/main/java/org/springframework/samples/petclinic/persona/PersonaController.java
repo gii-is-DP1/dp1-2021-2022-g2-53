@@ -122,7 +122,7 @@ public class PersonaController {
     
     @GetMapping(value = "/personas/delete/{personaId}")
 	public String deleteGame(ModelMap modelMap, @PathVariable("personaId") int personaid) {
-		String view = "personas/listPersonas";
+		
 		Optional<Persona> persona = Optional.of(personaService.findId(personaid));
 		
 		if (persona.isPresent()){
@@ -132,7 +132,7 @@ public class PersonaController {
 			modelMap.addAttribute("message", "persona no borrado");
 
 		}
-		return view;
+		return "redirect:/personas/registro";
 
 	}
 
