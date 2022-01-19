@@ -83,8 +83,13 @@ public class GameService {
 			//POSICION 0 SON ROJOS Y 1 SON NEGROS
 			gameEdited.setPointsRed(gameEdited.getPointsRed() + gameEdited.getBoard().pollution().get(0));
 			gameEdited.setPointsBlack(gameEdited.getPointsBlack() +gameEdited.getBoard().pollution().get(1));
-			gameEdited.setTurno(gameEdited.getTurno()+1);
-			save(gameEdited);}
+			if (gameEdited.getPointsBlack()>=9 || gameEdited.getPointsBlack()>=9) {
+				gameEdited.setTurno(gameEdited.getTurnos().size()-1);
+			} else {
+				gameEdited.setTurno(gameEdited.getTurno()+1);
+			}
+			save(gameEdited);
+			}
 	
 		}
 	
