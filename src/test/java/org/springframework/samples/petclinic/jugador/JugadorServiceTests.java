@@ -31,10 +31,10 @@ public class JugadorServiceTests {
 	@Test
 	public void historialgameTest() {
 	
-		Persona personi = personaService.findId(2);
 		
-		List<Game> list = jugadorService.historialgame(personi);
-		assertEquals(list.size(), 2);
+		Persona persona = personaRepo.findById(2).get();	
+		List<Game> list = jugadorService.historialgame(persona);
+		assertEquals(list.size(), 1);
 	}
 
 	
