@@ -30,12 +30,13 @@ INSERT INTO boards(id,background,height,width) VALUES (2,'/resources/images/tabl
 
 
 INSERT INTO games (id,points_black,points_red,board_id,turno,token) VALUES (1,3,8,1,15,'abc-abc');
-INSERT INTO games (id,points_black,points_red,board_id,turno,token) VALUES (2,0,0,2,0,'abc-abc');
-
-
+INSERT INTO games (id,points_black,points_red,board_id,turno,token) VALUES (2,9,4,2,40,'ebc-qer');
 
 INSERT INTO jugador(id,color,game_id,persona_id) VALUES (1,'red',1,1);
 INSERT INTO jugador(id,color,game_id,persona_id) VALUES (2,'black',1,2);
+
+INSERT INTO jugador(id,color,game_id,persona_id) VALUES (3,'red',2,1);
+INSERT INTO jugador(id,color,game_id,persona_id) VALUES (4,'black',2,2);
 
 INSERT INTO piece(id,color,position,type,board_id) VALUES (1,'black',1,'bacterium',1);
 INSERT INTO piece(id,color,position,type,board_id) VALUES (2,'red',2,'bacterium',1);
