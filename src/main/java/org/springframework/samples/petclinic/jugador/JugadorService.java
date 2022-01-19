@@ -41,10 +41,7 @@ public class JugadorService {
 
 	}
 	
-	@Transactional
-	public List<String> getJugadorusername() {
-		return jugadorRepo.getJugadorusername();
-	}
+
 	
 	
 	@Transactional

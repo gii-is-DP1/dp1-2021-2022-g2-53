@@ -56,7 +56,7 @@ public class PersonaControllerTests {
 			prueba.setId(TEST_PERSONA_ID);
 			prueba.setFirstName("George");
 			prueba.setLastName("Franklin");
-			prueba.setUserName("prueba1");
+			//prueba.setUserName("prueba1");
 
 			
 		}

@@ -1,13 +1,12 @@
 package org.springframework.samples.petclinic.persona;
 
-import javax.transaction.Transactional;
+
 
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 
-import org.springframework.samples.petclinic.game.Game;
-import org.springframework.samples.petclinic.game.GameRepository;
+
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.user.AuthoritiesService;

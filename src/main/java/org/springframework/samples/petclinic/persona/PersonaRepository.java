@@ -19,6 +19,8 @@ public interface PersonaRepository extends CrudRepository<Persona, Integer>{
 
 		@Query("SELECT p from Persona p WHERE p.user = :user")
 		Persona getPersonaByUser(@Param("user") User user);
+		
+	
 
 	//@Query("SELECT p from Persona p WHERE p.username.name = :userName")
 	//@Query("SELECT persona from Persona persona WHERE user.username LIKE :username%")

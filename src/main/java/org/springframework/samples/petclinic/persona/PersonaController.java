@@ -5,13 +5,14 @@ package org.springframework.samples.petclinic.persona;
 
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.game.Game;
-
-
+import javax.validation.Valid;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.samples.petclinic.jugador.JugadorService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -50,7 +51,7 @@ public class PersonaController {
         return view;
     }
     
-    @GetMapping(value = "/personas/register")
+    @GetMapping(value = "/personas/registro")
     public String showGamePerson(ModelMap modelMap) {
         String view = "personas/listPersonas";
         Iterable<Persona> personas = personaService.findAll();

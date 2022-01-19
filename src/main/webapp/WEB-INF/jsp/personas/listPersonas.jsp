@@ -24,7 +24,7 @@
             <tr>
                 <td>
                    
-                    <c:out value="${personas.userName}"/>
+                    <c:out value="${personas.user.username}"/>
                 </td>
                 <td>
                    

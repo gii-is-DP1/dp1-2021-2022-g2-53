@@ -15,6 +15,7 @@ import javax.persistence.Table;
 import org.springframework.samples.petclinic.jugador.Jugador;
 import org.springframework.samples.petclinic.model.Person;
 import org.springframework.samples.petclinic.user.User;
+import javax.persistence.JoinColumn;
 
 import lombok.Getter;
 import lombok.Setter;

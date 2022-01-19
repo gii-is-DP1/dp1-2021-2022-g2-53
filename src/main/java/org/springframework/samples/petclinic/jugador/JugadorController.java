@@ -14,12 +14,6 @@ public class JugadorController {
 	
 	
 	
-	@GetMapping(value = "/jugadores")
-	public String listGames(ModelMap modelMap) {
-		String view = "jugadores/listJugadores";
-		Iterable<String> usernames = jugadorService.getJugadorusername();
-		modelMap.addAttribute("usernames", usernames);
-		return view;
-	}
+	
 
 }
