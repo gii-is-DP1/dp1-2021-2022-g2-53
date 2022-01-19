@@ -53,7 +53,7 @@ public class GameServiceTests {
 	@Test
 	public void FindGameByToken() {
 		Game game = gameService.findId(2);
-		Assertions.assertThat(game.getToken()).isEqualTo("abc-abc");
+		Assertions.assertThat(game.getToken()).isEqualTo("ebc-qer");
 	}
 
 }

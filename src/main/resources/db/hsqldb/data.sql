@@ -14,6 +14,9 @@ INSERT INTO authorities(id,username,authority) VALUES (4,'person1','persona');
 INSERT INTO users(username,password,enabled) VALUES ('person2','personi',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (5,'person2','persona');
 
+INSERT INTO users(username,password,enabled) VALUES ('person3','personi',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (6,'person3','persona');
+
 INSERT INTO vets VALUES (1, 'James', 'Carter');
 INSERT INTO vets VALUES (2, 'Helen', 'Leary');
 INSERT INTO vets VALUES (3, 'Linda', 'Douglas');
@@ -23,13 +26,14 @@ INSERT INTO vets VALUES (6, 'Sharon', 'Jenkins');
 
 INSERT INTO personas VALUES (1, 'luis', 'chacon romero', 'person1');
 INSERT INTO personas VALUES (2, 'pepe', 'sanchez cortes', 'person2');
+INSERT INTO personas VALUES (3, 'juan', 'mena vargas', 'person3');
 
 
 INSERT INTO boards(id,background,height,width) VALUES (1,'/resources/images/tablero.jpg',300,500);
 INSERT INTO boards(id,background,height,width) VALUES (2,'/resources/images/tablero.jpg',300,500);
 
 
-INSERT INTO games (id,points_black,points_red,board_id,turno,token) VALUES (1,3,8,1,15,'abc-abc');
+INSERT INTO games (id,points_black,points_red,board_id,turno,token) VALUES (1,2,2,1,15,'abc-abc');
 INSERT INTO games (id,points_black,points_red,board_id,turno,token) VALUES (2,9,4,2,40,'ebc-qer');
 
 INSERT INTO jugador(id,color,game_id,persona_id) VALUES (1,'red',1,1);
