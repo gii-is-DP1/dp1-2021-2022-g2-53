@@ -16,8 +16,7 @@
             <th style="width: 160px;">Puntos del jugador negro</th>
             <th style="width: 160px;">Puntos del jugador rojo</th>
             <th style="width: 80px;"></th>
-            <th style="width: 80px;"></th>
-            <th style="width: 80px;"></th>
+           
         </tr>
         </thead>
         <tbody>
@@ -37,15 +36,7 @@
                         </spring:url> <a href="${fn:escapeXml(gameUrl)}">Ver partida</a></td>
                              
             
-               <td><spring:url value="/games/edit/{gameId}"
-                            var="gameUrl2">
-                            <spring:param name="gameId" value="${game.id}" />
-                        </spring:url> <a href="${fn:escapeXml(gameUrl2)}">Editar</a></td>
-                        
-                        
-                <td><spring:url value="/games/delete/{gameId}" var="gameUrl3">
-                            <spring:param name="gameId" value="${game.id}" />
-                        </spring:url> <a href="${fn:escapeXml(gameUrl3)}">Borrar</a></td>
+        
                              
             </tr>
         </c:forEach>

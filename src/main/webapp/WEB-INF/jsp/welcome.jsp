@@ -22,14 +22,7 @@
   <br></br>
   <div class="row">
    <h2>Bienvenido a Petris</h2>
-<div class="col-md-8">
-		<p>
-		<button class="btn btn-default" onclick="window.location.href='https://youtu.be/YvKUSkq8dEg'">¡Aprende a jugar!</button>
-		<h2></h2>
-		<br>
-		</p>
-		<p>
-        </div>
+
          
 </div>
      
@@ -44,7 +37,7 @@
 		<h2></h2>
 		<br></br><br>
 		
-		</p>
+		
 		<p>
         </div>
         <div class="col-md-3">
@@ -56,31 +49,33 @@
 		<h2></h2>
 		<br></br><br>
 		
-		</p>
+		
 		<p>
         </div>
-          <div class="col-md-3">
-     <br></br>
-      
+        <div class="col-md-3">
+        
+        <br></br>
 		<p>
-		
-		<button class="btn btn-default" onclick="window.location.href='games/new'">Foro de jugadores</button>
+		<button class="btn btn-default" onclick="window.location.href='https://youtu.be/YvKUSkq8dEg'">¡Aprende a jugar!</button>
 		<h2></h2>
 		<br></br><br>
-		
-		</p>
+		    
+		    
 		<p>
         </div>
+          
           <div class="col-md-3">
      <br></br>
       
 		<p>
 		
 		<button class="btn btn-default" onclick="window.location.href='personas'">Historial de partidas</button>
+		
+		
 		<h2></h2>
 		<br></br><br>
 		
-		</p>
+		
 		<p>
         </div>
         
