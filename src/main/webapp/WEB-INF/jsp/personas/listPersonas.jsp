@@ -39,11 +39,11 @@
             
                <td><spring:url value="/personas/edit/{personaId}"
                             var="personaUrl2">
-                            <spring:param name="gameId" value="${personas.id}" />
+                            <spring:param name="personaId" value="${personas.id}" />
                         </spring:url> <a href="${fn:escapeXml(personaUrl2)}">Editar</a></td>
                         
                         
-                <td><spring:url value="/personas/delete/{personaId}" var="gameUrl3">
+                <td><spring:url value="/personas/delete/{personaId}" var="personaUrl3">
                             <spring:param name="personaId" value="${personas.id}" />
                         </spring:url> <a href="${fn:escapeXml(personaUrl3)}">Borrar</a></td>
                              

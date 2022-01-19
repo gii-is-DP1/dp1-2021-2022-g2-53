@@ -6,10 +6,12 @@ package org.springframework.samples.petclinic.persona;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.samples.petclinic.game.Board;
 import org.springframework.samples.petclinic.game.Game;
 import javax.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -88,5 +90,50 @@ public class PersonaController {
             return "redirect:/";
         }
     }
+    
+    
+    @GetMapping(value = "/personas/edit/{personaId}")
+	public String editGame(ModelMap modelMap, @PathVariable("personaId") int personaid) {
+		String view = FORM;
+		Persona persona = personaService.findId(personaid);
+		boolean edit = true;
+		modelMap.addAttribute("persona", persona);
+		modelMap.addAttribute("edit", edit);
+		return view;
+	}
+
+	@PostMapping(value = "/personas/edit/{personaId}")
+	public String processUpdateGameForm(ModelMap modelMap, @PathVariable("personaId") int personaid, @Valid Persona persona,
+			BindingResult result) {
+		if (result.hasErrors()) {
+			boolean edit = true;
+			modelMap.put("edit", edit);
+			return FORM;
+		} else {
+			Persona personaEdited = personaService.findId(personaid);
+			personaEdited.setFirstName(persona.getFirstName());
+			personaEdited.setLastName(persona.getLastName());
+			personaEdited.setUser(persona.getUser());
+			personaService.savePersona(personaEdited);
+			return "redirect:/personas/registro";
+		}
+
+	}
+    
+    @GetMapping(value = "/personas/delete/{personaId}")
+	public String deleteGame(ModelMap modelMap, @PathVariable("personaId") int personaid) {
+		String view = "personas/listPersonas";
+		Optional<Persona> persona = Optional.of(personaService.findId(personaid));
+		
+		if (persona.isPresent()){
+			personaService.delete(persona.get());
+			modelMap.addAttribute("message", "persona borrado");
+		} else {
+			modelMap.addAttribute("message", "persona no borrado");
+
+		}
+		return view;
+
+	}
 
 }

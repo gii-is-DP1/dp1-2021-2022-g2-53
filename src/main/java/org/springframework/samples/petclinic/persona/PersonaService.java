@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 
 import org.springframework.dao.DataAccessException;
+import org.springframework.samples.petclinic.game.Game;
 import org.springframework.samples.petclinic.user.AuthoritiesService;
 import org.springframework.samples.petclinic.user.User;
 import org.springframework.samples.petclinic.user.UserService;
@@ -53,6 +54,13 @@ public class PersonaService {
 	@Transactional
 	public Iterable<Persona> findAll() {
 		return personaRepo.findAll();
+	}
+	
+	@Transactional
+	public void delete(Persona persona) {
+		personaRepo.delete(persona);
+		
+
 	}
 
 	@Transactional
