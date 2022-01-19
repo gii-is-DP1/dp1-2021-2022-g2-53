@@ -51,21 +51,22 @@ public class GameControllerTests {
 	@BeforeEach
 	void setUp() {
 		game = new Game();
-		game.setId(1);
+		game.setId(3);
 		game.setPointsBlack(2);
 		game.setPointsRed(2);
+		game.setTurno(1);
 
 		Board board = new Board();
 
 		game.setBoard(board);
 
-		given(this.gameService.findId(1)).willReturn(game);
+		given(this.gameService.findId(3)).willReturn(game);
 	}
 
 	@WithMockUser(value = "persona")
 	@Test
 	void testGamesList() throws Exception {
-		mockMvc.perform(get("/games"))
+		mockMvc.perform(get("/games/mostrarpartidas"))
 			.andExpect(status().isOk())
 			.andExpect(model().attributeExists("games"))
 			.andExpect(view().name("games/listGames"));
@@ -74,7 +75,7 @@ public class GameControllerTests {
 	@WithMockUser(value = "persona")
 	@Test
 	void testShowGame() throws Exception {
-		mockMvc.perform(get("/games/{gameId}", 1))
+		mockMvc.perform(get("/games/{gameId}", 3))
 			.andExpect(status().isOk())
 			.andExpect(model().attribute("game", hasProperty("pointsBlack", is(2))))
 			.andExpect(model().attribute("game", hasProperty("pointsRed", is(2))))
@@ -102,9 +103,9 @@ public class GameControllerTests {
 	@WithMockUser(value = "persona")
 	@Test
 	void testEditGame() throws Exception {
-		mockMvc.perform(get("/games/edit/{gameId}", TEST_GAME_ID))
+		mockMvc.perform(get("/games/edit/{gameId}",3))
 				.andExpect(status().isOk())
-				.andExpect(model().attribute("game", hasProperty("id", is(1))))
+				.andExpect(model().attribute("game", hasProperty("id", is(3))))
 				.andExpect(view().name("games/editGame"));
 
 	}
