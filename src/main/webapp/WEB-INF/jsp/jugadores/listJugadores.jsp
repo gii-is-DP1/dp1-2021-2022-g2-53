@@ -1,4 +1,3 @@
-
 <%@ page session="false" trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -6,8 +5,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
 
-<petclinic:layout pageName="games">
-    <h2>Partidas</h2>
+<petclinic:layout pageName="jugadores">
+    <h2>Jugadores</h2>
 
 
     <table id="gamesTable" class="table table-striped">
@@ -16,31 +15,31 @@
             <th style="width: 160px;">Puntos del jugador negro</th>
             <th style="width: 160px;">Puntos del jugador rojo</th>
             <th style="width: 80px;"></th>
-           
+            <th style="width: 80px;"></th>
+            <th style="width: 80px;"></th>
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${games}" var="game">
+        
+        <c:forEach items="${usernames}" var="usernames">
             <tr>
                 <td>
                    
-                    <c:out value="${game.pointsBlack}"/>
+                   
                 </td>
                 <td>
                    
-                    <c:out value="${game.pointsRed}"/>
+                    <c:out value="${usernames}"/>
                 </td>
-                <td><spring:url value="/games/{gameId}"
-                            var="gameUrl">
-                            <spring:param name="gameId" value="${game.id}" />
-                        </spring:url> <a href="${fn:escapeXml(gameUrl)}">Ver partida</a></td>
-                             
+                
             
-        
-                             
+              
+                        
+                        
+              
             </tr>
-        </c:forEach>
+            </c:forEach>
+        
         </tbody>
     </table>
-
 </petclinic:layout>

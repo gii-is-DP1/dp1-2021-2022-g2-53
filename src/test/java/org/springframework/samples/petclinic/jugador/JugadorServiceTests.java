@@ -5,35 +5,63 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
-import org.assertj.core.api.Assertions;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.samples.petclinic.game.BoardService;
+
 import org.springframework.samples.petclinic.game.Game;
 import org.springframework.samples.petclinic.game.GameService;
 import org.springframework.samples.petclinic.persona.Persona;
-import org.springframework.samples.petclinic.persona.PersonaService;
+import org.springframework.samples.petclinic.persona.PersonaRepository;
+
 import org.springframework.stereotype.Service;
 
 @DataJpaTest(includeFilters = @ComponentScan.Filter(Service.class))
 public class JugadorServiceTests {
 
-	@Autowired
-	private GameService gameService;
-	@Autowired
-	private BoardService boardService;
+	
 	@Autowired
 	private JugadorService jugadorService;
-	private PersonaService personaService;
+	@Autowired
+	private PersonaRepository personaRepo;
+	@Autowired
+	private GameService gameService;
+	
+	
+	@Test
+	public void JugadorCountTest() {
+		int count = jugadorService.jugadorCount();
+		assertEquals(count, 4);
+	}
+	
+	@Test
+	public void FindByIdTest() {
+		Jugador n = jugadorService.findId(2);
+		assertEquals(n.getId(), 2);
+		
+
+	}
+
+	@Test
+	public void SaveJugadorTest() {
+		Jugador jugador = new Jugador();
+		jugador.setPersona(personaRepo.findById(2).get());
+		jugador.setGame(gameService.findId(2));
+		jugadorService.save(jugador);
+		
+		int count = jugadorService.jugadorCount();
+		assertEquals(count, 5);
+
+	}
 
 	@Test
 	public void historialgameTest() {
 	
-		Persona personi = personaService.findId(2);
 		
-		List<Game> list = jugadorService.historialgame(personi);
+		Persona persona = personaRepo.findById(2).get();	
+		List<Game> list = jugadorService.historialgame(persona);
 		assertEquals(list.size(), 2);
 	}
 

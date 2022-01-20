@@ -17,6 +17,8 @@
             <th style="width: 80px;"></th>
             <th style="width: 80px;"></th>
             <th style="width: 80px;"></th>
+            <th style="width: 160px;">Creador de la partida</th>
+            <th style="width: 160px;">Invitado en la partida</th>
         </tr>
         </thead>
         <tbody>
@@ -45,7 +47,13 @@
                 <td><spring:url value="/games/delete/{gameId}" var="gameUrl3">
                             <spring:param name="gameId" value="${game.id}" />
                         </spring:url> <a href="${fn:escapeXml(gameUrl3)}">Borrar</a></td>
-                             
+                        
+                        <c:forEach items="${game.jugadores}" var="jug">
+                         <td>
+                   
+                    <c:out value="${jug.persona.user.username}"/>
+                </td>
+                          </c:forEach>   
             </tr>
         </c:forEach>
         </tbody>

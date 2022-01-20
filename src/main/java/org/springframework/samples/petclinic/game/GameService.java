@@ -1,10 +1,9 @@
 package org.springframework.samples.petclinic.game;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.samples.petclinic.jugador.Jugador;
+
 import org.springframework.samples.petclinic.persona.Persona;
 import org.springframework.samples.petclinic.persona.PersonaService;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,10 +17,7 @@ public class GameService {
 					
 	@Autowired
 	private GameRepository gameRepo;
-	@Autowired
-	private PieceService pieceService;
-	@Autowired
-	private SarcineService sarcineService;
+	
 	@Autowired
 	private PersonaService personaService;
 	@Autowired
@@ -87,8 +83,13 @@ public class GameService {
 			//POSICION 0 SON ROJOS Y 1 SON NEGROS
 			gameEdited.setPointsRed(gameEdited.getPointsRed() + gameEdited.getBoard().pollution().get(0));
 			gameEdited.setPointsBlack(gameEdited.getPointsBlack() +gameEdited.getBoard().pollution().get(1));
-			gameEdited.setTurno(gameEdited.getTurno()+1);
-			save(gameEdited);}
+			if (gameEdited.getPointsBlack()>=9 || gameEdited.getPointsBlack()>=9) {
+				gameEdited.setTurno(gameEdited.getTurnos().size()-1);
+			} else {
+				gameEdited.setTurno(gameEdited.getTurno()+1);
+			}
+			save(gameEdited);
+			}
 	
 		}
 	

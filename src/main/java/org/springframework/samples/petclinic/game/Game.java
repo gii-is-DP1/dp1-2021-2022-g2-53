@@ -19,7 +19,6 @@ import javax.persistence.OneToOne;
 import org.springframework.samples.petclinic.jugador.Jugador;
 import org.springframework.samples.petclinic.model.BaseEntity;
 
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,36 +27,35 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Game extends BaseEntity {
-	
-	
+
 	private static final SecureRandom secureRandom = new SecureRandom();
 	private Integer pointsBlack;
 	private Integer pointsRed;
 	private String token;
-	/*@OneToMany(cascade = CascadeType.ALL,mappedBy = "game",fetch = FetchType.EAGER)
-	private List<Jugador> jugadores;*/
+	/*
+	 * @OneToMany(cascade = CascadeType.ALL,mappedBy = "game",fetch =
+	 * FetchType.EAGER) private List<Jugador> jugadores;
+	 */
 	@Min(0)
 	private Integer turno;
 	@OneToOne
 	private Board board;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "game")
 	private List<Jugador> jugadores;
-	
-	
 
 	public Game(Integer pointsBlack, Integer pointsRed, Board board) {
 		super();
 		this.pointsBlack = pointsBlack;
 		this.pointsRed = pointsRed;
 		this.board = board;
-		//this.jugadores = jugadores;
+		// this.jugadores = jugadores;
 		this.turno = 0;
 	}
 
 	public Game() {
 		super();
 	}
-	
+
 	public Map<Integer, String> getJugadoresPorColor(List<Jugador> jugadores) {
 		Map<Integer, String> res = new HashMap<Integer, String>();
 		for (int i = 0; i < jugadores.size(); i++) {
@@ -65,34 +63,31 @@ public class Game extends BaseEntity {
 		}
 		return res;
 	}
-	
-	
+
 	public String generarToken() {
-		String bancoLetras="abcdefghijklmnopqrstuvw";
+		String bancoLetras = "abcdefghijklmnopqrstuvw";
 		String bancoNumeros = "123456789";
 		StringBuilder strB = new StringBuilder();
 		for (int i = 0; i <= 6; i++) {
-			if(i < 3) {
-			int randomInt = secureRandom.nextInt(bancoLetras.length());
-	        char randomChar = bancoLetras.charAt(randomInt);
-	        strB.append(randomChar);
+			if (i < 3) {
+				int randomInt = secureRandom.nextInt(bancoLetras.length());
+				char randomChar = bancoLetras.charAt(randomInt);
+				strB.append(randomChar);
 			}
-	        if(i == 3) {
-	        	strB.append("-");
-	        }
-	        if(i > 3) {
-	        	int randomNumInt = secureRandom.nextInt(bancoNumeros.length());
-		        char randomNum = bancoNumeros.charAt(randomNumInt);
-		        strB.append(randomNum);
-	        }
+			if (i == 3) {
+				strB.append("-");
+			}
+			if (i > 3) {
+				int randomNumInt = secureRandom.nextInt(bancoNumeros.length());
+				char randomNum = bancoNumeros.charAt(randomNumInt);
+				strB.append(randomNum);
+			}
 		}
 		return strB.toString();
 	}
-	
-	
-	
+
 	public List<String> getTurnos() {
-		//faltan varias cosas
+		// faltan varias cosas
 		List<String> turnos = new ArrayList<>();
 		turnos.add("black");
 		turnos.add("red");
@@ -104,7 +99,7 @@ public class Game extends BaseEntity {
 		turnos.add("red");
 		turnos.add("binary");
 		turnos.add("pollution");
-		
+
 		turnos.add("red");
 		turnos.add("black");
 		turnos.add("binary");
@@ -115,7 +110,7 @@ public class Game extends BaseEntity {
 		turnos.add("black");
 		turnos.add("binary");
 		turnos.add("pollution");
-		
+
 		turnos.add("black");
 		turnos.add("red");
 		turnos.add("binary");
@@ -126,7 +121,7 @@ public class Game extends BaseEntity {
 		turnos.add("red");
 		turnos.add("binary");
 		turnos.add("pollution");
-		
+
 		turnos.add("red");
 		turnos.add("black");
 		turnos.add("binary");
@@ -137,12 +132,48 @@ public class Game extends BaseEntity {
 		turnos.add("black");
 		turnos.add("binary");
 		turnos.add("pollution");
-		
+
 		turnos.add("fin");
 		return turnos;
 	}
-	
-	
-	
+
+	public String getGanador() {
+		if (this.getTurnos().get(this.getTurno()).equals("fin")) {
+			if (this.getPointsBlack().equals(this.getPointsRed())) {
+				List<Piece> lsred =this.getBoard().getAllPiecesSameColor("red");
+				List<Piece> lsblack =this.getBoard().getAllPiecesSameColor("black");
+				List<Sarcine> lsredsar =this.getBoard().getAllSarcinesSameColor("red");
+				List<Sarcine> lsblacksar =this.getBoard().getAllSarcinesSameColor("black");
+				if(lsred.size() < lsblack.size()) {
+					return "Jugador rojo";
+				}
+				else if(lsred.size() > lsblack.size()) {
+					return "Jugador negro";
+				}
+				else if(lsred.size() == lsblack.size()) {
+					
+					if(lsredsar.size() < lsblacksar.size()) {
+						return "Jugador rojo";
+					}
+					else if(lsredsar.size() > lsblacksar.size()) {
+						return "Jugador negro";
+					}
+					else if(lsredsar.size() == lsblacksar.size()) {
+						return "Empate";
+					}
+					
+				}
+			} else if (this.getPointsBlack() < this.getPointsRed()) {
+				return "Jugador negro";
+			} else if (this.getPointsBlack() > this.getPointsRed()) {
+				return "Jugador rojo";
+			}
+
+		} else if (this.getPointsBlack()>=9 || this.getPointsBlack()>=9) {
+			this.setTurno(this.getTurnos().size()-1);
+			return this.getGanador();
+		}
+		return "";
+	}
 
 }

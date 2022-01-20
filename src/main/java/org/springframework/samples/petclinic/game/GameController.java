@@ -24,11 +24,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
 @Controller
 @RequestMapping("/games")
 public class GameController {
-	
+
 	@Autowired
 	private GameService gameService;
 	@Autowired
@@ -40,20 +39,31 @@ public class GameController {
 	@Autowired
 	private PersonaService personaService;
 
-	@GetMapping()
+	@GetMapping(value = "/mostrarpartidas")
 	public String listGames(ModelMap modelMap) {
 		String view = "games/listGames";
 		Iterable<Game> games = gameService.findAll();
 		modelMap.addAttribute("games", games);
 		return view;
 	}
-	
+
+	@GetMapping(value = "/herramientasAdmin")
+	public String herramientasAdmin() {
+		return "herramientasAdmin";
+
+	}
 
 	@GetMapping(value = "/{gameId}")
 	public String showGame(ModelMap modelMap, @PathVariable("gameId") int gameId, HttpServletResponse response) {
 		String view = "games/showGame";
-		response.addHeader("Refresh", "100");
+		String viewFin = "games/endGame";
 		Game game = gameService.findId(gameId);
+		if (game.getTurnos().get(game.getTurno()).equals("fin")) {
+			modelMap.addAttribute("winner", game.getGanador());
+			return viewFin;
+		}
+		response.addHeader("Refresh", "100");
+
 		modelMap.addAttribute("game", game);
 		modelMap.addAttribute("board", game.getBoard());
 		modelMap.put("now", new Date());
@@ -63,6 +73,7 @@ public class GameController {
 	@GetMapping(value = "/play/{gameId}")
 	public String playGame(ModelMap modelMap, @PathVariable("gameId") int gameId, HttpServletResponse response) {
 		String view = "games/playGame";
+		String viewFin = "games/endGame";
 		Game game = gameService.findId(gameId);
 		modelMap.addAttribute("game", game);
 		modelMap.addAttribute("board", game.getBoard());
@@ -70,34 +81,39 @@ public class GameController {
 		modelMap.addAttribute("turnoActual", game.getTurnos().get(game.getTurno()));
 		UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String username = ud.getUsername();
-		Persona persona = personaService.getPersonaByUserName(username); 
-		String jugador = persona.getJugadores().get(persona.getJugadores().size()-1).getColor();
+		Persona persona = personaService.getPersonaByUserName(username);
+		String jugador = persona.getJugadores().get(persona.getJugadores().size() - 1).getColor();
 		modelMap.put("now", new Date());
-		if(jugador.equals(game.getTurnos().get(game.getTurno()))) {
+		if (game.getTurnos().get(game.getTurno()).equals("fin")) {
+			modelMap.addAttribute("winner", game.getGanador());
+			return viewFin;
+		}
+		if (jugador.equals(game.getTurnos().get(game.getTurno()))) {
 			return view;
-		}else if(!jugador.equals(game.getTurnos().get(game.getTurno())) && !game.getTurnos().get(game.getTurno()).equals("binary")){
-			response.addHeader("Refresh","1");
+		} else if (!jugador.equals(game.getTurnos().get(game.getTurno()))
+				&& !game.getTurnos().get(game.getTurno()).equals("binary")) {
+			response.addHeader("Refresh", "1");
 			modelMap.addAttribute("message3", "Espera a que tu oponente realice su movimiento");
 			return view;
 		}
 		modelMap.addAttribute("message4", "Pulsa en realizar movimiento para pasar a la siguiente fase");
 		return view;
-		
+
 	}
 
 	@PostMapping(value = "/play/{gameId}")
 	public String processMovementForm(ModelMap modelMap, @PathVariable("gameId") int gameId, @Valid Movement movement,
 			BindingResult result, HttpServletResponse response) throws MoveInvalidException {
-		Game game= gameService.findId(gameId);
+		Game game = gameService.findId(gameId);
 		if (result.hasErrors()) {
 			modelMap.put("board", gameService.findId(gameId).getBoard());
 			boolean edit = true;
 			modelMap.put("edit", edit);
 			return "games/playGame";
 		} else {
-			
+
 			gameService.phases(game, movement, result);
-			
+
 			if (result.hasErrors()) {
 				modelMap.put("board", gameService.findId(gameId).getBoard());
 				if (!result.getFieldErrors("destinyPosition").isEmpty()) {
@@ -121,8 +137,7 @@ public class GameController {
 		return view;
 
 	}
-	
-	
+
 	@GetMapping(path = "/newGame")
 	public String createGameFriend(ModelMap modelMap) {
 		String view = "games/createGameFriend";
@@ -135,15 +150,16 @@ public class GameController {
 	}
 
 	@GetMapping(path = "/saveFriend/{token}")
-	public String salvarjuegoamigo(ModelMap modelMap, Game game, @PathVariable ("token") String token, BindingResult result) {
+	public String salvarjuegoamigo(ModelMap modelMap, Game game, @PathVariable("token") String token,
+			BindingResult result) {
 		if (result.hasErrors()) {
 			modelMap.addAttribute("game", game);
 			return "games/createGame";
 		} else {
-			
+
 			UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			String username = ud.getUsername();
-			Persona persona = personaService.getPersonaByUserName(username); 
+			Persona persona = personaService.getPersonaByUserName(username);
 			Board board = new Board();
 			Piece pieceb = new Piece();
 			Piece piecer = new Piece();
@@ -156,19 +172,18 @@ public class GameController {
 			piecer.setPosition(5);
 			piecer.setBoard(board);
 			pieceb.setBoard(board);
-			
+
 			game.setBoard(board);
 			pieceService.save(pieceb);
 			pieceService.save(piecer);
-			
+
 			game.setTurno(0);
 			game.setPointsRed(0);
 			game.setPointsBlack(0);
 			game.setToken(token);
-			
-			
+
 			gameService.save(game);
-			
+
 			jugadorRed.setColor("red");
 			jugadorRed.setGame(game);
 			jugadorRed.setPersona(persona);
@@ -177,15 +192,14 @@ public class GameController {
 			jugadores.add(jugadorRed);
 			game.setJugadores(jugadores);
 			gameService.save(game);
-			
+
 			modelMap.addAttribute("message", "Partida creada");
 			return "redirect:/games/play/" + game.getId();
-			
-			
+
 		}
 
 	}
-	
+
 	@GetMapping(path = "/join")
 	public String joinGame(ModelMap modelMap) {
 		String view = "games/joinGameFriend";
@@ -193,7 +207,7 @@ public class GameController {
 		modelMap.addAttribute("game", game);
 		return view;
 	}
-	
+
 	@PostMapping(path = "/saveToken")
 	public String saveToken(ModelMap modelMap, Game game, BindingResult result) {
 		String token = game.getToken();
@@ -202,10 +216,10 @@ public class GameController {
 		if (result.hasErrors()) {
 			modelMap.addAttribute("game", game);
 			return "games/createGame";
-		} else if(newGame!=null && newGame.getId()!=game.getId()){
+		} else if (newGame != null && newGame.getId() != game.getId()) {
 			UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			String username = ud.getUsername();
-			Persona persona = personaService.getPersonaByUserName(username); 
+			Persona persona = personaService.getPersonaByUserName(username);
 			Jugador jugadorBlack = new Jugador();
 			jugadorBlack.setColor("black");
 			jugadorBlack.setGame(newGame);
@@ -219,7 +233,7 @@ public class GameController {
 			return "games/createGame";
 		}
 	}
-	
+
 	@PostMapping(path = "/save")
 	public String salvarjuego(ModelMap modelMap, Game game, BindingResult result) {
 		String token = (String) modelMap.getAttribute("token");
@@ -238,7 +252,7 @@ public class GameController {
 			piecer.setPosition(5);
 			piecer.setBoard(board);
 			pieceb.setBoard(board);
-			
+
 			game.setBoard(board);
 			pieceService.save(pieceb);
 			pieceService.save(piecer);
@@ -247,15 +261,13 @@ public class GameController {
 			game.setPointsBlack(0);
 			gameService.save(game);
 			modelMap.addAttribute("message", "Partida creada");
-			
+
 			return "redirect:/games/play/" + game.getId();
 		}
 
 	}
-	
+
 	//////////////////////////////////////////////////////
-	
-	
 
 	/////////////////////////////////////////////
 

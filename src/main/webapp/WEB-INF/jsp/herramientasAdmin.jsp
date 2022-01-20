@@ -5,7 +5,7 @@
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
 <!-- %@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %-->  
 <body style= "background: url(/resources/images/backgroundPetris.jpg)">
-<petclinic:layout pageName="home">
+<petclinic:layout pageName="tools">
 
   <div class="row" >
 	<div class="col-md-2">
@@ -21,57 +21,44 @@
   </div>
   <br></br>
   <div class="row">
-   <h2>Bienvenido a Petris</h2>
+   <h2>Bienvenido a las herramientas de Administrador de Petris</h2>
 
          
 </div>
      
-     <div class="row" >
+     <div class="col-md-12" >
      
-     <div class="col-md-3">
+     <div class=row>
      <br>
            
 		<p>
 		<br>
-		<button class="btn btn-default" onclick="window.location.href='games/new'">Juega con amigos</button>
-		<h2></h2>
-		<br></br><br>
+		<button class="btn btn-default" onclick="window.location.href='/jugadores'">Listado de personas jugando</button>
 		
+		<br><br><br><br>
 		
+		</p>
 		<p>
         </div>
-        <div class="col-md-3">
+       <div class = row>
      <br></br>
       
 		<p>
 		
-		<button class="btn btn-default" onclick="window.location.href='games/saveFriend/{token}'">Iniciar partida</button>
-		<h2></h2>
-		<br></br><br>
+		<button class="btn btn-default" onclick="window.location.href='/games/mostrarpartidas'">Listado de partidas jugadas y sus participantes</button>
 		
+		<br></br><br><br>
 		
-		<p>
+		</p>
+		
         </div>
-        <div class="col-md-3">
-        
-        <br></br>
-		<p>
-		<button class="btn btn-default" onclick="window.location.href='https://youtu.be/YvKUSkq8dEg'">¡Aprende a jugar!</button>
-		<h2></h2>
-		<br></br><br>
-		    
-		    
-		<p>
-        </div>
-          
-          <div class="col-md-3">
+      
+          <div class= row >
      <br></br>
       
 		<p>
 		
-		<button class="btn btn-default" onclick="window.location.href='personas'">Historial de partidas</button>
-		
-		
+		<button class="btn btn-default" onclick="window.location.href='/personas/registro'">Usuarios registrados</button>
 		<h2></h2>
 		<br></br><br>
 		

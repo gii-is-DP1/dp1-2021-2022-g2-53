@@ -66,6 +66,22 @@ public class Board extends BaseEntity {
 		ls.sort(cmp);
 		return ls;
 	}
+	public List<Piece> getAllPiecesSameColor(String color) {
+		List<Piece> ls = this.pieces.stream()
+				.filter(x -> x.getColor().equals(color))
+				.collect(Collectors.toList());
+		Comparator<Piece> cmp = Comparator.comparingInt(x -> x.getId());
+		ls.sort(cmp);
+		return ls;
+	}
+	public List<Sarcine> getAllSarcinesSameColor(String color) {
+		List<Sarcine> ls = this.sarcines.stream()
+				.filter(x -> x.getColor().equals(color))
+				.collect(Collectors.toList());
+		Comparator<Sarcine> cmp = Comparator.comparingInt(x -> x.getId());
+		ls.sort(cmp);
+		return ls;
+	}
 
 	public Integer getNumberOfPiecesByPosition(Integer pos) {
 		return  (int) this.pieces.stream().filter(x -> x.getPosition() == pos).count();

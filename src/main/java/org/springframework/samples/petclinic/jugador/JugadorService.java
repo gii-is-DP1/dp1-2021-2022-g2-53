@@ -6,9 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
-import org.springframework.samples.petclinic.game.Board;
+
 import org.springframework.samples.petclinic.game.Game;
-import org.springframework.samples.petclinic.game.GameService;
+
 
 import org.springframework.samples.petclinic.persona.Persona;
 import org.springframework.stereotype.Service;
@@ -19,13 +19,14 @@ public class JugadorService {
 
 	@Autowired
 	JugadorRepository jugadorRepo;
-	@Autowired
-	private GameService gameService;
+	
 
 	@Transactional
 	public void save(Jugador jugador) {
 		jugadorRepo.save(jugador);
 	}
+	
+	
 
 
 
@@ -39,9 +40,10 @@ public class JugadorService {
 		return jugadorRepo.findById(id).get();
 
 	}
-	 
+	
 
-
+	
+	
 	@Transactional
 	public List<Game> historialgame(Persona persona) {
 		List<Game> lista = new ArrayList<Game>();
