@@ -1,5 +1,6 @@
 package org.springframework.samples.petclinic.game;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.assertj.core.api.Assertions;
@@ -45,27 +46,55 @@ public class GameTest {
 		Assertions.assertThat(game.getGanador() == "Jugador negro");
 	}
 	
-	/* @Test
+	@Test
 	public void ganadorPorBacteriasTest() {
 		Game game = new Game();
-		Board board = new Board();
-		Piece p1, p2, p3, p4, p5, p6, p7;
-		p1 = p2 = p3 = p4 = p5 = p6 = p7 = new Piece();
+		Board board = boardService.findById(1);
+		List<Piece> pieces = new ArrayList<>();
+		Piece p1, p2, p3, p4, p5;
+		p1 = p2 = p3 = p4 = p5 = new Piece();
 		p1.setColor("red");
+		p1.setId(1);
 		p2.setColor("red");
-		p3.setColor("red");
+		p2.setId(2);
+		p3.setColor("black");
+		p3.setId(3);
 		p4.setColor("black");
+		p4.setId(4);
 		p5.setColor("black");
-		p6.setColor("black");
-		p7.setColor("black");
-		List<Piece> pieces = List.of(p1, p2, p3, p4, p5, p6, p7);
+		p5.setId(5);
 		
 		game.setTurno(game.getTurnos().size()-1);
 		game.setPointsBlack(0);
 		game.setPointsRed(0);
+		
+		pieces.add(p1);
+		pieces.add(p2);
+		pieces.add(p3);
 		board.setPieces(pieces);
 		game.setBoard(board);
+		Assertions.assertThat(game.getGanador() == "Jugador negro");
+		
+		pieces.add(p4);
+		pieces.add(p5);
 		Assertions.assertThat(game.getGanador() == "Jugador rojo");
-	} */
+	}
 	
+	/* @Test
+	public void ganadorPorSarcinasTest() {
+		Game game = new Game();
+		Board board = boardService.findById(1);
+		List<Piece> pieces = new ArrayList<>();
+		Piece p1, p2, p3, p4;
+		p1 = p2 = p3 = p4 = new Piece();
+		p1.setColor("red");
+		p1.setId(1);
+		p2.setColor("red");
+		p2.setType("sarcine");
+		p2.setId(2);
+		p3.setColor("black");
+		p3.setId(3);
+		p4.setColor("black");
+		p4.setId(4);
+	} */
 }
