@@ -24,6 +24,10 @@ public class Piece extends BaseEntity {
     Board board;
     String type;
     
+    
+    
+	private static final String red_color = "red";
+	private static final String black_color = "black";
     public Piece() {
 		super();
 	}
@@ -67,9 +71,9 @@ public class Piece extends BaseEntity {
             return null;
         }
     	
-    	if (this.color.equals("red")) {
+    	if (this.color.equals(red_color)) {
     		return pos + 20;
-    	} else if (this.color.equals("black")) {
+    	} else if (this.color.equals(black_color)) {
     		return pos - 20;
     	} else {
     		return null;
