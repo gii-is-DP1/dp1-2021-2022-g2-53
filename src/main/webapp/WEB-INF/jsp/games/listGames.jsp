@@ -14,9 +14,7 @@
         <tr>
             <th style="width: 160px;">Puntos del jugador negro</th>
             <th style="width: 160px;">Puntos del jugador rojo</th>
-            <th style="width: 80px;"></th>
-            <th style="width: 80px;"></th>
-            <th style="width: 80px;"></th>
+            
             <th style="width: 160px;">Creador de la partida</th>
             <th style="width: 160px;">Invitado en la partida</th>
         </tr>
@@ -32,21 +30,7 @@
                    
                     <c:out value="${game.pointsRed}"/>
                 </td>
-                <td><spring:url value="/games/{gameId}"
-                            var="gameUrl">
-                            <spring:param name="gameId" value="${game.id}" />
-                        </spring:url> <a href="${fn:escapeXml(gameUrl)}">Ver partida</a></td>
-                             
-            
-               <td><spring:url value="/games/edit/{gameId}"
-                            var="gameUrl2">
-                            <spring:param name="gameId" value="${game.id}" />
-                        </spring:url> <a href="${fn:escapeXml(gameUrl2)}">Editar</a></td>
-                        
-                        
-                <td><spring:url value="/games/delete/{gameId}" var="gameUrl3">
-                            <spring:param name="gameId" value="${game.id}" />
-                        </spring:url> <a href="${fn:escapeXml(gameUrl3)}">Borrar</a></td>
+                
                         
                         <c:forEach items="${game.jugadores}" var="jug">
                          <td>
