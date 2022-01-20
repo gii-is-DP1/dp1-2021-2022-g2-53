@@ -95,7 +95,7 @@ public class GameControllerTests {
 		game = new Game();
 		game.setId(3);
 		game.setPointsBlack(2);
-		game.setPointsRed(2);
+		game.setPointsRed(3);
 		game.setTurno(40);
 		game.setToken("abc-abc");
 
