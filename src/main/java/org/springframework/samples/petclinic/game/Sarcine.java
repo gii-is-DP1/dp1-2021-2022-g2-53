@@ -21,6 +21,10 @@ public class Sarcine extends BaseEntity {
 	@JoinColumn(name = "board_id")
 	Board board;
 
+	
+	private static final String red_color = "red";
+	private static final String black_color = "black";
+	
 	public Sarcine() {
 		super();
 	}
@@ -44,9 +48,9 @@ public class Sarcine extends BaseEntity {
 		} else {
 			return null;
 		}
-		if (this.color.equals("red")) {
+		if (this.color.equals(red_color)) {
 			return pos + 20;
-		} else if (this.color.equals("black")) {
+		} else if (this.color.equals(black_color)) {
 			return pos - 20;
 		} else {
 			return null;
