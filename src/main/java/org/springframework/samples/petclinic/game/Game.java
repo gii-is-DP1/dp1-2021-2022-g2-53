@@ -51,7 +51,10 @@ public class Game extends BaseEntity {
 		// this.jugadores = jugadores;
 		this.turno = 0;
 	}
-
+	private static final String red_color = "red";
+	private static final String black_color = "black";
+	private static final String binary_type = "binary";
+	private static final String pollution_type = "pollution";
 	public Game() {
 		super();
 	}
@@ -89,49 +92,49 @@ public class Game extends BaseEntity {
 	public List<String> getTurnos() {
 		// faltan varias cosas
 		List<String> turnos = new ArrayList<>();
-		turnos.add("black");
-		turnos.add("red");
-		turnos.add("binary");
-		turnos.add("red");
-		turnos.add("black");
-		turnos.add("binary");
-		turnos.add("black");
-		turnos.add("red");
-		turnos.add("binary");
-		turnos.add("pollution");
+		turnos.add(black_color);
+		turnos.add(red_color);
+		turnos.add(binary_type);
+		turnos.add(red_color);
+		turnos.add(black_color);
+		turnos.add(binary_type);
+		turnos.add(black_color);
+		turnos.add(red_color);
+		turnos.add(binary_type);
+		turnos.add(pollution_type);
 
-		turnos.add("red");
-		turnos.add("black");
-		turnos.add("binary");
-		turnos.add("black");
-		turnos.add("red");
-		turnos.add("binary");
-		turnos.add("red");
-		turnos.add("black");
-		turnos.add("binary");
-		turnos.add("pollution");
+		turnos.add(red_color);
+		turnos.add(black_color);
+		turnos.add(binary_type);
+		turnos.add(black_color);
+		turnos.add(red_color);
+		turnos.add(binary_type);
+		turnos.add(red_color);
+		turnos.add(black_color);
+		turnos.add(binary_type);
+		turnos.add(pollution_type);
 
-		turnos.add("black");
-		turnos.add("red");
-		turnos.add("binary");
-		turnos.add("red");
-		turnos.add("black");
-		turnos.add("binary");
-		turnos.add("black");
-		turnos.add("red");
-		turnos.add("binary");
-		turnos.add("pollution");
+		turnos.add(black_color);
+		turnos.add(red_color);
+		turnos.add(binary_type);
+		turnos.add(red_color);
+		turnos.add(black_color);
+		turnos.add(binary_type);
+		turnos.add(black_color);
+		turnos.add(red_color);
+		turnos.add(binary_type);
+		turnos.add(pollution_type);
 
-		turnos.add("red");
-		turnos.add("black");
-		turnos.add("binary");
-		turnos.add("black");
-		turnos.add("red");
-		turnos.add("binary");
-		turnos.add("red");
-		turnos.add("black");
-		turnos.add("binary");
-		turnos.add("pollution");
+		turnos.add(red_color);
+		turnos.add(black_color);
+		turnos.add(binary_type);
+		turnos.add(black_color);
+		turnos.add(red_color);
+		turnos.add(binary_type);
+		turnos.add(red_color);
+		turnos.add(black_color);
+		turnos.add(binary_type);
+		turnos.add(pollution_type);
 
 		turnos.add("fin");
 		return turnos;
@@ -140,7 +143,29 @@ public class Game extends BaseEntity {
 	public String getGanador() {
 		if (this.getTurnos().get(this.getTurno()).equals("fin")) {
 			if (this.getPointsBlack().equals(this.getPointsRed())) {
-				return "Empate";
+				List<Piece> lsred =this.getBoard().getAllPiecesSameColor(red_color);
+				List<Piece> lsblack =this.getBoard().getAllPiecesSameColor(black_color);
+				List<Sarcine> lsredsar =this.getBoard().getAllSarcinesSameColor(red_color);
+				List<Sarcine> lsblacksar =this.getBoard().getAllSarcinesSameColor(black_color);
+				if(lsred.size() < lsblack.size()) {
+					return "Jugador rojo";
+				}
+				else if(lsred.size() > lsblack.size()) {
+					return "Jugador negro";
+				}
+				else if(lsred.size() == lsblack.size()) {
+					
+					if(lsredsar.size() < lsblacksar.size()) {
+						return "Jugador rojo";
+					}
+					else if(lsredsar.size() > lsblacksar.size()) {
+						return "Jugador negro";
+					}
+					else if(lsredsar.size() == lsblacksar.size()) {
+						return "Empate";
+					}
+					
+				}
 			} else if (this.getPointsBlack() < this.getPointsRed()) {
 				return "Jugador negro";
 			} else if (this.getPointsBlack() > this.getPointsRed()) {

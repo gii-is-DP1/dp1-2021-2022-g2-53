@@ -49,6 +49,12 @@ public class Board extends BaseEntity {
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "board")
 	List<Sarcine> sarcines;
+	
+	
+	private static final String red_color = "red";
+	private static final String black_color = "black";
+	private static final String red_color_sarcine = "red_sarcine";
+	private static final String black_color_sarcine = "black_sarcine";
 
 	public List<Piece> getAllPiecesInTheSamePosition(Piece piece) {
 		List<Piece> ls = this.pieces.stream().filter(x -> x.getPosition() == piece.getPosition())
@@ -66,25 +72,41 @@ public class Board extends BaseEntity {
 		ls.sort(cmp);
 		return ls;
 	}
+	public List<Piece> getAllPiecesSameColor(String color) {
+		List<Piece> ls = this.pieces.stream()
+				.filter(x -> x.getColor().equals(color))
+				.collect(Collectors.toList());
+		Comparator<Piece> cmp = Comparator.comparingInt(x -> x.getId());
+		ls.sort(cmp);
+		return ls;
+	}
+	public List<Sarcine> getAllSarcinesSameColor(String color) {
+		List<Sarcine> ls = this.sarcines.stream()
+				.filter(x -> x.getColor().equals(color))
+				.collect(Collectors.toList());
+		Comparator<Sarcine> cmp = Comparator.comparingInt(x -> x.getId());
+		ls.sort(cmp);
+		return ls;
+	}
 
 	public Integer getNumberOfPiecesByPosition(Integer pos) {
 		return  (int) this.pieces.stream().filter(x -> x.getPosition() == pos).count();
 	}
 
 	public String binaryboard(Integer pos) {
-		List<Piece> reds = this.pieces.stream().filter(x -> x.getPosition() == pos && x.getColor().equals("red"))
+		List<Piece> reds = this.pieces.stream().filter(x -> x.getPosition() == pos && x.getColor().equals(red_color))
 				.collect(Collectors.toList());
-		List<Piece> blacks = this.pieces.stream().filter(x -> x.getPosition() == pos && x.getColor().equals("black"))
+		List<Piece> blacks = this.pieces.stream().filter(x -> x.getPosition() == pos && x.getColor().equals(black_color))
 				.collect(Collectors.toList());
-		if (reds.size() == 4 && blacks.size() == 0 && !containsSarcine(pos, "red")) {
-			return "red_sarcine";
-		} else if (reds.size() == 0 && blacks.size() == 4 && !containsSarcine(pos, "black")) {
-			return "black_sarcine";
+		if (reds.size() == 4 && blacks.size() == 0 && !containsSarcine(pos, red_color)) {
+			return red_color_sarcine;
+		} else if (reds.size() == 0 && blacks.size() == 4 && !containsSarcine(pos, black_color)) {
+			return black_color_sarcine;
 		}
-		else if (reds.size() > 0 && blacks.size() == 0 && !containsSarcine(pos, "black")) {
-			return "red";
-		} else if (reds.size() == 0 && blacks.size() > 0 && !containsSarcine(pos, "red")) {
-			return "black";
+		else if (reds.size() > 0 && blacks.size() == 0 && !containsSarcine(pos, black_color)) {
+			return red_color;
+		} else if (reds.size() == 0 && blacks.size() > 0 && !containsSarcine(pos, red_color)) {
+			return black_color;
 		} else {
 			return "";
 		}
@@ -154,7 +176,7 @@ public class Board extends BaseEntity {
 	}
 
 	public void movePieces(Movement movement, BindingResult result) throws MoveInvalidException {
-		if (movement.getTipo().equals("red") || (movement.getTipo().equals("black"))) {
+		if (movement.getTipo().equals(red_color) || (movement.getTipo().equals(black_color))) {
 			List<Piece> pieces = this.pieces.stream().filter(
 					x -> x.getPosition() == movement.getInitialPosition() && x.getColor().equals(movement.getTipo()))
 					.collect(Collectors.toList());
@@ -162,7 +184,7 @@ public class Board extends BaseEntity {
 				result.rejectValue("initialPosition", "moveInvalid", "Escoge una casilla en la que se encuentre alguna bacteria tuya");
 			}else {
 			List<Piece> piecesAux = pieces.subList(0, movement.getNumber());
-			if(movement.getTipo().equals("red") || movement.getTipo().equals("black")) {
+			if(movement.getTipo().equals(red_color) || movement.getTipo().equals(black_color)) {
 				if(moveInvalid(pieces, movement, result) == false && moveInvalidPosition(movement, result) == false && moveInvalid2(pieces, movement, result) == false) {
 					piecesAux.stream().forEach(x -> x.setPosition(movement.getDestinyPosition()));
 				}
@@ -182,14 +204,14 @@ public class Board extends BaseEntity {
 			Integer p = i;
 			Integer sarcineRed = 0;
 			Integer sarcineBlack = 0;
-			List<Piece> blacks = this.pieces.stream().filter(x -> x.getPosition() == p && x.getColor().equals("black"))
+			List<Piece> blacks = this.pieces.stream().filter(x -> x.getPosition() == p && x.getColor().equals(black_color))
 					.collect(Collectors.toList()) ;
-			List<Piece> reds = this.pieces.stream().filter(x -> x.getPosition() == p && x.getColor().equals("red"))
+			List<Piece> reds = this.pieces.stream().filter(x -> x.getPosition() == p && x.getColor().equals(red_color))
 					.collect(Collectors.toList());
-			if (this.containsSarcine(p, "black")) {
+			if (this.containsSarcine(p, black_color)) {
 				sarcineBlack =5;
 			}
-			if (this.containsSarcine(p, "red")) {
+			if (this.containsSarcine(p, red_color)) {
 				sarcineRed =5;
 			}
 			

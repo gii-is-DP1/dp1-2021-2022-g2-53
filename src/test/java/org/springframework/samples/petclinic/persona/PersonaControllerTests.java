@@ -1,4 +1,4 @@
-package org.springframework.samples.petclinic.game;
+package org.springframework.samples.petclinic.persona;
 
 import static org.hamcrest.Matchers.hasProperty;
 import static org.hamcrest.Matchers.is;
@@ -19,6 +19,10 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.samples.petclinic.configuration.SecurityConfiguration;
+import org.springframework.samples.petclinic.game.BoardService;
+import org.springframework.samples.petclinic.game.Game;
+import org.springframework.samples.petclinic.game.GameService;
+import org.springframework.samples.petclinic.game.PieceService;
 import org.springframework.samples.petclinic.jugador.JugadorService;
 import org.springframework.samples.petclinic.persona.Persona;
 import org.springframework.samples.petclinic.persona.PersonaController;
