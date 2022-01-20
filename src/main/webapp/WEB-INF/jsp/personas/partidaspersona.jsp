@@ -30,8 +30,7 @@
                    
                     <c:out value="${game.pointsRed}"/>
                 </td>
-                <td><spring:url value="/games/{gameId}"
-                            var="gameUrl">
+                <td><spring:url value="/games/{gameId}" var="gameUrl">
                             <spring:param name="gameId" value="${game.id}" />
                         </spring:url> <a href="${fn:escapeXml(gameUrl)}">Ver partida</a></td>
                              

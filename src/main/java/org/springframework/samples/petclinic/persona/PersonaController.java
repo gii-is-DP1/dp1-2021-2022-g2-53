@@ -4,6 +4,7 @@ package org.springframework.samples.petclinic.persona;
 
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -93,7 +94,7 @@ public class PersonaController {
     
     
     @GetMapping(value = "/personas/edit/{personaId}")
-	public String editGame(ModelMap modelMap, @PathVariable("personaId") int personaid) {
+	public String editPersona(ModelMap modelMap, @PathVariable("personaId") int personaid) {
 		String view = FORM;
 		Persona persona = personaService.findId(personaid);
 		boolean edit = true;
@@ -103,7 +104,7 @@ public class PersonaController {
 	}
 
 	@PostMapping(value = "/personas/edit/{personaId}")
-	public String processUpdateGameForm(ModelMap modelMap, @PathVariable("personaId") int personaid, @Valid Persona persona,
+	public String processUpdatePersonaForm(ModelMap modelMap, @PathVariable("personaId") int personaid, @Valid Persona persona,
 			BindingResult result) {
 		if (result.hasErrors()) {
 			boolean edit = true;
@@ -121,7 +122,7 @@ public class PersonaController {
 	}
     
     @GetMapping(value = "/personas/delete/{personaId}")
-	public String deleteGame(ModelMap modelMap, @PathVariable("personaId") int personaid) {
+	public String deletePersona(ModelMap modelMap, @PathVariable("personaId") int personaid) {
 		
 		Optional<Persona> persona = Optional.of(personaService.findId(personaid));
 		
@@ -135,5 +136,48 @@ public class PersonaController {
 		return "redirect:/personas/registro";
 
 	}
+    
+    @GetMapping(value = "/personas/seguroview")
+    public String showPerson(ModelMap modelMap, HttpServletResponse response) {
+        String view = "personas/seguro";
+
+        UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = ud.getUsername();
+        Persona persona = personaService.getPersonaByUserName(username); 
+        List<Persona> ls = new ArrayList<Persona>();
+        ls.add(persona);
+        modelMap.addAttribute("persona", ls);
+        return view;
+    }
+    
+   
+    @GetMapping(value = "/personas/editperfil/{personaId}")
+    public String editPersonaperfil(ModelMap modelMap, @PathVariable("personaId") int personaid) {
+        String view = FORM;
+        Persona persona = personaService.findId(personaid);
+        boolean edit = true;
+        modelMap.addAttribute("persona", persona);
+        modelMap.addAttribute("edit", edit);
+        return view;
+    }
+    
+    @PostMapping(value = "/personas/editperfil/{personaId}")
+    public String processUpdatePersonaperfilForm(ModelMap modelMap, @PathVariable("personaId") int personaid, @Valid Persona persona,
+            BindingResult result) {
+    	String view = "/welcome";
+        if (result.hasErrors()) {
+            boolean edit = true;
+            modelMap.put("edit", edit);
+            return FORM;
+        } else {
+            Persona personaEdited = personaService.findId(personaid);
+            personaEdited.setFirstName(persona.getFirstName());
+            personaEdited.setLastName(persona.getLastName());
+            personaEdited.setUser(persona.getUser());
+            personaService.savePersona(personaEdited);
+            return view;
+        }
+     
+    }
 
 }
