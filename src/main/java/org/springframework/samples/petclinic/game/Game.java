@@ -140,7 +140,29 @@ public class Game extends BaseEntity {
 	public String getGanador() {
 		if (this.getTurnos().get(this.getTurno()).equals("fin")) {
 			if (this.getPointsBlack().equals(this.getPointsRed())) {
-				return "Empate";
+				List<Piece> lsred =this.getBoard().getAllPiecesSameColor("red");
+				List<Piece> lsblack =this.getBoard().getAllPiecesSameColor("black");
+				List<Sarcine> lsredsar =this.getBoard().getAllSarcinesSameColor("red");
+				List<Sarcine> lsblacksar =this.getBoard().getAllSarcinesSameColor("black");
+				if(lsred.size() < lsblack.size()) {
+					return "Jugador rojo";
+				}
+				else if(lsred.size() > lsblack.size()) {
+					return "Jugador negro";
+				}
+				else if(lsred.size() == lsblack.size()) {
+					
+					if(lsredsar.size() < lsblacksar.size()) {
+						return "Jugador rojo";
+					}
+					else if(lsredsar.size() > lsblacksar.size()) {
+						return "Jugador negro";
+					}
+					else if(lsredsar.size() == lsblacksar.size()) {
+						return "Empate";
+					}
+					
+				}
 			} else if (this.getPointsBlack() < this.getPointsRed()) {
 				return "Jugador negro";
 			} else if (this.getPointsBlack() > this.getPointsRed()) {
