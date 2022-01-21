@@ -87,14 +87,7 @@ public class PersonaControllerTests {
 			
 		}
 		
-//		@WithMockUser(value = "persona")
-//		@Test
-//		void testGamePerson() throws Exception {
-//			mockMvc.perform(get("/personas"))
-//			.andExpect(status().isOk());
-//			.andExpect(model().attributeExists("games"))
-//			.andExpect(view().name("personas/partidaspersona"));
-//		}
+
 		
 		@WithMockUser(value = "persona")
 		@Test
@@ -178,7 +171,7 @@ public class PersonaControllerTests {
 					.param("lastName", "Franklin")
 					.param("username", "person3")
 					.param("password", "personi"))
-					.andExpect(view().name("/welcome"));
+					.andExpect(view().name("redirect:/logout"));
 
 		}
 		

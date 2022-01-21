@@ -222,38 +222,5 @@ public class BoardTest {
 
 	}
 
-//	    @Test
-//	    public void movePiecesTest() throws MoveInvalidException {
-//	    	Movement move = new Movement(3,1,1);//se mueve de la casilla 3 una pieza a la casilla 1
-//	    	Board board = boardService.findById(2);
-//	    	move.setId(1);
-//	    	Assertions.assertThat(board.getNumberOfPiecesByPosition(3)).isEqualTo(1);
-//	        
-//			board.movePieces(move,res);
-//	    	Assertions.assertThat(board.getNumberOfPiecesByPosition(1)).isEqualTo(1);
-//	    	
-//	    }
-//	    @Test
-//	    public void moveInvalidTest(){
-//	    	Movement move = new Movement(1,1,3);//se mueve de la casilla 1 una pieza a la casilla 3
-//	    	Board board = boardService.findById(2);
-//	    	Piece pieceNewRed = new Piece();
-//			pieceNewRed.setBoard(board);
-//			pieceNewRed.setPosition(3);
-//			pieceNewRed.setColor("red");
-//			pieceService.save(pieceNewRed);
-//	    	List<Piece> ls = new ArrayList<Piece>();
-//	    	List<Piece> ls2 = new ArrayList<Piece>();
-//	    	ls.add(pieceNewRed);
-//	    	board.setPieces(ls);
-//	    	boardService.save(board);
-//	    	ObjectError er = new ObjectError("fallo", "fallo");
-//	    
-//	    	res.addError(er);
-//			Boolean bol = board.moveInvalid(ls2,move,res);
-//			
-//	
-//	    	assertEquals(bol, true);
-//	    	
-//	    }
+
 }

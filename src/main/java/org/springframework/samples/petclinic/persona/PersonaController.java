@@ -175,7 +175,7 @@ public class PersonaController {
             personaEdited.setLastName(persona.getLastName());
             personaEdited.setUser(persona.getUser());
             personaService.savePersona(personaEdited);
-            return view;
+            return "redirect:/logout";
         }
      
     }
