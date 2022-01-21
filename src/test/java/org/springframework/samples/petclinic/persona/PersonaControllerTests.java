@@ -155,5 +155,34 @@ public class PersonaControllerTests {
 		
 		
 		
+		@WithMockUser(value = "persona")
+		@Test
+		void testInitEditPersonaPerfil() throws Exception {
+			mockMvc.perform(get("/personas/editperfil/{personaId}",4))
+					.andExpect(status().isOk())
+					.andExpect(model().attribute("persona", hasProperty("id", is(4))))
+					.andExpect(model().attribute("persona", hasProperty("firstName", is("George"))))
+					.andExpect(model().attribute("persona", hasProperty("lastName", is("Franklin"))))
+					.andExpect(view().name(FORM));
+				
+			
+		}
+		
+		
+		@WithMockUser(value = "persona")
+		@Test
+		void testProccesEditPersonaPerfil() throws Exception {
+			mockMvc.perform(post("/personas/editperfil/{personaId}",4)
+					.with(csrf())
+					.param("firstName","George")
+					.param("lastName", "Franklin")
+					.param("username", "person3")
+					.param("password", "personi"))
+					.andExpect(view().name("/welcome"));
+
+		}
+		
+		
+		
 		
 }
