@@ -95,7 +95,9 @@ public class GameService {
 			}
 			save(gameEdited);
 			}
-	
+		
+		boardService.generateSarcines(gameEdited.getBoard());
+		save(gameEdited);
 		}
 	
 

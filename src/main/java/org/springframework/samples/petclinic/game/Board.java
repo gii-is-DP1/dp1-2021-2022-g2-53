@@ -20,9 +20,6 @@ import org.springframework.samples.petclinic.model.BaseEntity;
 
 import org.springframework.validation.BindingResult;
 
-
-
-
 @Entity
 @Table(name = "boards")
 @Getter
@@ -41,16 +38,13 @@ public class Board extends BaseEntity {
 		this.width = 500;
 		this.height = 300;
 	}
-	
-	
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "board")
 	List<Piece> pieces;
-	
+
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "board")
 	List<Sarcine> sarcines;
-	
-	
+
 	private static final String red_color = "red";
 	private static final String black_color = "black";
 	private static final String red_color_sarcine = "red_sarcine";
@@ -72,103 +66,127 @@ public class Board extends BaseEntity {
 		ls.sort(cmp);
 		return ls;
 	}
+
 	public List<Piece> getAllPiecesSameColor(String color) {
-		List<Piece> ls = this.pieces.stream()
-				.filter(x -> x.getColor().equals(color))
-				.collect(Collectors.toList());
+		List<Piece> ls = this.pieces.stream().filter(x -> x.getColor().equals(color)).collect(Collectors.toList());
 		Comparator<Piece> cmp = Comparator.comparingInt(x -> x.getId());
 		ls.sort(cmp);
 		return ls;
 	}
+
 	public List<Sarcine> getAllSarcinesSameColor(String color) {
-		List<Sarcine> ls = this.sarcines.stream()
-				.filter(x -> x.getColor().equals(color))
-				.collect(Collectors.toList());
+		List<Sarcine> ls = this.sarcines.stream().filter(x -> x.getColor().equals(color)).collect(Collectors.toList());
 		Comparator<Sarcine> cmp = Comparator.comparingInt(x -> x.getId());
 		ls.sort(cmp);
 		return ls;
 	}
 
 	public Integer getNumberOfPiecesByPosition(Integer pos) {
-		return  (int) this.pieces.stream().filter(x -> x.getPosition() == pos).count();
+		return (int) this.pieces.stream().filter(x -> x.getPosition() == pos).count();
 	}
 
 	public String binaryboard(Integer pos) {
 		List<Piece> reds = this.pieces.stream().filter(x -> x.getPosition() == pos && x.getColor().equals(red_color))
 				.collect(Collectors.toList());
-		List<Piece> blacks = this.pieces.stream().filter(x -> x.getPosition() == pos && x.getColor().equals(black_color))
-				.collect(Collectors.toList());
-		if (reds.size() == 4 && blacks.size() == 0 && !containsSarcine(pos, red_color)) {
+		List<Piece> blacks = this.pieces.stream()
+				.filter(x -> x.getPosition() == pos && x.getColor().equals(black_color)).collect(Collectors.toList());
+		List<Sarcine> redsSar = this.sarcines.stream()
+				.filter(x -> x.getPosition() == pos && x.getColor().equals(red_color)).collect(Collectors.toList());
+		List<Sarcine> blacksSar = this.sarcines.stream()
+				.filter(x -> x.getPosition() == pos && x.getColor().equals(black_color)).collect(Collectors.toList());
+		if (reds.size() >= 4 && blacks.size() == 0 && !containsSarcine(pos, red_color) && redsSar.size() < 5) {
 			return red_color_sarcine;
-		} else if (reds.size() == 0 && blacks.size() == 4 && !containsSarcine(pos, black_color)) {
+		} else if (reds.size() == 0 && blacks.size() >= 4 && !containsSarcine(pos, black_color)
+				&& blacksSar.size() < 5) {
 			return black_color_sarcine;
-		}
-		else if (reds.size() > 0 && blacks.size() == 0 && !containsSarcine(pos, black_color)) {
+		} else if (reds.size() > 0 && blacks.size() == 0 && !containsSarcine(pos, black_color) && reds.size() < 20) {
 			return red_color;
-		} else if (reds.size() == 0 && blacks.size() > 0 && !containsSarcine(pos, red_color)) {
+		} else if (reds.size() == 0 && blacks.size() > 0 && !containsSarcine(pos, red_color) && blacks.size() < 20) {
 			return black_color;
 		} else {
 			return "";
 		}
 	}
-	
+
+	public String checkSarcines(Integer pos) {
+		List<Piece> reds = this.pieces.stream().filter(x -> x.getPosition() == pos && x.getColor().equals(red_color))
+				.collect(Collectors.toList());
+		List<Piece> blacks = this.pieces.stream()
+				.filter(x -> x.getPosition() == pos && x.getColor().equals(black_color)).collect(Collectors.toList());
+		List<Sarcine> redsSar = this.sarcines.stream()
+				.filter(x -> x.getPosition() == pos && x.getColor().equals(red_color)).collect(Collectors.toList());
+		List<Sarcine> blacksSar = this.sarcines.stream()
+				.filter(x -> x.getPosition() == pos && x.getColor().equals(black_color)).collect(Collectors.toList());
+		if (reds.size() >= 5 && !containsSarcine(pos, red_color) && redsSar.size() < 5) {
+			return red_color_sarcine;
+		} else if ( blacks.size() >= 5 && !containsSarcine(pos, black_color) && blacksSar.size() < 5) {
+			return black_color_sarcine;
+		} else {
+			return "";
+		}
+	}
+
 	public boolean moveInvalid(List<Piece> ls, Movement movement, BindingResult result) {
 		boolean res = false;
-		List<Piece> piecesDiferentDestiny = this.pieces.stream().filter(
-				x -> x.getPosition() == movement.getDestinyPosition() && x.getColor().equals(movement.getTipo())==false)
+		List<Piece> piecesDiferentDestiny = this.pieces.stream()
+				.filter(x -> x.getPosition() == movement.getDestinyPosition()
+						&& x.getColor().equals(movement.getTipo()) == false)
 				.collect(Collectors.toList());
 		List<Piece> piecesSameDestiny = this.pieces.stream().filter(
 				x -> x.getPosition() == movement.getDestinyPosition() && x.getColor().equals(movement.getTipo()))
 				.collect(Collectors.toList());
 		List<Piece> piecesAux = pieces.subList(0, movement.getNumber());
-		if(piecesAux.size()+piecesSameDestiny.size() == piecesDiferentDestiny.size() && piecesDiferentDestiny.size()!=0) {
-			result.rejectValue("destinyPosition", "moveInvalid2", "No puede haber el mismo numero de bacterias en una misma casilla");
+		if (piecesAux.size() + piecesSameDestiny.size() == piecesDiferentDestiny.size()
+				&& piecesDiferentDestiny.size() != 0) {
+			result.rejectValue("destinyPosition", "moveInvalid2",
+					"No puede haber el mismo numero de bacterias en una misma casilla");
 			res = true;
 		}
 		return res;
 	}
-	
+
 	public boolean moveInvalid2(List<Piece> ls, Movement movement, BindingResult result) {
 		boolean res = false;
-		List<Piece> piecesDiferentInitial = this.pieces.stream().filter(
-				x -> x.getPosition() == movement.getInitialPosition() && x.getColor().equals(movement.getTipo())==false)
+		List<Piece> piecesDiferentInitial = this.pieces.stream()
+				.filter(x -> x.getPosition() == movement.getInitialPosition()
+						&& x.getColor().equals(movement.getTipo()) == false)
 				.collect(Collectors.toList());
 		List<Piece> piecesSameInitial = this.pieces.stream().filter(
 				x -> x.getPosition() == movement.getInitialPosition() && x.getColor().equals(movement.getTipo()))
 				.collect(Collectors.toList());
 		List<Piece> piecesAux = pieces.subList(0, movement.getNumber());
-		if( piecesSameInitial.size() - piecesAux.size()  == piecesDiferentInitial.size() && piecesDiferentInitial.size()!=0) {
-			result.rejectValue("destinyPosition", "moveInvalid2", "No puede haber el mismo numero de bacterias en una misma casilla");
+		if (piecesSameInitial.size() - piecesAux.size() == piecesDiferentInitial.size()
+				&& piecesDiferentInitial.size() != 0) {
+			result.rejectValue("destinyPosition", "moveInvalid2",
+					"No puede haber el mismo numero de bacterias en una misma casilla");
 			res = true;
 		}
 		return res;
 	}
-	
-	
-	
+
 	public boolean moveInvalidPosition(Movement movement, BindingResult result) {
 		boolean res = false;
 		Integer posini = movement.getInitialPosition();
 		Integer posfin = movement.getDestinyPosition();
-		if(posini == 1 && (posfin==6 || posfin==7 || posfin==5 || posfin==1)) {
+		if (posini == 1 && (posfin == 6 || posfin == 7 || posfin == 5 || posfin == 1)) {
 			result.rejectValue("destinyPosition", "moveInvalid", "No puedes mover la ficha a esa casilla");
 			res = true;
-		}else if(posini == 2 && (posfin==3 || posfin==6 || posfin==7 || posfin==2)) {
+		} else if (posini == 2 && (posfin == 3 || posfin == 6 || posfin == 7 || posfin == 2)) {
 			result.rejectValue("destinyPosition", "moveInvalid", "No puedes mover la ficha a esa casilla");
 			res = true;
-		}else if(posini == 3 && (posfin==2 || posfin==5 || posfin==7 || posfin==3))  {
+		} else if (posini == 3 && (posfin == 2 || posfin == 5 || posfin == 7 || posfin == 3)) {
 			result.rejectValue("destinyPosition", "moveInvalid", "No puedes mover la ficha a esa casilla");
 			res = true;
-		}else if(posini == 4 && posfin==4)  {
+		} else if (posini == 4 && posfin == 4) {
 			result.rejectValue("destinyPosition", "moveInvalid", "No puedes mover la ficha a esa casilla");
 			res = true;
-		}else if(posini == 5 && (posfin==1 || posfin==3 || posfin==6 || posfin==5)) {
+		} else if (posini == 5 && (posfin == 1 || posfin == 3 || posfin == 6 || posfin == 5)) {
 			result.rejectValue("destinyPosition", "moveInvalid", "No puedes mover la ficha a esa casilla");
 			res = true;
-		}else if(posini == 6 && (posfin==1 || posfin==2 || posfin==5 || posfin==6)) {
+		} else if (posini == 6 && (posfin == 1 || posfin == 2 || posfin == 5 || posfin == 6)) {
 			result.rejectValue("destinyPosition", "moveInvalid", "No puedes mover la ficha a esa casilla");
 			res = true;
-		}else if(posini == 7 && (posfin==1 || posfin==2 || posfin==3 || posfin==7)) {
+		} else if (posini == 7 && (posfin == 1 || posfin == 2 || posfin == 3 || posfin == 7)) {
 			result.rejectValue("destinyPosition", "moveInvalid", "No puedes mover la ficha a esa casilla");
 			res = true;
 		}
@@ -180,20 +198,22 @@ public class Board extends BaseEntity {
 			List<Piece> pieces = this.pieces.stream().filter(
 					x -> x.getPosition() == movement.getInitialPosition() && x.getColor().equals(movement.getTipo()))
 					.collect(Collectors.toList());
-			if(pieces.isEmpty() || pieces.size()<movement.getNumber()) {
-				result.rejectValue("initialPosition", "moveInvalid", "Escoge una casilla en la que se encuentre alguna bacteria tuya");
-			}else {
-			List<Piece> piecesAux = pieces.subList(0, movement.getNumber());
-			if(movement.getTipo().equals(red_color) || movement.getTipo().equals(black_color)) {
-				if(moveInvalid(pieces, movement, result) == false && moveInvalidPosition(movement, result) == false && moveInvalid2(pieces, movement, result) == false) {
+			if (pieces.isEmpty() || pieces.size() < movement.getNumber()) {
+				result.rejectValue("initialPosition", "moveInvalid",
+						"Escoge una casilla en la que se encuentre alguna bacteria tuya");
+			} else {
+				List<Piece> piecesAux = pieces.subList(0, movement.getNumber());
+				if (movement.getTipo().equals(red_color) || movement.getTipo().equals(black_color)) {
+					if (moveInvalid(pieces, movement, result) == false && moveInvalidPosition(movement, result) == false
+							&& moveInvalid2(pieces, movement, result) == false) {
+						piecesAux.stream().forEach(x -> x.setPosition(movement.getDestinyPosition()));
+					}
+				} else {
 					piecesAux.stream().forEach(x -> x.setPosition(movement.getDestinyPosition()));
 				}
-			}else {
-				piecesAux.stream().forEach(x -> x.setPosition(movement.getDestinyPosition()));
 			}
 		}
 	}
-}
 
 	// O -> RED Y 1 -> BLACK
 	public List<Integer> pollution() {
@@ -204,23 +224,23 @@ public class Board extends BaseEntity {
 			Integer p = i;
 			Integer sarcineRed = 0;
 			Integer sarcineBlack = 0;
-			List<Piece> blacks = this.pieces.stream().filter(x -> x.getPosition() == p && x.getColor().equals(black_color))
-					.collect(Collectors.toList()) ;
+			List<Piece> blacks = this.pieces.stream()
+					.filter(x -> x.getPosition() == p && x.getColor().equals(black_color)).collect(Collectors.toList());
 			List<Piece> reds = this.pieces.stream().filter(x -> x.getPosition() == p && x.getColor().equals(red_color))
 					.collect(Collectors.toList());
 			if (this.containsSarcine(p, black_color)) {
-				sarcineBlack =5;
+				sarcineBlack = 5;
 			}
 			if (this.containsSarcine(p, red_color)) {
-				sarcineRed =5;
+				sarcineRed = 5;
 			}
-			
+
 			if (reds.size() + sarcineRed > blacks.size() + sarcineBlack) {
 				red++;
 			} else if (reds.size() + sarcineRed < blacks.size() + sarcineBlack) {
 				black++;
 			}
-		 
+
 		}
 		ls.add(red);
 		ls.add(black);
@@ -228,13 +248,11 @@ public class Board extends BaseEntity {
 	}
 
 	public List<Piece> getAllPiecesByPosition(int i) {
-		return this.pieces.stream()
-		.filter(x -> x.getPosition() == i)
-		.collect(Collectors.toList());
-		
+		return this.pieces.stream().filter(x -> x.getPosition() == i).collect(Collectors.toList());
+
 	}
-	
+
 	public Boolean containsSarcine(int position, String color) {
-		return 0 != sarcines.stream().filter(x->x.getPosition()==position && x.getColor().equals(color)).count();
+		return 0 != sarcines.stream().filter(x -> x.getPosition() == position && x.getColor().equals(color)).count();
 	}
 }
