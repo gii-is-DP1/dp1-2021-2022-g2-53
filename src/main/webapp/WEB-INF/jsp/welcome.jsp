@@ -28,7 +28,7 @@
      
      <div class="row" >
      
-     <div class="col-md-3">
+     <div class="col-md-4">
      <br>
            
 		<p>
@@ -40,19 +40,8 @@
 		
 		<p>
         </div>
-        <div class="col-md-3">
-     <br></br>
-      
-		<p>
-		
-		<button class="btn btn-default" onclick="window.location.href='games/saveFriend/{token}'">Iniciar partida</button>
-		<h2></h2>
-		<br></br><br>
-		
-		
-		<p>
-        </div>
-        <div class="col-md-3">
+        
+        <div class="col-md-4">
         
         <br></br>
 		<p>
@@ -64,7 +53,7 @@
 		<p>
         </div>
           
-          <div class="col-md-3">
+          <div class="col-md-4">
      <br></br>
       
 		<p>

@@ -12,9 +12,9 @@
     <table id="gamesTable" class="table table-striped">
         <thead>
         <tr>
-            <th style="width: 160px;">username</th>
-            <th style="width: 160px;">nombre</th>
-            <th style="width: 80px;">apellidos</th>
+            <th style="width: 160px;">Nombre de usuario</th>
+            <th style="width: 160px;">Nombre</th>
+            <th style="width: 80px;">Apellidos</th>
             <th style="width: 80px;"></th>
             <th style="width: 80px;"></th>
         </tr>

@@ -50,8 +50,8 @@
 
 			<ul class="nav navbar-nav navbar-right">
 				<sec:authorize access="!isAuthenticated()">
-					<li><a href="<c:url value="/login" />">Login</a></li>
-					<li><a href="<c:url value="/register" />">Register</a></li>
+					<li><a href="<c:url value="/login" />">Iniciar sesion</a></li>
+					<li><a href="<c:url value="/register" />">Registrarse</a></li>
 				</sec:authorize>
 				<sec:authorize access="isAuthenticated()">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -74,7 +74,7 @@
 											</p>
 											<p class="text-left">
 												<a href="<c:url value="/logout" />"
-													class="btn btn-primary btn-block btn-sm">Logout</a>
+													class="btn btn-primary btn-block btn-sm">Cerrar sesion</a>
 											</p>
 										</div>
 									</div>
@@ -88,7 +88,7 @@
 										<div class="col-lg-12">
 											<p>
 											<a href="<c:url value="/personas/seguroview" />"
-													class="btn btn-primary btn-block">My Profile</a>
+													class="btn btn-primary btn-block">Mi Perfil</a>
 												
 												
 											</p>

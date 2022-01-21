@@ -12,20 +12,20 @@
     </h2>
     <form:form modelAttribute="persona" class="form-horizontal" id="add-persona-form">
         <div class="form-group has-feedback">
-            <petclinic:inputField label="First Name" name="firstName"/>
-            <petclinic:inputField label="Last Name" name="lastName"/>
+            <petclinic:inputField label="Nombre" name="firstName"/>
+            <petclinic:inputField label="Apellido" name="lastName"/>
             
-            <petclinic:inputField label="Username" name="user.username"/>
-            <petclinic:inputField label="Password" name="user.password"/>
+            <petclinic:inputField label="Nombre de usuario" name="user.username"/>
+            <petclinic:inputField label="Contraseña" name="user.password"/>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <c:choose>
                     <c:when test="${persona['new']}">
-                        <button class="btn btn-default" type="submit">Register</button>
+                        <button class="btn btn-default" type="submit">Registrarse</button>
                     </c:when>
                     <c:otherwise>
-                        <button class="btn btn-default" type="submit">Update</button>
+                        <button class="btn btn-default" type="submit">Editar</button>
                     </c:otherwise>
                 </c:choose>
             </div>
