@@ -20,13 +20,11 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.samples.petclinic.configuration.SecurityConfiguration;
 import org.springframework.samples.petclinic.game.BoardService;
-import org.springframework.samples.petclinic.game.Game;
+
 import org.springframework.samples.petclinic.game.GameService;
 import org.springframework.samples.petclinic.game.PieceService;
 import org.springframework.samples.petclinic.jugador.JugadorService;
-import org.springframework.samples.petclinic.persona.Persona;
-import org.springframework.samples.petclinic.persona.PersonaController;
-import org.springframework.samples.petclinic.persona.PersonaService;
+
 import org.springframework.samples.petclinic.user.UserService;
 import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.test.context.support.WithMockUser;
@@ -78,8 +76,7 @@ public class PersonaControllerTests {
 			List<Persona> result =  new ArrayList<Persona>();
 			result.add(persona);
 			result.add(persona2);
-			
-			Iterable<Persona> it = result;
+		
 			
 			
 			given(this.personaService.findId(4)).willReturn(persona);
