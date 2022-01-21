@@ -80,21 +80,16 @@ public class GameTest {
 		Assertions.assertThat(game.getGanador() == "Jugador rojo");
 	}
 	
-	/* @Test
-	public void ganadorPorSarcinasTest() {
+	@Test
+	public void ganadorPorLimitePuntosTest() {
 		Game game = new Game();
-		Board board = boardService.findById(1);
-		List<Piece> pieces = new ArrayList<>();
-		Piece p1, p2, p3, p4;
-		p1 = p2 = p3 = p4 = new Piece();
-		p1.setColor("red");
-		p1.setId(1);
-		p2.setColor("red");
-		p2.setType("sarcine");
-		p2.setId(2);
-		p3.setColor("black");
-		p3.setId(3);
-		p4.setColor("black");
-		p4.setId(4);
-	} */
+		game.setTurno(0);
+		game.setPointsBlack(9);
+		game.setPointsRed(0);
+		Assertions.assertThat(game.getGanador() == "Jugador rojo");
+		game.setPointsBlack(8);
+		game.setPointsRed(9);
+		Assertions.assertThat(game.getGanador() == "Jugador negro");
+	}
+    
 }
