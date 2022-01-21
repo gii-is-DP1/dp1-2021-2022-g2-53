@@ -63,14 +63,56 @@ public class BoardService {
 				sarcine.setColor(red_color);
 				sarcine.setBoard(board);
 				sarcine.setPosition(i);
-				board.getAllPiecesByPosition(i).stream().forEach(x->x.setColor(""));
+				int j = 0;
+				while (j<4) {
+					board.getAllPiecesByPosition(i).get(j).setColor("");
+					j++;
+				}
+				//board.getAllPiecesByPosition(i).stream().forEach(x->x.setColor(""));
 				sarcineService.save(sarcine);
 			} else if (board.binaryboard(i).equals(black_color_sarcine)) {
 				Sarcine sarcine = new Sarcine();
 				sarcine.setColor(black_color);
 				sarcine.setBoard(board);
 				sarcine.setPosition(i);
-				board.getAllPiecesByPosition(i).stream().forEach(x->x.setColor(""));
+				int j = 0;
+				while (j<4) {
+					board.getAllPiecesByPosition(i).get(j).setColor("");
+					j++;
+				}
+				//board.getAllPiecesByPosition(i).stream().forEach(x->x.setColor(""));
+				sarcineService.save(sarcine);
+			}
+			i++;
+		}
+	}
+	@Transactional
+	public void generateSarcines(Board board) {
+		int i = 1;
+		while (i <= 7) {
+			if (board.checkSarcines(i).equals(red_color_sarcine)) {
+				Sarcine sarcine = new Sarcine();
+				sarcine.setColor(red_color);
+				sarcine.setBoard(board);
+				sarcine.setPosition(i);
+				int j = 0;
+				while (j<5) {
+					board.getAllPiecesByPosition(i).get(j).setColor("");
+					j++;
+				}
+				//board.getAllPiecesByPosition(i).stream().forEach(x->x.setColor(""));
+				sarcineService.save(sarcine);
+			} else if (board.checkSarcines(i).equals(black_color_sarcine)) {
+				Sarcine sarcine = new Sarcine();
+				sarcine.setColor(black_color);
+				sarcine.setBoard(board);
+				sarcine.setPosition(i);
+				int j = 0;
+				while (j<5) {
+					board.getAllPiecesByPosition(i).get(j).setColor("");
+					j++;
+				}
+				//board.getAllPiecesByPosition(i).stream().forEach(x->x.setColor(""));
 				sarcineService.save(sarcine);
 			}
 			i++;

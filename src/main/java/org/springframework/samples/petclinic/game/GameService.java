@@ -69,6 +69,11 @@ public class GameService {
 		String username = ud.getUsername();
 		Persona persona = personaService.getPersonaByUserName(username); 
 		String jugador = persona.getJugadores().get(persona.getJugadores().size()-1).getColor();
+		
+		if (gameEdited.getPointsBlack()>=9 || gameEdited.getPointsBlack()>=9) {
+			gameEdited.setTurno(gameEdited.getTurnos().size()-2);
+		}
+		
 		if ((turno.equals(red_color) && turno.equals(jugador)) || (turno.equals(black_color) && turno.equals(jugador))){
 				movement.setTipo(gameEdited.getTurnos().get(gameEdited.getTurno()));
 				gameEdited.getBoard().movePieces(movement, result);
@@ -89,13 +94,15 @@ public class GameService {
 			gameEdited.setPointsRed(gameEdited.getPointsRed() + gameEdited.getBoard().pollution().get(0));
 			gameEdited.setPointsBlack(gameEdited.getPointsBlack() +gameEdited.getBoard().pollution().get(1));
 			if (gameEdited.getPointsBlack()>=9 || gameEdited.getPointsBlack()>=9) {
-				gameEdited.setTurno(gameEdited.getTurnos().size()-1);
+				gameEdited.setTurno(gameEdited.getTurnos().size()-2);
 			} else {
 				gameEdited.setTurno(gameEdited.getTurno()+1);
 			}
 			save(gameEdited);
 			}
-	
+		
+		boardService.generateSarcines(gameEdited.getBoard());
+		save(gameEdited);
 		}
 	
 
