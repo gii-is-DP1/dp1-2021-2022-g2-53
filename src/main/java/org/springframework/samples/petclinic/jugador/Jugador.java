@@ -1,5 +1,6 @@
 package org.springframework.samples.petclinic.jugador;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -28,7 +29,7 @@ public class Jugador extends BaseEntity {
 	@JoinColumn(name = "persona_id")
 	private Persona persona;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "game_id")
 	Game game;
 
