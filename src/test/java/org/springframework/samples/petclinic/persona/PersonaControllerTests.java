@@ -178,7 +178,7 @@ public class PersonaControllerTests {
 					.param("lastName", "Franklin")
 					.param("username", "person3")
 					.param("password", "personi"))
-					.andExpect(view().name("/welcome"));
+					.andExpect(view().name("redirect:/logout"));
 
 		}
 		
