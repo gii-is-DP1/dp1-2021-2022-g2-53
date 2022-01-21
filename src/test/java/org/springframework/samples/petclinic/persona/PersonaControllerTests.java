@@ -87,14 +87,7 @@ public class PersonaControllerTests {
 			
 		}
 		
-//		@WithMockUser(value = "persona")
-//		@Test
-//		void testGamePerson() throws Exception {
-//			mockMvc.perform(get("/personas"))
-//			.andExpect(status().isOk());
-//			.andExpect(model().attributeExists("games"))
-//			.andExpect(view().name("personas/partidaspersona"));
-//		}
+
 		
 		@WithMockUser(value = "persona")
 		@Test
