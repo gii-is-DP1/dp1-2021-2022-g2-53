@@ -34,7 +34,7 @@ INSERT INTO boards(id,background,height,width) VALUES (2,'/resources/images/tabl
 
 
 INSERT INTO games (id,points_black,points_red,board_id,turno,token) VALUES (1,2,2,1,15,'abc-abc');
-INSERT INTO games (id,points_black,points_red,board_id,turno,token) VALUES (2,9,4,2,40,'ebc-qer');
+INSERT INTO games (id,points_black,points_red,board_id,turno,token) VALUES (2,10,4,2,32,'ebc-qer');
 
 INSERT INTO jugador(id,color,game_id,persona_id) VALUES (1,'red',1,1);
 INSERT INTO jugador(id,color,game_id,persona_id) VALUES (2,'black',1,2);
