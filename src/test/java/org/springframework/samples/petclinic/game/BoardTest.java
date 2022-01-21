@@ -2,6 +2,8 @@ package org.springframework.samples.petclinic.game;
 
 
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 
 
 @DataJpaTest(includeFilters = @ComponentScan.Filter(Service.class))
@@ -24,6 +28,8 @@ public class BoardTest {
 	private PieceService pieceService;
 	@Autowired
 	private SarcineService sarcineService;
+	
+	
 	
 	private BindingResult res;
 
@@ -62,6 +68,7 @@ public class BoardTest {
 		Assertions.assertThat(board.getAllPiecesInTheSamePosition(pieceNewBlack).size()).isEqualTo(3);
 
 	}
+	
 
 	@Test
 	public void getAllPiecesInTheSamePositionAndSameColorTest() {
@@ -215,15 +222,5 @@ public class BoardTest {
 
 	}
 
-	    @Test
-	    public void movePiecesTest() throws MoveInvalidException {
-	    	Movement move = new Movement(3,1,1);//se mueve de la casilla 3 una pieza a la casilla 1
-	    	Board board = boardService.findById(2);
-	    	
-	    	Assertions.assertThat(board.getNumberOfPiecesByPosition(3)).isEqualTo(1);
-	        
-			board.movePieces(move,res);
-	    	Assertions.assertThat(board.getNumberOfPiecesByPosition(1)).isEqualTo(1);
-	    	
-	    }
+
 }

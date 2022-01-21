@@ -28,18 +28,7 @@
      
      <div class="col-md-12" >
      
-     <div class=row>
-     <br>
-           
-		<p>
-		<br>
-		<button class="btn btn-default" onclick="window.location.href='/jugadores'">Listado de personas jugando</button>
-		
-		<br><br><br><br>
-		
-		</p>
-		<p>
-        </div>
+     
        <div class = row>
      <br></br>
       

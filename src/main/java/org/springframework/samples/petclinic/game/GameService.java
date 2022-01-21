@@ -24,6 +24,11 @@ public class GameService {
 	private BoardService boardService;
 	
 	
+	private static final String red_color = "red";
+	private static final String black_color = "black";
+	private static final String binary_type = "binary";
+	private static final String pollution_type = "pollution";
+	
 	@Transactional
 	public int gameCount() {
 		return (int) gameRepo.count();
@@ -64,7 +69,12 @@ public class GameService {
 		String username = ud.getUsername();
 		Persona persona = personaService.getPersonaByUserName(username); 
 		String jugador = persona.getJugadores().get(persona.getJugadores().size()-1).getColor();
-		if ((turno.equals("red") && turno.equals(jugador)) || (turno.equals("black") && turno.equals(jugador))){
+		
+		if (gameEdited.getPointsBlack()>=9 || gameEdited.getPointsBlack()>=9) {
+			gameEdited.setTurno(gameEdited.getTurnos().size()-2);
+		}
+		
+		if ((turno.equals(red_color) && turno.equals(jugador)) || (turno.equals(black_color) && turno.equals(jugador))){
 				movement.setTipo(gameEdited.getTurnos().get(gameEdited.getTurno()));
 				gameEdited.getBoard().movePieces(movement, result);
 				if(!result.hasErrors()) {
@@ -75,22 +85,24 @@ public class GameService {
 					result.getAllErrors();
 					save(gameEdited);
 				}
-		} else if (turno.equals("binary")) {
+		} else if (turno.equals(binary_type)) {
 			boardService.binary(gameEdited.getBoard());
 			gameEdited.setTurno(gameEdited.getTurno()+1);
 			save(gameEdited);
-		} else if (turno.equals("pollution")) {
+		} else if (turno.equals(pollution_type)) {
 			//POSICION 0 SON ROJOS Y 1 SON NEGROS
 			gameEdited.setPointsRed(gameEdited.getPointsRed() + gameEdited.getBoard().pollution().get(0));
 			gameEdited.setPointsBlack(gameEdited.getPointsBlack() +gameEdited.getBoard().pollution().get(1));
 			if (gameEdited.getPointsBlack()>=9 || gameEdited.getPointsBlack()>=9) {
-				gameEdited.setTurno(gameEdited.getTurnos().size()-1);
+				gameEdited.setTurno(gameEdited.getTurnos().size()-2);
 			} else {
 				gameEdited.setTurno(gameEdited.getTurno()+1);
 			}
 			save(gameEdited);
 			}
-	
+		
+		boardService.generateSarcines(gameEdited.getBoard());
+		save(gameEdited);
 		}
 	
 
