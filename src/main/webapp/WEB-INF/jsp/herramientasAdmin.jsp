@@ -47,7 +47,7 @@
       
 		<p>
 		
-		<button class="btn btn-default" onclick="window.location.href='/personas/registro'">Usuarios registrados</button>
+		<button class="btn btn-default" onclick="window.location.href='/personas/registro/0'">Usuarios registrados</button>
 		<h2></h2>
 		<br></br><br>
 		

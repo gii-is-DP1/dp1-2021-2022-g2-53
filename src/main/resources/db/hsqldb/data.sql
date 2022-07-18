@@ -17,6 +17,33 @@ INSERT INTO authorities(id,username,authority) VALUES (5,'person2','persona');
 INSERT INTO users(username,password,enabled) VALUES ('person3','personi',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (6,'person3','persona');
 
+INSERT INTO users(username,password,enabled) VALUES ('person4','personi',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (7,'person4','persona');
+
+INSERT INTO users(username,password,enabled) VALUES ('person5','personi',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (8,'person5','persona');
+
+INSERT INTO users(username,password,enabled) VALUES ('person6','personi',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (9,'person6','persona');
+
+INSERT INTO users(username,password,enabled) VALUES ('person7','personi',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (10,'person7','persona');
+
+INSERT INTO users(username,password,enabled) VALUES ('person8','personi',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (11,'person8','persona');
+
+INSERT INTO users(username,password,enabled) VALUES ('person9','personi',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (12,'person9','persona');
+
+INSERT INTO users(username,password,enabled) VALUES ('person10','personi',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (13,'person10','persona');
+
+INSERT INTO users(username,password,enabled) VALUES ('person11','personi',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (14,'person11','persona');
+
+INSERT INTO users(username,password,enabled) VALUES ('person12','personi',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (15,'person12','persona');
+
 INSERT INTO vets VALUES (1, 'James', 'Carter');
 INSERT INTO vets VALUES (2, 'Helen', 'Leary');
 INSERT INTO vets VALUES (3, 'Linda', 'Douglas');
@@ -27,6 +54,15 @@ INSERT INTO vets VALUES (6, 'Sharon', 'Jenkins');
 INSERT INTO personas VALUES (1, 'luis', 'chacon romero', 'person1');
 INSERT INTO personas VALUES (2, 'pepe', 'sanchez cortes', 'person2');
 INSERT INTO personas VALUES (3, 'juan', 'mena vargas', 'person3');
+INSERT INTO personas VALUES (4, 'antonio', 'chacon romero', 'person4');
+INSERT INTO personas VALUES (5, 'pedro', 'sanchez cortes', 'person5');
+INSERT INTO personas VALUES (6, 'maria', 'mena vargas', 'person6');
+INSERT INTO personas VALUES (7, 'juan', 'chacon romero', 'person7');
+INSERT INTO personas VALUES (8, 'mario', 'sanchez cortes', 'person8');
+INSERT INTO personas VALUES (9, 'juan', 'perez vargas', 'person9');
+INSERT INTO personas VALUES (10, 'luis', 'lopez romero', 'person10');
+INSERT INTO personas VALUES (11, 'pepe', 'martin cortes', 'person11');
+INSERT INTO personas VALUES (12, 'juan', 'mena rodriguez', 'person12');
 
 
 INSERT INTO boards(id,background,height,width) VALUES (1,'/resources/images/tablero.jpg',300,500);
