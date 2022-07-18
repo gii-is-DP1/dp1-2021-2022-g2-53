@@ -12,10 +12,13 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.samples.petclinic.game.Game;
 import javax.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.samples.petclinic.jugador.JugadorService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -38,7 +41,8 @@ public class PersonaController {
     private JugadorService jugadorService;
     @Autowired
     private PersonaService personaService;
-
+    
+    
 
 
     
@@ -54,11 +58,15 @@ public class PersonaController {
         return view;
     }
     
-    @GetMapping(value = "/personas/registro")
-    public String showGamePerson(ModelMap modelMap) {
+    @GetMapping(value = "/personas/registro/{PageId}")
+    public String showGamePerson(ModelMap modelMap, @PathVariable("PageId") int PageId) {
         String view = "personas/listPersonas";
-        Iterable<Persona> personas = personaService.findAll();
-        modelMap.addAttribute("personas", personas);
+        Pageable pageable = PageRequest.of(PageId, 5);
+        Page<Persona> personas = personaService.findAll(pageable);
+        modelMap.addAttribute("total_pages", personas.getTotalPages());
+        modelMap.addAttribute("page_id",PageId);
+        
+        modelMap.addAttribute("personas", personas.toList());
         return view;
     }
     

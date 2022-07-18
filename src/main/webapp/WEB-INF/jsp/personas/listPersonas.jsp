@@ -51,4 +51,12 @@
         </c:forEach>
         </tbody>
     </table>
+    <td>Page <c:out value="${page_id + 1}"/> of <c:out value="${total_pages}"/></td>
+    <br>
+    
+                <c:forEach begin="0" step="1" end="${total_pages - 1}" var="variable">
+	<td><spring:url value="/personas/registro/{PageId}" var="urlBoton">
+                            <spring:param name="PageId" value="${variable}" />
+                        </spring:url> <a href="${fn:escapeXml(urlBoton)}">${variable + 1}</a></td>
+</c:forEach>
 </petclinic:layout>
