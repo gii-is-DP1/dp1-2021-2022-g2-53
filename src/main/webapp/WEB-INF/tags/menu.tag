@@ -6,6 +6,9 @@
 <!--  >%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%-->
 <%@ attribute name="name" required="true" rtexprvalue="true"
 	description="Name of the active menu: home, owners, vets or error"%>
+	
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+
 
 <nav class="navbar navbar-default" role="navigation">
 	<div class="container">
@@ -29,19 +32,30 @@
 				</petclinic:menuItem>
 			
 				
-				
+				<!--  
 				<petclinic:menuItem active="${name eq 'error'}" url="/oups"
 					title="trigger a RuntimeException to see how it is handled">
 					<span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
 					<span>Error</span>
 				</petclinic:menuItem>
+				-->
 				
+				<security:authorize access="hasAuthority('persona')">
 				
-				<petclinic:menuItem active="${name eq 'tools'}" url="/games/herramientasAdmin"
-					title="trigger a RuntimeException to see how it is handled">
-					<span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
-					<span>Herramientas de Administrador</span>
+				<petclinic:menuItem active="${name eq 'Menu'}" url="#sectionA"
+					title="try something!">
+					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+					<span>Modos de juego</span>
 				</petclinic:menuItem>
+				 </security:authorize>	
+				<security:authorize access="hasAuthority('admin')">
+				
+				<petclinic:menuItem active="${name eq 'Menu2'}" url="#sectionB"
+					title="Admin tools!">
+					<span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
+					<span>Herramientas de administrador</span>
+				</petclinic:menuItem>
+				 </security:authorize>	
 
 			</ul>
 
@@ -83,18 +97,22 @@
 							<li class="divider"></li>
  							
                             <li> 
+                            
 								<div class="navbar-login navbar-login-session">
 									<div class="row">
 										<div class="col-lg-12">
 											<p>
+											<security:authorize access="hasAuthority('persona')">
 											<a href="<c:url value="/personas/seguroview" />"
 													class="btn btn-primary btn-block">Mi Perfil</a>
 												
-												
+											  </security:authorize>	
 											</p>
 										</div>
 									</div>
 								</div>
+								    
+								
 							</li>
 
 						</ul></li>

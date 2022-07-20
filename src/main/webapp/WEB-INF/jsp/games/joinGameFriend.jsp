@@ -5,6 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
+<body style= "background: url(/resources/images/backgroundPetris.jpg)">
 
 <petclinic:layout pageName="games">
 
@@ -17,7 +18,7 @@
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
             	<petclinic:inputField label="token" name="token"/>
-                <button class="btn btn-default" type="submit">Unirte a partida</button>
+                <button class="btn btn-default" type="submit"><span>Unirte a partida</span></button>
             </div>
         </div>
     </form:form>

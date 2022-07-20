@@ -9,6 +9,6 @@
 <petclinic:layout pageName="games">
 
      
-        <div> ganaste   </div>
+        <div> ¡Ganaste!   </div>
       
 </petclinic:layout>

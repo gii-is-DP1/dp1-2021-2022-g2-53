@@ -34,7 +34,7 @@
       
 		<p>
 		
-		<button class="btn btn-default" onclick="window.location.href='/games/mostrarpartidas'">Listado de partidas jugadas y sus participantes</button>
+		<button class="btn btn-default" id = "pedrito" onclick="window.location.href='/games/mostrarpartidas'"><span>Listado de partidas jugadas</span></button>
 		
 		<br></br><br><br>
 		
@@ -47,7 +47,7 @@
       
 		<p>
 		
-		<button class="btn btn-default" onclick="window.location.href='/personas/registro/0'">Usuarios registrados</button>
+		<button class="btn btn-default" id = "pedrito" onclick="window.location.href='/personas/registro/0'"><span>Usuarios registrados</span></button>
 		<h2></h2>
 		<br></br><br>
 		
