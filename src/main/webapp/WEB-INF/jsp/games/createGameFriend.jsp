@@ -7,8 +7,10 @@
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
 
 <petclinic:layout pageName="games">
+<body style= "background: url(/resources/images/backgroundPetris.jpg)">
 
-<p>PASA ESTE CODIGO A TU AMIGO Y COMIENZA A JUGAR CON EL</p>
+
+<p>PASA ESTE CODIGO A TU AMIGO Y COMIENZA A JUGAR CON ÉL</p>
 <h2> "${game.token}"</h2>  
             
             <h2>JUEGA CON TU AMIGO</h2>

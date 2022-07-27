@@ -22,10 +22,10 @@
             <div class="col-sm-offset-2 col-sm-10">
                 <c:choose>
                     <c:when test="${persona['new']}">
-                        <button class="btn btn-default" type="submit">Registrarse</button>
+                        <button class="btn btn-default" type="submit"><span>Registrarse</span></button>
                     </c:when>
                     <c:otherwise>
-                        <button class="btn btn-default" type="submit">Editar</button>
+                        <button class="btn btn-default" type="submit"><span>Editar</span></button>
                     </c:otherwise>
                 </c:choose>
             </div>

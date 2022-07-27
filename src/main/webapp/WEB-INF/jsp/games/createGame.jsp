@@ -7,6 +7,7 @@
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
 
 <petclinic:layout pageName="games">
+<body style= "background: url(/resources/images/backgroundPetris.jpg)">
 
     <form:form modelAttribute="game" class="form-horizontal"  action="/games/save">
          <div class="form-group has-feedback">
@@ -22,8 +23,10 @@
     
     <spring:url value="/games/newGame"
                             var="gameUrl2">
+                            
+                            
     </spring:url> <a href="${fn:escapeXml(gameUrl2)}">Juega con amigos</a></td>
-               
+               <br><br>
                 <h2>ÚNETE A TU AMIGO</h2>
                 
        		<spring:url value="/games/join"
