@@ -198,10 +198,13 @@ public class Board extends BaseEntity {
 			List<Piece> pieces = this.pieces.stream().filter(
 					x -> x.getPosition() == movement.getInitialPosition() && x.getColor().equals(movement.getTipo()))
 					.collect(Collectors.toList());
-			if (pieces.isEmpty() || pieces.size() < movement.getNumber()) {
+			if (pieces.isEmpty()) {
 				result.rejectValue("initialPosition", "moveInvalid",
-						"Escoge una casilla en la que se encuentre alguna bacteria tuya");
-			} else {
+						"La casilla seleccionada está vacía");
+			}else if (pieces.size() < movement.getNumber()) {
+				result.rejectValue("number", "moveInvalid",
+						"Selecciona un número válido de bacterias para mover, en esta casilla solo puedes mover " + pieces.size() + "como máximo");
+			}else {
 				List<Piece> piecesAux = pieces.subList(0, movement.getNumber());
 				if (movement.getTipo().equals(red_color) || movement.getTipo().equals(black_color)) {
 					if (moveInvalid(pieces, movement, result) == false && moveInvalidPosition(movement, result) == false

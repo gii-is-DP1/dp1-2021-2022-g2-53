@@ -101,8 +101,10 @@
       </security:authorize>
       
       <security:authorize access="hasAuthority('admin')">
-      <br></br><br>
+      
       <section id="sectionB">
+      <br></br><br>
+      <br></br><br>
       <div align = "center" style="margin-left:20px;margin-top:-20px;">
       
       <spring:url value="/resources/images/petris_detalle_progreso1.jpg" htmlEscape="true" var="error6"/>
