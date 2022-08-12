@@ -18,16 +18,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.samples.petclinic.game.Game;
 import javax.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.samples.petclinic.jugador.JugadorService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-
 import org.springframework.web.bind.annotation.PathVariable;
-
 import org.springframework.samples.petclinic.user.AuthoritiesService;
 import org.springframework.samples.petclinic.user.UserService;
 import org.springframework.validation.BindingResult;
@@ -41,6 +38,7 @@ public class PersonaController {
     private JugadorService jugadorService;
     @Autowired
     private PersonaService personaService;
+
     
     
 
@@ -186,5 +184,7 @@ public class PersonaController {
         }
      
     }
+    
+
 
 }

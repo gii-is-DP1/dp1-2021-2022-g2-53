@@ -53,6 +53,15 @@
 		
 		
 		<p>
+		
+		<p>
+		
+		<button class="btn btn-default" id = "pedrito" onclick="window.location.href='/users/auditoria'"><span>Registro de modificación</span></button>
+		<h2></h2>
+		<br></br><br>
+		
+		
+		<p>
         </div>
         
 		 <div class="col-md-8">

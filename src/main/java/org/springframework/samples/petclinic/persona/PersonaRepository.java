@@ -1,12 +1,12 @@
 package org.springframework.samples.petclinic.persona;
 
 
-import java.util.List;
+
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
+
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 
@@ -26,6 +26,8 @@ public interface PersonaRepository extends PagingAndSortingRepository<Persona, I
 		Persona getPersonaByUser(@Param("user") User user);
 		
 		Page<Persona> findAll(Pageable pageable);
+		
+
 		
 	
 
