@@ -21,12 +21,12 @@
   </div>
   <br></br>
   <div class="row">
-   <h2>Bienvenido a las herramientas de Administrador de Petris</h2>
+   <h2 align="center">Bienvenido a las herramientas de Administrador de Petris</h2>
 
          
 </div>
      
-     <div class="col-md-12" >
+     <div class="col-md-4" style="margin-top:220px;margin-left:-50px">
      
      
        <div class = row>
@@ -34,38 +34,33 @@
       
 		<p>
 		
-		<button class="btn btn-default" id = "pedrito" onclick="window.location.href='/games/mostrarpartidas'"><span>Listado de partidas jugadas</span></button>
+		<button class="btn btn-default" id = "pedrito" style="margin-left:150px" onclick="window.location.href='/games/mostrarpartidas'"><span>Listado de partidas jugadas</span></button>
 		
 		<br></br><br><br>
 		
 		</p>
 		
         </div>
-      
-          <div class= row >
+        
+		 
+    </div>
+    <div class="col-md-4" >
+    <spring:url value="/resources/images/FotoError.jpg" htmlEscape="true" var="error"/>
+            <img id="f2" class="img-responsive" style="border: 2px solid; margin-left:40px; margin-top:40px;border-radius:15px;color: #E8CEF5;" src="${error}"/>
+    </div>
+    
+     <div class="col-md-4" style="margin-top:220px">
+    <div class= row >
      <br></br>
       
 		<p>
 		
-		<button class="btn btn-default" id = "pedrito" onclick="window.location.href='/personas/registro/0'"><span>Usuarios registrados</span></button>
+		<button class="btn btn-default" id = "pedrito" style="margin-left:80px" onclick="window.location.href='/personas/registro/0'"><span>Usuarios registrados</span></button>
 		<h2></h2>
 		<br></br><br>
 		
 		
 		<p>
-        </div>
-        
-		 <div class="col-md-8">
-		 <h2> ${group}</h2>
-           <ul>
-			<c:forEach items="${personas}" var="person">
-				<li>${person.firstName}&nbsp;${person.lastName}</li>
-			</c:forEach>
-		</ul>
-        </div>
-    <div class="col-md-4">
-            <spring:url value="/resources/images/logoUniversidad_3.png" htmlEscape="true" var="logoUniImage"/>
-            <img class="img-responsive" src="${logoUniImage}"/>
         </div>
     </div>
     
