@@ -11,29 +11,66 @@
 
     <form:form modelAttribute="game" class="form-horizontal"  action="/games/save">
          <div class="form-group has-feedback">
-            
-      
 
         </div>
         <div class="form-group">
 
         </div>
     </form:form>
-    <h2>CREA LA PARTIDA</h2>
     
-    <spring:url value="/games/newGame"
-                            var="gameUrl2">
-                            
-                            
-    </spring:url> <a href="${fn:escapeXml(gameUrl2)}">Juega con amigos</a></td>
-               <br><br>
-                <h2>ÚNETE A TU AMIGO</h2>
-                
-       		<spring:url value="/games/join"
-                            var="gameUrl">
-                            <spring:param name="token" value="${game.token}" />
-                        </spring:url> <a href="${fn:escapeXml(gameUrl)}">Únete a tu amigo</a></td>
-                        
+    <div class="col-md-6" id="columA">
+    <div id="bb">
+    <br>
+
+	<br>
+    <h2 align="center">CREA UNA PARTIDA</h2>
+    
+    <p align="center">Crea una nueva partida</p>
+    <p align="center">en la que obtendrás un</p>
+    
+    <p align="center">código que deberás decir a</p>
+    
+    <p align="center">tu amigo para poder jugar juntos </p>
+        <p align="center">y demostrar lo que valeis </p>
+    
+    <p align="center">¡ DESAFÍO ENTRE AMIGOS !</p>
+    <br>
+	<br>   
+	 
+    <button class="btn btn-default" style = "margin-left:34%" onclick="window.location.href='/games/newGame'"><span>Juega con amigos</span></button>
+    </div>
+    <br>
+	
+	<br>
+    
+    <spring:url value="/resources/images/img234.png" htmlEscape="true" var="error2"/>
+            <img id="a32" class="img-responsive"  src="${error2}"/>  
+    
+     </div>
+
+    <div class="col-md-6" id="columB">
+ 
+    <spring:url value="/resources/images/img235.png" htmlEscape="true" var="error2"/>
+            <img id="a33" class="img-responsive"  src="${error2}"/>  
+    <br>
+	<br>
+	
+     <div id="aa">
+    <h2 align="center">ÚNETE A TU AMIGO</h2>
+    
+    <p align="center">Prueba a unirte a un amigo</p>
+    <p align="center">pidiéndole el código de la</p>
+    
+    <p align="center">partida que acaba de crear</p>
+    
+    <p align="center">para poder jugar juntos y</p>
+    <p align="center">¡ MACHÁCALO !</p>
+	<br>
+	<br>
+    <button class="btn btn-default" style = "margin-left:36%" onclick="window.location.href='/games/join'"><span>Únete a tu amigo</span></button>
+    </div>
+              
+ </div>
                         
     
 </petclinic:layout>

@@ -36,10 +36,7 @@
 
 
   
-    <div class="col-md-7">
-            <spring:url value="/resources/images/logoUniversidad_3.png" htmlEscape="true" var="logoUniImage"/>
-            <img class="img-responsive" src="${logoUniImage}"/>
-    </div>
+    
     
      
     

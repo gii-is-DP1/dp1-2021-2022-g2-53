@@ -6,6 +6,8 @@
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
 
 <petclinic:layout pageName="personas">
+<body style= "background: url(/resources/images/bck-petris.png)">
+
     <h2>Personas</h2>
 
 

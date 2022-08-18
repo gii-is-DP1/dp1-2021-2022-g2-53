@@ -8,14 +8,16 @@
 
 <petclinic:layout pageName="game">
 
+<body style= "background: url(/resources/images/bck-petris.png)">
 	<div class="row">
-		<div class="col-md-12">
+	
+		<div class="col-md-12" align="center">
 			<petclinic:board board="${board}" />
 			<c:forEach items="${board.pieces}" var="piece">
 				<petclinic:piece size="10" piece="${piece}" />
 			</c:forEach>
 		</div>
-		<div class="col-md-12">
+		<div class="col-md-12"align="center">
 
 			<c:forEach items="${board.sarcines}" var="sarcine">
 				<petclinic:sarcine size="20" sarcine="${sarcine}" />
@@ -29,7 +31,7 @@
 		<c:out value="${now}" />
 	</h2>
 
-	<table class="table table-striped">
+	<table class="table table-striped" id="tabla" >
 		<tr>
 			<th>Puntos del jugador negro</th>
 			<td><c:out value="${game.pointsBlack}" /></td>
@@ -55,9 +57,9 @@
 		</div>
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
-			<h2> ${message3}</h2>
-			<h2> ${message4}</h2>
-				<button class="btn btn-default" type="submit"><span>Realizar
+			<h2 style = "margin-left:17%"> ${message3}</h2>
+			<h2 style = "margin-left:17%"> ${message4}</h2>
+				<button class="btn btn-default"  style = "margin-left:32%" type="submit" id="boton2"><span>Realizar
 					movimiento</span></button>
 			</div>
 		</div>
