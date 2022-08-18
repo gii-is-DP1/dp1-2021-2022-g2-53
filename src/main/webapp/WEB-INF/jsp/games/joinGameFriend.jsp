@@ -17,7 +17,8 @@
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10" style = "margin-left:2%">
-            	<petclinic:inputField  label="token" name="token"/>
+            <petclinic:inputField  label="token" name="token"/>
+                              <button class="btn btn-default"  style = "margin-left:50%" type="submit"><span>Unirte a partida</span></button>
                 
             </div>
         </div>
@@ -37,7 +38,6 @@
             
         <br>
         
-            <button class="btn btn-default"  style = "margin-left:30.5%" type="submit"><span>Unirte a partida</span></button>
 		
         </div>
      <div class="col-md-2">
