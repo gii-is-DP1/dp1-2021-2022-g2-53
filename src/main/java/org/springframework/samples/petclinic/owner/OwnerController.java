@@ -33,12 +33,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-/**
- * @author Juergen Hoeller
- * @author Ken Krebs
- * @author Arjen Poutsma
- * @author Michael Isvy
- */
 @Controller
 public class OwnerController {
 
@@ -67,11 +61,9 @@ public class OwnerController {
 	public String processCreationForm(@Valid Owner owner, BindingResult result) {
 		if (result.hasErrors()) {
 			return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
-		}
-		else {
-			//creating owner, user and authorities
+		} else {
 			this.ownerService.saveOwner(owner);
-			
+
 			return "redirect:/owners/" + owner.getId();
 		}
 	}
@@ -85,25 +77,19 @@ public class OwnerController {
 	@GetMapping(value = "/owners")
 	public String processFindForm(Owner owner, BindingResult result, Map<String, Object> model) {
 
-		// allow parameterless GET request for /owners to return all records
 		if (owner.getLastName() == null) {
-			owner.setLastName(""); // empty string signifies broadest possible search
+			owner.setLastName("");
 		}
 
-		// find owners by last name
 		Collection<Owner> results = this.ownerService.findOwnerByLastName(owner.getLastName());
 		if (results.isEmpty()) {
-			// no owners found
+
 			result.rejectValue("lastName", "notFound", "not found");
 			return "owners/findOwners";
-		}
-		else if (results.size() == 1) {
-			// 1 owner found
+		} else if (results.size() == 1) {
 			owner = results.iterator().next();
 			return "redirect:/owners/" + owner.getId();
-		}
-		else {
-			// multiple owners found
+		} else {
 			model.put("selections", results);
 			return "owners/ownersList";
 		}
@@ -121,19 +107,13 @@ public class OwnerController {
 			@PathVariable("ownerId") int ownerId) {
 		if (result.hasErrors()) {
 			return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
-		}
-		else {
+		} else {
 			owner.setId(ownerId);
 			this.ownerService.saveOwner(owner);
 			return "redirect:/owners/{ownerId}";
 		}
 	}
 
-	/**
-	 * Custom handler for displaying an owner.
-	 * @param ownerId the ID of the owner to display
-	 * @return a ModelMap with the model attributes for the view
-	 */
 	@GetMapping("/owners/{ownerId}")
 	public ModelAndView showOwner(@PathVariable("ownerId") int ownerId) {
 		ModelAndView mav = new ModelAndView("owners/ownerDetails");

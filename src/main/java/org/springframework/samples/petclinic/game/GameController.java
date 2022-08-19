@@ -13,6 +13,7 @@ import org.springframework.samples.petclinic.jugador.Jugador;
 import org.springframework.samples.petclinic.jugador.JugadorService;
 import org.springframework.samples.petclinic.persona.Persona;
 import org.springframework.samples.petclinic.persona.PersonaService;
+import org.springframework.samples.petclinic.user.User;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -44,6 +45,19 @@ public class GameController {
 		String view = "games/listGames";
 		Iterable<Game> games = gameService.findAll();
 		modelMap.addAttribute("games", games);
+		return view;
+	}
+
+	@GetMapping(value = "/mostrarpartidasencurso")
+	public String listCurrentGames(ModelMap modelMap) {
+		String view = "games/listGames";
+		Iterable<Game> games = gameService.findAll();
+		List<Game> partidaenCurso = new ArrayList<Game>();
+		for (Game game : games)
+			if (game.getPointsRed() < 9 && game.getPointsBlack() < 9) {
+				partidaenCurso.add(game);
+			}
+		modelMap.addAttribute("games", partidaenCurso);
 		return view;
 	}
 
@@ -83,6 +97,9 @@ public class GameController {
 		String username = ud.getUsername();
 		Persona persona = personaService.getPersonaByUserName(username);
 		String jugador = persona.getJugadores().get(persona.getJugadores().size() - 1).getColor();
+		if (game.getJugadores().get(0).getPersona() != persona && game.getJugadores().get(1).getPersona() != persona) {
+			return "redirect:/errorSuplantacion";
+		}
 		modelMap.put("now", new Date());
 		if (game.getTurnos().get(game.getTurno()).equals("fin")) {
 			modelMap.addAttribute("winner", game.getGanador());

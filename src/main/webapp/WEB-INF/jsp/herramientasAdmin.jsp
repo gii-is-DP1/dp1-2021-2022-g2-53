@@ -59,6 +59,8 @@
 		<p>
 		
 		<button class="btn btn-default" id = "pedrito" style="margin-left:80px" onclick="window.location.href='/personas/registro/0'"><span>Usuarios registrados</span></button>
+		
+		<button class="btn btn-default" id = "pedrito" style="margin-left:80px" onclick="window.location.href='/games/mostrarpartidasencurso'"><span>Listado de partidas en curso</span></button>
 		<h2></h2>
 		<br></br><br>
 		

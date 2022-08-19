@@ -25,6 +25,12 @@ import org.springframework.validation.BindingResult;
 @Getter
 @Setter
 public class Board extends BaseEntity {
+
+	private static final Integer numero_de_casillas = 7;
+	private static final Integer numero_maximo_de_fichas_en_casilla = 5;
+	private static final Integer numero_maximo_de_fichas = 20;
+	private static final Integer numero_maximo_antes_de_sarcina = 4;
+
 	String background;
 	@Positive
 	int width;
@@ -94,14 +100,17 @@ public class Board extends BaseEntity {
 				.filter(x -> x.getPosition() == pos && x.getColor().equals(red_color)).collect(Collectors.toList());
 		List<Sarcine> blacksSar = this.sarcines.stream()
 				.filter(x -> x.getPosition() == pos && x.getColor().equals(black_color)).collect(Collectors.toList());
-		if (reds.size() >= 4 && blacks.size() == 0 && !containsSarcine(pos, red_color) && redsSar.size() < 5) {
+		if (reds.size() >= numero_maximo_antes_de_sarcina && blacks.size() == 0 && !containsSarcine(pos, red_color)
+				&& redsSar.size() < numero_maximo_de_fichas_en_casilla) {
 			return red_color_sarcine;
-		} else if (reds.size() == 0 && blacks.size() >= 4 && !containsSarcine(pos, black_color)
-				&& blacksSar.size() < 5) {
+		} else if (reds.size() == 0 && blacks.size() >= numero_maximo_antes_de_sarcina
+				&& !containsSarcine(pos, black_color) && blacksSar.size() < numero_maximo_de_fichas_en_casilla) {
 			return black_color_sarcine;
-		} else if (reds.size() > 0 && blacks.size() == 0 && !containsSarcine(pos, black_color) && reds.size() < 20) {
+		} else if (reds.size() > 0 && blacks.size() == 0 && !containsSarcine(pos, black_color)
+				&& reds.size() < numero_maximo_de_fichas) {
 			return red_color;
-		} else if (reds.size() == 0 && blacks.size() > 0 && !containsSarcine(pos, red_color) && blacks.size() < 20) {
+		} else if (reds.size() == 0 && blacks.size() > 0 && !containsSarcine(pos, red_color)
+				&& blacks.size() < numero_maximo_de_fichas) {
 			return black_color;
 		} else {
 			return "";
@@ -117,9 +126,11 @@ public class Board extends BaseEntity {
 				.filter(x -> x.getPosition() == pos && x.getColor().equals(red_color)).collect(Collectors.toList());
 		List<Sarcine> blacksSar = this.sarcines.stream()
 				.filter(x -> x.getPosition() == pos && x.getColor().equals(black_color)).collect(Collectors.toList());
-		if (reds.size() >= 5 && !containsSarcine(pos, red_color) && redsSar.size() < 5) {
+		if (reds.size() >= numero_maximo_de_fichas_en_casilla && !containsSarcine(pos, red_color)
+				&& redsSar.size() < numero_maximo_de_fichas_en_casilla) {
 			return red_color_sarcine;
-		} else if ( blacks.size() >= 5 && !containsSarcine(pos, black_color) && blacksSar.size() < 5) {
+		} else if (blacks.size() >= numero_maximo_de_fichas_en_casilla && !containsSarcine(pos, black_color)
+				&& blacksSar.size() < numero_maximo_de_fichas_en_casilla) {
 			return black_color_sarcine;
 		} else {
 			return "";
@@ -220,7 +231,7 @@ public class Board extends BaseEntity {
 		List<Integer> ls = new ArrayList<>();
 		Integer red = 0;
 		Integer black = 0;
-		for (Integer i = 1; i <= 7; i++) {
+		for (Integer i = 1; i <= numero_de_casillas; i++) {
 			Integer p = i;
 			Integer sarcineRed = 0;
 			Integer sarcineBlack = 0;
@@ -229,10 +240,10 @@ public class Board extends BaseEntity {
 			List<Piece> reds = this.pieces.stream().filter(x -> x.getPosition() == p && x.getColor().equals(red_color))
 					.collect(Collectors.toList());
 			if (this.containsSarcine(p, black_color)) {
-				sarcineBlack = 5;
+				sarcineBlack = numero_maximo_de_fichas_en_casilla;
 			}
 			if (this.containsSarcine(p, red_color)) {
-				sarcineRed = 5;
+				sarcineRed = numero_maximo_de_fichas_en_casilla;
 			}
 
 			if (reds.size() + sarcineRed > blacks.size() + sarcineBlack) {

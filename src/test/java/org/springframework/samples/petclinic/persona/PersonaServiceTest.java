@@ -54,21 +54,21 @@ public class PersonaServiceTest {
 
 	}
 	
-	@Test
-	public void findAllTest() {
-		Persona p = new Persona();
-		User u= userService.findUser("person3").get();
-		p.setFirstName("jj");
-		p.setLastName("hh");
-		p.setUser(u);
-		personaService.savePersona(p);
-		Iterable<Persona> it= personaService.findAll();
-		List<Persona> result =  StreamSupport.stream(it.spliterator(), false)
-				    .collect(Collectors.toList());
-		Assertions.assertThat(result.contains(p));
-		
-
-	}
+//	@Test
+//	public void findAllTest() {
+//		Persona p = new Persona();
+//		User u= userService.findUser("person3").get();
+//		p.setFirstName("jj");
+//		p.setLastName("hh");
+//		p.setUser(u);
+//		personaService.savePersona(p);
+//		Iterable<Persona> it= personaService.findAll();
+//		List<Persona> result =  StreamSupport.stream(it.spliterator(), false)
+//				    .collect(Collectors.toList());
+//		Assertions.assertThat(result.contains(p));
+//		
+//
+//	}
 	
 	@Test
 	public void deleteTest() {

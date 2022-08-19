@@ -23,23 +23,15 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * Mostly used as a facade for all Petclinic controllers Also a placeholder
- * for @Transactional and @Cacheable annotations
- *
- * @author Michael Isvy
- */
 @Service
 public class OwnerService {
 
-	private OwnerRepository ownerRepository;	
-	
-	
+	private OwnerRepository ownerRepository;
 
 	@Autowired
 	public OwnerService(OwnerRepository ownerRepository) {
 		this.ownerRepository = ownerRepository;
-	}	
+	}
 
 	@Transactional(readOnly = true)
 	public Owner findOwnerById(int id) throws DataAccessException {
@@ -53,12 +45,7 @@ public class OwnerService {
 
 	@Transactional
 	public void saveOwner(Owner owner) throws DataAccessException {
-		//creating owner
-		ownerRepository.save(owner);		
-		//creating user
-		//userService.saveUser(owner.getUser());
-		//creating authorities
-		//authoritiesService.saveAuthorities(owner.getUser().getUsername(), "owner");
-	}		
+		ownerRepository.save(owner);
+	}
 
 }
