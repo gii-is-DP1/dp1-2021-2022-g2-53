@@ -14,17 +14,19 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Sarcine extends BaseEntity {
+
 	String color;
+
 	@Range(min = 1, max = 7)
 	int position;
+
 	@ManyToOne
 	@JoinColumn(name = "board_id")
 	Board board;
 
-	
 	private static final String red_color = "red";
 	private static final String black_color = "black";
-	
+
 	public Sarcine() {
 		super();
 	}

@@ -20,11 +20,14 @@
         </div>
   </div>
   <br></br>
-  <div class="row">
+  <div class="row" >
    <h2 align="center">Bienvenido a las herramientas de Administrador de Petris</h2>
-
-         
-</div>
+    </div>
+    <br>
+   <div class="row" align="center">
+        		<button class="btn btn-default" id = "pedrito2" style="margin-left:-20px" onclick="window.location.href='/users/auditoria'"><span>Registro de modificación</span></button>
+   
+    </div>  
      
      <div class="col-md-4" style="margin-top:220px;margin-left:-50px">
      
@@ -56,6 +59,8 @@
 		<p>
 		
 		<button class="btn btn-default" id = "pedrito" style="margin-left:80px" onclick="window.location.href='/personas/registro/0'"><span>Usuarios registrados</span></button>
+		
+		<button class="btn btn-default" id = "pedrito" style="margin-left:80px" onclick="window.location.href='/games/mostrarpartidasencurso'"><span>Listado de partidas en curso</span></button>
 		<h2></h2>
 		<br></br><br>
 		
@@ -64,9 +69,7 @@
 		
 		<p>
 		
-		<button class="btn btn-default" id = "pedrito" onclick="window.location.href='/users/auditoria'"><span>Registro de modificación</span></button>
-		<h2></h2>
-		<br></br><br>
+		
 		
 		
 		<p>

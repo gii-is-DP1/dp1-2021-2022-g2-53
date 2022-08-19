@@ -20,20 +20,15 @@ import lombok.Setter;
 @Setter
 public class Jugador extends BaseEntity {
 
-	
 	String color;
 
 	@ManyToOne
 	@NotNull
 	@JoinColumn(name = "persona_id")
 	private Persona persona;
-	
+
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "game_id")
 	Game game;
-
-	/*
-	@ManyToOne
-	private Game game;*/
 
 }

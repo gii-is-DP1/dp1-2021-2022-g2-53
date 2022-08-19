@@ -4,8 +4,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
-
+<body style= "background: url(/resources/images/bck-petris.png)">
 <petclinic:layout pageName="users">
+
     <h2>Tabla de modificaciones</h2>
       <table id="UsersTable" class="table table-striped">
         <thead>

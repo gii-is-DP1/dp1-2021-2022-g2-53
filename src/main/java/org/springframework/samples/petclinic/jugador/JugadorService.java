@@ -5,10 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-
-
 import org.springframework.samples.petclinic.game.Game;
-
 
 import org.springframework.samples.petclinic.persona.Persona;
 import org.springframework.stereotype.Service;
@@ -19,16 +16,11 @@ public class JugadorService {
 
 	@Autowired
 	JugadorRepository jugadorRepo;
-	
 
 	@Transactional
 	public void save(Jugador jugador) {
 		jugadorRepo.save(jugador);
 	}
-	
-	
-
-
 
 	@Transactional
 	public int jugadorCount() {
@@ -40,10 +32,7 @@ public class JugadorService {
 		return jugadorRepo.findById(id).get();
 
 	}
-	
 
-	
-	
 	@Transactional
 	public List<Game> historialgame(Persona persona) {
 		List<Game> lista = new ArrayList<Game>();
@@ -51,10 +40,10 @@ public class JugadorService {
 		for (int i = 0; i < lsjug.size(); i++) {
 			Jugador j = lsjug.get(i);
 			Game game = j.getGame();
-				lista.add(game);
-			}
-
+			lista.add(game);
+		}
 		
+
 		return lista;
 	}
 

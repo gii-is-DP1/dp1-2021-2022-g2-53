@@ -4,9 +4,7 @@ INSERT INTO authorities(id,username,authority) VALUES (1,'admin1','admin');
 -- One owner user, named owner1 with passwor 0wn3r
 -- INSERT INTO users(username,password,enabled) VALUES ('owner1','0wn3r',TRUE);
 -- INSERT INTO authorities(id,username,authority) VALUES (2,'owner1','owner');
--- One vet user, named vet1 with passwor v3t
-INSERT INTO users(username,password,enabled) VALUES ('vet1','v3t',TRUE);
-INSERT INTO authorities(id,username,authority) VALUES (3,'vet1','veterinarian');
+
 -- One person user, named ´person1 with passwor personi
 INSERT INTO users(username,password,enabled) VALUES ('person1','personi',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (4,'person1','persona');
@@ -44,13 +42,6 @@ INSERT INTO authorities(id,username,authority) VALUES (14,'person11','persona');
 INSERT INTO users(username,password,enabled) VALUES ('person12','personi',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (15,'person12','persona');
 
-INSERT INTO vets VALUES (1, 'James', 'Carter');
-INSERT INTO vets VALUES (2, 'Helen', 'Leary');
-INSERT INTO vets VALUES (3, 'Linda', 'Douglas');
-INSERT INTO vets VALUES (4, 'Rafael', 'Ortega');
-INSERT INTO vets VALUES (5, 'Henry', 'Stevens');
-INSERT INTO vets VALUES (6, 'Sharon', 'Jenkins');
-
 INSERT INTO personas VALUES (1, 'luis', 'chacon romero', 'person1');
 INSERT INTO personas VALUES (2, 'pepe', 'sanchez cortes', 'person2');
 INSERT INTO personas VALUES (3, 'juan', 'mena vargas', 'person3');
@@ -71,6 +62,7 @@ INSERT INTO boards(id,background,height,width) VALUES (2,'/resources/images/tabl
 
 INSERT INTO games (id,points_black,points_red,board_id,turno,token) VALUES (1,2,2,1,15,'abc-abc');
 INSERT INTO games (id,points_black,points_red,board_id,turno,token) VALUES (2,10,4,2,32,'ebc-qer');
+INSERT INTO games (id,points_black,points_red,board_id,turno,token) VALUES (3,10,5,2,42,'daf-cca');
 
 INSERT INTO jugador(id,color,game_id,persona_id) VALUES (1,'red',1,1);
 INSERT INTO jugador(id,color,game_id,persona_id) VALUES (2,'black',1,2);

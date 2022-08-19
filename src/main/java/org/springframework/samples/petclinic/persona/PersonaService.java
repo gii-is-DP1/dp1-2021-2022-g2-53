@@ -1,29 +1,20 @@
 package org.springframework.samples.petclinic.persona;
 
-
-
-
 import org.springframework.beans.factory.annotation.Autowired;
-
-
-
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.samples.petclinic.user.AuthoritiesService;
 import org.springframework.samples.petclinic.user.User;
 import org.springframework.samples.petclinic.user.UserService;
-
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class PersonaService {
-	
-	
+
 	@Autowired
 	private PersonaRepository personaRepo;
 
@@ -32,15 +23,13 @@ public class PersonaService {
 	@Autowired
 	private AuthoritiesService authoritiesService;
 
-	
-	
 	@Transactional
 	public User getUserByUserName(String username) {
 		return userService.findUser(username).get();
 	}
 
 	@Transactional
-	public Persona getPersonaByUser(User user){
+	public Persona getPersonaByUser(User user) {
 		return personaRepo.getPersonaByUser(user);
 	}
 
@@ -48,34 +37,32 @@ public class PersonaService {
 	public Persona getPersonaByUserName(String username) {
 		return this.getPersonaByUser(getUserByUserName(username));
 	}
-	
+
 	@Transactional
 	public Persona findId(int id) {
 		return personaRepo.findById(id).get();
 
 	}
-	
+
 	@Transactional
 	public Page<Persona> findAll(Pageable pageable) {
 		return personaRepo.findAll(pageable);
 	}
-	
+
 	@Transactional
 	public void delete(Persona persona) {
 		personaRepo.delete(persona);
-		
 
 	}
 
-	@Transactional
+	@Transactional(rollbackFor=Exception.class)
 	public void savePersona(Persona p) throws DataAccessException {
-		//creating persona
-		personaRepo.save(p);		
-		//creating user
+		// creating persona
+		personaRepo.save(p);
+		// creating user
 		userService.saveUser(p.getUser());
-		//creating authorities
+		// creating authorities
 		authoritiesService.saveAuthorities(p.getUser().getUsername(), "persona");
 	}
-
 
 }

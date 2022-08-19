@@ -33,12 +33,6 @@ import org.springframework.web.bind.annotation.InitBinder;
 
 import org.springframework.web.bind.annotation.PostMapping;
 
-/**
- * @author Juergen Hoeller
- * @author Ken Krebs
- * @author Arjen Poutsma
- * @author Michael Isvy
- */
 @Controller
 public class UserController {
 
@@ -71,14 +65,13 @@ public class UserController {
 		if (result.hasErrors()) {
 			return VIEWS_OWNER_CREATE_FORM;
 		} else {
-			// creating owner, user, and authority
 			this.ownerService.saveOwner(owner);
 			return "redirect:/";
 		}
 	}
 
 	@GetMapping(value = "/users/auditoria")
-	public String showGamePerson(ModelMap modelMap) {
+	public String showAuditable(ModelMap modelMap) {
 		String view = "users/auditoria";
 		Iterable<User> user = UserRepository.getUsers();
 		modelMap.addAttribute("users", user);

@@ -1,6 +1,5 @@
 package org.springframework.samples.petclinic.persona;
 
-
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -22,16 +21,13 @@ import lombok.Setter;
 @Table(name = "personas")
 @Getter
 @Setter
-
-
-public class Persona extends Person{
+public class Persona extends Person {
 
 	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user", referencedColumnName = "username")
+	@JoinColumn(name = "user", referencedColumnName = "username")
 	private User user;
+
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "persona")
 	private List<Jugador> jugadores;
-	
 
-	
 }
