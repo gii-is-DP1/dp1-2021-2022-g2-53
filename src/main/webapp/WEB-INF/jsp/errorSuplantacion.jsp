@@ -9,15 +9,6 @@
 <body style="background: url(/resources/images/backgroundPetris.jpg)">
 	<petclinic:layout pageName="home">
 
-		<div class="row">
-			<div class="col-md-2"></div>
-			<div class="col-md-8">
-				<!--  spring:url value="/resources/images/PetrisLogo.png" htmlEscape="true" var="PetrisLogo"/>
-            <img class="img-responsive" src="${PetrisLogo}" width="800px" />
-            -->
-			</div>
-			<div class="col-md-2"></div>
-		</div>
 		<div align="center" style="margin-left: 50px; margin-top: -20px;">
 
 			<spring:url value="/resources/images/videoPetris3.gif"
@@ -34,7 +25,7 @@
 
 		<h2 align="center">HAS INTENTADO SUPLANTAR UNA IDENTIDAD Y ENTRAR
 			EN UNA PARTIDA AJENA</h2>
-			<br>
+		<br>
 		<h4 align="center">En Petris no toleramos esa actitud</h4>
 
 

@@ -56,8 +56,8 @@ INSERT INTO personas VALUES (11, 'pepe', 'martin cortes', 'person11');
 INSERT INTO personas VALUES (12, 'juan', 'mena rodriguez', 'person12');
 
 
-INSERT INTO boards(id,background,height,width) VALUES (1,'/resources/images/tablero.jpg',300,500);
-INSERT INTO boards(id,background,height,width) VALUES (2,'/resources/images/tablero.jpg',300,500);
+INSERT INTO boards(id,background,height,width) VALUES (1,'/resources/images/tablero.png',300,500);
+INSERT INTO boards(id,background,height,width) VALUES (2,'/resources/images/tablero.png',300,500);
 
 
 INSERT INTO games (id,points_black,points_red,board_id,turno,token) VALUES (1,2,2,1,15,'abc-abc');
