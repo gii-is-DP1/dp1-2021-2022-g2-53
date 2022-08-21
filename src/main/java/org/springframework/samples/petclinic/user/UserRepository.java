@@ -7,4 +7,5 @@ public interface UserRepository extends CrudRepository<User, String> {
 	
 	@Query("SELECT  p from User p ")
 	Iterable<User> getUsers();
+
 }

@@ -9,7 +9,7 @@
 <petclinic:layout pageName="game">
 
 	<table class="table table-striped">
-	<h2>Fin de partida</h2>
+		<h2>Fin de partida</h2>
 		<tr>
 			<th>Puntos del jugador negro</th>
 			<td><c:out value="${game.pointsBlack}" /></td>
