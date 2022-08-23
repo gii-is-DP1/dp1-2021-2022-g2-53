@@ -12,34 +12,33 @@ import org.springframework.stereotype.Service;
 
 public class SarcineServiceTest {
 
-    @Autowired
-    private GameService gameService;
+	@Autowired
+	private GameService gameService;
 
-    @Autowired
-    private BoardService boardService;
+	@Autowired
+	private BoardService boardService;
 
-    @Autowired
-    private SarcineService sarcineService;
+	@Autowired
+	private SarcineService sarcineService;
 
-    @Test
-    public void sarcinesCount() {
-            int count=sarcineService.sarcineCount();
-            assertEquals(count, 2);
-        }
+	@Test
+	public void sarcinesCount() {
+		int count = sarcineService.sarcineCount();
+		assertEquals(count, 2);
+	}
 
-    @Test
-    public void SaveSarcine() {
-        Game game= gameService.findId(1);
-        Board board = boardService.findById(2);
-        board.setGame(game);
-        Sarcine sarcine=new Sarcine();
-        sarcine.setBoard(board);
-        sarcine.setColor("black");
-        sarcine.setPosition(1);
-        sarcineService.save(sarcine);
-        int count= sarcineService.sarcineCount();
-        assertEquals(count, 3);
-}
-
+	@Test
+	public void SaveSarcine() {
+		Game game = gameService.findId(1);
+		Board board = boardService.findById(2);
+		board.setGame(game);
+		Sarcine sarcine = new Sarcine();
+		sarcine.setBoard(board);
+		sarcine.setColor("black");
+		sarcine.setPosition(1);
+		sarcineService.save(sarcine);
+		int count = sarcineService.sarcineCount();
+		assertEquals(count, 3);
+	}
 
 }

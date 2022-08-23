@@ -34,7 +34,6 @@ import org.springframework.test.web.servlet.MockMvc;
 @WebMvcTest(value = GameController.class, excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = WebSecurityConfigurer.class), excludeAutoConfiguration = SecurityConfiguration.class)
 public class GameControllerTests {
 
-
 	@MockBean
 	private GameService gameService;
 
@@ -56,7 +55,7 @@ public class GameControllerTests {
 	private Game game;
 
 	private Game game2;
-	
+
 	private Game game3;
 
 	private Persona persona;
@@ -64,9 +63,6 @@ public class GameControllerTests {
 	private Jugador jugador1;
 
 	private Jugador jugador2;
-	
-	
-	
 
 	@Autowired
 	private MockMvc mockMvc;
@@ -78,8 +74,7 @@ public class GameControllerTests {
 		game3.setPointsBlack(2);
 		game3.setPointsRed(2);
 		game3.setTurno(2);
-		
-		
+
 		game2 = new Game();
 		game2.setId(4);
 		game2.setPointsBlack(2);
@@ -87,7 +82,7 @@ public class GameControllerTests {
 		game2.setTurno(1);
 
 		Board board2 = new Board();
-		
+
 		game3.setBoard(board2);
 
 		game2.setBoard(board2);
@@ -136,109 +131,89 @@ public class GameControllerTests {
 	@WithMockUser(value = "persona")
 	@Test
 	void testGamesList() throws Exception {
-		mockMvc.perform(get("/games/mostrarpartidas"))
-			.andExpect(status().isOk())
-			.andExpect(model().attributeExists("games"))
-			.andExpect(view().name("games/listGames"));
+		mockMvc.perform(get("/games/mostrarpartidas")).andExpect(status().isOk())
+				.andExpect(model().attributeExists("games")).andExpect(view().name("games/listGames"));
 	}
+
 	@WithMockUser(value = "persona")
 	@Test
 	void testShowGame() throws Exception {
-		mockMvc.perform(get("/games/{gameId}", 4))
-		.andExpect(status().isOk())
-		.andExpect(view().name("games/showGame"));
+		mockMvc.perform(get("/games/{gameId}", 4)).andExpect(status().isOk()).andExpect(view().name("games/showGame"));
 	}
 
 	@WithMockUser(value = "persona")
 	@Test
 	void testShowGameEnd() throws Exception {
-		mockMvc.perform(get("/games/{gameId}", 3))
-		.andExpect(status().isOk())
-		.andExpect(view().name("games/endGame"));
+		mockMvc.perform(get("/games/{gameId}", 3)).andExpect(status().isOk()).andExpect(view().name("games/endGame"));
 	}
 
 	@WithMockUser(value = "persona")
 	@Test
 	void testPlayGameFin() throws Exception {
-		mockMvc.perform(get("/games/play/{gameId}", 3))
-		.andExpect(view().name("games/endGame"));
+		mockMvc.perform(get("/games/play/{gameId}", 3)).andExpect(view().name("games/endGame"));
 	}
-	
+
 	@WithMockUser(value = "persona")
 	@Test
 	void testPlayGamePhase() throws Exception {
-		mockMvc.perform(get("/games/play/{gameId}", 5))
-		.andExpect(view().name("games/playGame"));
+		mockMvc.perform(get("/games/play/{gameId}", 5)).andExpect(view().name("games/playGame"));
 	}
 
 	@WithMockUser(value = "persona")
 	@Test
 	void testPlayGameJuego() throws Exception {
-		mockMvc.perform(get("/games/play/{gameId}", 4))
-		.andExpect(view().name("games/playGame"));
+		mockMvc.perform(get("/games/play/{gameId}", 4)).andExpect(view().name("games/playGame"));
 	}
 
 	@WithMockUser(value = "persona")
 	@Test
 	void testCreateGame() throws Exception {
-		mockMvc.perform(get("/games/new"))
-		.andExpect(status().isOk())
-		.andExpect(model().attributeExists("game"))
-		.andExpect(view().name("games/createGame"));
+		mockMvc.perform(get("/games/new")).andExpect(status().isOk()).andExpect(model().attributeExists("game"))
+				.andExpect(view().name("games/createGame"));
 	}
 
 	@WithMockUser(value = "persona")
 	@Test
 	void testCreateGameFriend() throws Exception {
-		mockMvc.perform(get("/games/newGame"))
-		.andExpect(status().isOk())
-		.andExpect(model().attributeExists("game"))
-		.andExpect(view().name("games/createGameFriend"));
+		mockMvc.perform(get("/games/newGame")).andExpect(status().isOk()).andExpect(model().attributeExists("game"))
+				.andExpect(view().name("games/createGameFriend"));
 	}
 
 	@WithMockUser(value = "persona")
 	@Test
 	void testSaveJuegoAmigo() throws Exception {
-		mockMvc.perform(get("/games/saveFriend/{token}", "abc-abc"))
-		.andExpect(status().is3xxRedirection())
-		.andExpect(view().name("redirect:/games/play/null"));
+		mockMvc.perform(get("/games/saveFriend/{token}", "abc-abc")).andExpect(status().is3xxRedirection())
+				.andExpect(view().name("redirect:/games/play/null"));
 	}
 
 	@WithMockUser(value = "persona")
 	@Test
 	void testJoinGame() throws Exception {
-		mockMvc.perform(get("/games/join"))
-		.andExpect(status().isOk())
-		.andExpect(model().attributeExists("game"))
-		.andExpect(view().name("games/joinGameFriend"));
+		mockMvc.perform(get("/games/join")).andExpect(status().isOk()).andExpect(model().attributeExists("game"))
+				.andExpect(view().name("games/joinGameFriend"));
 
 	}
 
 	@WithMockUser(value = "persona")
 	@Test
 	void testEditGame() throws Exception {
-		mockMvc.perform(get("/games/edit/{gameId}", 3))
-				.andExpect(status().isOk())
+		mockMvc.perform(get("/games/edit/{gameId}", 3)).andExpect(status().isOk())
 				.andExpect(model().attribute("game", hasProperty("id", is(3))))
 				.andExpect(view().name("games/editGame"));
 
 	}
-	
+
 	@WithMockUser(value = "persona")
 	@Test
 	void testSaveGame() throws Exception {
-		mockMvc.perform(post("/games/save")
-				.with(csrf()))
-				.andExpect(view().name("redirect:/games/play/null"));
+		mockMvc.perform(post("/games/save").with(csrf())).andExpect(view().name("redirect:/games/play/null"));
 
 	}
 
 	@WithMockUser(value = "persona")
 	@Test
 	void testSaveToken() throws Exception {
-		mockMvc.perform(post("/games/saveToken")
-				.with(csrf()))
-				.andExpect(view().name("games/createGame"));
+		mockMvc.perform(post("/games/saveToken").with(csrf())).andExpect(view().name("games/createGame"));
 
 	}
 
@@ -246,10 +221,7 @@ public class GameControllerTests {
 	@Test
 	void testProcessUpdateGameForm() throws Exception {
 		mockMvc.perform(
-				post("/games/edit/{gameId}", 3)
-				.with(csrf())
-				.param("points_black", "2").param("points_red", "2"))
-				.andExpect(status().is3xxRedirection())
-				.andExpect(view().name("redirect:/games"));
+				post("/games/edit/{gameId}", 3).with(csrf()).param("points_black", "2").param("points_red", "2"))
+				.andExpect(status().is3xxRedirection()).andExpect(view().name("redirect:/games"));
 	}
 }

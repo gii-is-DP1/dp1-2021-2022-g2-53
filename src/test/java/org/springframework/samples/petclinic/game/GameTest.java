@@ -12,19 +12,19 @@ import org.springframework.stereotype.Service;
 
 @DataJpaTest(includeFilters = @ComponentScan.Filter(Service.class))
 public class GameTest {
-	
+
 	@Autowired
 	private GameService gameService;
 	@Autowired
 	private BoardService boardService;
-	
+
 	@Test
 	public void pointsTest() {
 		Game game = gameService.findId(1);
 		Assertions.assertThat(game.getPointsBlack() == 3);
 		Assertions.assertThat(game.getPointsRed() == 8);
 	}
-	
+
 	@Test
 	public void tokenTest() {
 		Game game = new Game();
@@ -33,11 +33,11 @@ public class GameTest {
 		Assertions.assertThat(token.length() == 7);
 		Assertions.assertThat(token.matches("^[a-w]{3}-[1-9]{3}$"));
 	}
-	
+
 	@Test
 	public void ganadorPorPuntosTest() {
 		Game game = new Game();
-		game.setTurno(game.getTurnos().size()-1);
+		game.setTurno(game.getTurnos().size() - 1);
 		game.setPointsBlack(1);
 		game.setPointsRed(0);
 		Assertions.assertThat(game.getGanador() == "Jugador rojo");
@@ -45,7 +45,7 @@ public class GameTest {
 		game.setPointsRed(8);
 		Assertions.assertThat(game.getGanador() == "Jugador negro");
 	}
-	
+
 	@Test
 	public void ganadorPorBacteriasTest() {
 		Game game = new Game();
@@ -63,23 +63,23 @@ public class GameTest {
 		p4.setId(4);
 		p5.setColor("black");
 		p5.setId(5);
-		
-		game.setTurno(game.getTurnos().size()-1);
+
+		game.setTurno(game.getTurnos().size() - 1);
 		game.setPointsBlack(0);
 		game.setPointsRed(0);
-		
+
 		pieces.add(p1);
 		pieces.add(p2);
 		pieces.add(p3);
 		board.setPieces(pieces);
 		game.setBoard(board);
 		Assertions.assertThat(game.getGanador() == "Jugador negro");
-		
+
 		pieces.add(p4);
 		pieces.add(p5);
 		Assertions.assertThat(game.getGanador() == "Jugador rojo");
 	}
-	
+
 	@Test
 	public void ganadorPorLimitePuntosTest() {
 		Game game = new Game();
@@ -91,5 +91,5 @@ public class GameTest {
 		game.setPointsRed(9);
 		Assertions.assertThat(game.getGanador() == "Jugador negro");
 	}
-    
+
 }

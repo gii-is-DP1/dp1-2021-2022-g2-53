@@ -36,66 +36,45 @@ public class PersonaServiceTest {
 	@Test
 	public void getPersonaByUserTest() {
 		User u = userService.findUser("person1").get();
-		Persona p= personaService.getPersonaByUser(u);
+		Persona p = personaService.getPersonaByUser(u);
 		Assertions.assertThat(u).isEqualTo(p.getUser());
 	}
-	
+
 	@Test
 	public void getPersonaByUserNameTest() {
 		Persona p = personaService.getPersonaByUserName("person1");
 		Assertions.assertThat(p.getUser().getUsername()).isEqualTo("person1");
 	}
-	
+
 	@Test
 	public void findIdTest() {
-		int id= 1;
-		Persona p= personaRepo.findById(1).get();
+		int id = 1;
+		Persona p = personaRepo.findById(1).get();
 		assertEquals(p.getId(), id);
 
 	}
-	
-//	@Test
-//	public void findAllTest() {
-//		Persona p = new Persona();
-//		User u= userService.findUser("person3").get();
-//		p.setFirstName("jj");
-//		p.setLastName("hh");
-//		p.setUser(u);
-//		personaService.savePersona(p);
-//		Iterable<Persona> it= personaService.findAll();
-//		List<Persona> result =  StreamSupport.stream(it.spliterator(), false)
-//				    .collect(Collectors.toList());
-//		Assertions.assertThat(result.contains(p));
-//		
-//
-//	}
-	
+
 	@Test
 	public void deleteTest() {
 		Persona p = personaService.findId(3);
 		personaService.delete(p);
-		int count =(int) personaRepo.count();
-		assertEquals(count,2);
-
+		int count = (int) personaRepo.count();
+		assertEquals(count, 11);
 
 	}
-	
+
 	@Test
 	public void saveTest() {
 		Persona p = new Persona();
-		User u= userService.findUser("person3").get();
+		User u = userService.findUser("person3").get();
 		p.setFirstName("jj");
 		p.setLastName("hh");
 		p.setUser(u);
-		int count1 =(int) personaRepo.count();
+		int count1 = (int) personaRepo.count();
 		personaService.savePersona(p);
-		int count2 =(int) personaRepo.count();
-		assertEquals(count2,count1+1);
-
+		int count2 = (int) personaRepo.count();
+		assertEquals(count2, count1 + 1);
 
 	}
-
-	
-	
 
 }

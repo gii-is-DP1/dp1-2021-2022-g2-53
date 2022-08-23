@@ -16,11 +16,10 @@ public class GameServiceTests {
 	@Autowired
 	private GameService gameService;
 
-
 	@Test
 	public void GameCountTest() {
 		int count = gameService.gameCount();
-		assertEquals(count, 2);
+		assertEquals(count, 3);
 	}
 
 	@Test
@@ -28,17 +27,20 @@ public class GameServiceTests {
 		Game game = new Game();
 		gameService.save(game);
 		int count = gameService.gameCount();
-		assertEquals(count, 3);
+		assertEquals(count, 4);
 
 	}
 
 	@Test
 	public void DeleteGameTest() {
 		Game game = new Game();
+		Game game2 = new Game();
+
 		gameService.save(game);
+		gameService.save(game2);
 		gameService.delete(game);
 		int count = gameService.gameCount();
-		assertEquals(count, 2);
+		assertEquals(count, 4);
 
 	}
 

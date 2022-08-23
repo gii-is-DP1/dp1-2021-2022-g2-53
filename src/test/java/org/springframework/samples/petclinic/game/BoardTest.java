@@ -1,9 +1,5 @@
 package org.springframework.samples.petclinic.game;
 
-
-
-
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,13 +10,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
-
-
-
-
 @DataJpaTest(includeFilters = @ComponentScan.Filter(Service.class))
 public class BoardTest {
-
 
 	@Autowired
 	private BoardService boardService;
@@ -28,10 +19,6 @@ public class BoardTest {
 	private PieceService pieceService;
 	@Autowired
 	private SarcineService sarcineService;
-	
-	
-	
-
 
 	@Test
 	public void TestBinaryBoard() {
@@ -68,7 +55,6 @@ public class BoardTest {
 		Assertions.assertThat(board.getAllPiecesInTheSamePosition(pieceNewBlack).size()).isEqualTo(3);
 
 	}
-	
 
 	@Test
 	public void getAllPiecesInTheSamePositionAndSameColorTest() {
@@ -94,19 +80,20 @@ public class BoardTest {
 		Assertions.assertThat(board.getAllPiecesInTheSamePositionAndSameColor(pieceNewBlack).size()).isEqualTo(2);
 
 	}
+
 	@Test
 	public void getAllPiecesSameColorTest() {
 		Board board = boardService.findById(2);
-		
 
 		Assertions.assertThat(board.getAllPiecesSameColor("red").size()).isEqualTo(1);
 		Assertions.assertThat(board.getAllPiecesSameColor("black").size()).isEqualTo(1);
 
 	}
+
 	@Test
 	public void getAllSarcinesSameColorTest() {
 		Board board = boardService.findById(2);
-		List<Sarcine> ls = new ArrayList<Sarcine>(); 
+		List<Sarcine> ls = new ArrayList<Sarcine>();
 		Sarcine sarcine1 = new Sarcine();
 		Sarcine sarcine2 = new Sarcine();
 		sarcine1.setId(3);
@@ -206,7 +193,6 @@ public class BoardTest {
 
 	}
 
-
 	@Test
 	public void pollutionTest() {
 		Board board = boardService.findById(2);
@@ -221,6 +207,5 @@ public class BoardTest {
 		Assertions.assertThat(puntuacion.get(1)).isEqualTo(1);
 
 	}
-
 
 }
