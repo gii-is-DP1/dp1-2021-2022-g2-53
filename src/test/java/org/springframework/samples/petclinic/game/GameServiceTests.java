@@ -20,7 +20,7 @@ public class GameServiceTests {
 	@Test
 	public void GameCountTest() {
 		int count = gameService.gameCount();
-		assertEquals(count, 3);
+		assertEquals(count, 2);
 	}
 
 	@Test
@@ -28,7 +28,7 @@ public class GameServiceTests {
 		Game game = new Game();
 		gameService.save(game);
 		int count = gameService.gameCount();
-		assertEquals(count, 4);
+		assertEquals(count, 3);
 
 	}
 
@@ -38,7 +38,7 @@ public class GameServiceTests {
 		gameService.save(game);
 		gameService.delete(game);
 		int count = gameService.gameCount();
-		assertEquals(count, 3);
+		assertEquals(count, 2);
 
 	}
 
