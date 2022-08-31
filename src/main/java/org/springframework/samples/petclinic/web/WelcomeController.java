@@ -46,4 +46,9 @@ public class WelcomeController {
 	public String errorSuplantacion(Map<String, Object> model) {
 		return "errorSuplantacion";
 	}
+	
+	@GetMapping({"/errorMismoUsuarioEnPartida" })
+	public String errorMismoUsuarioEnPartida(Map<String, Object> model) {
+		return "errorMismoUsuarioEnPartida";
+	}
 }

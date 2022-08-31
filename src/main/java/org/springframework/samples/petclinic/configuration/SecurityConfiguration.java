@@ -56,9 +56,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/owners/**").hasAnyAuthority("owner", "admin")
 				.antMatchers("/register").permitAll()
 				.antMatchers("/welcome").permitAll()
-				
-				
+				.antMatchers("/errorMismoUsuarioEnPartida").hasAuthority("persona")
 				.antMatchers("/errorSuplantacion").hasAuthority("persona").anyRequest().denyAll().and().formLogin()
+				
 				
 				/* .loginPage("/login") */
 				.failureUrl("/login-error").and().logout().logoutSuccessUrl("/");
