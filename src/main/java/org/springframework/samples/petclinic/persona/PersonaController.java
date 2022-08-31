@@ -144,6 +144,12 @@ public class PersonaController {
 		String view = FORM;
 		Persona persona = personaService.findId(personaid);
 		boolean edit = true;
+		UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String username = ud.getUsername();
+		Persona persona2 = personaService.getPersonaByUserName(username);
+		if (!persona2.equals(persona)) {
+			return "redirect:/errorSuplantacion";
+		}
 		modelMap.addAttribute("persona", persona);
 		modelMap.addAttribute("edit", edit);
 		return view;
