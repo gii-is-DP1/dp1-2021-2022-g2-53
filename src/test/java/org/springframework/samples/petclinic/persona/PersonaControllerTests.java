@@ -78,7 +78,7 @@ public class PersonaControllerTests {
 			result.add(persona2);
 		
 			
-			
+			given(this.personaService.getPersonaByUserName("person3")).willReturn(persona);
 			given(this.personaService.findId(4)).willReturn(persona);
 
 			
@@ -144,12 +144,11 @@ public class PersonaControllerTests {
 		
 		
 		
-		@WithMockUser(value = "persona")
+		@WithMockUser(value = "person3")
 		@Test
 		void testInitEditPersonaPerfil() throws Exception {
 			mockMvc.perform(get("/personas/editperfil/{personaId}",4))
 					.andExpect(status().isOk())
-					.andExpect(model().attribute("persona", hasProperty("id", is(4))))
 					.andExpect(model().attribute("persona", hasProperty("firstName", is("George"))))
 					.andExpect(model().attribute("persona", hasProperty("lastName", is("Franklin"))))
 					.andExpect(view().name(FORM));

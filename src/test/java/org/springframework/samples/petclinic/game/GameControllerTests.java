@@ -134,6 +134,9 @@ public class GameControllerTests {
 		jugador1.setPersona(persona1);
 		jugador2.setPersona(persona2);
 		
+		persona1.setJugadores(List.of(jugador1));
+		persona2.setJugadores(List.of(jugador2));
+		
 		jugador1.setGame(game3);
 		jugador2.setGame(game3);
 
@@ -155,7 +158,7 @@ public class GameControllerTests {
 		given(this.personaService.getUserByUserName("persona2")).willReturn(u2);
 		given(this.personaService.getPersonaByUser(u)).willReturn(persona1);
 		given(this.personaService.getPersonaByUser(u2)).willReturn(persona2);
-		given(this.personaService.getPersonaByUserName("persona1")).willReturn(persona1);
+		given(this.personaService.getPersonaByUserName("persona")).willReturn(persona1);
 		given(this.personaService.getPersonaByUserName("persona2")).willReturn(persona2);
 		
 		
@@ -163,7 +166,7 @@ public class GameControllerTests {
 
 	}
 
-	@WithMockUser(value = "persona")
+	@WithMockUser(authorities = "admin")
 	@Test
 	void testGamesList() throws Exception {
 		mockMvc.perform(get("/games/mostrarpartidas"))
@@ -172,7 +175,7 @@ public class GameControllerTests {
 			.andExpect(view().name("games/listGames"));
 	}
 	
-	@WithMockUser(value = "persona")
+	@WithMockUser(authorities = "admin")
 	@Test
 	void testGamesListCurrent() throws Exception {
 		mockMvc.perform(get("/games/mostrarpartidasencurso"))
@@ -212,7 +215,7 @@ public class GameControllerTests {
 		.andExpect(view().name("games/playGame"));
 	}
 
-	@WithMockUser(value = "personas")
+	@WithMockUser(value = "persona")
 	@Test
 	void testPlayGameJuego() throws Exception {
 		mockMvc.perform(get("/games/play/{gameId}", 5))
