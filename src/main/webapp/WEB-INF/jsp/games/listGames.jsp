@@ -22,13 +22,13 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${games}" var="game">
+				<c:forEach items="${games}" var="game" >
 					<tr>
 						<td><c:out value="${game.pointsBlack}" /></td>
 						<td><c:out value="${game.pointsRed}" /></td>
 
 
-						<c:forEach items="${game.jugadores}" var="jug">
+						<c:forEach items="${game.jugadores}" var="jug" end="1">
 							<td><c:out value="${jug.persona.user.username}" /></td>
 						</c:forEach>
 					</tr>

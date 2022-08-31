@@ -52,7 +52,7 @@ public class PieceServiceTests {
         pieceService.save(piece);
         pieceService.delete(piece);
         int count=gameService.gameCount();
-        assertEquals(count,2);
+        assertEquals(count,3);
 
     }
     

@@ -13,7 +13,6 @@ import org.springframework.samples.petclinic.jugador.Jugador;
 import org.springframework.samples.petclinic.jugador.JugadorService;
 import org.springframework.samples.petclinic.persona.Persona;
 import org.springframework.samples.petclinic.persona.PersonaService;
-import org.springframework.samples.petclinic.user.User;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;

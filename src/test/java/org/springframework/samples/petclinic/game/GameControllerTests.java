@@ -28,6 +28,7 @@ import org.springframework.samples.petclinic.persona.PersonaService;
 import org.springframework.samples.petclinic.user.User;
 import org.springframework.samples.petclinic.user.UserService;
 import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
+
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -59,7 +60,9 @@ public class GameControllerTests {
 	
 	private Game game3;
 
-	private Persona persona;
+	private Persona persona1;
+	
+	private Persona persona2;
 
 	private Jugador jugador1;
 
@@ -73,13 +76,14 @@ public class GameControllerTests {
 
 	@BeforeEach
 	void setUp() {
+	
 		game3 = new Game();
 		game3.setId(5);
 		game3.setPointsBlack(2);
 		game3.setPointsRed(2);
 		game3.setTurno(2);
 		
-		
+	
 		game2 = new Game();
 		game2.setId(4);
 		game2.setPointsBlack(2);
@@ -89,7 +93,6 @@ public class GameControllerTests {
 		Board board2 = new Board();
 		
 		game3.setBoard(board2);
-
 		game2.setBoard(board2);
 
 		game = new Game();
@@ -98,37 +101,64 @@ public class GameControllerTests {
 		game.setPointsRed(3);
 		game.setTurno(40);
 		game.setToken("abc-abc");
+		
+		
 
 		Board board = new Board();
 
 		game.setBoard(board);
 
-		persona = new Persona();
+		persona1= new Persona();
 		User u = new User();
-		u.setUsername("persona");
+		u.setUsername("persona1");
 		u.setPassword("personi");
-		persona.setId(4);
-		persona.setFirstName("George");
-		persona.setLastName("Franklin");
-		persona.setUser(u);
+		persona1.setId(4);
+		persona1.setFirstName("George");
+		persona1.setLastName("Franklin");
+		persona1.setUser(u);
+		
+		persona2= new Persona();
+		User u2 = new User();
+		u2.setUsername("persona2");
+		u.setPassword("personi");
+		persona2.setId(6);
+		persona1.setFirstName("Hola");
+		persona1.setLastName("Hola");
+		persona1.setUser(u2);
 
 		jugador1 = new Jugador();
 		jugador1.setColor("red");
 		jugador2 = new Jugador();
 		jugador2.setColor("black");
+		
+		jugador1.setPersona(persona1);
+		jugador2.setPersona(persona2);
+		
+		jugador1.setGame(game3);
+		jugador2.setGame(game3);
 
 		List<Jugador> jugadores = new ArrayList<Jugador>();
 		jugadores.add(jugador1);
 		jugadores.add(jugador2);
-
-		persona.setJugadores(jugadores);
+		
+		List<Persona > personas = new ArrayList<>();
+		personas.add(persona1);
+		personas.add(persona2);
+		
+		game3.setJugadores(jugadores);
+		game.setJugadores(jugadores);
 
 		given(this.gameService.findId(3)).willReturn(game);
 		given(this.gameService.findId(4)).willReturn(game2);
 		given(this.gameService.findId(5)).willReturn(game3);
-		given(this.personaService.getUserByUserName("persona")).willReturn(u);
-		given(this.personaService.getPersonaByUser(u)).willReturn(persona);
-		given(this.personaService.getPersonaByUserName("persona")).willReturn(persona);
+		given(this.personaService.getUserByUserName("persona1")).willReturn(u);
+		given(this.personaService.getUserByUserName("persona2")).willReturn(u2);
+		given(this.personaService.getPersonaByUser(u)).willReturn(persona1);
+		given(this.personaService.getPersonaByUser(u2)).willReturn(persona2);
+		given(this.personaService.getPersonaByUserName("persona1")).willReturn(persona1);
+		given(this.personaService.getPersonaByUserName("persona2")).willReturn(persona2);
+		
+		
 		given(this.gameService.findGameByToken("abc-abc")).willReturn(game);
 
 	}
@@ -141,6 +171,16 @@ public class GameControllerTests {
 			.andExpect(model().attributeExists("games"))
 			.andExpect(view().name("games/listGames"));
 	}
+	
+	@WithMockUser(value = "persona")
+	@Test
+	void testGamesListCurrent() throws Exception {
+		mockMvc.perform(get("/games/mostrarpartidasencurso"))
+			.andExpect(status().isOk())
+			.andExpect(model().attributeExists("games"))
+			.andExpect(view().name("games/listGames"));
+	}
+	
 	@WithMockUser(value = "persona")
 	@Test
 	void testShowGame() throws Exception {
@@ -161,6 +201,7 @@ public class GameControllerTests {
 	@Test
 	void testPlayGameFin() throws Exception {
 		mockMvc.perform(get("/games/play/{gameId}", 3))
+		.andExpect(status().isOk())
 		.andExpect(view().name("games/endGame"));
 	}
 	
@@ -171,10 +212,11 @@ public class GameControllerTests {
 		.andExpect(view().name("games/playGame"));
 	}
 
-	@WithMockUser(value = "persona")
+	@WithMockUser(value = "personas")
 	@Test
 	void testPlayGameJuego() throws Exception {
-		mockMvc.perform(get("/games/play/{gameId}", 4))
+		mockMvc.perform(get("/games/play/{gameId}", 5))
+		.andExpect(status().isOk())
 		.andExpect(view().name("games/playGame"));
 	}
 
