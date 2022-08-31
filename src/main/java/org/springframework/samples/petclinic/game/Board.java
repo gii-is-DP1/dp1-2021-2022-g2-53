@@ -205,26 +205,30 @@ public class Board extends BaseEntity {
 	}
 
 	public void movePieces(Movement movement, BindingResult result) throws MoveInvalidException {
-		if (movement.getTipo().equals(red_color) || (movement.getTipo().equals(black_color))) {
-			List<Piece> pieces = this.pieces.stream().filter(
-					x -> x.getPosition() == movement.getInitialPosition() && x.getColor().equals(movement.getTipo()))
-					.collect(Collectors.toList());
-			if (pieces.isEmpty() || pieces.size() < movement.getNumber()) {
-				result.rejectValue("initialPosition", "moveInvalid",
-						"Escoge una casilla en la que se encuentre alguna bacteria tuya");
-			} else {
-				List<Piece> piecesAux = pieces.subList(0, movement.getNumber());
-				if (movement.getTipo().equals(red_color) || movement.getTipo().equals(black_color)) {
-					if (moveInvalid(pieces, movement, result) == false && moveInvalidPosition(movement, result) == false
-							&& moveInvalid2(pieces, movement, result) == false) {
-						piecesAux.stream().forEach(x -> x.setPosition(movement.getDestinyPosition()));
-					}
-				} else {
-					piecesAux.stream().forEach(x -> x.setPosition(movement.getDestinyPosition()));
-				}
-			}
-		}
-	}
+        if (movement.getTipo().equals(red_color) || (movement.getTipo().equals(black_color))) {
+            List<Piece> pieces = this.pieces.stream().filter(
+                    x -> x.getPosition() == movement.getInitialPosition() && x.getColor().equals(movement.getTipo()))
+                    .collect(Collectors.toList());
+            if (pieces.isEmpty()) {
+                result.rejectValue("initialPosition", "moveInvalid",
+                        "La casilla seleccionada está vacía o pretendes mover una sarcina");
+            }else if (pieces.size() < movement.getNumber()) {
+                result.rejectValue("number", "moveInvalid",
+                        "Selecciona un número válido de bacterias para mover, en esta casilla solo puedes mover " + pieces.size() + " como máximo");
+
+            } else {
+                List<Piece> piecesAux = pieces.subList(0, movement.getNumber());
+                if (movement.getTipo().equals(red_color) || movement.getTipo().equals(black_color)) {
+                    if (moveInvalid(pieces, movement, result) == false && moveInvalidPosition(movement, result) == false
+                            && moveInvalid2(pieces, movement, result) == false) {
+                        piecesAux.stream().forEach(x -> x.setPosition(movement.getDestinyPosition()));
+                    }
+                } else {
+                    piecesAux.stream().forEach(x -> x.setPosition(movement.getDestinyPosition()));
+                }
+            }
+        }
+    }
 
 	// O -> RED Y 1 -> BLACK
 	public List<Integer> pollution() {
