@@ -38,6 +38,8 @@ public class GameController {
 	private JugadorService jugadorService;
 	@Autowired
 	private PersonaService personaService;
+	
+	private static final Integer numero_maximo_puntos_para_perder = 9;
 
 	@GetMapping(value = "/mostrarpartidas")
 	public String listGames(ModelMap modelMap) {
@@ -100,7 +102,8 @@ public class GameController {
 			return "redirect:/errorSuplantacion";
 		}
 		modelMap.put("now", new Date());
-		if (game.getTurnos().get(game.getTurno()).equals("fin")) {
+		if (game.getTurnos().get(game.getTurno()).equals("fin") || game.getPointsBlack() >= numero_maximo_puntos_para_perder
+				|| game.getPointsBlack() >= numero_maximo_puntos_para_perder) {
 			modelMap.addAttribute("winner", game.getGanador());
 			return viewFin;
 		}
