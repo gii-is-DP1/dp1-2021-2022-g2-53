@@ -75,7 +75,7 @@ public class PersonaServiceTest {
 		Persona p = personaService.findId(3);
 		personaService.delete(p);
 		int count =(int) personaRepo.count();
-		assertEquals(count,2);
+		assertEquals(count,11);
 
 
 	}
