@@ -28,6 +28,14 @@ public class Piece extends BaseEntity {
 
 	private static final String red_color = "red";
 	private static final String black_color = "black";
+	private static final Integer posicion1 = 1;
+	private static final Integer posicion2 = 2;
+	private static final Integer posicion3 = 3;
+	private static final Integer posicion4 = 4;
+	private static final Integer posicion5 = 5;
+	private static final Integer posicion6 = 6;
+	private static final Integer posicion7 = 7;
+
 
 	public Piece() {
 		super();
@@ -43,15 +51,15 @@ public class Piece extends BaseEntity {
 
 	public Integer getPositionXInPixels(Integer size) {
 		Integer pos = 0;
-		if (this.position == 1 || this.position == 6) {
+		if (this.position == posicion1 || this.position == posicion6) {
 			pos = 100;
-		} else if (this.position == 2 || this.position == 7) {
+		} else if (this.position == posicion2 || this.position == posicion7) {
 			pos = 275;
-		} else if (this.position == 3) {
+		} else if (this.position == posicion3) {
 			pos = 30;
-		} else if (this.position == 4) {
+		} else if (this.position == posicion4) {
 			pos = 200;
-		} else if (this.position == 5) {
+		} else if (this.position == posicion5) {
 			pos = 375;
 		} else {
 			return null;
@@ -62,11 +70,11 @@ public class Piece extends BaseEntity {
 
 	public Integer getPositionYInPixels(Integer size) {
 		Integer pos = 0;
-		if (this.position == 1 || this.position == 2) {
+		if (this.position == posicion1 || this.position == posicion2) {
 			pos = 50;
-		} else if (this.position == 3 || this.position == 4 || this.position == 5) {
+		} else if (this.position == posicion3 || this.position == posicion4 || this.position == posicion5) {
 			pos = 150;
-		} else if (this.position == 6 || this.position == 7) {
+		} else if (this.position == posicion6 || this.position == posicion7) {
 			pos = 230;
 		} else {
 			return null;

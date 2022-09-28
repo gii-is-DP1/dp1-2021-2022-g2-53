@@ -45,7 +45,13 @@ public class GameController {
 	public String listGames(ModelMap modelMap) {
 		String view = "games/listGames";
 		Iterable<Game> games = gameService.findAll();
-		modelMap.addAttribute("games", games);
+		List<Game> partidasFinalizadas = new ArrayList<Game>();
+		for (Game game : games)
+			if (game.getPointsRed() >= numero_maximo_puntos_para_perder || game.getPointsBlack() >= numero_maximo_puntos_para_perder) {
+				partidasFinalizadas.add(game);
+			}
+		modelMap.addAttribute("games", partidasFinalizadas);
+		
 		return view;
 	}
 
@@ -55,7 +61,7 @@ public class GameController {
 		Iterable<Game> games = gameService.findAll();
 		List<Game> partidaenCurso = new ArrayList<Game>();
 		for (Game game : games)
-			if (game.getPointsRed() < 9 && game.getPointsBlack() < 9) {
+			if (game.getPointsRed() < numero_maximo_puntos_para_perder && game.getPointsBlack() < numero_maximo_puntos_para_perder) {
 				partidaenCurso.add(game);
 			}
 		modelMap.addAttribute("games", partidaenCurso);
@@ -87,6 +93,7 @@ public class GameController {
 
 	@GetMapping(value = "/play/{gameId}")
 	public String playGame(ModelMap modelMap, @PathVariable("gameId") int gameId, HttpServletResponse response) {
+
 		String view = "games/playGame";
 		String viewFin = "games/endGame";
 		Game game = gameService.findId(gameId);
@@ -94,6 +101,7 @@ public class GameController {
 		modelMap.addAttribute("board", game.getBoard());
 		modelMap.addAttribute("movement", new Movement());
 		modelMap.addAttribute("turnoActual", game.getTurnos().get(game.getTurno()));
+		
 		UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String username = ud.getUsername();
 		Persona persona = personaService.getPersonaByUserName(username);
@@ -115,14 +123,17 @@ public class GameController {
 			return viewFin;
 		}
 		if (jugador.equals(game.getTurnos().get(game.getTurno()))) {
+		
 			return view;
+			
 		} else if (!jugador.equals(game.getTurnos().get(game.getTurno()))
-				&& !game.getTurnos().get(game.getTurno()).equals("binary")) {
+				&& !game.getTurnos().get(game.getTurno()).equals("binary") && !game.getTurnos().get(game.getTurno()).equals("pollution")) {
 			response.addHeader("Refresh", "1");
 			modelMap.addAttribute("message3", "Espera a que tu oponente realice su movimiento");
 			return view;
 		}
-		modelMap.addAttribute("message4", "Pulsa en realizar movimiento para pasar a la siguiente fase");
+		response.addHeader("Refresh", "2");
+		modelMap.addAttribute("message4", "¡Entrefase, respira profundo y pulsa para continuar o espera a que tu rival lo pulse!");
 		return view;
 
 	}

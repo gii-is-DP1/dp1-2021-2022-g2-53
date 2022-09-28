@@ -12,6 +12,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.springframework.samples.petclinic.jugador.Jugador;
@@ -27,6 +29,7 @@ import lombok.Setter;
 public class Game extends BaseEntity {
 
 	private static final SecureRandom secureRandom = new SecureRandom();
+	
 	private Integer pointsBlack;
 	private Integer pointsRed;
 	private String token;
@@ -62,7 +65,7 @@ public class Game extends BaseEntity {
 	public Game() {
 		super();
 	}
-
+/*
 	public Map<Integer, String> getJugadoresPorColor(List<Jugador> jugadores) {
 		Map<Integer, String> res = new HashMap<Integer, String>();
 		if (jugadores.size()<=2) {
@@ -75,7 +78,7 @@ public class Game extends BaseEntity {
 		}
 	
 	}
-
+*/
 	public String generarToken() {
 		String bancoLetras = "abcdefghijklmnopqrstuvw";
 		String bancoNumeros = "123456789";

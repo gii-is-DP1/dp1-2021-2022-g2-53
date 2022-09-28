@@ -1,19 +1,29 @@
 package org.springframework.samples.petclinic.user;
 
 import java.time.LocalDateTime;
+
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.samples.petclinic.model.Person;
+import org.springframework.samples.petclinic.persona.Persona;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,11 +33,16 @@ import lombok.Setter;
 @Table(name = "users")
 @EntityListeners(AuditingEntityListener.class)
 
+
 public class User {
 	@Id
-	String username;
-
-	String password;
+	@Column(name = "username")
+	@NotEmpty //Necesario pero no funciona hasta que no le das al enter
+	protected String username;
+	
+	@Column(name = "password")
+	@NotEmpty //Necesario pero no funciona hasta que no le das al enter
+	protected String password;
 
 	boolean enabled;
 

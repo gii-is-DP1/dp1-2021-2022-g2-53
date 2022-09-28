@@ -8,7 +8,14 @@
 
 <petclinic:layout pageName="game">
 
-	<body style="background: url(/resources/images/bck-petris.png)">
+
+    <script>
+	window.location.reload();
+	return false;
+	</script>
+   
+
+	<body  style="background: url(/resources/images/bck-petris.png)">
 		<div class="row">
 
 			<div class="col-md-12" align="center">
@@ -25,7 +32,7 @@
 				</c:forEach>
 			</div>
 		</div>
-
+	
 		<h2>Datos de la partida</h2>
 		<h2>
 			<c:out value="${now}" />
@@ -59,11 +66,15 @@
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
 					<h2 style="margin-left: 17%">${message3}</h2>
-					<h2 style="margin-left: 17%">${message4}</h2>
+					<h2 style="margin-left: 4%">${message4}</h2>
+					
+					
 					<button class="btn btn-default" style="margin-left: 32%"
 						type="submit" id="boton2">
 						<span>Realizar movimiento</span>
 					</button>
+					
+					
 				</div>
 			</div>
 		</form:form>

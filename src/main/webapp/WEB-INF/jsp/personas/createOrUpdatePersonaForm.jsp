@@ -10,7 +10,7 @@
 	<body style="background: url(/resources/images/bck-petris.png)">
 
 		<h2>
-			<c:if test="${persona['new']}">New </c:if>
+			<c:if test="${persona['new']}">Nueva </c:if>
 			Persona
 		</h2>
 		<form:form modelAttribute="persona" class="form-horizontal"
