@@ -70,13 +70,6 @@ public class UserController {
 		}
 	}
 
-	@GetMapping(value = "/users/auditoria")
-	public String showAuditable(ModelMap modelMap) {
-		String view = "users/auditoria";
-		Iterable<User> user = UserRepository.getUsers();
-		modelMap.addAttribute("users", user);
 
-		return view;
-	}
 
 }

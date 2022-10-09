@@ -19,6 +19,9 @@ public interface PersonaRepository extends PagingAndSortingRepository<Persona, I
 
 	Page<Persona> findAll(Pageable pageable);
 
+	@Query("SELECT  p from Persona p ")
+	Iterable<Persona> getPersonas();
+
 
 
 }

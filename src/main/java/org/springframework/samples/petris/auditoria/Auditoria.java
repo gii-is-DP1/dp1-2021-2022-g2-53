@@ -1,6 +1,8 @@
 package org.springframework.samples.petris.auditoria;
 
 import java.time.LocalDateTime;
+
+import javax.persistence.Column;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 import org.springframework.data.annotation.CreatedBy;
@@ -20,15 +22,20 @@ import lombok.Setter;
 public class Auditoria  {
 
 	@CreatedBy
+	@Column(name = "creator")
 	private String creator;
 
 	@CreatedDate
+	@Column(name = "created_Date")
 	private LocalDateTime createdDate;
 
 	@LastModifiedBy
+	@Column(name = "modified_by")
 	private String modifier;
 
 	@LastModifiedDate
+	@Column(name = "last_modified_date")
 	private LocalDateTime lastModifiedDate;
+
 
 }

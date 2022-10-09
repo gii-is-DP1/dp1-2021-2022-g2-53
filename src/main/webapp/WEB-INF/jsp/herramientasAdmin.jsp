@@ -25,8 +25,8 @@
 		<div class="row" align="center">
 			<button class="btn btn-default" id="pedrito2"
 				style="margin-left: -20px"
-				onclick="window.location.href='/users/auditoria'">
-				<span>Registro de modificación</span>
+				onclick="window.location.href='/personas/auditoria'">
+				<span>Registro de modificaciï¿½n</span>
 			</button>
 
 		</div>
