@@ -1,4 +1,4 @@
-<%@ attribute name="board" required="false" rtexprvalue="true" type="org.springframework.samples.petclinic.game.Board"
+<%@ attribute name="board" required="false" rtexprvalue="true" type="org.springframework.samples.petris.game.Board"
  description="Board to be rendered" %>
 <canvas id="canvas" width="${board.width}" height="${board.height}"></canvas>
 <img id="source" src="${board.background}" style="display:none">
