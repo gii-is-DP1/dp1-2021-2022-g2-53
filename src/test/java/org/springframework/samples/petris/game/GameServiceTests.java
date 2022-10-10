@@ -3,6 +3,8 @@ package org.springframework.samples.petris.game;
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import javax.transaction.Transactional;
+
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,7 @@ public class GameServiceTests {
 
 
 	@Test
+	@Transactional
 	public void GameCountTest() {
 		int count = gameService.gameCount();
 		assertEquals(count, 2);
@@ -33,6 +36,7 @@ public class GameServiceTests {
 	}
 
 	@Test
+	@Transactional
 	public void DeleteGameTest() {
 		Game game = new Game();
 		gameService.save(game);
@@ -43,6 +47,7 @@ public class GameServiceTests {
 	}
 
 	@Test
+	@Transactional
 	public void FindByIdTest() {
 		Game n = gameService.findId(2);
 		assertEquals(n.getId(), 2);
@@ -51,6 +56,7 @@ public class GameServiceTests {
 	}
 
 	@Test
+	@Transactional
 	public void FindGameByToken() {
 		Game game = gameService.findId(2);
 		Assertions.assertThat(game.getToken()).isEqualTo("ebc-qer");

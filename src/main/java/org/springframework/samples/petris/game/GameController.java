@@ -2,12 +2,10 @@ package org.springframework.samples.petris.game;
 
 import javax.validation.Valid;
 import javax.servlet.http.HttpServletResponse;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petris.jugador.Jugador;
 import org.springframework.samples.petris.jugador.JugadorService;
@@ -18,7 +16,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -45,7 +42,12 @@ public class GameController {
 	public String listGames(ModelMap modelMap) {
 		String view = "games/listGames";
 		Iterable<Game> games = gameService.findAll();
-		modelMap.addAttribute("games", games);
+		List<Game> partidasFinalizadas = new ArrayList<Game>();
+		for (Game game : games)
+			if (game.getPointsRed() >= numero_maximo_puntos_para_perder || game.getPointsBlack() >= numero_maximo_puntos_para_perder) {
+				partidasFinalizadas.add(game);
+			}
+		modelMap.addAttribute("games", partidasFinalizadas);
 		return view;
 	}
 
@@ -55,7 +57,7 @@ public class GameController {
 		Iterable<Game> games = gameService.findAll();
 		List<Game> partidaenCurso = new ArrayList<Game>();
 		for (Game game : games)
-			if (game.getPointsRed() < 9 && game.getPointsBlack() < 9) {
+			if (game.getPointsRed() < numero_maximo_puntos_para_perder && game.getPointsBlack() < numero_maximo_puntos_para_perder) {
 				partidaenCurso.add(game);
 			}
 		modelMap.addAttribute("games", partidaenCurso);
@@ -87,6 +89,7 @@ public class GameController {
 
 	@GetMapping(value = "/play/{gameId}")
 	public String playGame(ModelMap modelMap, @PathVariable("gameId") int gameId, HttpServletResponse response) {
+
 		String view = "games/playGame";
 		String viewFin = "games/endGame";
 		Game game = gameService.findId(gameId);
@@ -94,11 +97,13 @@ public class GameController {
 		modelMap.addAttribute("board", game.getBoard());
 		modelMap.addAttribute("movement", new Movement());
 		modelMap.addAttribute("turnoActual", game.getTurnos().get(game.getTurno()));
+
 		UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String username = ud.getUsername();
 		Persona persona = personaService.getPersonaByUserName(username);
 		String jugador = persona.getJugadores().get(persona.getJugadores().size() - 1).getColor();
 		if (game.getJugadores().get(0).getPersona() != persona && game.getJugadores().get(1).getPersona() != persona ) {
+			
 			return "redirect:/errorSuplantacion";
 		}
 		if (game.getJugadores().size()>1) {
@@ -107,7 +112,6 @@ public class GameController {
 			}
 		}
 			
-		
 		modelMap.put("now", new Date());
 		if (game.getTurnos().get(game.getTurno()).equals("fin") || game.getPointsBlack() >= numero_maximo_puntos_para_perder
 				|| game.getPointsBlack() >= numero_maximo_puntos_para_perder) {
@@ -115,14 +119,17 @@ public class GameController {
 			return viewFin;
 		}
 		if (jugador.equals(game.getTurnos().get(game.getTurno()))) {
+
 			return view;
+			
 		} else if (!jugador.equals(game.getTurnos().get(game.getTurno()))
-				&& !game.getTurnos().get(game.getTurno()).equals("binary")) {
+				&& !game.getTurnos().get(game.getTurno()).equals("binary")  && !game.getTurnos().get(game.getTurno()).equals("pollution")) {
 			response.addHeader("Refresh", "1");
 			modelMap.addAttribute("message3", "Espera a que tu oponente realice su movimiento");
 			return view;
 		}
-		modelMap.addAttribute("message4", "Pulsa en realizar movimiento para pasar a la siguiente fase");
+		response.addHeader("Refresh", "2");
+		modelMap.addAttribute("message4", "¡Entrefase, respira profundo y pulsa para continuar o espera a que tu rival lo pulse!");
 		return view;
 
 	}
@@ -292,10 +299,6 @@ public class GameController {
 		}
 
 	}
-
-	//////////////////////////////////////////////////////
-
-	/////////////////////////////////////////////
 
 	@GetMapping(value = "/edit/{gameId}")
 	public String editGame(ModelMap modelMap, @PathVariable("gameId") int gameId) {

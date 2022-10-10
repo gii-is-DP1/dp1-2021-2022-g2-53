@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -39,15 +40,16 @@ public class Persona  {
 	}
 
 	@Column(name = "first_name")
-	@NotEmpty
+	@NotEmpty(message = "May not be empty")
 	protected String firstName;
 
 	@Column(name = "last_name")
-	@NotEmpty
+	@NotEmpty(message = "May not be empty")
 	protected String lastName;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "user", referencedColumnName = "username")
+	@Valid
 	private User user;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "persona")

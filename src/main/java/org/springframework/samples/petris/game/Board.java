@@ -2,22 +2,17 @@ package org.springframework.samples.petris.game;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Positive;
 import javax.persistence.Table;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import lombok.Getter;
 import lombok.Setter;
-
 import org.springframework.samples.petris.model.BaseEntity;
-
 import org.springframework.validation.BindingResult;
 
 @Entity
@@ -31,13 +26,20 @@ public class Board extends BaseEntity {
 	private static final Integer numero_maximo_de_fichas = 20;
 	private static final Integer numero_maximo_antes_de_sarcina = 4;
 
+	private static final Integer posicion1 = 1;
+	private static final Integer posicion2 = 2;
+	private static final Integer posicion3 = 3;
+	private static final Integer posicion4 = 4;
+	private static final Integer posicion5 = 5;
+	private static final Integer posicion6 = 6;
+	private static final Integer posicion7 = 7;
+
 	String background;
 	@Positive
 	int width;
 	@Positive
 	int height;
-	@OneToOne
-	Game game;
+	
 
 	public Board() {
 		this.background = "/resources/images/tablero.png";
@@ -50,6 +52,10 @@ public class Board extends BaseEntity {
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "board")
 	List<Sarcine> sarcines;
+
+	
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "board")
+	Game game;
 
 	private static final String red_color = "red";
 	private static final String black_color = "black";
@@ -179,25 +185,25 @@ public class Board extends BaseEntity {
 		boolean res = false;
 		Integer posini = movement.getInitialPosition();
 		Integer posfin = movement.getDestinyPosition();
-		if (posini == 1 && (posfin == 6 || posfin == 7 || posfin == 5 || posfin == 1)) {
+		if (posini == posicion1 && (posfin == posicion6 || posfin == posicion7 || posfin == posicion5 || posfin == posicion1)) {
 			result.rejectValue("destinyPosition", "moveInvalid", "No puedes mover la ficha a esa casilla");
 			res = true;
-		} else if (posini == 2 && (posfin == 3 || posfin == 6 || posfin == 7 || posfin == 2)) {
+		} else if (posini == posicion2 && (posfin == posicion3 || posfin == posicion6 || posfin == posicion7 || posfin == posicion2)) {
 			result.rejectValue("destinyPosition", "moveInvalid", "No puedes mover la ficha a esa casilla");
 			res = true;
-		} else if (posini == 3 && (posfin == 2 || posfin == 5 || posfin == 7 || posfin == 3)) {
+		} else if (posini == posicion3 && (posfin == posicion2 || posfin == posicion5 || posfin == posicion7 || posfin == posicion3)) {
 			result.rejectValue("destinyPosition", "moveInvalid", "No puedes mover la ficha a esa casilla");
 			res = true;
-		} else if (posini == 4 && posfin == 4) {
+		} else if (posini == posicion4 && posfin == posicion4) {
 			result.rejectValue("destinyPosition", "moveInvalid", "No puedes mover la ficha a esa casilla");
 			res = true;
-		} else if (posini == 5 && (posfin == 1 || posfin == 3 || posfin == 6 || posfin == 5)) {
+		} else if (posini == posicion5 && (posfin == posicion1 || posfin == posicion3 || posfin == posicion6 || posfin == posicion5)) {
 			result.rejectValue("destinyPosition", "moveInvalid", "No puedes mover la ficha a esa casilla");
 			res = true;
-		} else if (posini == 6 && (posfin == 1 || posfin == 2 || posfin == 5 || posfin == 6)) {
+		} else if (posini == posicion6 && (posfin == posicion1 || posfin == posicion2 || posfin == posicion5 || posfin == posicion6)) {
 			result.rejectValue("destinyPosition", "moveInvalid", "No puedes mover la ficha a esa casilla");
 			res = true;
-		} else if (posini == 7 && (posfin == 1 || posfin == 2 || posfin == 3 || posfin == 7)) {
+		} else if (posini == posicion7 && (posfin == posicion1 || posfin == posicion2 || posfin == posicion3 || posfin == posicion7)) {
 			result.rejectValue("destinyPosition", "moveInvalid", "No puedes mover la ficha a esa casilla");
 			res = true;
 		}
@@ -211,7 +217,7 @@ public class Board extends BaseEntity {
                     .collect(Collectors.toList());
             if (pieces.isEmpty()) {
                 result.rejectValue("initialPosition", "moveInvalid",
-                        "La casilla seleccionada está vacía o pretendes mover una sarcina");
+                        "La casilla seleccionada no tiene fichas de tu color o pretendes mover una sarcina");
             }else if (pieces.size() < movement.getNumber()) {
                 result.rejectValue("number", "moveInvalid",
                         "Selecciona un número válido de bacterias para mover, en esta casilla solo puedes mover " + pieces.size() + " como máximo");

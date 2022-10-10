@@ -2,6 +2,8 @@ package org.springframework.samples.petris.game;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import javax.transaction.Transactional;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import static org.junit.Assert.assertEquals;
@@ -22,6 +24,7 @@ public class BoardServiceTests {
     // En la   base de datos tenemos 2 board ya creadas
     
     @Test
+    @Transactional
     public void boardCountTest() {
         int count = boardService.boardCount();
         assertEquals(count, 2);
@@ -29,12 +32,14 @@ public class BoardServiceTests {
 
     
     @Test
+    @Transactional
     public void findByIdBoardTest() {
         Board board = boardService.findById(1);
         assertEquals(board.getId(), 1);
     }
     
     @Test
+    @Transactional
     public void findByIdBoardTest2() {
         Board board = boardService.findById(2);
         assertEquals(board.getId(), 2);
@@ -42,6 +47,7 @@ public class BoardServiceTests {
     
 
     @Test
+    @Transactional
     public void SaveBoardTest() {
         Board board = new Board();
         boardService.save(board);
@@ -51,6 +57,7 @@ public class BoardServiceTests {
     }
 
     @Test
+    @Transactional
     public void DeleteboardTest() {
         Board board = new Board();
         boardService.save(board);
@@ -61,6 +68,7 @@ public class BoardServiceTests {
     }
     
     @Test
+    @Transactional
     public void TestBinaryWithBlackPieces() {
     Board board = gameService.findId(2).getBoard();
     
@@ -79,6 +87,7 @@ public class BoardServiceTests {
     }
     
     @Test
+    @Transactional
     public void TestBinaryWithRedPieces() {
     Board board = gameService.findId(2).getBoard();
     
@@ -98,6 +107,7 @@ public class BoardServiceTests {
     }
     
     @Test
+    @Transactional
     public void TestBinaryWithTwoTypesOfPieces() {
     Board board = gameService.findId(2).getBoard();
     

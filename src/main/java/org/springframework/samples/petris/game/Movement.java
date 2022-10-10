@@ -1,5 +1,8 @@
 package org.springframework.samples.petris.game;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
 import org.hibernate.validator.constraints.Range;
 import org.springframework.samples.petris.model.BaseEntity;
 
@@ -11,10 +14,18 @@ import lombok.Setter;
 public class Movement extends BaseEntity {
 
 	@Range(min = 1, max = 7)
+	@NotNull(message = "Debe ser un valor entre 1 y 7")
+	@Valid
 	private Integer initialPosition;
+
 	@Range(min = 1, max = 4)
+	@NotNull(message = "Debe ser un valor entre 1 y 4")
+	@Valid
 	private Integer number;
+
 	@Range(min = 1, max = 7)
+	@NotNull(message = "Debe ser un valor entre 1 y 7")
+	@Valid
 	private Integer destinyPosition;
 
 	private String tipo;

@@ -8,6 +8,8 @@
 
 <petclinic:layout pageName="game">
 
+	<button id="piu" onclick = "location.reload()" > </button>  
+
 	<body style="background: url(/resources/images/bck-petris.png)">
 		<div class="row">
 
@@ -48,14 +50,22 @@
 
 		<form:form modelAttribute="movement" class="form-horizontal"
 			id="play-game-form">
+			<c:choose>
+				<c:when test="${turnoActual == 'binary' || turnoActual == 'pollution' }">
+	
+				</c:when>
+				<c:otherwise>
 			<div class="form-group has-feedback">
 
 				<petclinic:inputField label="Casilla original"
 					name="initialPosition" />
-				<petclinic:inputField label="Número de fichas" name="number" />
+				<petclinic:inputField label="Nï¿½mero de fichas" name="number" />
 				<petclinic:inputField label="Casilla destino" name="destinyPosition" />
 
 			</div>
+		</c:otherwise>
+	</c:choose>
+
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
 					<h2 style="margin-left: 17%">${message3}</h2>

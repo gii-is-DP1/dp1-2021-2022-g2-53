@@ -110,6 +110,29 @@ body{
   overflow: hidden;
   line-height: 64px;
 
+
+  &:focus,
+  &:active,
+  &.active,
+  .open .dropdown-toggle& {
+    background-color: @spring-brown;
+    border-color: @spring-brown;
+  }
+}
+
+#piu {
+  width: 1px;
+  height: 1px;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  line-height: 64px;
+
   
   &:focus,
   &:active,

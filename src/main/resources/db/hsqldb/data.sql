@@ -44,6 +44,12 @@ INSERT INTO authorities(id,username,authority) VALUES (15,'person12','persona');
 
 INSERT INTO personas(id,first_name,last_name,user) VALUES (1, 'luis', 'chacon romero', 'person1');
 INSERT INTO personas(id,first_name,last_name,user) VALUES (2, 'pepe', 'sanchez cortes', 'person2');
+INSERT INTO personas(id,first_name,last_name,user) VALUES (3, 'juanan', 'chacon vargas', 'person3');
+INSERT INTO personas(id,first_name,last_name,user) VALUES (4, 'jose', 'mena cortes', 'person4');
+INSERT INTO personas(id,first_name,last_name,user) VALUES (5, 'eloy', 'moreno romero', 'person5');
+INSERT INTO personas(id,first_name,last_name,user) VALUES (6, 'arturo', 'sanchez moral', 'person6');
+INSERT INTO personas(id,first_name,last_name,user) VALUES (7, 'lucia', 'fernandez romero', 'person7');
+INSERT INTO personas(id,first_name,last_name,user) VALUES (8, 'marta', 'quijada cortes', 'person8');
 
 
 
