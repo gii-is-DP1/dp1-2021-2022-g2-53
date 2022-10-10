@@ -106,6 +106,7 @@ public class GameController {
 		String username = ud.getUsername();
 		Persona persona = personaService.getPersonaByUserName(username);
 		String jugador = persona.getJugadores().get(persona.getJugadores().size() - 1).getColor();
+		
 		if (game.getJugadores().get(0).getPersona() != persona && game.getJugadores().get(1).getPersona() != persona ) {
 			return "redirect:/errorSuplantacion";
 		}

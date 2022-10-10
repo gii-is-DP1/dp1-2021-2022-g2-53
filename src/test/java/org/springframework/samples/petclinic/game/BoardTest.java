@@ -7,6 +7,8 @@ package org.springframework.samples.petclinic.game;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +36,7 @@ public class BoardTest {
 
 
 	@Test
+	@Transactional
 	public void TestBinaryBoard() {
 
 		Board board = boardService.findById(2);
@@ -45,6 +48,7 @@ public class BoardTest {
 	// board con id=2 parte con una bacteria roja en posicion 5 y una bacteria negra
 	// en la posicion 3
 	@Test
+	@Transactional
 	public void getAllPiecesInTheSamePositionTest() {
 		Board board = boardService.findById(2);
 		Piece pieceNewRed = new Piece();
@@ -71,6 +75,7 @@ public class BoardTest {
 	
 
 	@Test
+	@Transactional
 	public void getAllPiecesInTheSamePositionAndSameColorTest() {
 		Board board = boardService.findById(2);
 		Piece pieceNewRed = new Piece();
@@ -95,6 +100,7 @@ public class BoardTest {
 
 	}
 	@Test
+	@Transactional
 	public void getAllPiecesSameColorTest() {
 		Board board = boardService.findById(2);
 		
@@ -104,6 +110,7 @@ public class BoardTest {
 
 	}
 	@Test
+	@Transactional
 	public void getAllSarcinesSameColorTest() {
 		Board board = boardService.findById(2);
 		List<Sarcine> ls = new ArrayList<Sarcine>(); 
@@ -129,6 +136,7 @@ public class BoardTest {
 	}
 
 	@Test
+	@Transactional
 	public void getNumberOfPiecesByPositionTest() {
 		Board board = boardService.findById(2);
 		Piece pieceNewRed = new Piece();
@@ -154,6 +162,7 @@ public class BoardTest {
 	}
 
 	@Test
+	@Transactional
 	public void getNumberOfPiecesByPositionTest2() {
 		Board board = boardService.findById(2);
 		Assertions.assertThat(board.getNumberOfPiecesByPosition(5)).isEqualTo(1);
@@ -161,6 +170,7 @@ public class BoardTest {
 	}
 
 	@Test
+	@Transactional
 	public void getNumberOfPiecesByPositionTest3() {
 		Board board = boardService.findById(2);
 		Assertions.assertThat(board.getNumberOfPiecesByPosition(3)).isEqualTo(1);
@@ -168,6 +178,7 @@ public class BoardTest {
 	}
 
 	@Test
+	@Transactional
 	public void getAllPiecesByPositionTest() {
 		Board board = boardService.findById(2);
 		Piece pieceNewRed = new Piece();
@@ -193,6 +204,7 @@ public class BoardTest {
 	}
 
 	@Test
+	@Transactional
 	public void containsSarcineTest() {
 		Board board = boardService.findById(2);
 		Sarcine sarcinered = new Sarcine();
@@ -208,6 +220,7 @@ public class BoardTest {
 
 
 	@Test
+	@Transactional
 	public void pollutionTest() {
 		Board board = boardService.findById(2);
 		Piece pieceNewRed = new Piece();

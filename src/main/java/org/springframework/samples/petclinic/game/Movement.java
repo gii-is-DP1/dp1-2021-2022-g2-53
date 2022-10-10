@@ -1,5 +1,6 @@
 package org.springframework.samples.petclinic.game;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -16,13 +17,16 @@ import lombok.Setter;
 public class Movement extends BaseEntity {
 
 	@Range(min = 1, max = 7)
-	@NotNull(message = "Debe ser un valor entre 1 y 7")
+	//@NotNull(message = "Debe ser un valor entre 1 y 7")
+	@Valid
 	private Integer initialPosition;
 	@Range(min = 1, max = 4)
-	@NotNull(message = "Debe ser un valor entre 1 y 4")
+	//@NotNull(message = "Debe ser un valor entre 1 y 4")
+	@Valid
 	private Integer number;
 	@Range(min = 1, max = 7)
-	@NotNull(message = "Debe ser un valor entre 1 y 7")
+	//@NotNull(message = "Debe ser un valor entre 1 y 7")
+	@Valid
 	private Integer destinyPosition;
 
 	private String tipo;

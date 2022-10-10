@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.Valid;
+
 import org.springframework.samples.petclinic.jugador.Jugador;
 import org.springframework.samples.petclinic.model.Person;
 import org.springframework.samples.petclinic.user.User;
@@ -25,6 +27,7 @@ public class Persona extends Person {
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "user", referencedColumnName = "username")
+	@Valid
 	private User user;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "persona")

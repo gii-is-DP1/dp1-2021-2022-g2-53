@@ -1,13 +1,15 @@
 package org.springframework.samples.petclinic.user;
 
 import java.time.LocalDateTime;
-
+import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -37,11 +39,11 @@ import lombok.Setter;
 public class User {
 	@Id
 	@Column(name = "username")
-	@NotEmpty //Necesario pero no funciona hasta que no le das al enter
+	@NotEmpty(message = "May not be empty") //Necesario pero no funciona hasta que no le das al enter
 	protected String username;
 	
 	@Column(name = "password")
-	@NotEmpty //Necesario pero no funciona hasta que no le das al enter
+	@NotEmpty(message = "May not be empty") //Necesario pero no funciona hasta que no le das al enter
 	protected String password;
 
 	boolean enabled;
@@ -64,5 +66,9 @@ public class User {
 	@LastModifiedDate
 	@Column(name = "lastModifiedDate")
 	private LocalDateTime lastModifiedDate;
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "friends")
+	private List<User> friends;
 
 }

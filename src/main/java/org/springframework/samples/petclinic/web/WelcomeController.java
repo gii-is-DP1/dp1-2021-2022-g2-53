@@ -51,4 +51,8 @@ public class WelcomeController {
 	public String errorMismoUsuarioEnPartida(Map<String, Object> model) {
 		return "errorMismoUsuarioEnPartida";
 	}
+	@GetMapping({"/error" })
+	public String error(Map<String, Object> model) {
+		return "error";
+	}
 }
