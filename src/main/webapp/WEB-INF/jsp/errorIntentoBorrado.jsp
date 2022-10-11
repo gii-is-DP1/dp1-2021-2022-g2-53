@@ -23,9 +23,9 @@
 
 
 
-		<h2 align="center">Estas intentado borrar una partida ajena</h2>
+		<h2 align="center">ESTAS INTENTANDO MODIFICAR DATOS INTERNOS A PARTIR DE LA URL</h2>
 		<br>
-		<h4 align="center">En Petris no toleramos esa actitud</h4>
+		<h4 align="center">EN PETRIS NO TOLERAMOS ESA ACTITUD </h4>
 
 
 

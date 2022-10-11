@@ -75,6 +75,15 @@ public class GameController {
 		String view = "games/showGame";
 		String viewFin = "games/endGame";
 		Game game = gameService.findId(gameId);
+
+		
+		UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String username = ud.getUsername();
+		Persona persona = personaService.getPersonaByUserName(username);
+		if (game.getJugadores().get(0).getPersona() != persona || game.getJugadores().get(1).getPersona() != persona ) {
+				
+			return "redirect:/errorIntentoBorrado";
+		}
 		if (game.getTurnos().get(game.getTurno()).equals("fin")) {
 			modelMap.addAttribute("winner", game.getGanador());
 			return viewFin;
@@ -304,6 +313,13 @@ public class GameController {
 	public String editGame(ModelMap modelMap, @PathVariable("gameId") int gameId) {
 		String view = "games/editGame";
 		Game game = gameService.findId(gameId);
+		UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String username = ud.getUsername();
+		Persona persona = personaService.getPersonaByUserName(username);
+		if (game.getJugadores().get(0).getPersona() != persona || game.getJugadores().get(1).getPersona() != persona ) {
+				
+			return "redirect:/errorIntentoBorrado";
+		}
 		boolean edit = true;
 		modelMap.addAttribute("game", game);
 		modelMap.addAttribute("edit", edit);
@@ -313,6 +329,9 @@ public class GameController {
 	@PostMapping(value = "/edit/{gameId}")
 	public String processUpdateGameForm(ModelMap modelMap, @PathVariable("gameId") int gameId, @Valid Game game,
 			BindingResult result) {
+
+
+		
 		if (result.hasErrors()) {
 			boolean edit = true;
 			modelMap.put("edit", edit);
