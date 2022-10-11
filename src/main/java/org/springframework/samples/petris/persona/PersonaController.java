@@ -1,10 +1,14 @@
 package org.springframework.samples.petris.persona;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import javax.servlet.http.HttpServletResponse;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,13 +17,18 @@ import org.springframework.samples.petris.game.Game;
 import javax.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.samples.petris.jugador.JugadorService;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.samples.petris.user.AuthoritiesService;
+import org.springframework.samples.petris.user.User;
+import org.springframework.samples.petris.user.UserRepository;
 import org.springframework.samples.petris.user.UserService;
 import org.springframework.validation.BindingResult;
 
@@ -32,6 +41,10 @@ public class PersonaController {
 	private PersonaService personaService;
 	@Autowired
 	private PersonaRepository personaRepo;
+	@Autowired
+	private UserRepository userRepo;
+	@Autowired
+    private PasswordEncoder passwordEncoder;
 
 	@GetMapping(value = "/personas")
 	public String showGamePerson(ModelMap modelMap, HttpServletResponse response) {
@@ -73,6 +86,10 @@ public class PersonaController {
 
 	@PostMapping("/register")
 	public String proccessCreationFOrm(@Valid Persona persona, BindingResult result) {
+		
+ 		 String clearTextPassword = persona.getUser().getPassword();
+ 		 persona.getUser().setPassword(passwordEncoder.encode(clearTextPassword));
+
 		if (result.hasErrors()) {
 			return FORM;
 		} else {
