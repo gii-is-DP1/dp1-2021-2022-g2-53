@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.samples.petris.model.BaseEntity;
 import org.springframework.validation.BindingResult;
 
@@ -19,6 +21,7 @@ import org.springframework.validation.BindingResult;
 @Table(name = "boards")
 @Getter
 @Setter
+@Slf4j
 public class Board extends BaseEntity {
 
 	private static final Integer numero_de_casillas = 7;
@@ -261,6 +264,14 @@ public class Board extends BaseEntity {
 			} else if (reds.size() + sarcineRed < blacks.size() + sarcineBlack) {
 				black++;
 			}
+			
+			log.info("------------------------------------------------------------------------------------------------");
+			log.info("red {} =", red);
+			log.info("------------------------------------------------------------------------------------------------");
+			
+			log.info("------------------------------------------------------------------------------------------------");
+			log.info("black {} =", black);
+			log.info("------------------------------------------------------------------------------------------------");
 
 		}
 		ls.add(red);
@@ -269,11 +280,17 @@ public class Board extends BaseEntity {
 	}
 
 	public List<Piece> getAllPiecesByPosition(int i) {
+		log.info("------------------------------------------------------------------------------------------------");
+		log.info("Adding {}", i);
+		log.info("------------------------------------------------------------------------------------------------");
 		return this.pieces.stream().filter(x -> x.getPosition() == i).collect(Collectors.toList());
 
 	}
 
 	public Boolean containsSarcine(int position, String color) {
+		log.info("------------------------------------------------------------------------------------------------");
+		log.info("Funcionas????");
+		log.info("------------------------------------------------------------------------------------------------");
 		return 0 != sarcines.stream().filter(x -> x.getPosition() == position && x.getColor().equals(color)).count();
 	}
 }

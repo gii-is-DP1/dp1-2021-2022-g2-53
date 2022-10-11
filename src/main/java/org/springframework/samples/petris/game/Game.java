@@ -16,11 +16,13 @@ import org.springframework.samples.petris.jugador.Jugador;
 import org.springframework.samples.petris.model.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 
 @Entity
 @Table(name = "games")
 @Getter
 @Setter
+@Slf4j
 public class Game extends BaseEntity {
 
 	private static final SecureRandom secureRandom = new SecureRandom();
@@ -61,20 +63,6 @@ public class Game extends BaseEntity {
 		super();
 	}
 
-	/* 
-	public Map<Integer, String> getJugadoresPorColor(List<Jugador> jugadores) {
-		Map<Integer, String> res = new HashMap<Integer, String>();
-		if (jugadores.size()<=2) {
-		for (int i = 0; i < jugadores.size(); i++) {
-			res.put(i, jugadores.get(i).getColor());
-		}
-		return res;
-		}else{
-			return null;
-		}
-	
-	}
-	*/
 
 	public String generarToken() {
 		String bancoLetras = "abcdefghijklmnopqrstuvw";
@@ -85,6 +73,9 @@ public class Game extends BaseEntity {
 				int randomInt = secureRandom.nextInt(bancoLetras.length());
 				char randomChar = bancoLetras.charAt(randomInt);
 				strB.append(randomChar);
+				log.info("------------------------------------------------------------------------------------------------");
+				log.info("Valor de i = {}", i);
+				log.info("------------------------------------------------------------------------------------------------");
 			}
 			if (i == maximo_letras_token) {
 				strB.append("-");
@@ -177,7 +168,14 @@ public class Game extends BaseEntity {
 			}
 
 		} else if (this.getPointsBlack() >= numero_maximo_puntos_para_perder
-				|| this.getPointsBlack() >= numero_maximo_puntos_para_perder) {
+				|| this.getPointsRed() >= numero_maximo_puntos_para_perder) {
+			log.info("------------------------------------------------------------------------------------------------");
+			log.info("Puntos negros = {} ", this.getPointsBlack());
+			log.info("------------------------------------------------------------------------------------------------");
+			
+			log.info("------------------------------------------------------------------------------------------------");
+			log.info("Puntos rojos = {}", this.getPointsRed());
+			log.info("------------------------------------------------------------------------------------------------");
 			this.setTurno(this.getTurnos().size() - 1);
 			return this.getGanador();
 		}

@@ -7,10 +7,12 @@ import org.hibernate.validator.constraints.Range;
 import org.springframework.samples.petris.model.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 
 @Entity
 @Getter
 @Setter
+@Slf4j
 public class Piece extends BaseEntity {
 
 	String color;
@@ -63,6 +65,10 @@ public class Piece extends BaseEntity {
 			return null;
 		}
 		Integer modifier = board.getAllPiecesInTheSamePositionAndSameColor(this).indexOf(this);
+		
+		log.info("------------------------------------------------------------------------------------------------");
+		log.info("modifier = {}", modifier);
+		log.info("------------------------------------------------------------------------------------------------");
 		return pos + modifier * 20;
 	}
 
