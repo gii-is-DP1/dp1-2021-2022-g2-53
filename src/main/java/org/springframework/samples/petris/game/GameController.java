@@ -330,11 +330,21 @@ public class GameController {
 	@GetMapping(value = "/delete/{gameId}")
 	public String deleteGame(ModelMap modelMap, @PathVariable("gameId") int gameId) {
 		String view = "games/listGames";
-		Optional<Game> game = Optional.of(gameService.findId(gameId));
-		Board board = game.get().getBoard();
-		if (game.isPresent()) {
+		Game game = gameService.findId(gameId);
+		Board board = game.getBoard();
 
-			gameService.delete(game.get());
+		UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String username = ud.getUsername();
+		Persona persona = personaService.getPersonaByUserName(username);
+		if (game.getJugadores().get(0).getPersona() != persona || game.getJugadores().get(1).getPersona() != persona ) {
+				
+			return "redirect:/errorIntentoBorrado";
+		}
+		
+
+		if (game.getId().equals(gameId)) {
+
+			gameService.delete(game);
 			boardService.delete(board);
 			modelMap.addAttribute("message", "evento borrado");
 		} else {

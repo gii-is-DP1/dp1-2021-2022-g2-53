@@ -54,4 +54,9 @@ public class WelcomeController {
 		public String error(Map<String, Object> model) {
 			return "error";
 		}
+
+		@GetMapping({"/errorIntentoBorrado" })
+		public String errorIntentoBorrado(Map<String, Object> model) {
+			return "errorIntentoBorrado";
+		}
 }

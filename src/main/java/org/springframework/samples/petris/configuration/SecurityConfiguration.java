@@ -57,6 +57,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/register").permitAll()
 				.antMatchers("/welcome").permitAll()
 				.antMatchers("/error").permitAll()
+				.antMatchers("/errorIntentoBorrado").permitAll()
 				.antMatchers("/errorMismoUsuarioEnPartida").hasAuthority("persona")
 				.antMatchers("/errorSuplantacion").hasAuthority("persona").anyRequest().denyAll().and().formLogin()
 				
