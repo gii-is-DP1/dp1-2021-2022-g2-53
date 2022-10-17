@@ -1,13 +1,10 @@
 package org.springframework.samples.petris.jugador;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.samples.petris.game.Game;
 
-import org.springframework.samples.petris.persona.Persona;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,18 +30,6 @@ public class JugadorService {
 
 	}
 
-	@Transactional
-	public List<Game> historialgame(Persona persona) {
-		List<Game> lista = new ArrayList<Game>();
-		List<Jugador> lsjug = jugadorRepo.getJugadorbypersonid(persona.getId());
-		for (int i = 0; i < lsjug.size(); i++) {
-			Jugador j = lsjug.get(i);
-			Game game = j.getGame();
-			lista.add(game);
-		}
-		
-
-		return lista;
-	}
+	
 
 }

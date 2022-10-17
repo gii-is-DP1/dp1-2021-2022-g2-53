@@ -3,6 +3,7 @@ package org.springframework.samples.petris.game;
 import javax.validation.Valid;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -35,32 +36,28 @@ public class GameController {
 	private JugadorService jugadorService;
 	@Autowired
 	private PersonaService personaService;
+	@Autowired
+	private GameRepository repository;
 	
 	private static final Integer numero_maximo_puntos_para_perder = 9;
 
 	@GetMapping(value = "/mostrarpartidas")
 	public String listGames(ModelMap modelMap) {
 		String view = "games/listGames";
-		Iterable<Game> games = gameService.findAll();
-		List<Game> partidasFinalizadas = new ArrayList<Game>();
-		for (Game game : games)
-			if (game.getPointsRed() >= numero_maximo_puntos_para_perder || game.getPointsBlack() >= numero_maximo_puntos_para_perder) {
-				partidasFinalizadas.add(game);
-			}
-		modelMap.addAttribute("games", partidasFinalizadas);
+
+		Collection<Game> res;
+		res = this.repository.findFinishedGames();
+		modelMap.addAttribute("games", res);
 		return view;
 	}
 
 	@GetMapping(value = "/mostrarpartidasencurso")
 	public String listCurrentGames(ModelMap modelMap) {
 		String view = "games/listGames";
-		Iterable<Game> games = gameService.findAll();
-		List<Game> partidaenCurso = new ArrayList<Game>();
-		for (Game game : games)
-			if (game.getPointsRed() < numero_maximo_puntos_para_perder && game.getPointsBlack() < numero_maximo_puntos_para_perder) {
-				partidaenCurso.add(game);
-			}
-		modelMap.addAttribute("games", partidaenCurso);
+
+		Collection<Game> res;
+		res = this.repository.findCurrentGames();
+		modelMap.addAttribute("games", res);
 		return view;
 	}
 
@@ -80,7 +77,7 @@ public class GameController {
 		UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String username = ud.getUsername();
 		Persona persona = personaService.getPersonaByUserName(username);
-		if (game.getJugadores().get(0).getPersona() != persona || game.getJugadores().get(1).getPersona() != persona ) {
+		if (game.getJugadores().get(0).getPersona() != persona && game.getJugadores().get(1).getPersona() != persona ) {
 				
 			return "redirect:/errorIntentoBorrado";
 		}

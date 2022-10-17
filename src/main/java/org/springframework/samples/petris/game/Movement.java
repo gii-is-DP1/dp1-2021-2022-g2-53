@@ -14,18 +14,15 @@ import lombok.Setter;
 public class Movement extends BaseEntity {
 
 	@Range(min = 1, max = 7)
-	@NotNull(message = "Debe ser un valor entre 1 y 7")
-	@Valid
+	//@NotNull(message = "Debe ser un valor entre 1 y 7")
 	private Integer initialPosition;
 
 	@Range(min = 1, max = 4)
-	@NotNull(message = "Debe ser un valor entre 1 y 4")
-	@Valid
+	//@NotNull(message = "Debe ser un valor entre 1 y 4")
 	private Integer number;
 
 	@Range(min = 1, max = 7)
-	@NotNull(message = "Debe ser un valor entre 1 y 7")
-	@Valid
+	//@NotNull(message = "Debe ser un valor entre 1 y 7")
 	private Integer destinyPosition;
 
 	private String tipo;
