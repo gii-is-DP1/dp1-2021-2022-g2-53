@@ -12,6 +12,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
+
+import org.springframework.samples.petris.espectador.Espectador;
 import org.springframework.samples.petris.jugador.Jugador;
 import org.springframework.samples.petris.model.BaseEntity;
 import lombok.Getter;
@@ -45,7 +47,7 @@ public class Game extends BaseEntity {
 	
 	@Size(max=2)
 	private List<Jugador> jugadores;
-
+	
 	public Game(Integer pointsBlack, Integer pointsRed, Board board) {
 		super();
 		this.pointsBlack = pointsBlack;

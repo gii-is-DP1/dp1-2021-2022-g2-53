@@ -63,6 +63,8 @@ INSERT INTO games (id,points_black,points_red,board_id,turno,token) VALUES (2,10
 
 INSERT INTO jugador(id,color,game_id,persona_id) VALUES (1,'red',1,1);
 INSERT INTO jugador(id,color,game_id,persona_id) VALUES (2,'black',1,2);
+INSERT INTO espectador(id,game_id,persona_id) VALUES (5,1,5);
+
 
 INSERT INTO jugador(id,color,game_id,persona_id) VALUES (3,'red',2,1);
 INSERT INTO jugador(id,color,game_id,persona_id) VALUES (4,'black',2,2);

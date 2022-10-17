@@ -90,10 +90,10 @@ public class PersonaController {
 	
 	@PostMapping("/register")
 	public String proccessCreationFOrm(@Valid Persona persona, BindingResult result) {
-		
+		/*
  		 String clearTextPassword = persona.getUser().getPassword();
  		 persona.getUser().setPassword(passwordEncoder.encode(clearTextPassword));
-
+*/
 		if (result.hasErrors()) {
 			return FORM;
 		} else {
