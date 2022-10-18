@@ -21,6 +21,7 @@ public interface JugadorRepository extends CrudRepository<Jugador, Integer> {
 	
 	@Query("SELECT j.game FROM Jugador j WHERE j.persona.id= :id")
 	Collection<Game> getJugadorbygameId(int id);
+	
 
 
 }

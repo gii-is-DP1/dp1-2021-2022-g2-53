@@ -13,23 +13,29 @@
 	<button id="piu" onclick = "location.reload()" > </button>  
 
 	<body style="background: url(/resources/images/bck-petris.png)">
+	
 		<div class="row">
-
-			<div class="col-md-12" align="center">
+			
+			<div class="col-md-12" align="center" style="margin-top: 10px;">
 				<petclinic:board board="${board}" />
 				<c:forEach items="${board.pieces}" var="piece">
 					<petclinic:piece size="10" piece="${piece}" />
 				</c:forEach>
-			</div>
-			<div class="col-md-12" align="center">
+			
+			<div class="col-md-12" align="center" style="margin-top: 10px;">
 
 				<c:forEach items="${board.sarcines}" var="sarcine">
 					<petclinic:sarcine size="20" sarcine="${sarcine}" />
 
 				</c:forEach>
 			</div>
+			<div class="col-md-12" align="center" >
+					<a href="http://localhost:8081/chats/${gameId}" target="_blank">
+					<button class="btn btn-default" >Chat de la partida</button>
+				</a>
+			</div>
 		</div>
-	
+	</div>
 		<h2>Datos de la partida</h2>
 		<h2>
 			<c:out value="${now}" />
