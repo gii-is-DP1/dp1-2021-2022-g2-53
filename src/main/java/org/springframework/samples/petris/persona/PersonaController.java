@@ -14,6 +14,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.samples.petris.game.Game;
+import org.springframework.samples.petris.game.GameRepository;
+
 import javax.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.samples.petris.jugador.JugadorRepository;
@@ -45,18 +47,35 @@ public class PersonaController {
 	private JugadorRepository jugadorRepo;
 	
 	@Autowired
+	private GameRepository gameRepo;
+	
+	@Autowired
     private PasswordEncoder passwordEncoder;
 
 
 	@GetMapping(value = "/personas")
 	public String showGamePerson(ModelMap modelMap, HttpServletResponse response) {
-		String view = "personas/partidaspersona";
 		UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String username = ud.getUsername();
 		Persona persona = personaService.getPersonaByUserName(username);
+		modelMap.addAttribute("persona", username);
+		String view = "personas/partidaspersona";
+		
 
 		Collection<Game> res;
 		res = this.jugadorRepo.getJugadorbygameId(persona.getId());
+		modelMap.addAttribute("games", res);
+		return view;
+	}
+	
+	@GetMapping(value = "/people")
+	public String showGamePeople(ModelMap modelMap, HttpServletResponse response) {
+		UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String username = ud.getUsername();
+		modelMap.addAttribute("persona", username);
+		String view = "personas/partidaspeople";
+		Collection<Game> res;
+		res = this.gameRepo.getJugadoresbyGame();
 		modelMap.addAttribute("games", res);
 		return view;
 	}

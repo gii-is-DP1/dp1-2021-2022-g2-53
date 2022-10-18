@@ -22,7 +22,7 @@
 		<security:authorize access="hasAuthority('persona')">
 			<section id="sectionA">
 				<br></br>
-
+			
 				<div class="row" id="popa">
 					<h2>Bienvenido a Petris</h2>
 
@@ -98,6 +98,38 @@
 
 
 						<p>
+					</div>
+				</div>
+				<div class="row" >
+					<div class="col-md-4">
+					</div>
+					<div class="col-md-4">
+						<br>
+
+						<p>
+							<br>
+
+
+							<spring:url value="/resources/images/FotoError.jpg"
+								htmlEscape="true" var="error" />
+							<img id="f2" class="img-responsive"
+								style="border: 2px solid; border-radius: 15px; color: #E8CEF5;"
+								src="${error}" /> <br>
+						<p>
+							<button class="btn btn-default" style="margin-left: 30%"
+								onclick="window.location.href='people'">
+								<span>Modo espectador</span>
+							</button>
+						</p>
+
+
+						<h2></h2>
+						<br></br> <br>
+
+
+						<p>
+					</div>
+					<div class="col-md-4">
 					</div>
 				</div>
 			</section>

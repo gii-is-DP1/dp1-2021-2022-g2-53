@@ -1,12 +1,12 @@
 package org.springframework.samples.petris.game;
 
 import javax.validation.Valid;
+
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petris.jugador.Jugador;
 import org.springframework.samples.petris.jugador.JugadorService;
@@ -77,15 +77,16 @@ public class GameController {
 		UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String username = ud.getUsername();
 		Persona persona = personaService.getPersonaByUserName(username);
-		if (game.getJugadores().get(0).getPersona() != persona && game.getJugadores().get(1).getPersona() != persona ) {
-				
-			return "redirect:/errorIntentoBorrado";
-		}
+		
+//		if (game.getJugadores().get(0).getPersona() != persona && game.getJugadores().get(1).getPersona() != persona ) {
+//				
+//			return "redirect:/errorIntentoBorrado";
+//		}
+		response.addHeader("Refresh", "1");
 		if (game.getTurnos().get(game.getTurno()).equals("fin")) {
 			modelMap.addAttribute("winner", game.getGanador());
 			return viewFin;
 		}
-		response.addHeader("Refresh", "100");
 
 		modelMap.addAttribute("game", game);
 		modelMap.addAttribute("board", game.getBoard());
@@ -108,10 +109,12 @@ public class GameController {
 		String username = ud.getUsername();
 		Persona persona = personaService.getPersonaByUserName(username);
 		String jugador = persona.getJugadores().get(persona.getJugadores().size() - 1).getColor();
-		if (game.getJugadores().get(0).getPersona() != persona && game.getJugadores().get(1).getPersona() != persona ) {
+		/*if (game.getJugadores().get(0).getPersona() != persona && game.getJugadores().get(1).getPersona() != persona ) {
 			
 			return "redirect:/errorSuplantacion";
-		}
+		}*/
+	
+		
 		if (game.getJugadores().size()>1) {
 			if (game.getJugadores().get(0).getPersona().equals(game.getJugadores().get(1).getPersona())) {
 				return "redirect:/errorMismoUsuarioEnPartida";

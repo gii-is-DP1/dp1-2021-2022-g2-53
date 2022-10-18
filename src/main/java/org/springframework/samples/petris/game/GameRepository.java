@@ -19,5 +19,8 @@ public interface GameRepository extends CrudRepository<Game, Integer> {
 	
 	@Query("SELECT g from Game g WHERE g.token = :token")
 	Game findByToken(@Param("token") String token);
+	
+	@Query("SELECT g FROM Game g")
+	Collection<Game> getJugadoresbyGame();
 
 }

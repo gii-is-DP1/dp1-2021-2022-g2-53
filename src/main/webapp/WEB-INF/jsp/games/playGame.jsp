@@ -6,6 +6,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags"%>
 
+
+
 <petclinic:layout pageName="game">
 
 	<button id="piu" onclick = "location.reload()" > </button>  
@@ -27,10 +29,11 @@
 				</c:forEach>
 			</div>
 		</div>
-
+	
 		<h2>Datos de la partida</h2>
 		<h2>
 			<c:out value="${now}" />
+			
 		</h2>
 
 		<table class="table table-striped" id="tabla">
@@ -46,10 +49,21 @@
 				<th>Fase actual</th>
 				<td><c:out value="${turnoActual}" /></td>
 			</tr>
+			<tr>
+				<th>Jugadores</th>
+				<td><c:out value="${game.jugadores.size()}; ${game.jugadores[0].persona.user.username}(${game.jugadores[0].color}), ${game.jugadores[1].persona.user.username}(${game.jugadores[1].color})" /></td>
+			</tr>
+			<tr>
+				<th>Creador</th>
+				<td><c:out value="${game.jugadores[0].persona.user.username}" /></td>
+			</tr>
+			
 		</table>
-
+		
 		<form:form modelAttribute="movement" class="form-horizontal"
 			id="play-game-form">
+			
+			
 			<c:choose>
 				<c:when test="${turnoActual == 'binary' || turnoActual == 'pollution' }">
 	
