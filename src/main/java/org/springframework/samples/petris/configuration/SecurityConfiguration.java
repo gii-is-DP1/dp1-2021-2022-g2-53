@@ -48,9 +48,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/personas/edit/**").hasAuthority("admin")
 				.antMatchers("/personas/delete/**").hasAuthority("admin")
 				.antMatchers("/personas").hasAuthority("persona")
+				.antMatchers("/people").hasAuthority("persona")
 				.antMatchers("/personas/seguroview").hasAuthority("persona")
 				.antMatchers("/personas/editperfil/**").hasAuthority("persona")
 				.antMatchers("/personas/partidaspersona").hasAuthority("persona")
+				.antMatchers("/personas/partidaspeople").hasAuthority("persona")
 				.antMatchers("/personas/registro/**").hasAuthority("admin")
 				.antMatchers("/personas/listPersonas").hasAuthority("admin")
 				.antMatchers("/admin/**").hasAnyAuthority("admin")
@@ -81,11 +83,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.passwordEncoder(passwordEncoder());
 	}
 
-	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
-		PasswordEncoder encoder = new BCryptPasswordEncoder();
-        return encoder;
+		PasswordEncoder encoder = NoOpPasswordEncoder.getInstance();
+		return encoder;
 	}
 
 	

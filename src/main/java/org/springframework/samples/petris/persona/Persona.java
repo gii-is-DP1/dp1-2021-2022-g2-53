@@ -1,6 +1,7 @@
 package org.springframework.samples.petris.persona;
 
 import java.time.LocalDateTime;
+
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -54,6 +55,7 @@ public class Persona  {
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "persona")
 	private List<Jugador> jugadores;
+	
 
 	@CreatedBy
 	@Column(name = "creator")
