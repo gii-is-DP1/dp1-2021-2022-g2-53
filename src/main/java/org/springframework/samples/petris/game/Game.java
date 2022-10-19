@@ -1,13 +1,11 @@
 package org.springframework.samples.petris.game;
 
+
 import java.security.SecureRandom;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import javax.persistence.CascadeType;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -57,6 +55,7 @@ public class Game extends BaseEntity {
 		this.pointsRed = pointsRed;
 		this.board = board;
 		this.turno = 0;
+	
 	}
 
 	private static final String red_color = "red";
@@ -184,7 +183,9 @@ public class Game extends BaseEntity {
 			this.setTurno(this.getTurnos().size() - 1);
 			return this.getGanador();
 		}
+		
 		return "";
+		
 	}
 
 }

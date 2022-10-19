@@ -1,6 +1,7 @@
 package org.springframework.samples.petris.game;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -22,5 +23,16 @@ public interface GameRepository extends CrudRepository<Game, Integer> {
 	
 	@Query("SELECT g FROM Game g")
 	Collection<Game> getJugadoresbyGame();
+	
+	@Query("SELECT g.id FROM Game g")
+	List<Integer> getIdbyGame();
+	
+	@Query("SELECT SUM(g.pointsBlack) FROM Game g")
+	Integer getpointsBlackbyGame();
+	
+	@Query("SELECT SUM(g.pointsRed) FROM Game g")
+	Integer getpointsRedbyGame();
+	
+	
 
 }
