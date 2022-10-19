@@ -18,6 +18,7 @@ import org.springframework.samples.petris.game.GameRepository;
 
 import javax.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.samples.petris.jugador.Jugador;
 import org.springframework.samples.petris.jugador.JugadorRepository;
 
 
@@ -77,6 +78,41 @@ public class PersonaController {
 		Collection<Game> res;
 		res = this.gameRepo.getJugadoresbyGame();
 		modelMap.addAttribute("games", res);
+		return view;
+	}
+	
+	@GetMapping(value = "/estadisticas")
+	public String estadisticas(ModelMap modelMap, HttpServletResponse response) {
+		UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String username = ud.getUsername();
+		modelMap.addAttribute("persona", username);
+		Persona persona = personaService.getPersonaByUserName(username);
+		String view = "personas/estadisticas";
+		
+		Collection<Game> res;
+		res = this.gameRepo.getJugadoresbyGame();
+		modelMap.addAttribute("games", res);
+		
+		List<Integer> id;
+		id = this.gameRepo.getIdbyGame();
+		modelMap.addAttribute("id", id);
+		
+		Integer pb;
+		pb = this.gameRepo.getpointsBlackbyGame();
+		modelMap.addAttribute("pb", pb);
+		
+		Integer pr;
+		pr = this.gameRepo.getpointsRedbyGame();
+		modelMap.addAttribute("pr", pr);
+		
+		Iterable<Persona> g;
+		g = this.personaRepo.getPersonas();
+		modelMap.addAttribute("g", g);
+		
+		Integer u;
+		u = this.jugadorRepo.getGamesFromPersona();
+		modelMap.addAttribute("u", u);
+		
 		return view;
 	}
 

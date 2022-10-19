@@ -101,9 +101,9 @@
 					</div>
 				</div>
 				<div class="row" >
-					<div class="col-md-4">
+					<div class="col-md-1">
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-5">
 						<br>
 
 						<p>
@@ -129,7 +129,33 @@
 
 						<p>
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-5">
+					<br>
+
+						<p>
+							<br>
+
+
+							<spring:url value="/resources/images/FotoError.jpg"
+								htmlEscape="true" var="error" />
+							<img id="f2" class="img-responsive"
+								style="border: 2px solid; border-radius: 15px; color: #E8CEF5;"
+								src="${error}" /> <br>
+						<p>
+							<button class="btn btn-default" style="margin-left: 25%"
+								onclick="window.location.href='estadisticas'">
+								<span>Estadísticas y más</span>
+							</button>
+						</p>
+
+
+						<h2></h2>
+						<br></br> <br>
+
+
+						<p>
+					</div>
+					<div class="col-md-1">
 					</div>
 				</div>
 			</section>
