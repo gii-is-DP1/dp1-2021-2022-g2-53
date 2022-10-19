@@ -99,6 +99,10 @@ INSERT INTO piece(id,color,position,type,board_id) VALUES (26,'red',5,'bacterium
 INSERT INTO sarcine(id,color,position,board_id) VALUES (1,'black',1,1);
 INSERT INTO sarcine(id,color,position,board_id) VALUES (2,'red',6,1);
 
+INSERT INTO chats(id,text,persona_id, game_id) VALUES (1,'hola1',1,1);
+INSERT INTO chats(id,text,persona_id, game_id) VALUES (2,'hola2',2,1);
+INSERT INTO chats(id,text,persona_id, game_id) VALUES (3,'hola3',1,1);
+
 
 
 
