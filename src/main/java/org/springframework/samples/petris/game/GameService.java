@@ -44,7 +44,7 @@ public class GameService {
 	}
 
 	@Transactional
-	public Game findId(int id) {
+	public Game findId(Integer id) {
 		return gameRepo.findById(id).get();
 
 	}

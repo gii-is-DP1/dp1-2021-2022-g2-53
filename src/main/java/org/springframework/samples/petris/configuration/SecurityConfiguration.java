@@ -56,9 +56,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/users/encontrados").permitAll()
 				.antMatchers("/users/delete/**").permitAll()
 				.antMatchers("/personas").hasAuthority("persona")
+				.antMatchers("/people").hasAuthority("persona")
+				.antMatchers("/estadisticas").hasAuthority("persona")
+				.antMatchers("/personas/estadisticas").hasAuthority("persona")
+				.antMatchers("/chats/chat").hasAuthority("persona")
+				.antMatchers("/chats/**").hasAuthority("persona")
 				.antMatchers("/personas/seguroview").hasAuthority("persona")
 				.antMatchers("/personas/editperfil/**").hasAuthority("persona")
 				.antMatchers("/personas/partidaspersona").hasAuthority("persona")
+				.antMatchers("/personas/partidaspeople").hasAuthority("persona")
 				.antMatchers("/personas/registro/**").hasAuthority("admin")
 				.antMatchers("/personas/listPersonas").hasAuthority("admin")
 				.antMatchers("/admin/**").hasAnyAuthority("admin")
@@ -91,12 +97,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.passwordEncoder(passwordEncoder());
 	}
 
+
 	
     @Bean
     public PasswordEncoder passwordEncoder() {
         PasswordEncoder encoder = NoOpPasswordEncoder.getInstance();
         return encoder;
     }
+
 
 	
 	@Bean

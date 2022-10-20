@@ -58,11 +58,15 @@ INSERT INTO boards(id,background,height,width) VALUES (2,'/resources/images/tabl
 
 
 INSERT INTO games (id,points_black,points_red,board_id,turno,token) VALUES (1,2,2,1,15,'abc-abc');
-INSERT INTO games (id,points_black,points_red,board_id,turno,token) VALUES (2,10,4,2,32,'ebc-qer');
+INSERT INTO games (id,points_black,points_red,board_id,turno,token) VALUES (2,8,4,2,37,'ebc-qer');
+
+
+
 
 
 INSERT INTO jugador(id,color,game_id,persona_id) VALUES (1,'red',1,1);
 INSERT INTO jugador(id,color,game_id,persona_id) VALUES (2,'black',1,2);
+
 
 INSERT INTO jugador(id,color,game_id,persona_id) VALUES (3,'red',2,1);
 INSERT INTO jugador(id,color,game_id,persona_id) VALUES (4,'black',2,2);
@@ -97,6 +101,10 @@ INSERT INTO piece(id,color,position,type,board_id) VALUES (26,'red',5,'bacterium
 
 INSERT INTO sarcine(id,color,position,board_id) VALUES (1,'black',1,1);
 INSERT INTO sarcine(id,color,position,board_id) VALUES (2,'red',6,1);
+
+INSERT INTO chats(id,text,persona_id, game_id) VALUES (1,'hola1',1,1);
+INSERT INTO chats(id,text,persona_id, game_id) VALUES (2,'hola2',2,1);
+INSERT INTO chats(id,text,persona_id, game_id) VALUES (3,'hola3',1,1);
 
 
 
