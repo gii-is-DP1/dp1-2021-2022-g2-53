@@ -47,6 +47,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/jugadores/**").hasAuthority("admin")
 				.antMatchers("/personas/edit/**").hasAuthority("admin")
 				.antMatchers("/personas/delete/**").hasAuthority("admin")
+				.antMatchers("/users/amigos").permitAll()
+				.antMatchers("/users/**").permitAll()
+				.antMatchers("/users/find?username=**").permitAll()
+				.antMatchers("/users/encontrados").permitAll()
+				.antMatchers("/users/buscar/user").permitAll()
+				.antMatchers("/users/encontrado").permitAll()
+				.antMatchers("/users/encontrados").permitAll()
+				.antMatchers("/users/delete/**").permitAll()
 				.antMatchers("/personas").hasAuthority("persona")
 				.antMatchers("/people").hasAuthority("persona")
 				.antMatchers("/estadisticas").hasAuthority("persona")
@@ -63,6 +71,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/owners/**").hasAnyAuthority("owner", "admin")
 				.antMatchers("/register").permitAll()
 				.antMatchers("/welcome").permitAll()
+				.antMatchers("/invitacionAmigo").permitAll()
+				.antMatchers("/invitacionAmigo/**").permitAll()
 				.antMatchers("/error").permitAll()
 				.antMatchers("/errorIntentoBorrado").permitAll()
 				.antMatchers("/errorMismoUsuarioEnPartida").hasAuthority("persona")
@@ -87,11 +97,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.passwordEncoder(passwordEncoder());
 	}
 
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		PasswordEncoder encoder = NoOpPasswordEncoder.getInstance();
-		return encoder;
-	}
+
+	
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        PasswordEncoder encoder = NoOpPasswordEncoder.getInstance();
+        return encoder;
+    }
+
 
 	
 	@Bean

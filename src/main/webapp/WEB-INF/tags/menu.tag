@@ -32,13 +32,7 @@
 				</petclinic:menuItem>
 			
 				
-				<!--  
-				<petclinic:menuItem active="${name eq 'error'}" url="/oups"
-					title="trigger a RuntimeException to see how it is handled">
-					<span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
-					<span>Error</span>
-				</petclinic:menuItem>
-				-->
+		
 				
 				<security:authorize access="hasAuthority('persona')">
 				
@@ -47,6 +41,27 @@
 					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
 					<span>Modos de juego</span>
 				</petclinic:menuItem>
+
+				<petclinic:menuItem active="${name eq 'Friends'}" url="/invitacionAmigo"
+					title="Invitacion Amigos">
+					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+					<span>Solicitudes de amistad</span>
+				</petclinic:menuItem>
+
+				<petclinic:menuItem active="${name eq 'Users'}" url="/users/buscar/user"
+					title="Users">
+					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+					<span>Buscar usuarios</span>
+				</petclinic:menuItem>	
+
+				<petclinic:menuItem active="${name eq 'Friends'}" url="/users/amigos"
+					title="Users">
+					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+					<span>Lista de Amigos</span>
+				</petclinic:menuItem>	
+
+		
+
 				 </security:authorize>	
 				<security:authorize access="hasAuthority('admin')">
 				
@@ -55,6 +70,11 @@
 					<span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
 					<span>Herramientas de administrador</span>
 				</petclinic:menuItem>
+
+				
+
+				
+
 				 </security:authorize>	
 
 			</ul>
@@ -93,6 +113,8 @@
 										</div>
 									</div>
 								</div>
+
+								
 							</li>
 							<li class="divider"></li>
  							

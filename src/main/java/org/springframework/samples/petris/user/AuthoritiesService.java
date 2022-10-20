@@ -15,6 +15,7 @@
  */
 package org.springframework.samples.petris.user;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,5 +52,18 @@ public class AuthoritiesService {
 			throw new DataAccessException("User '" + username + "' not found!") {
 			};
 	}
+
+	@Transactional
+    public Boolean getAuthorities(String username) throws DataAccessException {
+
+        String ret = "";
+        Boolean re  = false;
+        List<Authorities> user = authoritiesRepository.findByUsername(username);
+             ret = user.get(0).getAuthority();
+             if(ret.equals("admin")) {
+                 re = true;
+             }
+        return re;
+    }
 
 }
