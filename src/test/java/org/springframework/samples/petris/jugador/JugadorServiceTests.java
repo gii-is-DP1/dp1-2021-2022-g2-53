@@ -54,6 +54,7 @@ public class JugadorServiceTests {
 
 	}
 
+	/* 
 	@Test
 	public void historialgameTest() {
 	
@@ -63,6 +64,7 @@ public class JugadorServiceTests {
 		assertEquals(list.size(), 2);
 	}
 
+	*/
 	
 
 }

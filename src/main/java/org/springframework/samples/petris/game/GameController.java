@@ -72,8 +72,6 @@ public class GameController {
 		String view = "games/showGame";
 		String viewFin = "games/endGame";
 		Game game = gameService.findId(gameId);
-
-		
 		UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String username = ud.getUsername();
 		Persona persona = personaService.getPersonaByUserName(username);

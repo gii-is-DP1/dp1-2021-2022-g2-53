@@ -2,12 +2,15 @@ package org.springframework.samples.petris.user;
 
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
@@ -58,6 +61,10 @@ public class User {
 	@LastModifiedDate
 	@Column(name = "last_modified_date")
 	private LocalDateTime lastModifiedDate;
+
+	@ManyToMany(cascade= CascadeType.ALL)
+	@JoinTable(name= "amigos")
+	private List<User> amigos;
 
 
 
