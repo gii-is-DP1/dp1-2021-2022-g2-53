@@ -10,7 +10,7 @@
 	<body style="background: url(/resources/images/bck-petris.png)">
 
 		<h2>
-			<c:if test="${persona['new']}">New </c:if>
+			<c:if test="${persona['new']}">Nueva</c:if>
 			Persona
 		</h2>
 		<form:form modelAttribute="persona" class="form-horizontal"
@@ -20,7 +20,7 @@
 				<petclinic:inputField label="Apellido" name="lastName" />
 
 				<petclinic:inputField label="Nombre de usuario" name="user.username" />
-				<petclinic:inputField label="Contraseña" name="user.password" />
+				<petclinic:inputField label="ContraseÃ±a" name="user.password" />
 			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">

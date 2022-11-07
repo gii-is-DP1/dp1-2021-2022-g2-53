@@ -25,68 +25,65 @@
 		<div class="row" align="center">
 			<button class="btn btn-default" id="pedrito2"
 				style="margin-left: -20px"
-				onclick="window.location.href='/users/auditoria'">
+				onclick="window.location.href='/personas/auditoria'">
 				<span>Registro de modificación</span>
 			</button>
 
 		</div>
 		<div class="row">
-		<div class="col-md-4" style="margin-top: 220px; margin-left: -50px">
+			<div class="col-md-4" style="margin-top: 220px; margin-left: -50px">
 
 
-			<div class=row>
-				<br></br>
+				<div class=row>
+					<br></br>
 
-				<p>
+					<p>
+
+						<button class="btn btn-default" id="pedrito"
+							style="margin-left: 150px"
+							onclick="window.location.href='/games/mostrarpartidas'">
+							<span>Listado de partidas jugadas</span>
+						</button>
+
+						<br></br> <br> <br>
+
+					</p>
+
+				</div>
+
+
+			</div>
+			<div class="col-md-4">
+				<spring:url value="/resources/images/FotoError.jpg"
+					htmlEscape="true" var="error" />
+				<img id="f2" class="img-responsive"
+					style="border: 2px solid; margin-left: 40px; margin-top: 40px; border-radius: 15px; color: #E8CEF5;"
+					src="${error}" />
+			</div>
+
+			<div class="col-md-4" style="margin-top: 220px">
+				<div class=row>
+					<br></br>
+
 
 					<button class="btn btn-default" id="pedrito"
-						style="margin-left: 150px"
-						onclick="window.location.href='/games/mostrarpartidas'">
-						<span>Listado de partidas jugadas</span>
+						style="margin-left: 80px"
+						onclick="window.location.href='/personas/registro/0'">
+						<span>Usuarios registrados</span>
 					</button>
 
-					<br></br>
-					<br>
-					<br>
-
-				</p>
-
-			</div>
-
-
-		</div>
-		<div class="col-md-4">
-			<spring:url value="/resources/images/FotoError.jpg" htmlEscape="true"
-				var="error" />
-			<img id="f2" class="img-responsive"
-				style="border: 2px solid; margin-left: 40px; margin-top: 40px; border-radius: 15px; color: #E8CEF5;"
-				src="${error}" />
-		</div>
-
-		<div class="col-md-4" style="margin-top: 220px">
-			<div class=row>
-				<br></br>
-
-
-				<button class="btn btn-default" id="pedrito"
-					style="margin-left: 80px"
-					onclick="window.location.href='/personas/registro/0'">
-					<span>Usuarios registrados</span>
-				</button>
 
 
 
 
 
-
-				<p>
-			</div>
-		</div>
+					<p>
 				</div>
-		
+			</div>
+		</div>
+
 		<div class="row" align="center">
-		<br>
-		<br>
+			<br> <br>
 			<button class="btn btn-default" id="pedrito2"
 				style="margin-left: -20px"
 				onclick="window.location.href='/games/mostrarpartidasencurso'">

@@ -28,7 +28,7 @@
 				<p align="center">tu amigo para poder jugar juntos</p>
 				<p align="center">y demostrar lo que valeis</p>
 
-				<p align="center">¡ DESAFÍO ENTRE AMIGOS !</p>
+				<p align="center">¡DESAFÍO ENTRE AMIGOS !</p>
 				<br> <br>
 
 				<button class="btn btn-default" style="margin-left: 34%"

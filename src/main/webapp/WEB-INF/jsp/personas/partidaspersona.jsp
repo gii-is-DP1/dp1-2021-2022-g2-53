@@ -9,12 +9,17 @@
 <petclinic:layout pageName="games">
 	<body style="background: url(/resources/images/bck-petris.png)">
 
-		<h2>Partidas</h2>
+		<h2 style="text-align: center">
+			Historial de partidas de
+			<c:out value="${persona}" />
+		</h2>
 
 
 		<table id="gamesTable" class="table table-striped">
 			<thead>
 				<tr>
+					<th style="width: 160px;">Nombre jugador negro</th>
+					<th style="width: 160px;">Nombre del jugador rojo</th>
 					<th style="width: 160px;">Puntos del jugador negro</th>
 					<th style="width: 160px;">Puntos del jugador rojo</th>
 					<th style="width: 80px;"></th>
@@ -24,6 +29,8 @@
 			<tbody>
 				<c:forEach items="${games}" var="game">
 					<tr>
+						<td><c:out value="${game.jugadores[0].persona.user.username}" /></td>
+						<td><c:out value="${game.jugadores[1].persona.user.username}" /></td>
 						<td><c:out value="${game.pointsBlack}" /></td>
 						<td><c:out value="${game.pointsRed}" /></td>
 						<td><spring:url value="/games/{gameId}" var="gameUrl">

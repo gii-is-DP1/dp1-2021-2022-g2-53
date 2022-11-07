@@ -22,7 +22,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${games}" var="game" >
+				<c:forEach items="${games}" var="game">
 					<tr>
 						<td><c:out value="${game.pointsBlack}" /></td>
 						<td><c:out value="${game.pointsRed}" /></td>

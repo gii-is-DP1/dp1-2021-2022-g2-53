@@ -1,6 +1,6 @@
 <%@ attribute name="size" required="true" rtexprvalue="true" 
  description="Size of the sarcine to show" %>
- <%@ attribute name="sarcine" required="true" rtexprvalue="true" type="org.springframework.samples.petclinic.game.Sarcine"
+ <%@ attribute name="sarcine" required="true" rtexprvalue="true" type="org.springframework.samples.petris.game.Sarcine"
  description="Sarcine to be rendered" %>
  <script>
  var canvas = document.getElementById("canvas");
