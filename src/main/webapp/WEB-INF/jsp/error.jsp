@@ -25,7 +25,7 @@
 
 		<h2 align="center">ERROR :(</h2>
 		<br>
-		<h4 align="center">Hasta la prÃ³xima</h4>
+		<h4 align="center">Algo ha ocurrido, mira el mensaje superior para recibir más información</h4>
 
 
 

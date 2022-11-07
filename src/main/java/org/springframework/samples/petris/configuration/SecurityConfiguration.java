@@ -99,12 +99,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
 	
-    @Bean
+	@Bean
     public PasswordEncoder passwordEncoder() {
-        PasswordEncoder encoder = NoOpPasswordEncoder.getInstance();
+        PasswordEncoder encoder = new BCryptPasswordEncoder();
         return encoder;
     }
-
 
 	
 	@Bean

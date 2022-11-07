@@ -1,6 +1,5 @@
 package org.springframework.samples.petris.game;
 
-
 import java.security.SecureRandom;
 
 import java.util.ArrayList;
@@ -41,21 +40,19 @@ public class Game extends BaseEntity {
 	private Integer turno;
 	@OneToOne
 	private Board board;
-	
+
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "game")
-	
+
 	@Size(max = 2)
 	private List<Jugador> jugadores;
-	
 
-	
 	public Game(Integer pointsBlack, Integer pointsRed, Board board) {
 		super();
 		this.pointsBlack = pointsBlack;
 		this.pointsRed = pointsRed;
 		this.board = board;
 		this.turno = 0;
-	
+
 	}
 
 	private static final String red_color = "red";
@@ -67,7 +64,6 @@ public class Game extends BaseEntity {
 		super();
 	}
 
-
 	public String generarToken() {
 		String bancoLetras = "abcdefghijklmnopqrstuvw";
 		String bancoNumeros = "123456789";
@@ -77,9 +73,11 @@ public class Game extends BaseEntity {
 				int randomInt = secureRandom.nextInt(bancoLetras.length());
 				char randomChar = bancoLetras.charAt(randomInt);
 				strB.append(randomChar);
-				log.info("------------------------------------------------------------------------------------------------");
+				log.info(
+						"------------------------------------------------------------------------------------------------");
 				log.info("Valor de i = {}", i);
-				log.info("------------------------------------------------------------------------------------------------");
+				log.info(
+						"------------------------------------------------------------------------------------------------");
 			}
 			if (i == maximo_letras_token) {
 				strB.append("-");
@@ -173,19 +171,23 @@ public class Game extends BaseEntity {
 
 		} else if (this.getPointsBlack() >= numero_maximo_puntos_para_perder
 				|| this.getPointsRed() >= numero_maximo_puntos_para_perder) {
-			log.info("------------------------------------------------------------------------------------------------");
+			log.info(
+					"------------------------------------------------------------------------------------------------");
 			log.info("Puntos negros = {} ", this.getPointsBlack());
-			log.info("------------------------------------------------------------------------------------------------");
-			
-			log.info("------------------------------------------------------------------------------------------------");
+			log.info(
+					"------------------------------------------------------------------------------------------------");
+
+			log.info(
+					"------------------------------------------------------------------------------------------------");
 			log.info("Puntos rojos = {}", this.getPointsRed());
-			log.info("------------------------------------------------------------------------------------------------");
+			log.info(
+					"------------------------------------------------------------------------------------------------");
 			this.setTurno(this.getTurnos().size() - 1);
 			return this.getGanador();
 		}
-		
+
 		return "";
-		
+
 	}
 
 }

@@ -10,36 +10,36 @@
 
 <petclinic:layout pageName="game">
 
-	<button id="piu" onclick = "location.reload()" > </button>  
+	<button id="piu" onclick="location.reload()"></button>
 
 	<body style="background: url(/resources/images/bck-petris.png)">
-	
+
 		<div class="row">
-			
+
 			<div class="col-md-12" align="center" style="margin-top: 10px;">
 				<petclinic:board board="${board}" />
 				<c:forEach items="${board.pieces}" var="piece">
 					<petclinic:piece size="10" piece="${piece}" />
 				</c:forEach>
-			
-			<div class="col-md-12" align="center" style="margin-top: 10px;">
 
-				<c:forEach items="${board.sarcines}" var="sarcine">
-					<petclinic:sarcine size="20" sarcine="${sarcine}" />
+				<div class="col-md-12" align="center" style="margin-top: 10px;">
 
-				</c:forEach>
-			</div>
-			<div class="col-md-12" align="center" >
+					<c:forEach items="${board.sarcines}" var="sarcine">
+						<petclinic:sarcine size="20" sarcine="${sarcine}" />
+
+					</c:forEach>
+				</div>
+				<div class="col-md-12" align="center">
 					<a href="http://localhost:8081/chats/${gameId}" target="_blank">
-					<button class="btn btn-default" >Chat de la partida</button>
-				</a>
+						<button class="btn btn-default">Chat de la partida</button>
+					</a>
+				</div>
 			</div>
 		</div>
-	</div>
 		<h2>Datos de la partida</h2>
 		<h2>
 			<c:out value="${now}" />
-			
+
 		</h2>
 
 		<table class="table table-striped" id="tabla">
@@ -57,34 +57,37 @@
 			</tr>
 			<tr>
 				<th>Jugadores</th>
-				<td><c:out value="${game.jugadores.size()}; ${game.jugadores[0].persona.user.username}(${game.jugadores[0].color}), ${game.jugadores[1].persona.user.username}(${game.jugadores[1].color})" /></td>
+				<td><c:out
+						value="${game.jugadores.size()}; ${game.jugadores[0].persona.user.username}(${game.jugadores[0].color}), ${game.jugadores[1].persona.user.username}(${game.jugadores[1].color})" /></td>
 			</tr>
 			<tr>
 				<th>Creador</th>
 				<td><c:out value="${game.jugadores[0].persona.user.username}" /></td>
 			</tr>
-			
+
 		</table>
-		
+
 		<form:form modelAttribute="movement" class="form-horizontal"
 			id="play-game-form">
-			
-			
+
+
 			<c:choose>
-				<c:when test="${turnoActual == 'binary' || turnoActual == 'pollution' }">
-	
+				<c:when
+					test="${turnoActual == 'binary' || turnoActual == 'pollution' }">
+
 				</c:when>
 				<c:otherwise>
-			<div class="form-group has-feedback">
+					<div class="form-group has-feedback">
 
-				<petclinic:inputField label="Casilla original"
-					name="initialPosition" />
-				<petclinic:inputField label="N�mero de fichas" name="number" />
-				<petclinic:inputField label="Casilla destino" name="destinyPosition" />
+						<petclinic:inputField label="Casilla original"
+							name="initialPosition" />
+						<petclinic:inputField label="N�mero de fichas" name="number" />
+						<petclinic:inputField label="Casilla destino"
+							name="destinyPosition" />
 
-			</div>
-		</c:otherwise>
-	</c:choose>
+					</div>
+				</c:otherwise>
+			</c:choose>
 
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">

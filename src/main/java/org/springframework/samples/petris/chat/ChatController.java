@@ -2,7 +2,6 @@ package org.springframework.samples.petris.chat;
 
 import java.util.Collection;
 
-
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
@@ -25,52 +24,50 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/chats")
 public class ChatController {
-    
-	
+
 	@Autowired
 	private ChatService chatService;
-    @Autowired
+	@Autowired
 	private GameService gameService;
-    @Autowired
+	@Autowired
 	private PersonaService personaService;
 
-    @Autowired
+	@Autowired
 	private ChatRepository chatRepo;
-		
-	@GetMapping(path="/{gameId}")
-	 public String listadoChats(ModelMap modelMap, @PathVariable("gameId") int gameId, HttpServletResponse response) {
-	 	String vista = "chats/chat";
-        response.addHeader("Refresh","12");
-        UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+	@GetMapping(path = "/{gameId}")
+	public String listadoChats(ModelMap modelMap, @PathVariable("gameId") int gameId, HttpServletResponse response) {
+		String vista = "chats/chat";
+		response.addHeader("Refresh", "12");
+		UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String username = ud.getUsername();
 		Persona persona = personaService.getPersonaByUserName(username);
 		Game game = gameService.findId(gameId);
-		
+
 		if (game.getJugadores().get(0).getPersona() != persona && game.getJugadores().get(1).getPersona() != persona) {
-		
-		return "redirect:/errorSuplantacion";
+
+			return "redirect:/errorSuplantacion";
 		}
 		modelMap.addAttribute("persona", persona);
-        Collection<Chat> res;
+		Collection<Chat> res;
 		res = this.chatRepo.getChatsbyGameId(game.getId());
 		modelMap.addAttribute("chats", res);
-		
-		modelMap.addAttribute("NuevoMensaje", new Chat());
-	 	return vista;
-	 }
 
-    @PostMapping(path="/{gameId}/save")
+		modelMap.addAttribute("NuevoMensaje", new Chat());
+		return vista;
+	}
+
+	@PostMapping(path = "/{gameId}/save")
 	public String saveChat(ModelMap modelMap, @PathVariable("gameId") int gameId, @Valid Chat chat) {
-        Game game = gameService.findId(gameId);
-        chat.setGame(game);
-        UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Game game = gameService.findId(gameId);
+		chat.setGame(game);
+		UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String username = ud.getUsername();
 		Persona persona = personaService.getPersonaByUserName(username);
-        chat.setPersona(persona);
-        chatService.save(chat);
-        return "redirect:/chats/" + game.getId();
-		
+		chat.setPersona(persona);
+		chatService.save(chat);
+		return "redirect:/chats/" + game.getId();
+
 	}
-	
-	
+
 }

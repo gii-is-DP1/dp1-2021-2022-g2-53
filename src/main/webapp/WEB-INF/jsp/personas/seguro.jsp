@@ -32,8 +32,7 @@
 				<br> <br>
 				<h3>Ten encuenta que debes salir y volver a iniciar sesión con
 					los nuevos datos</h3>
-				<br></br>
-				<br>
+				<br></br> <br>
 			</div>
 
 		</div>

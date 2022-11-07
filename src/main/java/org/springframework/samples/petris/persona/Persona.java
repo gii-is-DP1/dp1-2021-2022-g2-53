@@ -31,7 +31,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EntityListeners(AuditingEntityListener.class)
-public class Persona  {
+public class Persona {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected Integer id;
@@ -55,7 +55,6 @@ public class Persona  {
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "persona")
 	private List<Jugador> jugadores;
-	
 
 	@CreatedBy
 	@Column(name = "creator")
@@ -72,10 +71,5 @@ public class Persona  {
 	@LastModifiedDate
 	@Column(name = "last_modified_date")
 	private LocalDateTime lastModifiedDate;
-
-	
-	
-
-	
 
 }

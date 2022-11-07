@@ -22,7 +22,7 @@
 		<security:authorize access="hasAuthority('persona')">
 			<section id="sectionA">
 				<br></br>
-			
+
 				<div class="row" id="popa">
 					<h2>Bienvenido a Petris</h2>
 
@@ -100,9 +100,8 @@
 						<p>
 					</div>
 				</div>
-				<div class="row" >
-					<div class="col-md-1">
-					</div>
+				<div class="row">
+					<div class="col-md-1"></div>
 					<div class="col-md-5">
 						<br>
 
@@ -130,7 +129,7 @@
 						<p>
 					</div>
 					<div class="col-md-5">
-					<br>
+						<br>
 
 						<p>
 							<br>
@@ -155,8 +154,7 @@
 
 						<p>
 					</div>
-					<div class="col-md-1">
-					</div>
+					<div class="col-md-1"></div>
 				</div>
 			</section>
 		</security:authorize>
@@ -183,45 +181,65 @@
 		</security:authorize>
 		<br></br>
 		<br>
-		<div class ="col-md-12" >
-		<h3 style="text-align:center">¡Pásale este enlace a un amigo para que juegue a Petris contigo!</h3>
-		<button class="btn btn-default" style="margin-left:44%" id='getlink' href='javascript:void();'>
-								<span>Copiar URL &nbsp;&nbsp;  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
-  <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
-  <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+		<div class="col-md-12">
+			<h3 style="text-align: center">¡Pásale este enlace a un amigo
+				para que juegue a Petris contigo!</h3>
+			<button class="btn btn-default" style="margin-left: 44%" id='getlink'
+				href='javascript:void();'>
+				<span>Copiar URL &nbsp;&nbsp; <svg
+						xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+						fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
+  <path
+							d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z" />
+  <path
+							d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z" />
 </svg></span>
-							</button>
+			</button>
 		</div>
 		<div class="col-md-8">
-		
-		
 
-<script>//<![CDATA[
-	var boton = document.getElementById('getlink');
-	boton.addEventListener('click', function(e) {
-	if(boton.id == 'getlink'){
-	var aux = document.createElement('input');
-	aux.setAttribute('value', window.location.href.split('?')[0].split('#')[0]);
-	document.body.appendChild(aux);
-	aux.select();
-	try {
-	document.execCommand('copy');
-	var aviso = document.createElement('div');
-	aviso.setAttribute('id', 'aviso');
-	aviso.style.cssText = 'position:fixed; z-index: 9999999; top: 50%;left:50%;margin-left: -70px;padding: 20px; background: #E8CEF5;border-radius: 8px ;border: 4px solid #853fb3;font-family: sans-serif;';
-	aviso.innerHTML = '¡URL copiada con éxito!';
-	document.body.appendChild(aviso);
-	document.load = setTimeout('document.body.removeChild(aviso)', 2000);
-	document.load = setTimeout('boton.id = "getlink"',2500);
-	boton.id = '';
-	} catch (e) {
-	alert('Tu navegador no soporta la función de copiar');
-	}
-	document.body.removeChild(aux);
-	}
-	});
-//]]>
-</script>
+
+
+			<script>
+				//<![CDATA[
+				var boton = document.getElementById('getlink');
+				boton
+						.addEventListener(
+								'click',
+								function(e) {
+									if (boton.id == 'getlink') {
+										var aux = document
+												.createElement('input');
+										aux
+												.setAttribute('value',
+														window.location.href
+																.split('?')[0]
+																.split('#')[0]);
+										document.body.appendChild(aux);
+										aux.select();
+										try {
+											document.execCommand('copy');
+											var aviso = document
+													.createElement('div');
+											aviso.setAttribute('id', 'aviso');
+											aviso.style.cssText = 'position:fixed; z-index: 9999999; top: 50%;left:50%;margin-left: -70px;padding: 20px; background: #E8CEF5;border-radius: 8px ;border: 4px solid #853fb3;font-family: sans-serif;';
+											aviso.innerHTML = '¡URL copiada con éxito!';
+											document.body.appendChild(aviso);
+											document.load = setTimeout(
+													'document.body.removeChild(aviso)',
+													2000);
+											document.load = setTimeout(
+													'boton.id = "getlink"',
+													2500);
+											boton.id = '';
+										} catch (e) {
+											alert('Tu navegador no soporta la función de copiar');
+										}
+										document.body.removeChild(aux);
+									}
+								});
+				//]]>
+			</script>
 			<h2>${group}</h2>
 			<ul>
 				<c:forEach items="${personas}" var="person">

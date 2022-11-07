@@ -38,7 +38,7 @@ public class GameController {
 	private PersonaService personaService;
 	@Autowired
 	private GameRepository repository;
-	
+
 	private static final Integer numero_maximo_puntos_para_perder = 9;
 
 	@GetMapping(value = "/mostrarpartidas")
@@ -75,7 +75,7 @@ public class GameController {
 		UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String username = ud.getUsername();
 		Persona persona = personaService.getPersonaByUserName(username);
-		
+
 //		if (game.getJugadores().get(0).getPersona() != persona && game.getJugadores().get(1).getPersona() != persona ) {
 //				
 //			return "redirect:/errorIntentoBorrado";
@@ -107,20 +107,22 @@ public class GameController {
 		String username = ud.getUsername();
 		Persona persona = personaService.getPersonaByUserName(username);
 		String jugador = persona.getJugadores().get(persona.getJugadores().size() - 1).getColor();
-		/*if (game.getJugadores().get(0).getPersona() != persona && game.getJugadores().get(1).getPersona() != persona ) {
-			
-			return "redirect:/errorSuplantacion";
-		}*/
-	
-		
-		if (game.getJugadores().size()>1) {
+		/*
+		 * if (game.getJugadores().get(0).getPersona() != persona &&
+		 * game.getJugadores().get(1).getPersona() != persona ) {
+		 * 
+		 * return "redirect:/errorSuplantacion"; }
+		 */
+
+		if (game.getJugadores().size() > 1) {
 			if (game.getJugadores().get(0).getPersona().equals(game.getJugadores().get(1).getPersona())) {
 				return "redirect:/errorMismoUsuarioEnPartida";
 			}
 		}
-			
+
 		modelMap.put("now", new Date());
-		if (game.getTurnos().get(game.getTurno()).equals("fin") || game.getPointsBlack() >= numero_maximo_puntos_para_perder
+		if (game.getTurnos().get(game.getTurno()).equals("fin")
+				|| game.getPointsBlack() >= numero_maximo_puntos_para_perder
 				|| game.getPointsBlack() >= numero_maximo_puntos_para_perder) {
 			modelMap.addAttribute("winner", game.getGanador());
 			return viewFin;
@@ -128,15 +130,17 @@ public class GameController {
 		if (jugador.equals(game.getTurnos().get(game.getTurno()))) {
 
 			return view;
-			
+
 		} else if (!jugador.equals(game.getTurnos().get(game.getTurno()))
-				&& !game.getTurnos().get(game.getTurno()).equals("binary")  && !game.getTurnos().get(game.getTurno()).equals("pollution")) {
+				&& !game.getTurnos().get(game.getTurno()).equals("binary")
+				&& !game.getTurnos().get(game.getTurno()).equals("pollution")) {
 			response.addHeader("Refresh", "1");
 			modelMap.addAttribute("message3", "Espera a que tu oponente realice su movimiento");
 			return view;
 		}
 		response.addHeader("Refresh", "2");
-		modelMap.addAttribute("message4", "¡Entrefase, respira profundo y pulsa para continuar o espera a que tu rival lo pulse!");
+		modelMap.addAttribute("message4",
+				"¡Entrefase, respira profundo y pulsa para continuar o espera a que tu rival lo pulse!");
 		return view;
 
 	}
@@ -314,8 +318,8 @@ public class GameController {
 		UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String username = ud.getUsername();
 		Persona persona = personaService.getPersonaByUserName(username);
-		if (game.getJugadores().get(0).getPersona() != persona || game.getJugadores().get(1).getPersona() != persona ) {
-				
+		if (game.getJugadores().get(0).getPersona() != persona || game.getJugadores().get(1).getPersona() != persona) {
+
 			return "redirect:/errorIntentoBorrado";
 		}
 		boolean edit = true;
@@ -328,8 +332,6 @@ public class GameController {
 	public String processUpdateGameForm(ModelMap modelMap, @PathVariable("gameId") int gameId, @Valid Game game,
 			BindingResult result) {
 
-
-		
 		if (result.hasErrors()) {
 			boolean edit = true;
 			modelMap.put("edit", edit);
@@ -353,11 +355,10 @@ public class GameController {
 		UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String username = ud.getUsername();
 		Persona persona = personaService.getPersonaByUserName(username);
-		if (game.getJugadores().get(0).getPersona() != persona || game.getJugadores().get(1).getPersona() != persona ) {
-				
+		if (game.getJugadores().get(0).getPersona() != persona || game.getJugadores().get(1).getPersona() != persona) {
+
 			return "redirect:/errorIntentoBorrado";
 		}
-		
 
 		if (game.getId().equals(gameId)) {
 
