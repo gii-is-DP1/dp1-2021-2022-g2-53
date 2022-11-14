@@ -28,14 +28,14 @@ public class PersonaServiceTest {
 
 	@Test
 	public void getUserByUserNameTest() {
-		User u = userService.findUser("person1").get();
+		User u = userService.findUser("person1");
 		Assertions.assertThat(u.getUsername()).isEqualTo("person1");
 
 	}
 
 	@Test
 	public void getPersonaByUserTest() {
-		User u = userService.findUser("person1").get();
+		User u = userService.findUser("person1");
 		Persona p= personaService.getPersonaByUser(u);
 		Assertions.assertThat(u).isEqualTo(p.getUser());
 	}
@@ -70,7 +70,7 @@ public class PersonaServiceTest {
 //
 //	}
 	
-	@Test
+//	@Test
 	public void deleteTest() {
 		Persona p = personaService.findId(3);
 		personaService.delete(p);
@@ -83,7 +83,7 @@ public class PersonaServiceTest {
 	@Test
 	public void saveTest() {
 		Persona p = new Persona();
-		User u= userService.findUser("person3").get();
+		User u= userService.findUser("person3");
 		p.setFirstName("jj");
 		p.setLastName("hh");
 		p.setUser(u);

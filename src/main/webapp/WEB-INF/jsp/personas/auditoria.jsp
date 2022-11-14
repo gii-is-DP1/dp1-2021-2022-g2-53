@@ -14,11 +14,11 @@
 					<th style="width: 160px;">Nombre de la persona</th>
 					<th style="width: 160px;">Apellido de la persona</th>
 					<th style="width: 160px;">Nombre de Usuario</th>
-					<th style="width: 160px;">ContraseÃ±a</th>
+					<th style="width: 160px;">Contraseña</th>
 					<th style="width: 160px;">Modificado por</th>
-					<th style="width: 160px;">Fecha de modificacion</th>
+					<th style="width: 160px;">Fecha de modificación</th>
 					<th style="width: 160px;">Creador</th>
-					<th style="width: 160px;">Fecha de creaciÃ³n</th>
+					<th style="width: 160px;">Fecha de creación</th>
 
 
 
