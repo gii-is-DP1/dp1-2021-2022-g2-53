@@ -25,7 +25,7 @@ public class PersonaService {
 
 	@Transactional
 	public User getUserByUserName(String username) {
-		return userService.findUser(username).get();
+		return userService.findUser(username);
 	}
 
 	@Transactional

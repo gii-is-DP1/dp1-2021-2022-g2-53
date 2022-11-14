@@ -24,7 +24,7 @@ public class PieceServiceTests {
     @Test
     public void piecesCount() {
         int count=pieceService.pieceCount();
-        assertEquals(count, 26);
+        assertEquals(count, 27);
     }
     
     @Test
@@ -38,7 +38,7 @@ public class PieceServiceTests {
         piece.setPosition(1);
         pieceService.save(piece);
         int count= pieceService.pieceCount();
-        assertEquals(count, 27);
+        assertEquals(count, 28);
 }
     
     
@@ -52,7 +52,7 @@ public class PieceServiceTests {
         pieceService.save(piece);
         pieceService.delete(piece);
         int count=gameService.gameCount();
-        assertEquals(count,2);
+        assertEquals(count,3);
 
     }
     
@@ -63,7 +63,7 @@ public class PieceServiceTests {
         board.setGame(game);
         pieceService.deleteById(5);
         int count=pieceService.pieceCount();
-        assertEquals(count, 25);
+        assertEquals(count, 26);
 
     }
     

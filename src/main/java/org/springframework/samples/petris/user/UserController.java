@@ -1,18 +1,4 @@
-/*
- * Copyright 2002-2013 the original author or authors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+
 package org.springframework.samples.petris.user;
 
 import java.util.List;
@@ -79,8 +65,8 @@ public class UserController {
 	public String listaAmigos(ModelMap modelMap) {
 		String vista = "users/listaAmigos";
 		UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		User user = userService.findUser(ud.getUsername()).get();
-		List<User> amigos = userService.findAmigos(user.getUsername());
+		User user= userService.findUser(ud.getUsername());
+		List<User> amigos =  userService.findAmigos(user.getUsername());
 		modelMap.addAttribute("amigos", amigos);
 		return vista;
 	}
@@ -99,25 +85,26 @@ public class UserController {
 		String vista = "users/usuariosEncontrados";
 		Iterable<User> users = userRepo.getUserByUsername(username);
 		modelMap.addAttribute("users", users);
-		UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		User user = userService.findUser(ud.getUsername()).get();
-		modelMap.addAttribute("usuActual", user);
-		modelMap.addAttribute("username", username);
+    	UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		User user= userService.findUser(ud.getUsername());
+        modelMap.addAttribute("usuActual", user);
+        modelMap.addAttribute("username", username);
 		return vista;
 	}
 
+	
+	@GetMapping(path="users/delete/{username}")
+    public String eliminarAmigo(@PathVariable("username") String username, ModelMap modelMap) {
+    	
+    	UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		User user= userService.findUser(ud.getUsername());
+    	userService.borrarAmigo(user, username);
+    	return "redirect:/users/amigos";
+    }
 	@PostMapping(path = "users/encontrado")
 	public String buscarTexto(@Valid Persona p, BindingResult result, ModelMap modelMap) {
 		return "redirect:/users/encontrados?username=" + p.getUser().getUsername();
 	}
 
-	@GetMapping(path = "users/delete/{username}")
-	public String eliminarAmigo(@PathVariable("username") String username, ModelMap modelMap) {
-
-		UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		User user = userService.findUser(ud.getUsername()).get();
-		userService.borrarAmigo(user, username);
-		return "redirect:/users/amigos";
-	}
 
 }
