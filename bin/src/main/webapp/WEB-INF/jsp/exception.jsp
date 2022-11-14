@@ -1,14 +1,26 @@
-<%@ page session="false" trimDirectiveWhitespaces="true" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
+<%@ page session="false" trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags"%>
+<body style="background: url(/resources/images/backgroundPetris.jpg)">
+	<petclinic:layout pageName="error">
 
-<petclinic:layout pageName="error">
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
+				<spring:url value="/resources/images/FotoError.jpg" var="FotoError" />
+				<img src="${FotoError}" />
+			</div>
+			<div class="col-md-4"></div>
+		</div>
 
-    <spring:url value="/resources/images/pets.png" var="petsImage"/>
-    <img src="${petsImage}"/>
 
-    <h2>Something happened...</h2>
 
-    <p>${exception.message}</p>
+		<br>
+		<br>
 
-</petclinic:layout>
+		<h2 align="center">¡Algo ha salido mal en el laboratorio!</h2>
+
+		<p>${exception.message}</p>
+
+	</petclinic:layout>
+</body>

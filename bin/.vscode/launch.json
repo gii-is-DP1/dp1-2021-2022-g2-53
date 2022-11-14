@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch PetrisApplication",
+            "request": "launch",
+            "mainClass": "org.springframework.samples.petris.PetrisApplication",
+            "projectName": "spring-petris"
+        },
+        {
+            "type": "java",
             "name": "Debug (Launch)-PetClinicApplication<spring-petclinic>",
             "request": "launch",
             "cwd": "${workspaceFolder}",

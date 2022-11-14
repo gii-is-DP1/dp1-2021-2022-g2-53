@@ -80,7 +80,7 @@ public class UserController {
 	public String listaAmigos(ModelMap modelMap) {
 		String vista = "users/listaAmigos";
 		UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		User user= userService.findUser(ud.getUsername()).get();
+		User user= userService.findUser(ud.getUsername());
 		List<User> amigos =  userService.findAmigos(user.getUsername());
 		modelMap.addAttribute("amigos", amigos);
 		return vista;
@@ -101,7 +101,7 @@ public class UserController {
 		Iterable<User> users =  userRepo.getUserByUsername(username);
 		modelMap.addAttribute("users", users);
     	UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		User user= userService.findUser(ud.getUsername()).get();
+		User user= userService.findUser(ud.getUsername());
         modelMap.addAttribute("usuActual", user);
         modelMap.addAttribute("username", username);
 		return vista;
@@ -117,7 +117,7 @@ public class UserController {
     public String eliminarAmigo(@PathVariable("username") String username, ModelMap modelMap) {
     	
     	UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		User user= userService.findUser(ud.getUsername()).get();
+		User user= userService.findUser(ud.getUsername());
     	userService.borrarAmigo(user, username);
     	return "redirect:/users/amigos";
     }

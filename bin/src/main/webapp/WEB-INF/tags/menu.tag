@@ -6,6 +6,9 @@
 <!--  >%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%-->
 <%@ attribute name="name" required="true" rtexprvalue="true"
 	description="Name of the active menu: home, owners, vets or error"%>
+	
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+
 
 <nav class="navbar navbar-default" role="navigation">
 	<div class="container">
@@ -25,26 +28,54 @@
 				<petclinic:menuItem active="${name eq 'home'}" url="/"
 					title="home page">
 					<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-					<span>Home</span>
+					<span>Inicio</span>
 				</petclinic:menuItem>
-
-				<petclinic:menuItem active="${name eq 'owners'}" url="/owners/find"
-					title="find owners">
-					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-					<span>Find owners</span>
-				</petclinic:menuItem>
-
-				<petclinic:menuItem active="${name eq 'vets'}" url="/vets"
-					title="veterinarians">
+			
+				
+		
+				
+				<security:authorize access="hasAuthority('persona')">
+				
+				<petclinic:menuItem active="${name eq 'Menu'}" url="#sectionA"
+					title="try something!">
 					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-					<span>Veterinarians</span>
+					<span>Modos de juego</span>
 				</petclinic:menuItem>
 
-				<petclinic:menuItem active="${name eq 'error'}" url="/oups"
-					title="trigger a RuntimeException to see how it is handled">
-					<span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
-					<span>Error</span>
+				<petclinic:menuItem active="${name eq 'Friends'}" url="/invitacionAmigo"
+					title="Invitacion Amigos">
+					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+					<span>Solicitudes de amistad</span>
 				</petclinic:menuItem>
+
+				<petclinic:menuItem active="${name eq 'Users'}" url="/users/buscar/user"
+					title="Users">
+					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+					<span>Buscar usuarios</span>
+				</petclinic:menuItem>	
+
+				<petclinic:menuItem active="${name eq 'Friends'}" url="/users/amigos"
+					title="Users">
+					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+					<span>Lista de Amigos</span>
+				</petclinic:menuItem>	
+
+		
+
+				 </security:authorize>	
+				<security:authorize access="hasAuthority('admin')">
+				
+				<petclinic:menuItem active="${name eq 'Menu2'}" url="#sectionB"
+					title="Admin tools!">
+					<span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
+					<span>Herramientas de administrador</span>
+				</petclinic:menuItem>
+
+				
+
+				
+
+				 </security:authorize>	
 
 			</ul>
 
@@ -53,12 +84,12 @@
 
 			<ul class="nav navbar-nav navbar-right">
 				<sec:authorize access="!isAuthenticated()">
-					<li><a href="<c:url value="/login" />">Login</a></li>
-					<li><a href="<c:url value="/users/new" />">Register</a></li>
+					<li><a href="<c:url value="/login" />">Iniciar sesion</a></li>
+					<li><a href="<c:url value="/register" />">Registrarse</a></li>
 				</sec:authorize>
 				<sec:authorize access="isAuthenticated()">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown"> <span class="glyphicon glyphicon-user"></span> 
+						data-toggle="dropdown"> <span class="glyphicon glyphicon-user"></span>
 							<strong><sec:authentication property="name" /></strong> <span
 							class="glyphicon glyphicon-chevron-down"></span>
 					</a>
@@ -77,28 +108,35 @@
 											</p>
 											<p class="text-left">
 												<a href="<c:url value="/logout" />"
-													class="btn btn-primary btn-block btn-sm">Logout</a>
+													class="btn btn-primary btn-block btn-sm">Cerrar sesion</a>
 											</p>
 										</div>
 									</div>
 								</div>
+
+								
 							</li>
 							<li class="divider"></li>
-<!-- 							
+ 							
                             <li> 
+                            
 								<div class="navbar-login navbar-login-session">
 									<div class="row">
 										<div class="col-lg-12">
 											<p>
-												<a href="#" class="btn btn-primary btn-block">My Profile</a>
-												<a href="#" class="btn btn-danger btn-block">Change
-													Password</a>
+											<security:authorize access="hasAuthority('persona')">
+											<a href="<c:url value="/personas/seguroview" />"
+													class="btn btn-primary btn-block">Mi Perfil</a>
+												
+											  </security:authorize>	
 											</p>
 										</div>
 									</div>
 								</div>
+								    
+								
 							</li>
--->
+
 						</ul></li>
 				</sec:authorize>
 			</ul>

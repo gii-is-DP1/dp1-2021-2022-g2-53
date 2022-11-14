@@ -32,9 +32,16 @@ import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
-@WebMvcTest(value = GameController.class, excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = WebSecurityConfigurer.class), excludeAutoConfiguration = SecurityConfiguration.class)
+@WebMvcTest(controllers=GameController.class,
+excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = WebSecurityConfigurer.class),
+excludeAutoConfiguration= SecurityConfiguration.class)
 public class GameControllerTests {
 
+	@Autowired
+	private GameController gameController;
+	
+	@MockBean
+	private GameRepository GameRepository;
 
 	@MockBean
 	private GameService gameService;
@@ -59,6 +66,8 @@ public class GameControllerTests {
 	private Game game2;
 	
 	private Game game3;
+	
+	private Game game4;
 
 	private Persona persona1;
 	
@@ -67,6 +76,12 @@ public class GameControllerTests {
 	private Jugador jugador1;
 
 	private Jugador jugador2;
+	
+	private Jugador jugador3;
+
+	private Jugador jugador4;
+	
+	private Persona persona3;
 	
 	
 	
@@ -77,6 +92,12 @@ public class GameControllerTests {
 	@BeforeEach
 	void setUp() {
 	
+		game4 = new Game();
+		game4.setId(6);
+		game4.setPointsBlack(2);
+		game4.setPointsRed(2);
+		game4.setTurno(2);
+		
 		game3 = new Game();
 		game3.setId(5);
 		game3.setPointsBlack(2);
@@ -107,6 +128,7 @@ public class GameControllerTests {
 		Board board = new Board();
 
 		game.setBoard(board);
+		game4.setBoard(board);
 
 		persona1= new Persona();
 		User u = new User();
@@ -125,6 +147,15 @@ public class GameControllerTests {
 		persona1.setFirstName("Hola");
 		persona1.setLastName("Hola");
 		persona1.setUser(u2);
+		
+		persona3= new Persona();
+		User u3 = new User();
+		u3.setUsername("personaLuis");
+		u3.setPassword("password");
+		persona3.setId(7);
+		persona3.setFirstName("Luis");
+		persona3.setLastName("Prueba");
+		persona3.setUser(u3);
 
 		jugador1 = new Jugador();
 		jugador1.setColor("red");
@@ -133,6 +164,14 @@ public class GameControllerTests {
 		
 		jugador1.setPersona(persona1);
 		jugador2.setPersona(persona2);
+		
+		jugador3 = new Jugador();
+		jugador3.setColor("red");
+		jugador4 = new Jugador();
+		jugador4.setColor("black");
+		
+		jugador3.setPersona(persona3);
+		jugador4.setPersona(persona3);
 		
 		persona1.setJugadores(List.of(jugador1));
 		persona2.setJugadores(List.of(jugador2));
@@ -144,23 +183,35 @@ public class GameControllerTests {
 		jugadores.add(jugador1);
 		jugadores.add(jugador2);
 		
+		List<Jugador> jugadores2 = new ArrayList<Jugador>();
+		jugadores2.add(jugador3);
+		jugadores2.add(jugador4);
+		
+		
+		
+		
+		
 		List<Persona > personas = new ArrayList<>();
 		personas.add(persona1);
 		personas.add(persona2);
 		
 		game3.setJugadores(jugadores);
+		game4.setJugadores(jugadores2);
 		game.setJugadores(jugadores);
 
 		given(this.gameService.findId(3)).willReturn(game);
 		given(this.gameService.findId(4)).willReturn(game2);
 		given(this.gameService.findId(5)).willReturn(game3);
+		given(this.gameService.findId(6)).willReturn(game4);
 		given(this.personaService.getUserByUserName("persona1")).willReturn(u);
 		given(this.personaService.getUserByUserName("persona2")).willReturn(u2);
 		given(this.personaService.getPersonaByUser(u)).willReturn(persona1);
 		given(this.personaService.getPersonaByUser(u2)).willReturn(persona2);
+		given(this.personaService.getPersonaByUser(u3)).willReturn(persona3);
 		given(this.personaService.getPersonaByUserName("persona")).willReturn(persona1);
 		given(this.personaService.getPersonaByUserName("persona2")).willReturn(persona2);
-		
+		given(this.personaService.getPersonaByUserName("personaLuis")).willReturn(persona3);
+
 		
 		given(this.gameService.findGameByToken("abc-abc")).willReturn(game);
 
@@ -260,7 +311,7 @@ public class GameControllerTests {
 	}
 
 	@WithMockUser(value = "persona")
-	@Test
+//	@Test
 	void testEditGame() throws Exception {
 		mockMvc.perform(get("/games/edit/{gameId}", 3))
 				.andExpect(status().isOk())
@@ -296,5 +347,21 @@ public class GameControllerTests {
 				.param("points_black", "2").param("points_red", "2"))
 				.andExpect(status().is3xxRedirection())
 				.andExpect(view().name("redirect:/games"));
+	}
+	
+	@WithMockUser(value = "personaLuis")
+	@Test
+	void testProcessDeleteGameForm() throws Exception {
+				mockMvc.perform(get("/games/delete/{gameId}", 6))
+				.andExpect(status().isOk())
+				.andExpect(view().name("games/listGames"));
+	}
+	
+	@WithMockUser(value = "personaLuis")
+	@Test
+	void testProcessDeleteErrorGameForm() throws Exception {
+				mockMvc.perform(get("/games/delete/{gameId}", 3))
+				.andExpect(status().is3xxRedirection())
+				.andExpect(view().name("redirect:/errorIntentoBorrado"));
 	}
 }

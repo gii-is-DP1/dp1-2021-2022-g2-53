@@ -34,7 +34,7 @@ public class InvitacionAmistadService {
 
 		@Transactional
 		public String aceptarInvitacion(int id, User userAutenticado) throws DataAccessException {
-	
+	 
 			InvitacionAmistad invitacion = this.findById(id);
 			if(userAutenticado == invitacion.getUser2()) {
 				this.guardarAmigos(invitacion.getUser1().getUsername(), invitacion.getUser2().getUsername());

@@ -27,7 +27,7 @@ public class BoardServiceTests {
     @Transactional
     public void boardCountTest() {
         int count = boardService.boardCount();
-        assertEquals(count, 2);
+        assertEquals(count, 3);
     }
 
     
@@ -52,7 +52,7 @@ public class BoardServiceTests {
         Board board = new Board();
         boardService.save(board);
         int count = boardService.boardCount();
-        assertEquals(count, 3);
+        assertEquals(count, 4);
 
     }
 
@@ -63,7 +63,7 @@ public class BoardServiceTests {
         boardService.save(board);
         boardService.delete(board);
         int count = boardService.boardCount();
-        assertEquals(count, 2);
+        assertEquals(count, 3);
 
     }
     

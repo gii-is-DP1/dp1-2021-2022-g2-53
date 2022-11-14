@@ -31,7 +31,6 @@
 		<spring-format.version>0.0.19</spring-format.version>
 
 	</properties>
-
 	<developers>
 		<developer>
 			<id>Luicharom</id>
@@ -45,9 +44,21 @@
 				</picUrl>
 			</properties>
 		</developer>
+    
+	<developer>
+			<id>elomordom</id>
+			<name>eloy</name>
+			<email>elomordom@us.es</email>
+<roles>
+				<role>leader</role>
+			</roles>
+			<properties>
+				<picUrl>
+				</picUrl>
+			</properties>
+		</developer>
 
-
-		<developer>
+    <developer>
 			<id>josmarsan24</id>
 			<name>jose martin sanchez</name>
 			<email>josmarsan24@alum.us.es</email>
@@ -60,7 +71,47 @@
 				</picUrl>
 			</properties>
 		</developer>
+
+    <developer>
+    			<id>juamenvar</id>
+			<name>Juan Antonio</name>
+			<email>juamenvar@alum.us.es</email>
+    <url>https://github.com/josmarsan24</url>
+			<roles>
+				<role>leader</role>
+			</roles>
+			<properties>
+				<picUrl>
+				</picUrl>
+			</properties>
+		</developer>
+    
+		<developer>
+			<id>alvrodgar2</id>
+			<name>Álvaro</name>
+			<email>alvrodgar2@alum.us.es</email>
+			<url>https://github.com/ARGProject-bit</url>
+			<roles>
+				<role>leader</role>
+			</roles>
+			<properties>
+				<picUrl>
+				</picUrl>
+			</properties>
+		</developer>
+      
+      <developer>
+ 				<id>Jm</id>
+ 				<name>Jose Mª</name>
+ 				<email>josemarigquijada@gmail.com</email>
+ 				<roles>
+ 					<role>leader</role>
+ 				</roles>
+ 			</developer>
+      
 	</developers>
+  
+  
 
 	<dependencies>
 		<!-- Spring and Spring Boot dependencies -->
@@ -80,6 +131,20 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-web</artifactId>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-config</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.2.3</version>
+	</dependency>
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-taglibs</artifactId>
@@ -122,6 +187,7 @@
 			<groupId>org.webjars</groupId>
 			<artifactId>webjars-locator-core</artifactId>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>jquery</artifactId>
@@ -170,8 +236,7 @@
 			<optional>true</optional>
 		</dependency>
 	</dependencies>
-
-	<build>
+<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -270,7 +335,6 @@
 			</plugin>
 		</plugins>
 	</build>
-
 	<!-- Apache 2 license -->
 	<licenses>
 		<license>
