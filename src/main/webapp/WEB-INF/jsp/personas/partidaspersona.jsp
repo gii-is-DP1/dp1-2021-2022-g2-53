@@ -9,7 +9,10 @@
 <petclinic:layout pageName="games">
 	<body style="background: url(/resources/images/bck-petris.png)">
 
-		<h2 style="text-align:center">Historial de partidas de <c:out value="${persona}" /></h2>
+		<h2 style="text-align: center">
+			Historial de partidas de
+			<c:out value="${persona}" />
+		</h2>
 
 
 		<table id="gamesTable" class="table table-striped">

@@ -9,7 +9,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 public interface UserRepository extends CrudRepository<User, String> {
-	
+
 	@Query("SELECT  p from User p ")
 	Iterable<User> getUsers();
 
@@ -17,9 +17,9 @@ public interface UserRepository extends CrudRepository<User, String> {
 	Iterable<User> getUserByUsername(String username);
 
 	@Query("SELECT u.amigos FROM User u where u.username = :username")
-	 public List<List<User>>findAmigos(@Param("username") String username);
+	public List<List<User>> findAmigos(@Param("username") String username);
 
-	 @Query("SELECT u FROM User u where u.username = :username")
+	@Query("SELECT u FROM User u where u.username = :username")
 	public User findByUsername(@Param("username") String username);
 
 	@Query("SELECT u FROM User u WHERE u.username LIKE %:text%")

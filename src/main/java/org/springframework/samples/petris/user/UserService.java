@@ -1,15 +1,12 @@
 
 package org.springframework.samples.petris.user;
 
-
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-
 
 @Service
 public class UserService {
@@ -20,10 +17,10 @@ public class UserService {
 	@Autowired
 	public UserService(UserRepository userRepository) {
 		this.userRepository = userRepository;
-		
+
 	}
 
-	@Transactional(rollbackFor=Exception.class)
+	@Transactional(rollbackFor = Exception.class)
 	public void saveUser(User user) throws DataAccessException {
 		user.setEnabled(true);
 		userRepository.save(user);
@@ -35,20 +32,19 @@ public class UserService {
 	}
 
 	@Transactional
-	public List<User> findAmigos(String user){
+	public List<User> findAmigos(String user) {
 		return userRepository.findByUsername(user).getAmigos();
 
-	
 	}
 
 	@Transactional
-	public List<User> findUsersByText(String text){
+	public List<User> findUsersByText(String text) {
 		return userRepository.findUsersByText(text);
 	}
 
 	@Transactional
 	public void borrarAmigo(User user, String username) throws DataAccessException {
-		
+
 		List<User> amigos = user.getAmigos();
 		User amigo = userRepository.findByUsername(username);
 		List<User> amigo2 = amigo.getAmigos();
@@ -59,7 +55,5 @@ public class UserService {
 		userRepository.save(user);
 		userRepository.save(amigo);
 	}
-	
-	
 
 }

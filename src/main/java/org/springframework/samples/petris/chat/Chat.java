@@ -19,19 +19,16 @@ import lombok.Setter;
 @Entity
 @Table(name = "chats")
 public class Chat extends BaseEntity {
-        
-        @NotNull
-        String text;
 
-        @ManyToOne
-    	@JoinColumn(name = "persona_id")
-    	private Persona persona;
-        
-        @OneToOne
-    	@JoinColumn(name = "game_id")
-    	Game game;
+	@NotNull
+	String text;
 
-    
-        
-    
+	@ManyToOne
+	@JoinColumn(name = "persona_id")
+	private Persona persona;
+
+	@OneToOne
+	@JoinColumn(name = "game_id")
+	Game game;
+
 }

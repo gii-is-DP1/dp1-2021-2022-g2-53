@@ -23,16 +23,8 @@ public interface PersonaRepository extends PagingAndSortingRepository<Persona, I
 
 	@Query("SELECT  p from Persona p ")
 	Iterable<Persona> getPersonas();
-	
+
 	@Query("SELECT  p.jugadores from Persona p ")
 	List<Jugador> getJugadores();
-	
-	
-	
-	
-	
-	
-
-
 
 }

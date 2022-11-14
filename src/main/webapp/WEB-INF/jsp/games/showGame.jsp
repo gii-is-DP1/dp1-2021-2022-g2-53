@@ -40,20 +40,22 @@
 				<th>Puntos del jugador rojo</th>
 				<td><c:out value="${game.pointsRed}" /></td>
 			</tr>
-			
+
 			<tr>
 				<th>Jugadores</th>
-				<td><c:out value="${game.jugadores.size()}; ${game.jugadores[0].persona.user.username}(${game.jugadores[0].color}), ${game.jugadores[1].persona.user.username}(${game.jugadores[1].color})" /></td>
+				<td><c:out
+						value="${game.jugadores.size()}; ${game.jugadores[0].persona.user.username}(${game.jugadores[0].color}), ${game.jugadores[1].persona.user.username}(${game.jugadores[1].color})" /></td>
 			</tr>
 			<tr>
 				<th>Creador</th>
 				<td><c:out value="${game.jugadores[0].persona.user.username}" /></td>
 			</tr>
 		</table>
-		
+
 		<div class="col-md-12">
-		<button class="btn btn-default" style="margin-left: 42%"
-					onclick="window.location.href='/welcome'">
-					<span>Volver al inicio</span>
-		</button></div>
+			<button class="btn btn-default" style="margin-left: 42%"
+				onclick="window.location.href='/welcome'">
+				<span>Volver al inicio</span>
+			</button>
+		</div>
 </petclinic:layout>

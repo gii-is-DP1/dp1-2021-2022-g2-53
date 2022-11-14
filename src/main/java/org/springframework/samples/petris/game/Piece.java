@@ -36,7 +36,6 @@ public class Piece extends BaseEntity {
 	private static final Integer posicion6 = 6;
 	private static final Integer posicion7 = 7;
 
-
 	public Piece() {
 		super();
 	}
@@ -65,7 +64,7 @@ public class Piece extends BaseEntity {
 			return null;
 		}
 		Integer modifier = board.getAllPiecesInTheSamePositionAndSameColor(this).indexOf(this);
-		
+
 		log.info("------------------------------------------------------------------------------------------------");
 		log.info("modifier = {}", modifier);
 		log.info("------------------------------------------------------------------------------------------------");

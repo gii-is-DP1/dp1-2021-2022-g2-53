@@ -42,7 +42,6 @@ public class Board extends BaseEntity {
 	int width;
 	@Positive
 	int height;
-	
 
 	public Board() {
 		this.background = "/resources/images/tablero.png";
@@ -56,7 +55,6 @@ public class Board extends BaseEntity {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "board")
 	List<Sarcine> sarcines;
 
-	
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "board")
 	Game game;
 
@@ -188,25 +186,31 @@ public class Board extends BaseEntity {
 		boolean res = false;
 		Integer posini = movement.getInitialPosition();
 		Integer posfin = movement.getDestinyPosition();
-		if (posini == posicion1 && (posfin == posicion6 || posfin == posicion7 || posfin == posicion5 || posfin == posicion1)) {
+		if (posini == posicion1
+				&& (posfin == posicion6 || posfin == posicion7 || posfin == posicion5 || posfin == posicion1)) {
 			result.rejectValue("destinyPosition", "moveInvalid", "No puedes mover la ficha a esa casilla");
 			res = true;
-		} else if (posini == posicion2 && (posfin == posicion3 || posfin == posicion6 || posfin == posicion7 || posfin == posicion2)) {
+		} else if (posini == posicion2
+				&& (posfin == posicion3 || posfin == posicion6 || posfin == posicion7 || posfin == posicion2)) {
 			result.rejectValue("destinyPosition", "moveInvalid", "No puedes mover la ficha a esa casilla");
 			res = true;
-		} else if (posini == posicion3 && (posfin == posicion2 || posfin == posicion5 || posfin == posicion7 || posfin == posicion3)) {
+		} else if (posini == posicion3
+				&& (posfin == posicion2 || posfin == posicion5 || posfin == posicion7 || posfin == posicion3)) {
 			result.rejectValue("destinyPosition", "moveInvalid", "No puedes mover la ficha a esa casilla");
 			res = true;
 		} else if (posini == posicion4 && posfin == posicion4) {
 			result.rejectValue("destinyPosition", "moveInvalid", "No puedes mover la ficha a esa casilla");
 			res = true;
-		} else if (posini == posicion5 && (posfin == posicion1 || posfin == posicion3 || posfin == posicion6 || posfin == posicion5)) {
+		} else if (posini == posicion5
+				&& (posfin == posicion1 || posfin == posicion3 || posfin == posicion6 || posfin == posicion5)) {
 			result.rejectValue("destinyPosition", "moveInvalid", "No puedes mover la ficha a esa casilla");
 			res = true;
-		} else if (posini == posicion6 && (posfin == posicion1 || posfin == posicion2 || posfin == posicion5 || posfin == posicion6)) {
+		} else if (posini == posicion6
+				&& (posfin == posicion1 || posfin == posicion2 || posfin == posicion5 || posfin == posicion6)) {
 			result.rejectValue("destinyPosition", "moveInvalid", "No puedes mover la ficha a esa casilla");
 			res = true;
-		} else if (posini == posicion7 && (posfin == posicion1 || posfin == posicion2 || posfin == posicion3 || posfin == posicion7)) {
+		} else if (posini == posicion7
+				&& (posfin == posicion1 || posfin == posicion2 || posfin == posicion3 || posfin == posicion7)) {
 			result.rejectValue("destinyPosition", "moveInvalid", "No puedes mover la ficha a esa casilla");
 			res = true;
 		}
@@ -214,32 +218,33 @@ public class Board extends BaseEntity {
 	}
 
 	public void movePieces(Movement movement, BindingResult result) throws MoveInvalidException {
-        if (movement.getTipo().equals(red_color) || (movement.getTipo().equals(black_color))) {
-            List<Piece> pieces = this.pieces.stream().filter(
-                    x -> x.getPosition() == movement.getInitialPosition() && x.getColor().equals(movement.getTipo()))
-                    .collect(Collectors.toList());
-            
-            if (pieces.isEmpty() || movement.getInitialPosition().toString().isEmpty()) {
-                result.rejectValue("initialPosition", "moveInvalid",
-                        "La casilla seleccionada no tiene fichas de tu color o pretendes mover una sarcina");
-            
-            }else if (pieces.size() < movement.getNumber()) {
-                result.rejectValue("number", "moveInvalid",
-                        "Selecciona un número válido de bacterias para mover, en esta casilla solo puedes mover " + pieces.size() + " como máximo");
+		if (movement.getTipo().equals(red_color) || (movement.getTipo().equals(black_color))) {
+			List<Piece> pieces = this.pieces.stream().filter(
+					x -> x.getPosition() == movement.getInitialPosition() && x.getColor().equals(movement.getTipo()))
+					.collect(Collectors.toList());
 
-            } else {
-                List<Piece> piecesAux = pieces.subList(0, movement.getNumber());
-                if (movement.getTipo().equals(red_color) || movement.getTipo().equals(black_color)) {
-                    if (moveInvalid(pieces, movement, result) == false && moveInvalidPosition(movement, result) == false
-                            && moveInvalid2(pieces, movement, result) == false) {
-                        piecesAux.stream().forEach(x -> x.setPosition(movement.getDestinyPosition()));
-                    }
-                } else {
-                    piecesAux.stream().forEach(x -> x.setPosition(movement.getDestinyPosition()));
-                }
-            }
-        }
-    }
+			if (pieces.isEmpty() || movement.getInitialPosition().toString().isEmpty()) {
+				result.rejectValue("initialPosition", "moveInvalid",
+						"La casilla seleccionada no tiene fichas de tu color o pretendes mover una sarcina");
+
+			} else if (pieces.size() < movement.getNumber()) {
+				result.rejectValue("number", "moveInvalid",
+						"Selecciona un número válido de bacterias para mover, en esta casilla solo puedes mover "
+								+ pieces.size() + " como máximo");
+
+			} else {
+				List<Piece> piecesAux = pieces.subList(0, movement.getNumber());
+				if (movement.getTipo().equals(red_color) || movement.getTipo().equals(black_color)) {
+					if (moveInvalid(pieces, movement, result) == false && moveInvalidPosition(movement, result) == false
+							&& moveInvalid2(pieces, movement, result) == false) {
+						piecesAux.stream().forEach(x -> x.setPosition(movement.getDestinyPosition()));
+					}
+				} else {
+					piecesAux.stream().forEach(x -> x.setPosition(movement.getDestinyPosition()));
+				}
+			}
+		}
+	}
 
 	// O -> RED Y 1 -> BLACK
 	public List<Integer> pollution() {
@@ -266,14 +271,18 @@ public class Board extends BaseEntity {
 			} else if (reds.size() + sarcineRed < blacks.size() + sarcineBlack) {
 				black++;
 			}
-			
-			log.info("------------------------------------------------------------------------------------------------");
+
+			log.info(
+					"------------------------------------------------------------------------------------------------");
 			log.info("red {} =", red);
-			log.info("------------------------------------------------------------------------------------------------");
-			
-			log.info("------------------------------------------------------------------------------------------------");
+			log.info(
+					"------------------------------------------------------------------------------------------------");
+
+			log.info(
+					"------------------------------------------------------------------------------------------------");
 			log.info("black {} =", black);
-			log.info("------------------------------------------------------------------------------------------------");
+			log.info(
+					"------------------------------------------------------------------------------------------------");
 
 		}
 		ls.add(red);

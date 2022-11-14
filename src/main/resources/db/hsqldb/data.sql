@@ -6,40 +6,40 @@ INSERT INTO authorities(id,username,authority) VALUES (1,'admin1','admin');
 -- INSERT INTO authorities(id,username,authority) VALUES (2,'owner1','owner');
 
 -- One person user, named ´person1 with passwor personi
-INSERT INTO users(username,password,enabled) VALUES ('person1','personi',TRUE);
+INSERT INTO users(username,password,enabled) VALUES ('person1','$2a$12$IrAKbftOfDwUYLPgmItIrOKoTX8flhx3NJOuitiaY/DB4QtL3PwFa',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (4,'person1','persona');
 -- One person user, named ´person2 with passwor personi
-INSERT INTO users(username,password,enabled) VALUES ('person2','personi',TRUE);
+INSERT INTO users(username,password,enabled) VALUES ('person2','$2a$12$IrAKbftOfDwUYLPgmItIrOKoTX8flhx3NJOuitiaY/DB4QtL3PwFa',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (5,'person2','persona');
 
-INSERT INTO users(username,password,enabled) VALUES ('person3','personi',TRUE);
+INSERT INTO users(username,password,enabled) VALUES ('person3','$2a$12$IrAKbftOfDwUYLPgmItIrOKoTX8flhx3NJOuitiaY/DB4QtL3PwFa',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (6,'person3','persona');
 
-INSERT INTO users(username,password,enabled) VALUES ('person4','personi',TRUE);
+INSERT INTO users(username,password,enabled) VALUES ('person4','$2a$12$IrAKbftOfDwUYLPgmItIrOKoTX8flhx3NJOuitiaY/DB4QtL3PwFa',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (7,'person4','persona');
 
-INSERT INTO users(username,password,enabled) VALUES ('person5','personi',TRUE);
+INSERT INTO users(username,password,enabled) VALUES ('person5','$2a$12$IrAKbftOfDwUYLPgmItIrOKoTX8flhx3NJOuitiaY/DB4QtL3PwFa',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (8,'person5','persona');
 
-INSERT INTO users(username,password,enabled) VALUES ('person6','personi',TRUE);
+INSERT INTO users(username,password,enabled) VALUES ('person6','$2a$12$IrAKbftOfDwUYLPgmItIrOKoTX8flhx3NJOuitiaY/DB4QtL3PwFa',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (9,'person6','persona');
 
-INSERT INTO users(username,password,enabled) VALUES ('person7','personi',TRUE);
+INSERT INTO users(username,password,enabled) VALUES ('person7','$2a$12$IrAKbftOfDwUYLPgmItIrOKoTX8flhx3NJOuitiaY/DB4QtL3PwFa',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (10,'person7','persona');
 
-INSERT INTO users(username,password,enabled) VALUES ('person8','personi',TRUE);
+INSERT INTO users(username,password,enabled) VALUES ('person8','$2a$12$IrAKbftOfDwUYLPgmItIrOKoTX8flhx3NJOuitiaY/DB4QtL3PwFa',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (11,'person8','persona');
 
-INSERT INTO users(username,password,enabled) VALUES ('person9','personi',TRUE);
+INSERT INTO users(username,password,enabled) VALUES ('person9','$2a$12$IrAKbftOfDwUYLPgmItIrOKoTX8flhx3NJOuitiaY/DB4QtL3PwFa',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (12,'person9','persona');
 
-INSERT INTO users(username,password,enabled) VALUES ('person10','personi',TRUE);
+INSERT INTO users(username,password,enabled) VALUES ('person10','$2a$12$IrAKbftOfDwUYLPgmItIrOKoTX8flhx3NJOuitiaY/DB4QtL3PwFa',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (13,'person10','persona');
 
-INSERT INTO users(username,password,enabled) VALUES ('person11','personi',TRUE);
+INSERT INTO users(username,password,enabled) VALUES ('person11','$2a$12$IrAKbftOfDwUYLPgmItIrOKoTX8flhx3NJOuitiaY/DB4QtL3PwFa',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (14,'person11','persona');
 
-INSERT INTO users(username,password,enabled) VALUES ('person12','personi',TRUE);
+INSERT INTO users(username,password,enabled) VALUES ('person12','$2a$12$IrAKbftOfDwUYLPgmItIrOKoTX8flhx3NJOuitiaY/DB4QtL3PwFa',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (15,'person12','persona');
 
 INSERT INTO users(username,password,enabled) VALUES ('user','password',TRUE);

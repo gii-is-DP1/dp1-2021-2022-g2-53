@@ -9,9 +9,13 @@
 <petclinic:layout pageName="games">
 	<body style="background: url(/resources/images/bck-petris.png)">
 
-		<h2 style="text-align:center">Hola <c:out value="${persona}" />, aquí puedes espectar las partidas abiertas del resto de la gente.</h2>
-	<br>
-	
+		<h2 style="text-align: center">
+			Hola
+			<c:out value="${persona}" />
+			, aquí puedes espectar las partidas abiertas del resto de la gente.
+		</h2>
+		<br>
+
 
 		<table id="gamesTable" class="table table-striped">
 			<thead>
@@ -25,20 +29,23 @@
 			</thead>
 			<tbody>
 				<c:forEach items="${games}" var="game">
-				<c:if test="${game.pointsBlack < 9 || game.pointsRed < 9 }">
-					<tr>
-						<td><c:out value="${game.id}" /></td>
-						<td><c:out value="${game.jugadores[0].persona.user.username}" /></td>
-						<td><c:out value="${game.jugadores[1].persona.user.username}" /></td>
-						<td><spring:url value="/games/{gameId}" var="gameUrl">
-								<spring:param name="gameId" value="${game.id}" />
-							</spring:url> <a href="${fn:escapeXml(gameUrl)}">Entrar a la partida en vivo</a></td>
+					<c:if test="${game.pointsBlack < 9 || game.pointsRed < 9 }">
+						<tr>
+							<td><c:out value="${game.id}" /></td>
+							<td><c:out
+									value="${game.jugadores[0].persona.user.username}" /></td>
+							<td><c:out
+									value="${game.jugadores[1].persona.user.username}" /></td>
+							<td><spring:url value="/games/{gameId}" var="gameUrl">
+									<spring:param name="gameId" value="${game.id}" />
+								</spring:url> <a href="${fn:escapeXml(gameUrl)}">Entrar a la partida en
+									vivo</a></td>
 
 
 
 
-					</tr>
-				</c:if>
+						</tr>
+					</c:if>
 				</c:forEach>
 			</tbody>
 		</table>

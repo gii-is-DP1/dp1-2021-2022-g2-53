@@ -55,7 +55,7 @@ public class PersonaService {
 
 	}
 
-	@Transactional(rollbackFor=Exception.class)
+	@Transactional(rollbackFor = Exception.class)
 	public void savePersona(Persona p) throws DataAccessException {
 		// creating persona
 		personaRepo.save(p);

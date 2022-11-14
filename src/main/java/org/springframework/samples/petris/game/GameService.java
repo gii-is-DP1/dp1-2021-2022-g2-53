@@ -54,7 +54,7 @@ public class GameService {
 		return gameRepo.findByToken(token);
 	}
 
-	@Transactional(rollbackFor=Exception.class)
+	@Transactional(rollbackFor = Exception.class)
 	public void phases(Game gameEdited, Movement movement, BindingResult result) throws MoveInvalidException {
 
 		String turno = gameEdited.getTurnos().get(gameEdited.getTurno());

@@ -1,6 +1,5 @@
 package org.springframework.samples.petris.user;
 
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
@@ -34,11 +33,11 @@ public class User {
 
 	@Id
 	@Column(name = "username")
-	@NotEmpty (message = "May not be empty")
+	@NotEmpty(message = "May not be empty")
 	protected String username;
 
 	@Column(name = "password")
-	@NotEmpty (message = "May not be empty")
+	@NotEmpty(message = "May not be empty")
 	protected String password;
 
 	boolean enabled;
@@ -62,10 +61,8 @@ public class User {
 	@Column(name = "last_modified_date")
 	private LocalDateTime lastModifiedDate;
 
-	@ManyToMany(cascade= CascadeType.ALL)
-	@JoinTable(name= "amigos")
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "amigos")
 	private List<User> amigos;
-
-
 
 }

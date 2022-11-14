@@ -45,13 +45,12 @@ public class UserController {
 	@Autowired
 	private final UserService userService;
 
-
 	@Autowired
-	public UserController(PersonaService personaService, UserService userService,UserRepository userRepo) {
+	public UserController(PersonaService personaService, UserService userService, UserRepository userRepo) {
 		this.personaService = personaService;
-		this.userService= userService;
-		this.userRepo= userRepo;
-	
+		this.userService = userService;
+		this.userRepo = userRepo;
+
 	}
 
 	@InitBinder
@@ -76,7 +75,7 @@ public class UserController {
 		}
 	}
 
-	@GetMapping(path="users/amigos")
+	@GetMapping(path = "users/amigos")
 	public String listaAmigos(ModelMap modelMap) {
 		String vista = "users/listaAmigos";
 		UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -84,33 +83,28 @@ public class UserController {
 		List<User> amigos =  userService.findAmigos(user.getUsername());
 		modelMap.addAttribute("amigos", amigos);
 		return vista;
-	}  
+	}
 
-	@GetMapping(path="users/buscar/user")
-    public String buscarUsuario(ModelMap modelMap) {
-    	String vista = "users/buscarUsuario";
-    	Persona personaBusqueda = new Persona();
-    	modelMap.addAttribute("personaBusqueda", personaBusqueda);
-    	return vista;
-    }
+	@GetMapping(path = "users/buscar/user")
+	public String buscarUsuario(ModelMap modelMap) {
+		String vista = "users/buscarUsuario";
+		Persona personaBusqueda = new Persona();
+		modelMap.addAttribute("personaBusqueda", personaBusqueda);
+		return vista;
+	}
 
-	@GetMapping(path="users/encontrados")
+	@GetMapping(path = "users/encontrados")
 	public String listaUsuariosEncontrados(ModelMap modelMap, @RequestParam("username") String username) {
-    
+
 		String vista = "users/usuariosEncontrados";
-		Iterable<User> users =  userRepo.getUserByUsername(username);
+		Iterable<User> users = userRepo.getUserByUsername(username);
 		modelMap.addAttribute("users", users);
     	UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		User user= userService.findUser(ud.getUsername());
         modelMap.addAttribute("usuActual", user);
         modelMap.addAttribute("username", username);
 		return vista;
-	}  
-
-	@PostMapping(path="users/encontrado")
-    public String buscarTexto(@Valid Persona p, BindingResult result, ModelMap modelMap) {
-        return "redirect:/users/encontrados?username=" + p.getUser().getUsername();
-    }
+	}
 
 	
 	@GetMapping(path="users/delete/{username}")
@@ -121,7 +115,10 @@ public class UserController {
     	userService.borrarAmigo(user, username);
     	return "redirect:/users/amigos";
     }
-
+	@PostMapping(path = "users/encontrado")
+	public String buscarTexto(@Valid Persona p, BindingResult result, ModelMap modelMap) {
+		return "redirect:/users/encontrados?username=" + p.getUser().getUsername();
+	}
 
 
 }
