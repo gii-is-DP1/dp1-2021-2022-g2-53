@@ -43,9 +43,9 @@ public class AuthoritiesService {
 	@Transactional(rollbackFor=Exception.class)
 	public void saveAuthorities(String username, String role) throws DataAccessException {
 		Authorities authority = new Authorities();
-		Optional<User> user = userService.findUser(username);
-		if (user.isPresent()) {
-			authority.setUser(user.get());
+		User user = userService.findUser(username);
+		if (user != null) {
+			authority.setUser(user);
 			authority.setAuthority(role);
 			authoritiesRepository.save(authority);
 		} else

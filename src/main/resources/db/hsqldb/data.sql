@@ -42,6 +42,9 @@ INSERT INTO authorities(id,username,authority) VALUES (14,'person11','persona');
 INSERT INTO users(username,password,enabled) VALUES ('person12','$2a$12$IrAKbftOfDwUYLPgmItIrOKoTX8flhx3NJOuitiaY/DB4QtL3PwFa',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (15,'person12','persona');
 
+INSERT INTO users(username,password,enabled) VALUES ('user','password',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (16,'user','persona');
+
 INSERT INTO personas(id,first_name,last_name,user) VALUES (1, 'luis', 'chacon romero', 'person1');
 INSERT INTO personas(id,first_name,last_name,user) VALUES (2, 'pepe', 'sanchez cortes', 'person2');
 INSERT INTO personas(id,first_name,last_name,user) VALUES (3, 'juanan', 'chacon vargas', 'person3');
@@ -50,15 +53,23 @@ INSERT INTO personas(id,first_name,last_name,user) VALUES (5, 'eloy', 'moreno ro
 INSERT INTO personas(id,first_name,last_name,user) VALUES (6, 'arturo', 'sanchez moral', 'person6');
 INSERT INTO personas(id,first_name,last_name,user) VALUES (7, 'lucia', 'fernandez romero', 'person7');
 INSERT INTO personas(id,first_name,last_name,user) VALUES (8, 'marta', 'quijada cortes', 'person8');
+INSERT INTO personas(id,first_name,last_name,user) VALUES (9, 'prueba', 'prueba persona', 'user');
+
 
 
 
 INSERT INTO boards(id,background,height,width) VALUES (1,'/resources/images/tablero.png',300,500);
 INSERT INTO boards(id,background,height,width) VALUES (2,'/resources/images/tablero.png',300,500);
+INSERT INTO boards(id,background,height,width) VALUES (3,'/resources/images/tablero.png',300,500);
+
 
 
 INSERT INTO games (id,points_black,points_red,board_id,turno,token) VALUES (1,2,2,1,15,'abc-abc');
 INSERT INTO games (id,points_black,points_red,board_id,turno,token) VALUES (2,8,4,2,37,'ebc-qer');
+INSERT INTO games (id,points_black,points_red,board_id,turno,token) VALUES (3,0,0,3,0,'abc-cba');
+INSERT INTO games (id,points_black,points_red,board_id,turno,token) VALUES (4,0,0,3,2,'abc-bac');
+INSERT INTO games (id,points_black,points_red,board_id,turno,token) VALUES (5,0,0,3,9,'abc-zzz');
+
 
 
 
@@ -70,6 +81,9 @@ INSERT INTO jugador(id,color,game_id,persona_id) VALUES (2,'black',1,2);
 
 INSERT INTO jugador(id,color,game_id,persona_id) VALUES (3,'red',2,1);
 INSERT INTO jugador(id,color,game_id,persona_id) VALUES (4,'black',2,2);
+
+INSERT INTO jugador(id,color,game_id,persona_id) VALUES (5,'black',1,9);
+
 
 INSERT INTO piece(id,color,position,type,board_id) VALUES (1,'black',1,'bacterium',1);
 INSERT INTO piece(id,color,position,type,board_id) VALUES (2,'red',2,'bacterium',1);
@@ -99,12 +113,21 @@ INSERT INTO piece(id,color,position,type,board_id) VALUES (24,'red',7,'bacterium
 INSERT INTO piece(id,color,position,type,board_id) VALUES (25,'black',3,'bacterium',2);
 INSERT INTO piece(id,color,position,type,board_id) VALUES (26,'red',5,'bacterium',2);
 
+INSERT INTO piece(id,color,position,type,board_id) VALUES (27,'black',3,'bacterium',3);
+
+
 INSERT INTO sarcine(id,color,position,board_id) VALUES (1,'black',1,1);
 INSERT INTO sarcine(id,color,position,board_id) VALUES (2,'red',6,1);
 
 INSERT INTO chats(id,text,persona_id, game_id) VALUES (1,'hola1',1,1);
 INSERT INTO chats(id,text,persona_id, game_id) VALUES (2,'hola2',2,1);
 INSERT INTO chats(id,text,persona_id, game_id) VALUES (3,'hola3',1,1);
+
+INSERT INTO invitacion_amigo(id,username1,username2) VALUES (1,'person1','person2');
+
+
+
+
 
 
 

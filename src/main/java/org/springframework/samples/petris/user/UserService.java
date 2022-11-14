@@ -27,8 +27,8 @@ public class UserService {
 	}
 
 	@Transactional
-	public Optional<User> findUser(String username) {
-		return userRepository.findById(username);
+	public User findUser(String username) {
+		return userRepository.findById(username).get();
 	}
 
 	@Transactional

@@ -32,17 +32,18 @@ public class InvitacionAmistadService {
 		return "/welcome";
 	}
 
-	@Transactional
-	public String aceptarInvitacion(int id, User userAutenticado) throws DataAccessException {
-
-		InvitacionAmistad invitacion = this.findById(id);
-		if (userAutenticado == invitacion.getUser2()) {
-			this.guardarAmigos(invitacion.getUser1().getUsername(), invitacion.getUser2().getUsername());
-			this.declinarInvitacion(invitacion, userAutenticado);
-
+		@Transactional
+		public String aceptarInvitacion(int id, User userAutenticado) throws DataAccessException {
+	 
+			InvitacionAmistad invitacion = this.findById(id);
+			if(userAutenticado == invitacion.getUser2()) {
+				this.guardarAmigos(invitacion.getUser1().getUsername(), invitacion.getUser2().getUsername());
+				this.declinarInvitacion(invitacion, userAutenticado);
+				
+			} 
+			return "redirect:/welcome";
 		}
-		return "redirect:/welcome";
-	}
+		
 
 	@Transactional
 	public String declinarInvitacion(InvitacionAmistad invitacion, User userAutenticado) throws DataAccessException {

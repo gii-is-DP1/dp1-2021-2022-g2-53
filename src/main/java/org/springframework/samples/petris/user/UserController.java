@@ -79,8 +79,8 @@ public class UserController {
 	public String listaAmigos(ModelMap modelMap) {
 		String vista = "users/listaAmigos";
 		UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		User user = userService.findUser(ud.getUsername()).get();
-		List<User> amigos = userService.findAmigos(user.getUsername());
+		User user= userService.findUser(ud.getUsername());
+		List<User> amigos =  userService.findAmigos(user.getUsername());
 		modelMap.addAttribute("amigos", amigos);
 		return vista;
 	}
@@ -99,25 +99,26 @@ public class UserController {
 		String vista = "users/usuariosEncontrados";
 		Iterable<User> users = userRepo.getUserByUsername(username);
 		modelMap.addAttribute("users", users);
-		UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		User user = userService.findUser(ud.getUsername()).get();
-		modelMap.addAttribute("usuActual", user);
-		modelMap.addAttribute("username", username);
+    	UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		User user= userService.findUser(ud.getUsername());
+        modelMap.addAttribute("usuActual", user);
+        modelMap.addAttribute("username", username);
 		return vista;
 	}
 
+	
+	@GetMapping(path="users/delete/{username}")
+    public String eliminarAmigo(@PathVariable("username") String username, ModelMap modelMap) {
+    	
+    	UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		User user= userService.findUser(ud.getUsername());
+    	userService.borrarAmigo(user, username);
+    	return "redirect:/users/amigos";
+    }
 	@PostMapping(path = "users/encontrado")
 	public String buscarTexto(@Valid Persona p, BindingResult result, ModelMap modelMap) {
 		return "redirect:/users/encontrados?username=" + p.getUser().getUsername();
 	}
 
-	@GetMapping(path = "users/delete/{username}")
-	public String eliminarAmigo(@PathVariable("username") String username, ModelMap modelMap) {
-
-		UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		User user = userService.findUser(ud.getUsername()).get();
-		userService.borrarAmigo(user, username);
-		return "redirect:/users/amigos";
-	}
 
 }

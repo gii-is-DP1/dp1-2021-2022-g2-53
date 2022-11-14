@@ -31,7 +31,7 @@ public class JugadorServiceTests {
 	@Test
 	public void JugadorCountTest() {
 		int count = jugadorService.jugadorCount();
-		assertEquals(count, 4);
+		assertEquals(count, 5);
 	}
 	
 	@Test
@@ -50,7 +50,7 @@ public class JugadorServiceTests {
 		jugadorService.save(jugador);
 		
 		int count = jugadorService.jugadorCount();
-		assertEquals(count, 5);
+		assertEquals(count, 6);
 
 	}
 
