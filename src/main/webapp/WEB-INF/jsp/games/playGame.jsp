@@ -81,7 +81,7 @@
 
 						<petclinic:inputField label="Casilla original"
 							name="initialPosition" />
-						<petclinic:inputField label="Nï¿½mero de fichas" name="number" />
+						<petclinic:inputField label="Número de fichas" name="number" />
 						<petclinic:inputField label="Casilla destino"
 							name="destinyPosition" />
 
